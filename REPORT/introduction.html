@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Introduction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul ul {
+            padding-left: 2em;
+            list-style-type: circle;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Introduction and Overview</h1>
+
+    <div class="section">
+        <h2>1. High-Level Summary</h2>
+        <p>This report contains the results of a comprehensive security assessment of the Damn Vulnerable Web Application (DVWA). The testing methodology was based on the OWASP Web Security Testing Guide (WSTG) v4.0, covering a wide range of potential web application vulnerabilities. The tests were automated using a series of Python scripts, each designed to target a specific category of the WSTG.</p>
+        <p>The assessment uncovered numerous vulnerabilities, ranging from low to critical severity. Key findings include critical SQL Injection flaws allowing for database compromise, multiple instances of Cross-Site Scripting (XSS), and insecure handling of credentials and session data. These findings indicate significant security weaknesses that should be addressed to prevent potential exploitation.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Objective</h2>
+        <p>The primary objective of this penetration test was to identify and document security vulnerabilities in the Damn Vulnerable Web Application (DVWA) by systematically applying the testing procedures outlined in the OWASP WSTG v4.0. The goal is to provide a clear understanding of the application's security posture and to offer recommendations for remediation.</p>
+    </div>
+
+    <div class="section">
+        <h2>3. Requirements</h2>
+        <p>The following components were required to conduct this security assessment:</p>
+        <ul>
+            <li><strong>Target Application:</strong> Damn Vulnerable Web Application (DVWA) running in a Docker container.</li>
+            <li><strong>Testing Framework:</strong> A suite of custom Python scripts designed to automate the OWASP WSTG tests.</li>
+            <li><strong>Tools:</strong> Python 3, Nmap for network scanning, and various Python libraries for web interaction and analysis.</li>
+            <li><strong>Environment:</strong> A machine with network access to the DVWA instance.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. List of Tests Performed</h2>
+        <ul>
+            <li>
+                <h3>Configuration and Deployment Management Testing</h3>
+                <ul>
+                    <li>Test Network/Infrastructure Configuration (OTG-CONFIG-001)</li>
+                    <li>Test Application Platform Configuration (OTG-CONFIG-002)</li>
+                    <li>Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)</li>
+                    <li>Review Old, Backup and Unreferenced Files for Sensitive Information (OTG-CONFIG-004)</li>
+                    <li>Enumerate Infrastructure and Application Admin Interfaces (OTG-CONFIG-005)</li>
+                    <li>Test HTTP Methods (OTG-CONFIG-006)</li>
+                    <li>Test HTTP Strict Transport Security (OTG-CONFIG-007)</li>
+                    <li>Test RIA cross domain policy (OTG-CONFIG-008)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Identity Management Testing</h3>
+                <ul>
+                    <li>Test Role Definitions (OTG-IDENT-001)</li>
+                    <li>Test User Registration Process (OTG-IDENT-002)</li>
+                    <li>Test Account Provisioning Process (OTG-IDENT-003)</li>
+                    <li>Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)</li>
+                    <li>Testing for Weak or unenforced username policy (OTG-IDENT-005)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Authentication Testing</h3>
+                <ul>
+                    <li>Testing for Credentials Transported over an Encrypted Channel (OTG-AUTHN-001)</li>
+                    <li>Testing for default credentials (OTG-AUTHN-002)</li>
+                    <li>Testing for Weak lock out mechanism (OTG-AUTHN-003)</li>
+                    <li>Testing for bypassing authentication schema (OTG-AUTHN-004)</li>
+                    <li>Test remember password functionality (OTG-AUTHN-005)</li>
+                    <li>Testing for Browser cache weakness (OTG-AUTHN-006)</li>
+                    <li>Testing for Weak password policy (OTG-AUTHN-007)</li>
+                    <li>Testing for Weak security question/answer (OTG-AUTHN-008)</li>
+                    <li>Testing for weak password change or reset functionalities (OTG-AUTHN-009)</li>
+                    <li>Testing for Weaker authentication in alternative channel (OTG-AUTHN-010)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Authorization Testing</h3>
+                <ul>
+                    <li>Testing Directory traversal/file include (OTG-AUTHZ-001)</li>
+                    <li>Testing for bypassing authorization schema (OTG-AUTHZ-002)</li>
+                    <li>Testing for Privilege Escalation (OTG-AUTHZ-003)</li>
+                    <li>Testing for Insecure Direct Object References (OTG-AUTHZ-004)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Session Management Testing</h3>
+                <ul>
+                    <li>Testing for Bypassing Session Management Schema (OTG-SESS-001)</li>
+                    <li>Testing for Cookies attributes (OTG-SESS-002)</li>
+                    <li>Testing for Session Fixation (OTG-SESS-003)</li>
+                    <li>Testing for Exposed Session Variables (OTG-SESS-004)</li>
+                    <li>Testing for Cross Site Request Forgery (CSRF) (OTG-SESS-005)</li>
+                    <li>Testing for logout functionality (OTG-SESS-006)</li>
+                    <li>Test Session Timeout (OTG-SESS-007)</li>
+                    <li>Testing for Session puzzling (OTG-SESS-008)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Input Validation Testing</h3>
+                <ul>
+                    <li>Testing for Reflected Cross Site Scripting (OTG-INPVAL-001)</li>
+                    <li>Testing for Stored Cross Site Scripting (OTG-INPVAL-002)</li>
+                    <li>Testing for HTTP Verb Tampering (OTG-INPVAL-003)</li>
+                    <li>Testing for HTTP Parameter pollution (OTG-INPVAL-004)</li>
+                    <li>Testing for SQL Injection (OTG-INPVAL-005)</li>
+                    <li>Testing for LDAP Injection (OTG-INPVAL-006)</li>
+                    <li>Testing for ORM Injection (OTG-INPVAL-007)</li>
+                    <li>Testing for XML Injection (OTG-INPVAL-008)</li>
+                    <li>Testing for SSI Injection (OTG-INPVAL-009)</li>
+                    <li>Testing for XPath Injection (OTG-INPVAL-010)</li>
+                    <li>IMAP/SMTP Injection (OTG-INPVAL-011)</li>
+                    <li>Testing for Code Injection (OTG-INPVAL-012)</li>
+                    <li>Testing for Command Injection (OTG-INPVAL-013)</li>
+                    <li>Testing for Buffer overflow (OTG-INPVAL-014)</li>
+                    <li>Testing for incubated vulnerabilities (OTG-INPVAL-015)</li>
+                    <li>Testing for HTTP Splitting/Smuggling (OTG-INPVAL-016)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Testing for Error Handling</h3>
+                <ul>
+                    <li>Analysis of Error Codes (OTG-ERR-001)</li>
+                    <li>Analysis of Stack Traces (OTG-ERR-002)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Testing for weak Cryptography</h3>
+                <ul>
+                    <li>Testing for Weak SSL/TLS Ciphers, Insufficient Transport Layer Protection (OTG-CRYPST-001)</li>
+                    <li>Testing for Padding Oracle (OTG-CRYPST-002)</li>
+                    <li>Testing for Sensitive information sent via unencrypted channels (OTG-CRYPST-003)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Business Logic Testing</h3>
+                <ul>
+                    <li>Test Business Logic Data Validation (OTG-BUSLOGIC-001)</li>
+                    <li>Test Ability to Forge Requests (OTG-BUSLOGIC-002)</li>
+                    <li>Test Integrity Checks (OTG-BUSLOGIC-003)</li>
+                    <li>Test for Process Timing (OTG-BUSLOGIC-004)</li>
+                    <li>Test Number of Times a Function Can be Used Limits (OTG-BUSLOGIC-005)</li>
+                    <li>Testing for the Circumvention of Work Flows (OTG-BUSLOGIC-006)</li>
+                    <li>Test Defenses Against Application Mis-use (OTG-BUSLOGIC-007)</li>
+                    <li>Test Upload of Unexpected File Types (OTG-BUSLOGIC-008)</li>
+                    <li>Test Upload of Malicious Files (OTG-BUSLOGIC-009)</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Client Side Testing</h3>
+                <ul>
+                    <li>Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)</li>
+                    <li>Testing for JavaScript Execution (OTG-CLIENT-002)</li>
+                    <li>Testing for HTML Injection (OTG-CLIENT-003)</li>
+                    <li>Testing for Client Side URL Redirect (OTG-CLIENT-004)</li>
+                    <li>Testing for CSS Injection (OTG-CLIENT-005)</li>
+                    <li>Testing for Client Side Resource Manipulation (OTG-CLIENT-006)</li>
+                    <li>Test Cross Origin Resource Sharing (OTG-CLIENT-007)</li>
+                    <li>Testing for Cross Site Flashing (OTG-CLIENT-008)</li>
+                    <li>Testing for Clickjacking (OTG-CLIENT-009)</li>
+                    <li>Testing WebSockets (OTG-CLIENT-010)</li>
+                    <li>Test Web Messaging (OTG-CLIENT-011)</li>
+                    <li>Test Local Storage (OTG-CLIENT-012)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Authorization Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Authorization Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Authorization testing is the process of verifying that the application correctly enforces access controls, ensuring that users can only access the data and functionality that they are explicitly permitted to. This includes testing for vulnerabilities such as directory traversal, privilege escalation, and insecure direct object references (IDOR). A failure in authorization can lead to unauthorized access to sensitive data and functionality, and is often a critical vulnerability.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-AUTHZ-001</td>
+                <td>Testing Directory Traversal/File Include</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHZ-002</td>
+                <td>Testing for Bypassing Authorization Schema</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHZ-003</td>
+                <td>Testing for Privilege Escalation</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHZ-004</td>
+                <td>Testing for Insecure Direct Object References</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>No authorization vulnerabilities were identified during this assessment. The tests for directory traversal, bypassing authorization schema, privilege escalation, and insecure direct object references did not reveal any weaknesses in the application's access control mechanisms.</p>
+        <p>The primary challenge in this testing category was the inability to log in with low-privilege credentials, which is a prerequisite for many of the authorization tests. As a result, the tests could not be performed as intended, and the assessment of the application's authorization controls is incomplete. It is recommended that a valid low-privilege user account be created to allow for a more thorough evaluation of the application's authorization scheme.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. General Recommendation/Remediation</h2>
+        <ul>
+            <li><strong>Implement Proper Access Control:</strong> Ensure that all sensitive functionality and data is protected by a robust access control mechanism. This includes verifying that the user is authenticated and has the necessary permissions to access the requested resource.</li>
+            <li><strong>Use the Principle of Least Privilege:</strong> Users should only be granted the minimum level of access required to perform their job functions.</li>
+            <li><strong>Avoid Insecure Direct Object References:</strong> Instead of using direct object references in URLs, use indirect references that are mapped to the user's session. This will prevent attackers from being able to access other users' data by simply changing a parameter in the URL.</li>
+            <li><strong>Implement a Low-Privilege User Account for Testing:</strong> To allow for a more thorough assessment of the application's authorization controls, a low-privilege user account should be created for testing purposes.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

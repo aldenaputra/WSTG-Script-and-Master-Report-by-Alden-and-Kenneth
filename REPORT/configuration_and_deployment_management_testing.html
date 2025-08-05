@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Configuration and Deployment Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Configuration and Deployment Management Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Configuration and deployment management testing focuses on identifying flaws related to the server's configuration, the application's platform, and the files and directories it serves. A misconfigured server or application can expose sensitive information, create unintended functionality, or allow unauthorized access. This section of the test ensures that the web server, application server, and the application itself are securely configured and do not reveal any unnecessary information that could aid an attacker.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-001</td>
+                <td>Information Disclosure (Open Ports/Services)</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-002</td>
+                <td>Information Disclosure (PHP/Apache Info)</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-003</td>
+                <td>File Extensions Handling</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-004</td>
+                <td>Old, Backup, and Unreferenced Files</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-005</td>
+                <td>Enumerate Admin Interfaces</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-006</td>
+                <td>Insecure HTTP Methods Enabled</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-007</td>
+                <td>Missing HSTS Header</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CONFIG-008</td>
+                <td>RIA Cross-Domain Policy</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>The most significant findings in this category are related to information disclosure. The application and server are overly verbose, revealing details about the network infrastructure, running services, and the full PHP and Apache configuration. This information could be leveraged by an attacker to mount more targeted attacks. Additionally, several potentially insecure HTTP methods are enabled, and the application is missing the HTTP Strict Transport Security (HSTS) header, leaving it more susceptible to man-in-the-middle attacks.</p>
+        <p>A key challenge during this test was the absence of the `ffuf` and `gobuster` tools, which prevented the successful execution of the file extension and backup file checks (OTG-CONFIG-003 and OTG-CONFIG-004). While the other tests were completed successfully, the inability to perform these checks leaves a potential gap in the assessment of the application's configuration security.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. General Recommendation/Remediation</h2>
+        <ul>
+            <li><strong>Restrict Access to Services:</strong> The open ports for `msrpc`, `microsoft-ds`, and `vmware-auth` should be firewalled from public access unless absolutely necessary. If they are required, they should be restricted to trusted IP addresses.</li>
+            <li><strong>Disable Unnecessary HTTP Methods:</strong> The web server should be configured to only allow necessary HTTP methods, such as `GET` and `POST`. The `PUT`, `DELETE`, `PATCH`, `TRACK`, and `DEBUG` methods should be disabled.</li>
+            <li><strong>Implement HSTS:</strong> The `Strict-Transport-Security` header should be implemented to enforce the use of HTTPS, which helps to prevent man-in-the-middle attacks.</li>
+            <li><strong>Reduce Server Verbosity:</strong> The web server should be configured to not reveal detailed version information in its banners and error pages. The `phpinfo()` page should be removed from the production environment.</li>
+            <li><strong>Install and Use File Discovery Tools:</strong> To ensure a complete assessment, security testing tools such as `ffuf` and `gobuster` should be installed and used to identify potentially sensitive files and directories.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

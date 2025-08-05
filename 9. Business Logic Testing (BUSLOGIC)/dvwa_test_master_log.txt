@@ -1,0 +1,1709 @@
+2025-08-05 02:04:56.977909 | [+] Login successful (Status: 200)
+2025-08-05 02:04:57.028706 | [+] Security level set to low
+2025-08-05 02:04:57.028706 | ----- Starting OTG-BUSLOGIC-001 (Business Logic Data Validation) -----
+2025-08-05 02:04:57.028706 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 02:04:57.040322 |   - Testing parameter: id
+2025-08-05 02:04:57.046017 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:57.051598 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:57.057728 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.060423 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.066410 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:57.070068 |     [✗] Business logic validation failed - invalid value '' OR '1'='1' was accepted
+2025-08-05 02:04:57.074046 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:57.077050 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:57.077050 |   - Testing parameter: Submit
+2025-08-05 02:04:57.078554 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:57.083980 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:57.085315 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.090996 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.094509 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:57.098541 |     [-] No obvious business logic validation failure with test case 'sql_injection'
+2025-08-05 02:04:57.098541 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:57.098541 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:57.098541 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 02:04:57.110423 |   - Testing parameter: username
+2025-08-05 02:04:57.110423 |     [✓] Possible validation failure with test case 'negative_price'
+2025-08-05 02:04:57.110423 |     [✓] Possible validation failure with test case 'zero_quantity'
+2025-08-05 02:04:57.118591 |     [✓] Possible validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.118591 |     [✓] Possible validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.128672 |     [✓] Possible validation failure with test case 'long_string'
+2025-08-05 02:04:57.132678 |     [✓] Possible validation failure with test case 'sql_injection'
+2025-08-05 02:04:57.136443 |     [✓] Possible validation failure with test case 'future_date'
+2025-08-05 02:04:57.140159 |     [✓] Possible validation failure with test case 'past_date'
+2025-08-05 02:04:57.140159 |   - Testing parameter: password
+2025-08-05 02:04:57.144271 |     [✓] Possible validation failure with test case 'negative_price'
+2025-08-05 02:04:57.147271 |     [✓] Possible validation failure with test case 'zero_quantity'
+2025-08-05 02:04:57.148969 |     [✓] Possible validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.151944 |     [✓] Possible validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.151944 |     [✓] Possible validation failure with test case 'long_string'
+2025-08-05 02:04:57.158586 |     [✓] Possible validation failure with test case 'sql_injection'
+2025-08-05 02:04:57.164834 |     [✓] Possible validation failure with test case 'future_date'
+2025-08-05 02:04:57.168581 |     [✓] Possible validation failure with test case 'past_date'
+2025-08-05 02:04:57.168581 |   - Testing parameter: Login
+2025-08-05 02:04:57.171797 |     [✓] Possible validation failure with test case 'negative_price'
+2025-08-05 02:04:57.175384 |     [✓] Possible validation failure with test case 'zero_quantity'
+2025-08-05 02:04:57.178388 |     [✓] Possible validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.178388 |     [✓] Possible validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.178388 |     [✓] Possible validation failure with test case 'long_string'
+2025-08-05 02:04:57.178388 |     [✓] Possible validation failure with test case 'sql_injection'
+2025-08-05 02:04:57.191044 |     [✓] Possible validation failure with test case 'future_date'
+2025-08-05 02:04:57.191044 |     [✓] Possible validation failure with test case 'past_date'
+2025-08-05 02:04:57.194333 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/upload/
+2025-08-05 02:04:57.198596 |   - Testing parameter: uploaded
+2025-08-05 02:04:57.246325 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:57.290710 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:57.340744 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.390946 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.447702 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:57.498683 |     [-] No obvious business logic validation failure with test case 'sql_injection'
+2025-08-05 02:04:57.543669 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:57.593707 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:57.593707 |   - Testing parameter: Upload
+2025-08-05 02:04:57.638440 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:57.690083 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:57.739822 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:57.790067 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:57.840827 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:57.888610 |     [-] No obvious business logic validation failure with test case 'sql_injection'
+2025-08-05 02:04:57.938770 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:57.990247 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:57.990247 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/captcha/
+2025-08-05 02:04:57.990247 |   - Testing parameter: password_new
+2025-08-05 02:04:58.130067 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:58.180286 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:58.228889 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:58.281145 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:58.330653 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:58.383667 |     [-] No obvious business logic validation failure with test case 'sql_injection'
+2025-08-05 02:04:58.434751 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:58.491728 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:58.492248 |   - Testing parameter: password_conf
+2025-08-05 02:04:58.544248 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:58.598029 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:58.649117 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:58.700446 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:58.750898 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:58.802471 |     [-] No obvious business logic validation failure with test case 'sql_injection'
+2025-08-05 02:04:58.854467 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:58.903619 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:58.904143 |   - Testing parameter: Change
+2025-08-05 02:04:58.954289 |     [-] No obvious business logic validation failure with test case 'negative_price'
+2025-08-05 02:04:59.007518 |     [✗] Business logic validation failed - invalid value '0' was accepted
+2025-08-05 02:04:59.057051 |     [-] No obvious business logic validation failure with test case 'excessive_quantity'
+2025-08-05 02:04:59.110460 |     [-] No obvious business logic validation failure with test case 'invalid_email'
+2025-08-05 02:04:59.162338 |     [-] No obvious business logic validation failure with test case 'long_string'
+2025-08-05 02:04:59.213076 |     [-] No obvious business logic validation failure with test case 'sql_injection'
+2025-08-05 02:04:59.265365 |     [-] No obvious business logic validation failure with test case 'future_date'
+2025-08-05 02:04:59.316266 |     [-] No obvious business logic validation failure with test case 'past_date'
+2025-08-05 02:04:59.316266 | ----- OTG-BUSLOGIC-001 Test Completed -----
+
+2025-08-05 02:12:23.122770 | [+] Login successful (Status: 200)
+2025-08-05 02:12:23.178272 | [+] Security level set to low
+2025-08-05 02:12:23.178272 | ----- Starting OTG-BUSLOGIC-002 (Ability to Forge Requests) -----
+2025-08-05 02:12:23.178272 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/csrf/
+2025-08-05 02:12:23.223890 |     [✓] Possible admin access granted with forged param 'debug=true'
+2025-08-05 02:12:23.228276 |     [✓] Possible admin access granted with forged param 'debug=false'
+2025-08-05 02:12:23.232293 |     [✓] Possible admin access granted with forged param 'debug=1'
+2025-08-05 02:12:23.235295 |     [✓] Possible admin access granted with forged param 'debug=0'
+2025-08-05 02:12:23.238313 |     [✓] Possible admin access granted with forged param 'debug=yes'
+2025-08-05 02:12:23.241899 |     [✓] Possible admin access granted with forged param 'debug=no'
+2025-08-05 02:12:23.241899 |     [✓] Possible admin access granted with forged param 'debug=on'
+2025-08-05 02:12:23.246693 |     [✓] Possible admin access granted with forged param 'debug=off'
+2025-08-05 02:12:23.251678 |     [✓] Possible admin access granted with forged param 'debug=enable'
+2025-08-05 02:12:23.251678 |     [✓] Possible admin access granted with forged param 'debug=disable'
+2025-08-05 02:12:23.258015 |     [✓] Possible admin access granted with forged param 'test=true'
+2025-08-05 02:12:23.258015 |     [✓] Possible admin access granted with forged param 'test=false'
+2025-08-05 02:12:23.258015 |     [✓] Possible admin access granted with forged param 'test=1'
+2025-08-05 02:12:23.266463 |     [✓] Possible admin access granted with forged param 'test=0'
+2025-08-05 02:12:23.266463 |     [✓] Possible admin access granted with forged param 'test=yes'
+2025-08-05 02:12:23.275418 |     [✓] Possible admin access granted with forged param 'test=no'
+2025-08-05 02:12:23.276424 |     [✓] Possible admin access granted with forged param 'test=on'
+2025-08-05 02:12:23.276424 |     [✓] Possible admin access granted with forged param 'test=off'
+2025-08-05 02:12:23.276424 |     [✓] Possible admin access granted with forged param 'test=enable'
+2025-08-05 02:12:23.286451 |     [✓] Possible admin access granted with forged param 'test=disable'
+2025-08-05 02:12:23.289985 |     [✓] Possible admin access granted with forged param 'dev=true'
+2025-08-05 02:12:23.289985 |     [✓] Possible admin access granted with forged param 'dev=false'
+2025-08-05 02:12:23.296569 |     [✓] Possible admin access granted with forged param 'dev=1'
+2025-08-05 02:12:23.296569 |     [✓] Possible admin access granted with forged param 'dev=0'
+2025-08-05 02:12:23.301599 |     [✓] Possible admin access granted with forged param 'dev=yes'
+2025-08-05 02:12:23.306637 |     [✓] Possible admin access granted with forged param 'dev=no'
+2025-08-05 02:12:23.306637 |     [✓] Possible admin access granted with forged param 'dev=on'
+2025-08-05 02:12:23.311671 |     [✓] Possible admin access granted with forged param 'dev=off'
+2025-08-05 02:12:23.316527 |     [✓] Possible admin access granted with forged param 'dev=enable'
+2025-08-05 02:12:23.316527 |     [✓] Possible admin access granted with forged param 'dev=disable'
+2025-08-05 02:12:23.321554 |     [✓] Possible admin access granted with forged param 'admin=true'
+2025-08-05 02:12:23.326377 |     [✓] Possible admin access granted with forged param 'admin=false'
+2025-08-05 02:12:23.326892 |     [✓] Possible admin access granted with forged param 'admin=1'
+2025-08-05 02:12:23.331411 |     [✓] Possible admin access granted with forged param 'admin=0'
+2025-08-05 02:12:23.331411 |     [✓] Possible admin access granted with forged param 'admin=yes'
+2025-08-05 02:12:23.338058 |     [✓] Possible admin access granted with forged param 'admin=no'
+2025-08-05 02:12:23.338058 |     [✓] Possible admin access granted with forged param 'admin=on'
+2025-08-05 02:12:23.338058 |     [✓] Possible admin access granted with forged param 'admin=off'
+2025-08-05 02:12:23.346540 |     [✓] Possible admin access granted with forged param 'admin=enable'
+2025-08-05 02:12:23.351591 |     [✓] Possible admin access granted with forged param 'admin=disable'
+2025-08-05 02:12:23.353337 |     [✓] Possible admin access granted with forged param 'root=true'
+2025-08-05 02:12:23.356417 |     [✓] Possible admin access granted with forged param 'root=false'
+2025-08-05 02:12:23.356417 |     [✓] Possible admin access granted with forged param 'root=1'
+2025-08-05 02:12:23.356417 |     [✓] Possible admin access granted with forged param 'root=0'
+2025-08-05 02:12:23.366581 |     [✓] Possible admin access granted with forged param 'root=yes'
+2025-08-05 02:12:23.369128 |     [✓] Possible admin access granted with forged param 'root=no'
+2025-08-05 02:12:23.369128 |     [✓] Possible admin access granted with forged param 'root=on'
+2025-08-05 02:12:23.376763 |     [✓] Possible admin access granted with forged param 'root=off'
+2025-08-05 02:12:23.376763 |     [✓] Possible admin access granted with forged param 'root=enable'
+2025-08-05 02:12:23.381801 |     [✓] Possible admin access granted with forged param 'root=disable'
+2025-08-05 02:12:23.387041 |     [✓] Possible admin access granted with forged param 'enable=true'
+2025-08-05 02:12:23.391175 |     [✓] Possible admin access granted with forged param 'enable=false'
+2025-08-05 02:12:23.394174 |     [✓] Possible admin access granted with forged param 'enable=1'
+2025-08-05 02:12:23.396630 |     [✓] Possible admin access granted with forged param 'enable=0'
+2025-08-05 02:12:23.402624 |     [✓] Possible admin access granted with forged param 'enable=yes'
+2025-08-05 02:12:23.406490 |     [✓] Possible admin access granted with forged param 'enable=no'
+2025-08-05 02:12:23.409888 |     [✓] Possible admin access granted with forged param 'enable=on'
+2025-08-05 02:12:23.413354 |     [✓] Possible admin access granted with forged param 'enable=off'
+2025-08-05 02:12:23.416354 |     [✓] Possible admin access granted with forged param 'enable=enable'
+2025-08-05 02:12:23.419843 |     [✓] Possible admin access granted with forged param 'enable=disable'
+2025-08-05 02:12:23.422766 |     [✓] Possible admin access granted with forged param 'disable=true'
+2025-08-05 02:12:23.426416 |     [✓] Possible admin access granted with forged param 'disable=false'
+2025-08-05 02:12:23.426416 |     [✓] Possible admin access granted with forged param 'disable=1'
+2025-08-05 02:12:23.426416 |     [✓] Possible admin access granted with forged param 'disable=0'
+2025-08-05 02:12:23.436549 |     [✓] Possible admin access granted with forged param 'disable=yes'
+2025-08-05 02:12:23.439145 |     [✓] Possible admin access granted with forged param 'disable=no'
+2025-08-05 02:12:23.439145 |     [✓] Possible admin access granted with forged param 'disable=on'
+2025-08-05 02:12:23.439145 |     [✓] Possible admin access granted with forged param 'disable=off'
+2025-08-05 02:12:23.446757 |     [✓] Possible admin access granted with forged param 'disable=enable'
+2025-08-05 02:12:23.451562 |     [✓] Possible admin access granted with forged param 'disable=disable'
+2025-08-05 02:12:23.456628 |     [✓] Possible admin access granted with forged param 'verbose=true'
+2025-08-05 02:12:23.460327 |     [✓] Possible admin access granted with forged param 'verbose=false'
+2025-08-05 02:12:23.462980 |     [✓] Possible admin access granted with forged param 'verbose=1'
+2025-08-05 02:12:23.466118 |     [✓] Possible admin access granted with forged param 'verbose=0'
+2025-08-05 02:12:23.466628 |     [✓] Possible admin access granted with forged param 'verbose=yes'
+2025-08-05 02:12:23.470655 |     [✓] Possible admin access granted with forged param 'verbose=no'
+2025-08-05 02:12:23.470655 |     [✓] Possible admin access granted with forged param 'verbose=on'
+2025-08-05 02:12:23.476457 |     [✓] Possible admin access granted with forged param 'verbose=off'
+2025-08-05 02:12:23.476457 |     [✓] Possible admin access granted with forged param 'verbose=enable'
+2025-08-05 02:12:23.476457 |     [✓] Possible admin access granted with forged param 'verbose=disable'
+2025-08-05 02:12:23.486365 |     [✓] Possible admin access granted with forged param 'logging=true'
+2025-08-05 02:12:23.486365 |     [✓] Possible admin access granted with forged param 'logging=false'
+2025-08-05 02:12:23.491490 |     [✓] Possible admin access granted with forged param 'logging=1'
+2025-08-05 02:12:23.496780 |     [✓] Possible admin access granted with forged param 'logging=0'
+2025-08-05 02:12:23.496780 |     [✓] Possible admin access granted with forged param 'logging=yes'
+2025-08-05 02:12:23.501815 |     [✓] Possible admin access granted with forged param 'logging=no'
+2025-08-05 02:12:23.506644 |     [✓] Possible admin access granted with forged param 'logging=on'
+2025-08-05 02:12:23.506644 |     [✓] Possible admin access granted with forged param 'logging=off'
+2025-08-05 02:12:23.506644 |     [✓] Possible admin access granted with forged param 'logging=enable'
+2025-08-05 02:12:23.506644 |     [✓] Possible admin access granted with forged param 'logging=disable'
+2025-08-05 02:12:23.518665 |     [✓] Possible admin access granted with forged param 'show=true'
+2025-08-05 02:12:23.518665 |     [✓] Possible admin access granted with forged param 'show=false'
+2025-08-05 02:12:23.518665 |     [✓] Possible admin access granted with forged param 'show=1'
+2025-08-05 02:12:23.527451 |     [✓] Possible admin access granted with forged param 'show=0'
+2025-08-05 02:12:23.533873 |     [✓] Possible admin access granted with forged param 'show=yes'
+2025-08-05 02:12:23.536338 |     [✓] Possible admin access granted with forged param 'show=no'
+2025-08-05 02:12:23.536338 |     [✓] Possible admin access granted with forged param 'show=on'
+2025-08-05 02:12:23.545431 |     [✓] Possible admin access granted with forged param 'show=off'
+2025-08-05 02:12:23.546459 |     [✓] Possible admin access granted with forged param 'show=enable'
+2025-08-05 02:12:23.550883 |     [✓] Possible admin access granted with forged param 'show=disable'
+2025-08-05 02:12:23.554757 |     [✓] Possible admin access granted with forged param 'hidden=true'
+2025-08-05 02:12:23.556774 |     [✓] Possible admin access granted with forged param 'hidden=false'
+2025-08-05 02:12:23.561455 |     [✓] Possible admin access granted with forged param 'hidden=1'
+2025-08-05 02:12:23.562865 |     [✓] Possible admin access granted with forged param 'hidden=0'
+2025-08-05 02:12:23.566371 |     [✓] Possible admin access granted with forged param 'hidden=yes'
+2025-08-05 02:12:23.571013 |     [✓] Possible admin access granted with forged param 'hidden=no'
+2025-08-05 02:12:23.574013 |     [✓] Possible admin access granted with forged param 'hidden=on'
+2025-08-05 02:12:23.577697 |     [✓] Possible admin access granted with forged param 'hidden=off'
+2025-08-05 02:12:23.580697 |     [✓] Possible admin access granted with forged param 'hidden=enable'
+2025-08-05 02:12:23.583586 |     [✓] Possible admin access granted with forged param 'hidden=disable'
+2025-08-05 02:12:23.586593 |     [✓] Possible admin access granted with forged param 'source=true'
+2025-08-05 02:12:23.586593 |     [✓] Possible admin access granted with forged param 'source=false'
+2025-08-05 02:12:23.586593 |     [✓] Possible admin access granted with forged param 'source=1'
+2025-08-05 02:12:23.596744 |     [✓] Possible admin access granted with forged param 'source=0'
+2025-08-05 02:12:23.598903 |     [✓] Possible admin access granted with forged param 'source=yes'
+2025-08-05 02:12:23.601910 |     [✓] Possible admin access granted with forged param 'source=no'
+2025-08-05 02:12:23.601910 |     [✓] Possible admin access granted with forged param 'source=on'
+2025-08-05 02:12:23.606433 |     [✓] Possible admin access granted with forged param 'source=off'
+2025-08-05 02:12:23.611486 |     [✓] Possible admin access granted with forged param 'source=enable'
+2025-08-05 02:12:23.614683 |     [✓] Possible admin access granted with forged param 'source=disable'
+2025-08-05 02:12:23.618204 |     [✓] Possible admin access granted with forged param 'internal=true'
+2025-08-05 02:12:23.618204 |     [✓] Possible admin access granted with forged param 'internal=false'
+2025-08-05 02:12:23.618204 |     [✓] Possible admin access granted with forged param 'internal=1'
+2025-08-05 02:12:23.626787 |     [✓] Possible admin access granted with forged param 'internal=0'
+2025-08-05 02:12:23.629869 |     [✓] Possible admin access granted with forged param 'internal=yes'
+2025-08-05 02:12:23.629869 |     [✓] Possible admin access granted with forged param 'internal=no'
+2025-08-05 02:12:23.636394 |     [✓] Possible admin access granted with forged param 'internal=on'
+2025-08-05 02:12:23.638922 |     [✓] Possible admin access granted with forged param 'internal=off'
+2025-08-05 02:12:23.638922 |     [✓] Possible admin access granted with forged param 'internal=enable'
+2025-08-05 02:12:23.646446 |     [✓] Possible admin access granted with forged param 'internal=disable'
+2025-08-05 02:12:23.646446 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 02:12:23.646446 |     [✓] Possible admin access granted with forged param 'debug=true'
+2025-08-05 02:12:23.656823 |     [✓] Possible admin access granted with forged param 'debug=false'
+2025-08-05 02:12:23.661379 |     [✓] Possible admin access granted with forged param 'debug=1'
+2025-08-05 02:12:23.662538 |     [✓] Possible admin access granted with forged param 'debug=0'
+2025-08-05 02:12:23.666568 |     [✓] Possible admin access granted with forged param 'debug=yes'
+2025-08-05 02:12:23.666568 |     [✓] Possible admin access granted with forged param 'debug=no'
+2025-08-05 02:12:23.671605 |     [✓] Possible admin access granted with forged param 'debug=on'
+2025-08-05 02:12:23.671605 |     [✓] Possible admin access granted with forged param 'debug=off'
+2025-08-05 02:12:23.677704 |     [✓] Possible admin access granted with forged param 'debug=enable'
+2025-08-05 02:12:23.677704 |     [✓] Possible admin access granted with forged param 'debug=disable'
+2025-08-05 02:12:23.677704 |     [✓] Possible admin access granted with forged param 'test=true'
+2025-08-05 02:12:23.686702 |     [✓] Possible admin access granted with forged param 'test=false'
+2025-08-05 02:12:23.692580 |     [✓] Possible admin access granted with forged param 'test=1'
+2025-08-05 02:12:23.692580 |     [✓] Possible admin access granted with forged param 'test=0'
+2025-08-05 02:12:23.696663 |     [✓] Possible admin access granted with forged param 'test=yes'
+2025-08-05 02:12:23.701805 |     [✓] Possible admin access granted with forged param 'test=no'
+2025-08-05 02:12:23.701805 |     [✓] Possible admin access granted with forged param 'test=on'
+2025-08-05 02:12:23.706852 |     [✓] Possible admin access granted with forged param 'test=off'
+2025-08-05 02:12:23.711042 |     [✓] Possible admin access granted with forged param 'test=enable'
+2025-08-05 02:12:23.715822 |     [✓] Possible admin access granted with forged param 'test=disable'
+2025-08-05 02:12:23.719466 |     [✓] Possible admin access granted with forged param 'dev=true'
+2025-08-05 02:12:23.723872 |     [✓] Possible admin access granted with forged param 'dev=false'
+2025-08-05 02:12:23.727625 |     [✓] Possible admin access granted with forged param 'dev=1'
+2025-08-05 02:12:23.731357 |     [✓] Possible admin access granted with forged param 'dev=0'
+2025-08-05 02:12:23.734357 |     [✓] Possible admin access granted with forged param 'dev=yes'
+2025-08-05 02:12:23.736863 |     [✓] Possible admin access granted with forged param 'dev=no'
+2025-08-05 02:12:23.740429 |     [✓] Possible admin access granted with forged param 'dev=on'
+2025-08-05 02:12:23.742268 |     [✓] Possible admin access granted with forged param 'dev=off'
+2025-08-05 02:12:23.746355 |     [✓] Possible admin access granted with forged param 'dev=enable'
+2025-08-05 02:12:23.746355 |     [✓] Possible admin access granted with forged param 'dev=disable'
+2025-08-05 02:12:23.746355 |     [✓] Possible admin access granted with forged param 'admin=true'
+2025-08-05 02:12:23.746355 |     [✓] Possible admin access granted with forged param 'admin=false'
+2025-08-05 02:12:23.757519 |     [✓] Possible admin access granted with forged param 'admin=1'
+2025-08-05 02:12:23.763042 |     [✓] Possible admin access granted with forged param 'admin=0'
+2025-08-05 02:12:23.765258 |     [✓] Possible admin access granted with forged param 'admin=yes'
+2025-08-05 02:12:23.768581 |     [✓] Possible admin access granted with forged param 'admin=no'
+2025-08-05 02:12:23.771564 |     [✓] Possible admin access granted with forged param 'admin=on'
+2025-08-05 02:12:23.775586 |     [✓] Possible admin access granted with forged param 'admin=off'
+2025-08-05 02:12:23.778181 |     [✓] Possible admin access granted with forged param 'admin=enable'
+2025-08-05 02:12:23.780187 |     [✓] Possible admin access granted with forged param 'admin=disable'
+2025-08-05 02:12:23.784816 |     [✓] Possible admin access granted with forged param 'root=true'
+2025-08-05 02:12:23.789346 |     [✓] Possible admin access granted with forged param 'root=false'
+2025-08-05 02:12:23.792001 |     [✓] Possible admin access granted with forged param 'root=1'
+2025-08-05 02:12:23.796780 |     [✓] Possible admin access granted with forged param 'root=0'
+2025-08-05 02:12:23.800169 |     [✓] Possible admin access granted with forged param 'root=yes'
+2025-08-05 02:12:23.803272 |     [✓] Possible admin access granted with forged param 'root=no'
+2025-08-05 02:12:23.807004 |     [✓] Possible admin access granted with forged param 'root=on'
+2025-08-05 02:12:23.810112 |     [✓] Possible admin access granted with forged param 'root=off'
+2025-08-05 02:12:23.813738 |     [✓] Possible admin access granted with forged param 'root=enable'
+2025-08-05 02:12:23.817346 |     [✓] Possible admin access granted with forged param 'root=disable'
+2025-08-05 02:12:23.821013 |     [✓] Possible admin access granted with forged param 'enable=true'
+2025-08-05 02:12:23.824668 |     [✓] Possible admin access granted with forged param 'enable=false'
+2025-08-05 02:12:23.828318 |     [✓] Possible admin access granted with forged param 'enable=1'
+2025-08-05 02:12:23.831987 |     [✓] Possible admin access granted with forged param 'enable=0'
+2025-08-05 02:12:23.835647 |     [✓] Possible admin access granted with forged param 'enable=yes'
+2025-08-05 02:12:23.839288 |     [✓] Possible admin access granted with forged param 'enable=no'
+2025-08-05 02:12:23.840336 |     [✓] Possible admin access granted with forged param 'enable=on'
+2025-08-05 02:12:23.840336 |     [✓] Possible admin access granted with forged param 'enable=off'
+2025-08-05 02:12:23.846789 |     [✓] Possible admin access granted with forged param 'enable=enable'
+2025-08-05 02:12:23.846789 |     [✓] Possible admin access granted with forged param 'enable=disable'
+2025-08-05 02:12:23.846789 |     [✓] Possible admin access granted with forged param 'disable=true'
+2025-08-05 02:12:23.856685 |     [✓] Possible admin access granted with forged param 'disable=false'
+2025-08-05 02:12:23.856685 |     [✓] Possible admin access granted with forged param 'disable=1'
+2025-08-05 02:12:23.861728 |     [✓] Possible admin access granted with forged param 'disable=0'
+2025-08-05 02:12:23.868606 |     [✓] Possible admin access granted with forged param 'disable=yes'
+2025-08-05 02:12:23.873428 |     [✓] Possible admin access granted with forged param 'disable=no'
+2025-08-05 02:12:23.876564 |     [✓] Possible admin access granted with forged param 'disable=on'
+2025-08-05 02:12:23.876564 |     [✓] Possible admin access granted with forged param 'disable=off'
+2025-08-05 02:12:23.876564 |     [✓] Possible admin access granted with forged param 'disable=enable'
+2025-08-05 02:12:23.886339 |     [✓] Possible admin access granted with forged param 'disable=disable'
+2025-08-05 02:12:23.889681 |     [✓] Possible admin access granted with forged param 'verbose=true'
+2025-08-05 02:12:23.892681 |     [✓] Possible admin access granted with forged param 'verbose=false'
+2025-08-05 02:12:23.896165 |     [✓] Possible admin access granted with forged param 'verbose=1'
+2025-08-05 02:12:23.898673 |     [✓] Possible admin access granted with forged param 'verbose=0'
+2025-08-05 02:12:23.902026 |     [✓] Possible admin access granted with forged param 'verbose=yes'
+2025-08-05 02:12:23.902026 |     [✓] Possible admin access granted with forged param 'verbose=no'
+2025-08-05 02:12:23.906603 |     [✓] Possible admin access granted with forged param 'verbose=on'
+2025-08-05 02:12:23.906603 |     [✓] Possible admin access granted with forged param 'verbose=off'
+2025-08-05 02:12:23.906603 |     [✓] Possible admin access granted with forged param 'verbose=enable'
+2025-08-05 02:12:23.917808 |     [✓] Possible admin access granted with forged param 'verbose=disable'
+2025-08-05 02:12:23.917808 |     [✓] Possible admin access granted with forged param 'logging=true'
+2025-08-05 02:12:23.917808 |     [✓] Possible admin access granted with forged param 'logging=false'
+2025-08-05 02:12:23.926544 |     [✓] Possible admin access granted with forged param 'logging=1'
+2025-08-05 02:12:23.928058 |     [✓] Possible admin access granted with forged param 'logging=0'
+2025-08-05 02:12:23.928058 |     [✓] Possible admin access granted with forged param 'logging=yes'
+2025-08-05 02:12:23.934158 |     [✓] Possible admin access granted with forged param 'logging=no'
+2025-08-05 02:12:23.936730 |     [✓] Possible admin access granted with forged param 'logging=on'
+2025-08-05 02:12:23.941780 |     [✓] Possible admin access granted with forged param 'logging=off'
+2025-08-05 02:12:23.941780 |     [✓] Possible admin access granted with forged param 'logging=enable'
+2025-08-05 02:12:23.946797 |     [✓] Possible admin access granted with forged param 'logging=disable'
+2025-08-05 02:12:23.951797 |     [✓] Possible admin access granted with forged param 'show=true'
+2025-08-05 02:12:23.951797 |     [✓] Possible admin access granted with forged param 'show=false'
+2025-08-05 02:12:23.956785 |     [✓] Possible admin access granted with forged param 'show=1'
+2025-08-05 02:12:23.959441 |     [✓] Possible admin access granted with forged param 'show=0'
+2025-08-05 02:12:23.959441 |     [✓] Possible admin access granted with forged param 'show=yes'
+2025-08-05 02:12:23.967716 |     [✓] Possible admin access granted with forged param 'show=no'
+2025-08-05 02:12:23.971355 |     [✓] Possible admin access granted with forged param 'show=on'
+2025-08-05 02:12:23.974508 |     [✓] Possible admin access granted with forged param 'show=off'
+2025-08-05 02:12:23.977108 |     [✓] Possible admin access granted with forged param 'show=enable'
+2025-08-05 02:12:23.977108 |     [✓] Possible admin access granted with forged param 'show=disable'
+2025-08-05 02:12:23.981188 |     [✓] Possible admin access granted with forged param 'hidden=true'
+2025-08-05 02:12:23.984726 |     [✓] Possible admin access granted with forged param 'hidden=false'
+2025-08-05 02:12:23.986731 |     [✓] Possible admin access granted with forged param 'hidden=1'
+2025-08-05 02:12:23.986731 |     [✓] Possible admin access granted with forged param 'hidden=0'
+2025-08-05 02:12:23.986731 |     [✓] Possible admin access granted with forged param 'hidden=yes'
+2025-08-05 02:12:23.996602 |     [✓] Possible admin access granted with forged param 'hidden=no'
+2025-08-05 02:12:24.001834 |     [✓] Possible admin access granted with forged param 'hidden=on'
+2025-08-05 02:12:24.001834 |     [✓] Possible admin access granted with forged param 'hidden=off'
+2025-08-05 02:12:24.006359 |     [✓] Possible admin access granted with forged param 'hidden=enable'
+2025-08-05 02:12:24.009653 |     [✓] Possible admin access granted with forged param 'hidden=disable'
+2025-08-05 02:12:24.013670 |     [✓] Possible admin access granted with forged param 'source=true'
+2025-08-05 02:12:24.016680 |     [✓] Possible admin access granted with forged param 'source=false'
+2025-08-05 02:12:24.020705 |     [✓] Possible admin access granted with forged param 'source=1'
+2025-08-05 02:12:24.020705 |     [✓] Possible admin access granted with forged param 'source=0'
+2025-08-05 02:12:24.026833 |     [✓] Possible admin access granted with forged param 'source=yes'
+2025-08-05 02:12:24.029131 |     [✓] Possible admin access granted with forged param 'source=no'
+2025-08-05 02:12:24.029131 |     [✓] Possible admin access granted with forged param 'source=on'
+2025-08-05 02:12:24.036423 |     [✓] Possible admin access granted with forged param 'source=off'
+2025-08-05 02:12:24.039136 |     [✓] Possible admin access granted with forged param 'source=enable'
+2025-08-05 02:12:24.039643 |     [✓] Possible admin access granted with forged param 'source=disable'
+2025-08-05 02:12:24.045208 |     [✓] Possible admin access granted with forged param 'internal=true'
+2025-08-05 02:12:24.047485 |     [✓] Possible admin access granted with forged param 'internal=false'
+2025-08-05 02:12:24.047485 |     [✓] Possible admin access granted with forged param 'internal=1'
+2025-08-05 02:12:24.047485 |     [✓] Possible admin access granted with forged param 'internal=0'
+2025-08-05 02:12:24.056559 |     [✓] Possible admin access granted with forged param 'internal=yes'
+2025-08-05 02:12:24.060353 |     [✓] Possible admin access granted with forged param 'internal=no'
+2025-08-05 02:12:24.062786 |     [✓] Possible admin access granted with forged param 'internal=on'
+2025-08-05 02:12:24.066817 |     [✓] Possible admin access granted with forged param 'internal=off'
+2025-08-05 02:12:24.066817 |     [✓] Possible admin access granted with forged param 'internal=enable'
+2025-08-05 02:12:24.071363 |     [✓] Possible admin access granted with forged param 'internal=disable'
+2025-08-05 02:12:24.071363 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 02:12:24.082652 |     [✓] Possible admin access granted with forged param 'debug=true'
+2025-08-05 02:12:24.085670 |     [✓] Possible admin access granted with forged param 'debug=false'
+2025-08-05 02:12:24.088193 |     [✓] Possible admin access granted with forged param 'debug=1'
+2025-08-05 02:12:24.090851 |     [✓] Possible admin access granted with forged param 'debug=0'
+2025-08-05 02:12:24.093526 |     [✓] Possible admin access granted with forged param 'debug=yes'
+2025-08-05 02:12:24.096745 |     [✓] Possible admin access granted with forged param 'debug=no'
+2025-08-05 02:12:24.101770 |     [✓] Possible admin access granted with forged param 'debug=on'
+2025-08-05 02:12:24.101770 |     [✓] Possible admin access granted with forged param 'debug=off'
+2025-08-05 02:12:24.106811 |     [✓] Possible admin access granted with forged param 'debug=enable'
+2025-08-05 02:12:24.109593 |     [✓] Possible admin access granted with forged param 'debug=disable'
+2025-08-05 02:12:24.111454 |     [✓] Possible admin access granted with forged param 'test=true'
+2025-08-05 02:12:24.116606 |     [✓] Possible admin access granted with forged param 'test=false'
+2025-08-05 02:12:24.116606 |     [✓] Possible admin access granted with forged param 'test=1'
+2025-08-05 02:12:24.121739 |     [✓] Possible admin access granted with forged param 'test=0'
+2025-08-05 02:12:24.126441 |     [✓] Possible admin access granted with forged param 'test=yes'
+2025-08-05 02:12:24.128453 |     [✓] Possible admin access granted with forged param 'test=no'
+2025-08-05 02:12:24.131462 |     [✓] Possible admin access granted with forged param 'test=on'
+2025-08-05 02:12:24.136493 |     [✓] Possible admin access granted with forged param 'test=off'
+2025-08-05 02:12:24.139943 |     [✓] Possible admin access granted with forged param 'test=enable'
+2025-08-05 02:12:24.139943 |     [✓] Possible admin access granted with forged param 'test=disable'
+2025-08-05 02:12:24.139943 |     [✓] Possible admin access granted with forged param 'dev=true'
+2025-08-05 02:12:24.146755 |     [✓] Possible admin access granted with forged param 'dev=false'
+2025-08-05 02:12:24.146755 |     [✓] Possible admin access granted with forged param 'dev=1'
+2025-08-05 02:12:24.154814 |     [✓] Possible admin access granted with forged param 'dev=0'
+2025-08-05 02:12:24.156780 |     [✓] Possible admin access granted with forged param 'dev=yes'
+2025-08-05 02:12:24.160438 |     [✓] Possible admin access granted with forged param 'dev=no'
+2025-08-05 02:12:24.165739 |     [✓] Possible admin access granted with forged param 'dev=on'
+2025-08-05 02:12:24.166746 |     [✓] Possible admin access granted with forged param 'dev=off'
+2025-08-05 02:12:24.171666 |     [✓] Possible admin access granted with forged param 'dev=enable'
+2025-08-05 02:12:24.171666 |     [✓] Possible admin access granted with forged param 'dev=disable'
+2025-08-05 02:12:24.176787 |     [✓] Possible admin access granted with forged param 'admin=true'
+2025-08-05 02:12:24.176787 |     [✓] Possible admin access granted with forged param 'admin=false'
+2025-08-05 02:12:24.176787 |     [✓] Possible admin access granted with forged param 'admin=1'
+2025-08-05 02:12:24.186583 |     [✓] Possible admin access granted with forged param 'admin=0'
+2025-08-05 02:12:24.193733 |     [✓] Possible admin access granted with forged param 'admin=yes'
+2025-08-05 02:12:24.196822 |     [✓] Possible admin access granted with forged param 'admin=no'
+2025-08-05 02:12:24.197915 |     [✓] Possible admin access granted with forged param 'admin=on'
+2025-08-05 02:12:24.202452 |     [✓] Possible admin access granted with forged param 'admin=off'
+2025-08-05 02:12:24.206460 |     [✓] Possible admin access granted with forged param 'admin=enable'
+2025-08-05 02:12:24.210651 |     [✓] Possible admin access granted with forged param 'admin=disable'
+2025-08-05 02:12:24.212095 |     [✓] Possible admin access granted with forged param 'root=true'
+2025-08-05 02:12:24.216427 |     [✓] Possible admin access granted with forged param 'root=false'
+2025-08-05 02:12:24.219086 |     [✓] Possible admin access granted with forged param 'root=1'
+2025-08-05 02:12:24.225534 |     [✓] Possible admin access granted with forged param 'root=0'
+2025-08-05 02:12:24.229705 |     [✓] Possible admin access granted with forged param 'root=yes'
+2025-08-05 02:12:24.233505 |     [✓] Possible admin access granted with forged param 'root=no'
+2025-08-05 02:12:24.236792 |     [✓] Possible admin access granted with forged param 'root=on'
+2025-08-05 02:12:24.240134 |     [✓] Possible admin access granted with forged param 'root=off'
+2025-08-05 02:12:24.244465 |     [✓] Possible admin access granted with forged param 'root=enable'
+2025-08-05 02:12:24.247970 |     [✓] Possible admin access granted with forged param 'root=disable'
+2025-08-05 02:12:24.251547 |     [✓] Possible admin access granted with forged param 'enable=true'
+2025-08-05 02:12:24.254569 |     [✓] Possible admin access granted with forged param 'enable=false'
+2025-08-05 02:12:24.256736 |     [✓] Possible admin access granted with forged param 'enable=1'
+2025-08-05 02:12:24.256736 |     [✓] Possible admin access granted with forged param 'enable=0'
+2025-08-05 02:12:24.256736 |     [✓] Possible admin access granted with forged param 'enable=yes'
+2025-08-05 02:12:24.266354 |     [✓] Possible admin access granted with forged param 'enable=no'
+2025-08-05 02:12:24.266354 |     [✓] Possible admin access granted with forged param 'enable=on'
+2025-08-05 02:12:24.271235 |     [✓] Possible admin access granted with forged param 'enable=off'
+2025-08-05 02:12:24.276444 |     [✓] Possible admin access granted with forged param 'enable=enable'
+2025-08-05 02:12:24.276444 |     [✓] Possible admin access granted with forged param 'enable=disable'
+2025-08-05 02:12:24.276444 |     [✓] Possible admin access granted with forged param 'disable=true'
+2025-08-05 02:12:24.276444 |     [✓] Possible admin access granted with forged param 'disable=false'
+2025-08-05 02:12:24.286602 |     [✓] Possible admin access granted with forged param 'disable=1'
+2025-08-05 02:12:24.292521 |     [✓] Possible admin access granted with forged param 'disable=0'
+2025-08-05 02:12:24.294328 |     [✓] Possible admin access granted with forged param 'disable=yes'
+2025-08-05 02:12:24.296835 |     [✓] Possible admin access granted with forged param 'disable=no'
+2025-08-05 02:12:24.301811 |     [✓] Possible admin access granted with forged param 'disable=on'
+2025-08-05 02:12:24.301811 |     [✓] Possible admin access granted with forged param 'disable=off'
+2025-08-05 02:12:24.306438 |     [✓] Possible admin access granted with forged param 'disable=enable'
+2025-08-05 02:12:24.306438 |     [✓] Possible admin access granted with forged param 'disable=disable'
+2025-08-05 02:12:24.306438 |     [✓] Possible admin access granted with forged param 'verbose=true'
+2025-08-05 02:12:24.317917 |     [✓] Possible admin access granted with forged param 'verbose=false'
+2025-08-05 02:12:24.317917 |     [✓] Possible admin access granted with forged param 'verbose=1'
+2025-08-05 02:12:24.317917 |     [✓] Possible admin access granted with forged param 'verbose=0'
+2025-08-05 02:12:24.328906 |     [✓] Possible admin access granted with forged param 'verbose=yes'
+2025-08-05 02:12:24.328906 |     [✓] Possible admin access granted with forged param 'verbose=no'
+2025-08-05 02:12:24.334509 |     [✓] Possible admin access granted with forged param 'verbose=on'
+2025-08-05 02:12:24.336390 |     [✓] Possible admin access granted with forged param 'verbose=off'
+2025-08-05 02:12:24.341415 |     [✓] Possible admin access granted with forged param 'verbose=enable'
+2025-08-05 02:12:24.341415 |     [✓] Possible admin access granted with forged param 'verbose=disable'
+2025-08-05 02:12:24.346455 |     [✓] Possible admin access granted with forged param 'logging=true'
+2025-08-05 02:12:24.349998 |     [✓] Possible admin access granted with forged param 'logging=false'
+2025-08-05 02:12:24.351173 |     [✓] Possible admin access granted with forged param 'logging=1'
+2025-08-05 02:12:24.356693 |     [✓] Possible admin access granted with forged param 'logging=0'
+2025-08-05 02:12:24.356693 |     [✓] Possible admin access granted with forged param 'logging=yes'
+2025-08-05 02:12:24.356693 |     [✓] Possible admin access granted with forged param 'logging=no'
+2025-08-05 02:12:24.365690 |     [✓] Possible admin access granted with forged param 'logging=on'
+2025-08-05 02:12:24.366707 |     [✓] Possible admin access granted with forged param 'logging=off'
+2025-08-05 02:12:24.366707 |     [✓] Possible admin access granted with forged param 'logging=enable'
+2025-08-05 02:12:24.366707 |     [✓] Possible admin access granted with forged param 'logging=disable'
+2025-08-05 02:12:24.376587 |     [✓] Possible admin access granted with forged param 'show=true'
+2025-08-05 02:12:24.376587 |     [✓] Possible admin access granted with forged param 'show=false'
+2025-08-05 02:12:24.381641 |     [✓] Possible admin access granted with forged param 'show=1'
+2025-08-05 02:12:24.386350 |     [✓] Possible admin access granted with forged param 'show=0'
+2025-08-05 02:12:24.386350 |     [✓] Possible admin access granted with forged param 'show=yes'
+2025-08-05 02:12:24.386350 |     [✓] Possible admin access granted with forged param 'show=no'
+2025-08-05 02:12:24.386350 |     [✓] Possible admin access granted with forged param 'show=on'
+2025-08-05 02:12:24.399358 |     [✓] Possible admin access granted with forged param 'show=off'
+2025-08-05 02:12:24.401861 |     [✓] Possible admin access granted with forged param 'show=enable'
+2025-08-05 02:12:24.405128 |     [✓] Possible admin access granted with forged param 'show=disable'
+2025-08-05 02:12:24.409009 |     [✓] Possible admin access granted with forged param 'hidden=true'
+2025-08-05 02:12:24.409009 |     [✓] Possible admin access granted with forged param 'hidden=false'
+2025-08-05 02:12:24.409009 |     [✓] Possible admin access granted with forged param 'hidden=1'
+2025-08-05 02:12:24.416634 |     [✓] Possible admin access granted with forged param 'hidden=0'
+2025-08-05 02:12:24.419185 |     [✓] Possible admin access granted with forged param 'hidden=yes'
+2025-08-05 02:12:24.424413 |     [✓] Possible admin access granted with forged param 'hidden=no'
+2025-08-05 02:12:24.426997 |     [✓] Possible admin access granted with forged param 'hidden=on'
+2025-08-05 02:12:24.426997 |     [✓] Possible admin access granted with forged param 'hidden=off'
+2025-08-05 02:12:24.426997 |     [✓] Possible admin access granted with forged param 'hidden=enable'
+2025-08-05 02:12:24.437977 |     [✓] Possible admin access granted with forged param 'hidden=disable'
+2025-08-05 02:12:24.441151 |     [✓] Possible admin access granted with forged param 'source=true'
+2025-08-05 02:12:24.442982 |     [✓] Possible admin access granted with forged param 'source=false'
+2025-08-05 02:12:24.446759 |     [✓] Possible admin access granted with forged param 'source=1'
+2025-08-05 02:12:24.446759 |     [✓] Possible admin access granted with forged param 'source=0'
+2025-08-05 02:12:24.451796 |     [✓] Possible admin access granted with forged param 'source=yes'
+2025-08-05 02:12:24.456816 |     [✓] Possible admin access granted with forged param 'source=no'
+2025-08-05 02:12:24.458023 |     [✓] Possible admin access granted with forged param 'source=on'
+2025-08-05 02:12:24.458023 |     [✓] Possible admin access granted with forged param 'source=off'
+2025-08-05 02:12:24.458023 |     [✓] Possible admin access granted with forged param 'source=enable'
+2025-08-05 02:12:24.466563 |     [✓] Possible admin access granted with forged param 'source=disable'
+2025-08-05 02:12:24.471622 |     [✓] Possible admin access granted with forged param 'internal=true'
+2025-08-05 02:12:24.475750 |     [✓] Possible admin access granted with forged param 'internal=false'
+2025-08-05 02:12:24.478899 |     [✓] Possible admin access granted with forged param 'internal=1'
+2025-08-05 02:12:24.482028 |     [✓] Possible admin access granted with forged param 'internal=0'
+2025-08-05 02:12:24.484632 |     [✓] Possible admin access granted with forged param 'internal=yes'
+2025-08-05 02:12:24.486639 |     [✓] Possible admin access granted with forged param 'internal=no'
+2025-08-05 02:12:24.488383 |     [✓] Possible admin access granted with forged param 'internal=on'
+2025-08-05 02:12:24.488383 |     [✓] Possible admin access granted with forged param 'internal=off'
+2025-08-05 02:12:24.496410 |     [✓] Possible admin access granted with forged param 'internal=enable'
+2025-08-05 02:12:24.496410 |     [✓] Possible admin access granted with forged param 'internal=disable'
+2025-08-05 02:12:24.496410 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 02:12:24.567869 |     [✓] Possible admin access granted with forged param 'debug=true'
+2025-08-05 02:12:24.619660 |     [✓] Possible admin access granted with forged param 'debug=false'
+2025-08-05 02:12:24.679188 |     [✓] Possible admin access granted with forged param 'debug=1'
+2025-08-05 02:12:24.729692 |     [✓] Possible admin access granted with forged param 'debug=0'
+2025-08-05 02:12:24.746350 |     [✓] Possible admin access granted with forged param 'debug=yes'
+2025-08-05 02:12:24.801868 |     [✓] Possible admin access granted with forged param 'debug=no'
+2025-08-05 02:12:24.863273 |     [✓] Possible admin access granted with forged param 'debug=on'
+2025-08-05 02:12:24.917809 |     [✓] Possible admin access granted with forged param 'debug=off'
+2025-08-05 02:12:24.966790 |     [✓] Possible admin access granted with forged param 'debug=enable'
+2025-08-05 02:12:25.026922 |     [✓] Possible admin access granted with forged param 'debug=disable'
+2025-08-05 02:12:25.080840 |     [✓] Possible admin access granted with forged param 'test=true'
+2025-08-05 02:12:25.140356 |     [✓] Possible admin access granted with forged param 'test=false'
+2025-08-05 02:12:25.193611 |     [✓] Possible admin access granted with forged param 'test=1'
+2025-08-05 02:12:25.249462 |     [✓] Possible admin access granted with forged param 'test=0'
+2025-08-05 02:12:25.309890 |     [✓] Possible admin access granted with forged param 'test=yes'
+2025-08-05 02:12:25.364517 |     [✓] Possible admin access granted with forged param 'test=no'
+2025-08-05 02:12:25.418763 |     [✓] Possible admin access granted with forged param 'test=on'
+2025-08-05 02:12:25.474142 |     [✓] Possible admin access granted with forged param 'test=off'
+2025-08-05 02:12:25.531515 |     [✓] Possible admin access granted with forged param 'test=enable'
+2025-08-05 02:12:25.586460 |     [✓] Possible admin access granted with forged param 'test=disable'
+2025-08-05 02:12:25.639839 |     [✓] Possible admin access granted with forged param 'dev=true'
+2025-08-05 02:12:25.695673 |     [✓] Possible admin access granted with forged param 'dev=false'
+2025-08-05 02:12:25.749911 |     [✓] Possible admin access granted with forged param 'dev=1'
+2025-08-05 02:12:25.802085 |     [✓] Possible admin access granted with forged param 'dev=0'
+2025-08-05 02:12:25.857820 |     [✓] Possible admin access granted with forged param 'dev=yes'
+2025-08-05 02:12:25.911889 |     [✓] Possible admin access granted with forged param 'dev=no'
+2025-08-05 02:12:25.967491 |     [✓] Possible admin access granted with forged param 'dev=on'
+2025-08-05 02:12:26.021407 |     [✓] Possible admin access granted with forged param 'dev=off'
+2025-08-05 02:12:26.076709 |     [✓] Possible admin access granted with forged param 'dev=enable'
+2025-08-05 02:12:26.132300 |     [✓] Possible admin access granted with forged param 'dev=disable'
+2025-08-05 02:12:26.185664 |     [✓] Possible admin access granted with forged param 'admin=true'
+2025-08-05 02:12:26.238126 |     [✓] Possible admin access granted with forged param 'admin=false'
+2025-08-05 02:12:26.297584 |     [✓] Possible admin access granted with forged param 'admin=1'
+2025-08-05 02:12:26.346746 |     [✓] Possible admin access granted with forged param 'admin=0'
+2025-08-05 02:12:26.405411 |     [✓] Possible admin access granted with forged param 'admin=yes'
+2025-08-05 02:12:26.461839 |     [✓] Possible admin access granted with forged param 'admin=no'
+2025-08-05 02:12:26.509776 |     [✓] Possible admin access granted with forged param 'admin=on'
+2025-08-05 02:12:26.568908 |     [✓] Possible admin access granted with forged param 'admin=off'
+2025-08-05 02:12:26.622584 |     [✓] Possible admin access granted with forged param 'admin=enable'
+2025-08-05 02:12:26.676566 |     [✓] Possible admin access granted with forged param 'admin=disable'
+2025-08-05 02:12:26.733501 |     [✓] Possible admin access granted with forged param 'root=true'
+2025-08-05 02:12:26.792732 |     [✓] Possible admin access granted with forged param 'root=false'
+2025-08-05 02:12:26.844436 |     [✓] Possible admin access granted with forged param 'root=1'
+2025-08-05 02:12:26.899510 |     [✓] Possible admin access granted with forged param 'root=0'
+2025-08-05 02:12:26.954207 |     [✓] Possible admin access granted with forged param 'root=yes'
+2025-08-05 02:12:27.009723 |     [✓] Possible admin access granted with forged param 'root=no'
+2025-08-05 02:12:27.061740 |     [✓] Possible admin access granted with forged param 'root=on'
+2025-08-05 02:12:27.117776 |     [✓] Possible admin access granted with forged param 'root=off'
+2025-08-05 02:12:27.171482 |     [✓] Possible admin access granted with forged param 'root=enable'
+2025-08-05 02:12:27.225434 |     [✓] Possible admin access granted with forged param 'root=disable'
+2025-08-05 02:12:27.276532 |     [✓] Possible admin access granted with forged param 'enable=true'
+2025-08-05 02:12:27.334790 |     [✓] Possible admin access granted with forged param 'enable=false'
+2025-08-05 02:12:27.386729 |     [✓] Possible admin access granted with forged param 'enable=1'
+2025-08-05 02:12:27.443222 |     [✓] Possible admin access granted with forged param 'enable=0'
+2025-08-05 02:12:27.497672 |     [✓] Possible admin access granted with forged param 'enable=yes'
+2025-08-05 02:12:27.551834 |     [✓] Possible admin access granted with forged param 'enable=no'
+2025-08-05 02:12:27.606453 |     [✓] Possible admin access granted with forged param 'enable=on'
+2025-08-05 02:12:27.662738 |     [✓] Possible admin access granted with forged param 'enable=off'
+2025-08-05 02:12:27.716568 |     [✓] Possible admin access granted with forged param 'enable=enable'
+2025-08-05 02:12:27.770546 |     [✓] Possible admin access granted with forged param 'enable=disable'
+2025-08-05 02:12:27.824628 |     [✓] Possible admin access granted with forged param 'disable=true'
+2025-08-05 02:12:27.878007 |     [✓] Possible admin access granted with forged param 'disable=false'
+2025-08-05 02:12:27.930362 |     [✓] Possible admin access granted with forged param 'disable=1'
+2025-08-05 02:12:27.987293 |     [✓] Possible admin access granted with forged param 'disable=0'
+2025-08-05 02:12:28.036602 |     [✓] Possible admin access granted with forged param 'disable=yes'
+2025-08-05 02:12:28.097286 |     [✓] Possible admin access granted with forged param 'disable=no'
+2025-08-05 02:12:28.146901 |     [✓] Possible admin access granted with forged param 'disable=on'
+2025-08-05 02:12:28.204492 |     [✓] Possible admin access granted with forged param 'disable=off'
+2025-08-05 02:12:28.256689 |     [✓] Possible admin access granted with forged param 'disable=enable'
+2025-08-05 02:12:28.308056 |     [✓] Possible admin access granted with forged param 'disable=disable'
+2025-08-05 02:12:28.369026 |     [✓] Possible admin access granted with forged param 'verbose=true'
+2025-08-05 02:12:28.422071 |     [✓] Possible admin access granted with forged param 'verbose=false'
+2025-08-05 02:12:28.476885 |     [✓] Possible admin access granted with forged param 'verbose=1'
+2025-08-05 02:12:28.532228 |     [✓] Possible admin access granted with forged param 'verbose=0'
+2025-08-05 02:12:28.583882 |     [✓] Possible admin access granted with forged param 'verbose=yes'
+2025-08-05 02:12:28.637623 |     [✓] Possible admin access granted with forged param 'verbose=no'
+2025-08-05 02:12:28.689135 |     [✓] Possible admin access granted with forged param 'verbose=on'
+2025-08-05 02:12:28.746549 |     [✓] Possible admin access granted with forged param 'verbose=off'
+2025-08-05 02:12:28.804799 |     [✓] Possible admin access granted with forged param 'verbose=enable'
+2025-08-05 02:12:28.857127 |     [✓] Possible admin access granted with forged param 'verbose=disable'
+2025-08-05 02:12:28.912731 |     [✓] Possible admin access granted with forged param 'logging=true'
+2025-08-05 02:12:28.966813 |     [✓] Possible admin access granted with forged param 'logging=false'
+2025-08-05 02:12:29.016713 |     [✓] Possible admin access granted with forged param 'logging=1'
+2025-08-05 02:12:29.076889 |     [✓] Possible admin access granted with forged param 'logging=0'
+2025-08-05 02:12:29.130681 |     [✓] Possible admin access granted with forged param 'logging=yes'
+2025-08-05 02:12:29.185016 |     [✓] Possible admin access granted with forged param 'logging=no'
+2025-08-05 02:12:29.236862 |     [✓] Possible admin access granted with forged param 'logging=on'
+2025-08-05 02:12:29.294449 |     [✓] Possible admin access granted with forged param 'logging=off'
+2025-08-05 02:12:29.346569 |     [✓] Possible admin access granted with forged param 'logging=enable'
+2025-08-05 02:12:29.400899 |     [✓] Possible admin access granted with forged param 'logging=disable'
+2025-08-05 02:12:29.456886 |     [✓] Possible admin access granted with forged param 'show=true'
+2025-08-05 02:12:29.512251 |     [✓] Possible admin access granted with forged param 'show=false'
+2025-08-05 02:12:29.564612 |     [✓] Possible admin access granted with forged param 'show=1'
+2025-08-05 02:12:29.619144 |     [✓] Possible admin access granted with forged param 'show=0'
+2025-08-05 02:12:29.675200 |     [✓] Possible admin access granted with forged param 'show=yes'
+2025-08-05 02:12:29.728459 |     [✓] Possible admin access granted with forged param 'show=no'
+2025-08-05 02:12:29.783278 |     [✓] Possible admin access granted with forged param 'show=on'
+2025-08-05 02:12:29.837751 |     [✓] Possible admin access granted with forged param 'show=off'
+2025-08-05 02:12:29.891225 |     [✓] Possible admin access granted with forged param 'show=enable'
+2025-08-05 02:12:29.946555 |     [✓] Possible admin access granted with forged param 'show=disable'
+2025-08-05 02:12:29.996531 |     [✓] Possible admin access granted with forged param 'hidden=true'
+2025-08-05 02:12:30.054199 |     [✓] Possible admin access granted with forged param 'hidden=false'
+2025-08-05 02:12:30.108990 |     [✓] Possible admin access granted with forged param 'hidden=1'
+2025-08-05 02:12:30.164410 |     [✓] Possible admin access granted with forged param 'hidden=0'
+2025-08-05 02:12:30.216953 |     [✓] Possible admin access granted with forged param 'hidden=yes'
+2025-08-05 02:12:30.230377 |     [✓] Possible admin access granted with forged param 'hidden=no'
+2025-08-05 02:12:30.284918 |     [✓] Possible admin access granted with forged param 'hidden=on'
+2025-08-05 02:12:30.340171 |     [✓] Possible admin access granted with forged param 'hidden=off'
+2025-08-05 02:12:30.393474 |     [✓] Possible admin access granted with forged param 'hidden=enable'
+2025-08-05 02:12:30.448654 |     [✓] Possible admin access granted with forged param 'hidden=disable'
+2025-08-05 02:12:30.502630 |     [✓] Possible admin access granted with forged param 'source=true'
+2025-08-05 02:12:30.555899 |     [✓] Possible admin access granted with forged param 'source=false'
+2025-08-05 02:12:30.611115 |     [✓] Possible admin access granted with forged param 'source=1'
+2025-08-05 02:12:30.667232 |     [✓] Possible admin access granted with forged param 'source=0'
+2025-08-05 02:12:30.716791 |     [✓] Possible admin access granted with forged param 'source=yes'
+2025-08-05 02:12:30.773627 |     [✓] Possible admin access granted with forged param 'source=no'
+2025-08-05 02:12:30.829316 |     [✓] Possible admin access granted with forged param 'source=on'
+2025-08-05 02:12:30.883082 |     [✓] Possible admin access granted with forged param 'source=off'
+2025-08-05 02:12:30.936757 |     [✓] Possible admin access granted with forged param 'source=enable'
+2025-08-05 02:12:30.993349 |     [✓] Possible admin access granted with forged param 'source=disable'
+2025-08-05 02:12:31.055861 |     [✓] Possible admin access granted with forged param 'internal=true'
+2025-08-05 02:12:31.107204 |     [✓] Possible admin access granted with forged param 'internal=false'
+2025-08-05 02:12:31.164168 |     [✓] Possible admin access granted with forged param 'internal=1'
+2025-08-05 02:12:31.217941 |     [✓] Possible admin access granted with forged param 'internal=0'
+2025-08-05 02:12:31.271437 |     [✓] Possible admin access granted with forged param 'internal=yes'
+2025-08-05 02:12:31.327736 |     [✓] Possible admin access granted with forged param 'internal=no'
+2025-08-05 02:12:31.376994 |     [✓] Possible admin access granted with forged param 'internal=on'
+2025-08-05 02:12:31.437417 |     [✓] Possible admin access granted with forged param 'internal=off'
+2025-08-05 02:12:31.489883 |     [✓] Possible admin access granted with forged param 'internal=enable'
+2025-08-05 02:12:31.544070 |     [✓] Possible admin access granted with forged param 'internal=disable'
+2025-08-05 02:12:31.544070 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/upload/
+2025-08-05 02:12:31.597649 |     [✓] Possible admin access granted with forged param 'debug=true'
+2025-08-05 02:12:31.646563 |     [✓] Possible admin access granted with forged param 'debug=false'
+2025-08-05 02:12:31.687875 |     [✓] Possible admin access granted with forged param 'debug=1'
+2025-08-05 02:12:31.744313 |     [✓] Possible admin access granted with forged param 'debug=0'
+2025-08-05 02:12:31.793562 |     [✓] Possible admin access granted with forged param 'debug=yes'
+2025-08-05 02:12:31.842787 |     [✓] Possible admin access granted with forged param 'debug=no'
+2025-08-05 02:12:31.886898 |     [✓] Possible admin access granted with forged param 'debug=on'
+2025-08-05 02:12:31.940461 |     [✓] Possible admin access granted with forged param 'debug=off'
+2025-08-05 02:12:31.987274 |     [✓] Possible admin access granted with forged param 'debug=enable'
+2025-08-05 02:12:32.036778 |     [✓] Possible admin access granted with forged param 'debug=disable'
+2025-08-05 02:12:32.083730 |     [✓] Possible admin access granted with forged param 'test=true'
+2025-08-05 02:12:32.133195 |     [✓] Possible admin access granted with forged param 'test=false'
+2025-08-05 02:12:32.179454 |     [✓] Possible admin access granted with forged param 'test=1'
+2025-08-05 02:12:32.218448 |     [✓] Possible admin access granted with forged param 'test=0'
+2025-08-05 02:12:32.272436 |     [✓] Possible admin access granted with forged param 'test=yes'
+2025-08-05 02:12:32.326683 |     [✓] Possible admin access granted with forged param 'test=no'
+2025-08-05 02:12:32.376638 |     [✓] Possible admin access granted with forged param 'test=on'
+2025-08-05 02:12:32.426719 |     [✓] Possible admin access granted with forged param 'test=off'
+2025-08-05 02:12:32.476736 |     [✓] Possible admin access granted with forged param 'test=enable'
+2025-08-05 02:12:32.526822 |     [✓] Possible admin access granted with forged param 'test=disable'
+2025-08-05 02:12:32.577301 |     [✓] Possible admin access granted with forged param 'dev=true'
+2025-08-05 02:12:32.627103 |     [✓] Possible admin access granted with forged param 'dev=false'
+2025-08-05 02:12:32.668276 |     [✓] Possible admin access granted with forged param 'dev=1'
+2025-08-05 02:12:32.720041 |     [✓] Possible admin access granted with forged param 'dev=0'
+2025-08-05 02:12:32.773199 |     [✓] Possible admin access granted with forged param 'dev=yes'
+2025-08-05 02:12:32.823629 |     [✓] Possible admin access granted with forged param 'dev=no'
+2025-08-05 02:12:32.873163 |     [✓] Possible admin access granted with forged param 'dev=on'
+2025-08-05 02:12:32.916667 |     [✓] Possible admin access granted with forged param 'dev=off'
+2025-08-05 02:12:32.973865 |     [✓] Possible admin access granted with forged param 'dev=enable'
+2025-08-05 02:12:33.022098 |     [✓] Possible admin access granted with forged param 'dev=disable'
+2025-08-05 02:12:33.068187 |     [✓] Possible admin access granted with forged param 'admin=true'
+2025-08-05 02:12:33.116722 |     [✓] Possible admin access granted with forged param 'admin=false'
+2025-08-05 02:12:33.166992 |     [✓] Possible admin access granted with forged param 'admin=1'
+2025-08-05 02:12:33.216873 |     [✓] Possible admin access granted with forged param 'admin=0'
+2025-08-05 02:12:33.267563 |     [✓] Possible admin access granted with forged param 'admin=yes'
+2025-08-05 02:12:33.316737 |     [✓] Possible admin access granted with forged param 'admin=no'
+2025-08-05 02:12:33.367006 |     [✓] Possible admin access granted with forged param 'admin=on'
+2025-08-05 02:12:33.417322 |     [✓] Possible admin access granted with forged param 'admin=off'
+2025-08-05 02:12:33.466813 |     [✓] Possible admin access granted with forged param 'admin=enable'
+2025-08-05 02:12:33.517830 |     [✓] Possible admin access granted with forged param 'admin=disable'
+2025-08-05 02:12:33.566813 |     [✓] Possible admin access granted with forged param 'root=true'
+2025-08-05 02:12:33.618819 |     [✓] Possible admin access granted with forged param 'root=false'
+2025-08-05 02:12:33.667838 |     [✓] Possible admin access granted with forged param 'root=1'
+2025-08-05 02:12:33.717044 |     [✓] Possible admin access granted with forged param 'root=0'
+2025-08-05 02:12:33.768471 |     [✓] Possible admin access granted with forged param 'root=yes'
+2025-08-05 02:12:33.817550 |     [✓] Possible admin access granted with forged param 'root=no'
+2025-08-05 02:12:33.866684 |     [✓] Possible admin access granted with forged param 'root=on'
+2025-08-05 02:12:33.916722 |     [✓] Possible admin access granted with forged param 'root=off'
+2025-08-05 02:12:33.968791 |     [✓] Possible admin access granted with forged param 'root=enable'
+2025-08-05 02:12:34.016975 |     [✓] Possible admin access granted with forged param 'root=disable'
+2025-08-05 02:12:34.065769 |     [✓] Possible admin access granted with forged param 'enable=true'
+2025-08-05 02:12:34.106956 |     [✓] Possible admin access granted with forged param 'enable=false'
+2025-08-05 02:12:34.161220 |     [✓] Possible admin access granted with forged param 'enable=1'
+2025-08-05 02:12:34.207024 |     [✓] Possible admin access granted with forged param 'enable=0'
+2025-08-05 02:12:34.257794 |     [✓] Possible admin access granted with forged param 'enable=yes'
+2025-08-05 02:12:34.303496 |     [✓] Possible admin access granted with forged param 'enable=no'
+2025-08-05 02:12:34.353467 |     [✓] Possible admin access granted with forged param 'enable=on'
+2025-08-05 02:12:34.399703 |     [✓] Possible admin access granted with forged param 'enable=off'
+2025-08-05 02:12:34.449944 |     [✓] Possible admin access granted with forged param 'enable=enable'
+2025-08-05 02:12:34.496707 |     [✓] Possible admin access granted with forged param 'enable=disable'
+2025-08-05 02:12:34.546649 |     [✓] Possible admin access granted with forged param 'disable=true'
+2025-08-05 02:12:34.596794 |     [✓] Possible admin access granted with forged param 'disable=false'
+2025-08-05 02:12:34.640702 |     [✓] Possible admin access granted with forged param 'disable=1'
+2025-08-05 02:12:34.692416 |     [✓] Possible admin access granted with forged param 'disable=0'
+2025-08-05 02:12:34.737385 |     [✓] Possible admin access granted with forged param 'disable=yes'
+2025-08-05 02:12:34.778996 |     [✓] Possible admin access granted with forged param 'disable=no'
+2025-08-05 02:12:34.834627 |     [✓] Possible admin access granted with forged param 'disable=on'
+2025-08-05 02:12:34.885954 |     [✓] Possible admin access granted with forged param 'disable=off'
+2025-08-05 02:12:34.932479 |     [✓] Possible admin access granted with forged param 'disable=enable'
+2025-08-05 02:12:34.980571 |     [✓] Possible admin access granted with forged param 'disable=disable'
+2025-08-05 02:12:35.035708 |     [✓] Possible admin access granted with forged param 'verbose=true'
+2025-08-05 02:12:35.084812 |     [✓] Possible admin access granted with forged param 'verbose=false'
+2025-08-05 02:12:35.135648 |     [✓] Possible admin access granted with forged param 'verbose=1'
+2025-08-05 02:12:35.178680 |     [✓] Possible admin access granted with forged param 'verbose=0'
+2025-08-05 02:12:35.232386 |     [✓] Possible admin access granted with forged param 'verbose=yes'
+2025-08-05 02:12:35.238254 |     [✓] Possible admin access granted with forged param 'verbose=no'
+2025-08-05 02:12:35.290941 |     [✓] Possible admin access granted with forged param 'verbose=on'
+2025-08-05 02:12:35.341032 |     [✓] Possible admin access granted with forged param 'verbose=off'
+2025-08-05 02:12:35.386709 |     [✓] Possible admin access granted with forged param 'verbose=enable'
+2025-08-05 02:12:35.438360 |     [✓] Possible admin access granted with forged param 'verbose=disable'
+2025-08-05 02:12:35.490449 |     [✓] Possible admin access granted with forged param 'logging=true'
+2025-08-05 02:12:35.542147 |     [✓] Possible admin access granted with forged param 'logging=false'
+2025-08-05 02:12:35.589256 |     [✓] Possible admin access granted with forged param 'logging=1'
+2025-08-05 02:12:35.641662 |     [✓] Possible admin access granted with forged param 'logging=0'
+2025-08-05 02:12:35.688241 |     [✓] Possible admin access granted with forged param 'logging=yes'
+2025-08-05 02:12:35.738186 |     [✓] Possible admin access granted with forged param 'logging=no'
+2025-08-05 02:12:35.786684 |     [✓] Possible admin access granted with forged param 'logging=on'
+2025-08-05 02:12:35.836744 |     [✓] Possible admin access granted with forged param 'logging=off'
+2025-08-05 02:12:35.883387 |     [✓] Possible admin access granted with forged param 'logging=enable'
+2025-08-05 02:12:35.933854 |     [✓] Possible admin access granted with forged param 'logging=disable'
+2025-08-05 02:12:35.981009 |     [✓] Possible admin access granted with forged param 'show=true'
+2025-08-05 02:12:36.028783 |     [✓] Possible admin access granted with forged param 'show=false'
+2025-08-05 02:12:36.076898 |     [✓] Possible admin access granted with forged param 'show=1'
+2025-08-05 02:12:36.127064 |     [✓] Possible admin access granted with forged param 'show=0'
+2025-08-05 02:12:36.181711 |     [✓] Possible admin access granted with forged param 'show=yes'
+2025-08-05 02:12:36.230765 |     [✓] Possible admin access granted with forged param 'show=no'
+2025-08-05 02:12:36.281806 |     [✓] Possible admin access granted with forged param 'show=on'
+2025-08-05 02:12:36.331977 |     [✓] Possible admin access granted with forged param 'show=off'
+2025-08-05 02:12:36.378790 |     [✓] Possible admin access granted with forged param 'show=enable'
+2025-08-05 02:12:36.428838 |     [✓] Possible admin access granted with forged param 'show=disable'
+2025-08-05 02:12:36.478867 |     [✓] Possible admin access granted with forged param 'hidden=true'
+2025-08-05 02:12:36.526911 |     [✓] Possible admin access granted with forged param 'hidden=false'
+2025-08-05 02:12:36.576679 |     [✓] Possible admin access granted with forged param 'hidden=1'
+2025-08-05 02:12:36.628904 |     [✓] Possible admin access granted with forged param 'hidden=0'
+2025-08-05 02:12:36.679806 |     [✓] Possible admin access granted with forged param 'hidden=yes'
+2025-08-05 02:12:36.729051 |     [✓] Possible admin access granted with forged param 'hidden=no'
+2025-08-05 02:12:36.779005 |     [✓] Possible admin access granted with forged param 'hidden=on'
+2025-08-05 02:12:36.824080 |     [✓] Possible admin access granted with forged param 'hidden=off'
+2025-08-05 02:12:36.870813 |     [✓] Possible admin access granted with forged param 'hidden=enable'
+2025-08-05 02:12:36.926804 |     [✓] Possible admin access granted with forged param 'hidden=disable'
+2025-08-05 02:12:36.976579 |     [✓] Possible admin access granted with forged param 'source=true'
+2025-08-05 02:12:37.023700 |     [✓] Possible admin access granted with forged param 'source=false'
+2025-08-05 02:12:37.076661 |     [✓] Possible admin access granted with forged param 'source=1'
+2025-08-05 02:12:37.121535 |     [✓] Possible admin access granted with forged param 'source=0'
+2025-08-05 02:12:37.176925 |     [✓] Possible admin access granted with forged param 'source=yes'
+2025-08-05 02:12:37.226682 |     [✓] Possible admin access granted with forged param 'source=no'
+2025-08-05 02:12:37.276660 |     [✓] Possible admin access granted with forged param 'source=on'
+2025-08-05 02:12:37.327860 |     [✓] Possible admin access granted with forged param 'source=off'
+2025-08-05 02:12:37.377014 |     [✓] Possible admin access granted with forged param 'source=enable'
+2025-08-05 02:12:37.427141 |     [✓] Possible admin access granted with forged param 'source=disable'
+2025-08-05 02:12:37.477666 |     [✓] Possible admin access granted with forged param 'internal=true'
+2025-08-05 02:12:37.527806 |     [✓] Possible admin access granted with forged param 'internal=false'
+2025-08-05 02:12:37.577733 |     [✓] Possible admin access granted with forged param 'internal=1'
+2025-08-05 02:12:37.626817 |     [✓] Possible admin access granted with forged param 'internal=0'
+2025-08-05 02:12:37.678568 |     [✓] Possible admin access granted with forged param 'internal=yes'
+2025-08-05 02:12:37.728503 |     [✓] Possible admin access granted with forged param 'internal=no'
+2025-08-05 02:12:37.779122 |     [✓] Possible admin access granted with forged param 'internal=on'
+2025-08-05 02:12:37.828331 |     [✓] Possible admin access granted with forged param 'internal=off'
+2025-08-05 02:12:37.879201 |     [✓] Possible admin access granted with forged param 'internal=enable'
+2025-08-05 02:12:37.929526 |     [✓] Possible admin access granted with forged param 'internal=disable'
+2025-08-05 02:12:37.977105 |     [✓] Possible admin access granted with forged param 'MAX_FILE_SIZE=99998'
+2025-08-05 02:12:38.029299 |     [✓] Possible admin access granted with forged param 'MAX_FILE_SIZE=99999'
+2025-08-05 02:12:38.079654 |     [✓] Possible admin access granted with forged param 'MAX_FILE_SIZE=100001'
+2025-08-05 02:12:38.126699 |     [✓] Possible admin access granted with forged param 'MAX_FILE_SIZE=100002'
+2025-08-05 02:12:38.126699 | ----- OTG-BUSLOGIC-002 Test Completed -----
+
+2025-08-05 02:25:26.453907 | [-] Login failed (Status: 200)
+2025-08-05 02:26:11.322229 | [-] Login failed (Status: 200)
+2025-08-05 02:26:16.104666 | [-] Login failed (Status: 200)
+2025-08-05 02:26:40.542503 | [+] Login successful (Status: 200)
+2025-08-05 02:26:40.596614 | [+] Security level set to low
+2025-08-05 02:26:40.596614 | ----- Starting OTG-BUSLOGIC-003 (Integrity Checks) -----
+2025-08-05 02:26:40.596614 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/csrf/
+2025-08-05 02:26:40.612681 |     [✓] Possible admin access granted by modifying 'user_id' to 'admin'
+2025-08-05 02:26:40.617021 |     [✓] Possible admin access granted by modifying 'user_id' to 'root'
+2025-08-05 02:26:40.621040 |     [✓] Possible admin access granted by modifying 'user_id' to 'superuser'
+2025-08-05 02:26:40.622670 |     [✓] Possible admin access granted by modifying 'user_id' to '1'
+2025-08-05 02:26:40.629243 |     [✓] Possible admin access granted by modifying 'user_id' to 'true'
+2025-08-05 02:26:40.634407 |     [✓] Possible admin access granted by modifying 'user_id' to 'high'
+2025-08-05 02:26:40.639264 |     [✓] Possible admin access granted by modifying 'user_id' to 'maximum'
+2025-08-05 02:26:40.642752 |     [✓] Possible admin access granted by modifying 'user_id' to 'privileged'
+2025-08-05 02:26:40.645938 |     [✓] Possible admin access granted by modifying 'user_id' to '0'
+2025-08-05 02:26:40.650192 |     [✓] Possible admin access granted by modifying 'user_id' to 'false'
+2025-08-05 02:26:40.655089 |     [✓] Possible admin access granted by modifying 'user_level' to 'admin'
+2025-08-05 02:26:40.658602 |     [✓] Possible admin access granted by modifying 'user_level' to 'root'
+2025-08-05 02:26:40.663808 |     [✓] Possible admin access granted by modifying 'user_level' to 'superuser'
+2025-08-05 02:26:40.667976 |     [✓] Possible admin access granted by modifying 'user_level' to '1'
+2025-08-05 02:26:40.671054 |     [✓] Possible admin access granted by modifying 'user_level' to 'true'
+2025-08-05 02:26:40.674566 |     [✓] Possible admin access granted by modifying 'user_level' to 'high'
+2025-08-05 02:26:40.679652 |     [✓] Possible admin access granted by modifying 'user_level' to 'maximum'
+2025-08-05 02:26:40.684927 |     [✓] Possible admin access granted by modifying 'user_level' to 'privileged'
+2025-08-05 02:26:40.689156 |     [✓] Possible admin access granted by modifying 'user_level' to '0'
+2025-08-05 02:26:40.692889 |     [✓] Possible admin access granted by modifying 'user_level' to 'false'
+2025-08-05 02:26:40.695535 |     [✓] Possible admin access granted by modifying 'admin' to 'admin'
+2025-08-05 02:26:40.699776 |     [✓] Possible admin access granted by modifying 'admin' to 'root'
+2025-08-05 02:26:40.704038 |     [✓] Possible admin access granted by modifying 'admin' to 'superuser'
+2025-08-05 02:26:40.708271 |     [✓] Possible admin access granted by modifying 'admin' to '1'
+2025-08-05 02:26:40.711970 |     [✓] Possible admin access granted by modifying 'admin' to 'true'
+2025-08-05 02:26:40.715649 |     [✓] Possible admin access granted by modifying 'admin' to 'high'
+2025-08-05 02:26:40.715649 |     [✓] Possible admin access granted by modifying 'admin' to 'maximum'
+2025-08-05 02:26:40.720122 |     [✓] Possible admin access granted by modifying 'admin' to 'privileged'
+2025-08-05 02:26:40.723682 |     [✓] Possible admin access granted by modifying 'admin' to '0'
+2025-08-05 02:26:40.723682 |     [✓] Possible admin access granted by modifying 'admin' to 'false'
+2025-08-05 02:26:40.723682 |     [✓] Possible admin access granted by modifying 'role' to 'admin'
+2025-08-05 02:26:40.732529 |     [✓] Possible admin access granted by modifying 'role' to 'root'
+2025-08-05 02:26:40.732529 |     [✓] Possible admin access granted by modifying 'role' to 'superuser'
+2025-08-05 02:26:40.740742 |     [✓] Possible admin access granted by modifying 'role' to '1'
+2025-08-05 02:26:40.744508 |     [✓] Possible admin access granted by modifying 'role' to 'true'
+2025-08-05 02:26:40.747124 |     [✓] Possible admin access granted by modifying 'role' to 'high'
+2025-08-05 02:26:40.748806 |     [✓] Possible admin access granted by modifying 'role' to 'maximum'
+2025-08-05 02:26:40.752815 |     [✓] Possible admin access granted by modifying 'role' to 'privileged'
+2025-08-05 02:26:40.757519 |     [✓] Possible admin access granted by modifying 'role' to '0'
+2025-08-05 02:26:40.759583 |     [✓] Possible admin access granted by modifying 'role' to 'false'
+2025-08-05 02:26:40.762598 |     [✓] Possible admin access granted by modifying 'price' to 'admin'
+2025-08-05 02:26:40.766019 |     [✓] Possible admin access granted by modifying 'price' to 'root'
+2025-08-05 02:26:40.770423 |     [✓] Possible admin access granted by modifying 'price' to 'superuser'
+2025-08-05 02:26:40.772562 |     [✓] Possible admin access granted by modifying 'price' to '1'
+2025-08-05 02:26:40.775947 |     [✓] Possible admin access granted by modifying 'price' to 'true'
+2025-08-05 02:26:40.775947 |     [✓] Possible admin access granted by modifying 'price' to 'high'
+2025-08-05 02:26:40.782768 |     [✓] Possible admin access granted by modifying 'price' to 'maximum'
+2025-08-05 02:26:40.786308 |     [✓] Possible admin access granted by modifying 'price' to 'privileged'
+2025-08-05 02:26:40.789444 |     [✓] Possible admin access granted by modifying 'price' to '0'
+2025-08-05 02:26:40.792467 |     [✓] Possible admin access granted by modifying 'price' to 'false'
+2025-08-05 02:26:40.795914 |     [✓] Possible admin access granted by modifying 'quantity' to 'admin'
+2025-08-05 02:26:40.799426 |     [✓] Possible admin access granted by modifying 'quantity' to 'root'
+2025-08-05 02:26:40.802438 |     [✓] Possible admin access granted by modifying 'quantity' to 'superuser'
+2025-08-05 02:26:40.805024 |     [✓] Possible admin access granted by modifying 'quantity' to '1'
+2025-08-05 02:26:40.805024 |     [✓] Possible admin access granted by modifying 'quantity' to 'true'
+2025-08-05 02:26:40.812851 |     [✓] Possible admin access granted by modifying 'quantity' to 'high'
+2025-08-05 02:26:40.816400 |     [✓] Possible admin access granted by modifying 'quantity' to 'maximum'
+2025-08-05 02:26:40.820416 |     [✓] Possible admin access granted by modifying 'quantity' to 'privileged'
+2025-08-05 02:26:40.822918 |     [✓] Possible admin access granted by modifying 'quantity' to '0'
+2025-08-05 02:26:40.822918 |     [✓] Possible admin access granted by modifying 'quantity' to 'false'
+2025-08-05 02:26:40.822918 |     [✓] Possible admin access granted by modifying 'discount' to 'admin'
+2025-08-05 02:26:40.832839 |     [✓] Possible admin access granted by modifying 'discount' to 'root'
+2025-08-05 02:26:40.834005 |     [✓] Possible admin access granted by modifying 'discount' to 'superuser'
+2025-08-05 02:26:40.838756 |     [✓] Possible admin access granted by modifying 'discount' to '1'
+2025-08-05 02:26:40.842497 |     [✓] Possible admin access granted by modifying 'discount' to 'true'
+2025-08-05 02:26:40.842497 |     [✓] Possible admin access granted by modifying 'discount' to 'high'
+2025-08-05 02:26:40.842497 |     [✓] Possible admin access granted by modifying 'discount' to 'maximum'
+2025-08-05 02:26:40.852719 |     [✓] Possible admin access granted by modifying 'discount' to 'privileged'
+2025-08-05 02:26:40.854682 |     [✓] Possible admin access granted by modifying 'discount' to '0'
+2025-08-05 02:26:40.858811 |     [✓] Possible admin access granted by modifying 'discount' to 'false'
+2025-08-05 02:26:40.858811 |     [✓] Possible admin access granted by modifying 'access_level' to 'admin'
+2025-08-05 02:26:40.864777 |     [✓] Possible admin access granted by modifying 'access_level' to 'root'
+2025-08-05 02:26:40.867408 |     [✓] Possible admin access granted by modifying 'access_level' to 'superuser'
+2025-08-05 02:26:40.870420 |     [✓] Possible admin access granted by modifying 'access_level' to '1'
+2025-08-05 02:26:40.872788 |     [✓] Possible admin access granted by modifying 'access_level' to 'true'
+2025-08-05 02:26:40.876803 |     [✓] Possible admin access granted by modifying 'access_level' to 'high'
+2025-08-05 02:26:40.880560 |     [✓] Possible admin access granted by modifying 'access_level' to 'maximum'
+2025-08-05 02:26:40.882571 |     [✓] Possible admin access granted by modifying 'access_level' to 'privileged'
+2025-08-05 02:26:40.887606 |     [✓] Possible admin access granted by modifying 'access_level' to '0'
+2025-08-05 02:26:40.891262 |     [✓] Possible admin access granted by modifying 'access_level' to 'false'
+2025-08-05 02:26:40.894420 |     [✓] Possible admin access granted by modifying 'security_level' to 'admin'
+2025-08-05 02:26:40.897054 |     [✓] Possible admin access granted by modifying 'security_level' to 'root'
+2025-08-05 02:26:40.898627 |     [✓] Possible admin access granted by modifying 'security_level' to 'superuser'
+2025-08-05 02:26:40.902576 |     [✓] Possible admin access granted by modifying 'security_level' to '1'
+2025-08-05 02:26:40.903731 |     [✓] Possible admin access granted by modifying 'security_level' to 'true'
+2025-08-05 02:26:40.903731 |     [✓] Possible admin access granted by modifying 'security_level' to 'high'
+2025-08-05 02:26:40.912758 |     [✓] Possible admin access granted by modifying 'security_level' to 'maximum'
+2025-08-05 02:26:40.916258 |     [✓] Possible admin access granted by modifying 'security_level' to 'privileged'
+2025-08-05 02:26:40.918293 |     [✓] Possible admin access granted by modifying 'security_level' to '0'
+2025-08-05 02:26:40.919633 |     [✓] Possible admin access granted by modifying 'security_level' to 'false'
+2025-08-05 02:26:40.924576 |     [✓] Possible admin access granted by modifying 'token' to 'admin'
+2025-08-05 02:26:40.928763 |     [✓] Possible admin access granted by modifying 'token' to 'root'
+2025-08-05 02:26:40.928763 |     [✓] Possible admin access granted by modifying 'token' to 'superuser'
+2025-08-05 02:26:40.935270 |     [✓] Possible admin access granted by modifying 'token' to '1'
+2025-08-05 02:26:40.942553 |     [✓] Possible admin access granted by modifying 'token' to 'true'
+2025-08-05 02:26:40.944898 |     [✓] Possible admin access granted by modifying 'token' to 'high'
+2025-08-05 02:26:40.944898 |     [✓] Possible admin access granted by modifying 'token' to 'maximum'
+2025-08-05 02:26:40.952596 |     [✓] Possible admin access granted by modifying 'token' to 'privileged'
+2025-08-05 02:26:40.954876 |     [✓] Possible admin access granted by modifying 'token' to '0'
+2025-08-05 02:26:40.959059 |     [✓] Possible admin access granted by modifying 'token' to 'false'
+2025-08-05 02:26:40.961926 |     [✓] Possible admin access granted by modifying 'auth' to 'admin'
+2025-08-05 02:26:40.964726 |     [✓] Possible admin access granted by modifying 'auth' to 'root'
+2025-08-05 02:26:40.967319 |     [✓] Possible admin access granted by modifying 'auth' to 'superuser'
+2025-08-05 02:26:40.967319 |     [✓] Possible admin access granted by modifying 'auth' to '1'
+2025-08-05 02:26:40.974449 |     [✓] Possible admin access granted by modifying 'auth' to 'true'
+2025-08-05 02:26:40.977295 |     [✓] Possible admin access granted by modifying 'auth' to 'high'
+2025-08-05 02:26:40.978794 |     [✓] Possible admin access granted by modifying 'auth' to 'maximum'
+2025-08-05 02:26:40.984698 |     [✓] Possible admin access granted by modifying 'auth' to 'privileged'
+2025-08-05 02:26:40.986962 |     [✓] Possible admin access granted by modifying 'auth' to '0'
+2025-08-05 02:26:40.986962 |     [✓] Possible admin access granted by modifying 'auth' to 'false'
+2025-08-05 02:26:40.992700 |     [✓] Possible admin access granted by modifying 'privilege' to 'admin'
+2025-08-05 02:26:40.997841 |     [✓] Possible admin access granted by modifying 'privilege' to 'root'
+2025-08-05 02:26:40.997841 |     [✓] Possible admin access granted by modifying 'privilege' to 'superuser'
+2025-08-05 02:26:41.002691 |     [✓] Possible admin access granted by modifying 'privilege' to '1'
+2025-08-05 02:26:41.002691 |     [✓] Possible admin access granted by modifying 'privilege' to 'true'
+2025-08-05 02:26:41.002691 |     [✓] Possible admin access granted by modifying 'privilege' to 'high'
+2025-08-05 02:26:41.012466 |     [✓] Possible admin access granted by modifying 'privilege' to 'maximum'
+2025-08-05 02:26:41.018341 |     [✓] Possible admin access granted by modifying 'privilege' to 'privileged'
+2025-08-05 02:26:41.018341 |     [✓] Possible admin access granted by modifying 'privilege' to '0'
+2025-08-05 02:26:41.022519 |     [✓] Possible admin access granted by modifying 'privilege' to 'false'
+2025-08-05 02:26:41.022519 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/upload/
+2025-08-05 02:26:41.028359 |   - Found hidden fields: MAX_FILE_SIZE
+2025-08-05 02:26:41.076332 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'admin'
+2025-08-05 02:26:41.124644 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'root'
+2025-08-05 02:26:41.176219 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'superuser'
+2025-08-05 02:26:41.222504 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to '1'
+2025-08-05 02:26:41.262853 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'true'
+2025-08-05 02:26:41.318711 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'high'
+2025-08-05 02:26:41.366867 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'maximum'
+2025-08-05 02:26:41.416795 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'privileged'
+2025-08-05 02:26:41.467914 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to '0'
+2025-08-05 02:26:41.516392 |     [✓] Possible admin access granted by modifying 'MAX_FILE_SIZE' to 'false'
+2025-08-05 02:26:41.567112 |     [✓] Possible admin access granted by modifying 'user_id' to 'admin'
+2025-08-05 02:26:41.616305 |     [✓] Possible admin access granted by modifying 'user_id' to 'root'
+2025-08-05 02:26:41.667268 |     [✓] Possible admin access granted by modifying 'user_id' to 'superuser'
+2025-08-05 02:26:41.717197 |     [✓] Possible admin access granted by modifying 'user_id' to '1'
+2025-08-05 02:26:41.762755 |     [✓] Possible admin access granted by modifying 'user_id' to 'true'
+2025-08-05 02:26:41.813622 |     [✓] Possible admin access granted by modifying 'user_id' to 'high'
+2025-08-05 02:26:41.862669 |     [✓] Possible admin access granted by modifying 'user_id' to 'maximum'
+2025-08-05 02:26:41.912745 |     [✓] Possible admin access granted by modifying 'user_id' to 'privileged'
+2025-08-05 02:26:41.962602 |     [✓] Possible admin access granted by modifying 'user_id' to '0'
+2025-08-05 02:26:42.012888 |     [✓] Possible admin access granted by modifying 'user_id' to 'false'
+2025-08-05 02:26:42.062883 |     [✓] Possible admin access granted by modifying 'user_level' to 'admin'
+2025-08-05 02:26:42.114789 |     [✓] Possible admin access granted by modifying 'user_level' to 'root'
+2025-08-05 02:26:42.164707 |     [✓] Possible admin access granted by modifying 'user_level' to 'superuser'
+2025-08-05 02:26:42.213388 |     [✓] Possible admin access granted by modifying 'user_level' to '1'
+2025-08-05 02:26:42.266396 |     [✓] Possible admin access granted by modifying 'user_level' to 'true'
+2025-08-05 02:26:42.312857 |     [✓] Possible admin access granted by modifying 'user_level' to 'high'
+2025-08-05 02:26:42.360478 |     [✓] Possible admin access granted by modifying 'user_level' to 'maximum'
+2025-08-05 02:26:42.412574 |     [✓] Possible admin access granted by modifying 'user_level' to 'privileged'
+2025-08-05 02:26:42.460635 |     [✓] Possible admin access granted by modifying 'user_level' to '0'
+2025-08-05 02:26:42.512558 |     [✓] Possible admin access granted by modifying 'user_level' to 'false'
+2025-08-05 02:26:42.562787 |     [✓] Possible admin access granted by modifying 'admin' to 'admin'
+2025-08-05 02:26:42.612821 |     [✓] Possible admin access granted by modifying 'admin' to 'root'
+2025-08-05 02:26:42.660618 |     [✓] Possible admin access granted by modifying 'admin' to 'superuser'
+2025-08-05 02:26:42.704689 |     [✓] Possible admin access granted by modifying 'admin' to '1'
+2025-08-05 02:26:42.762811 |     [✓] Possible admin access granted by modifying 'admin' to 'true'
+2025-08-05 02:26:42.812298 |     [✓] Possible admin access granted by modifying 'admin' to 'high'
+2025-08-05 02:26:42.860852 |     [✓] Possible admin access granted by modifying 'admin' to 'maximum'
+2025-08-05 02:26:42.912514 |     [✓] Possible admin access granted by modifying 'admin' to 'privileged'
+2025-08-05 02:26:42.962605 |     [✓] Possible admin access granted by modifying 'admin' to '0'
+2025-08-05 02:26:43.013206 |     [✓] Possible admin access granted by modifying 'admin' to 'false'
+2025-08-05 02:26:43.062963 |     [✓] Possible admin access granted by modifying 'role' to 'admin'
+2025-08-05 02:26:43.112739 |     [✓] Possible admin access granted by modifying 'role' to 'root'
+2025-08-05 02:26:43.162925 |     [✓] Possible admin access granted by modifying 'role' to 'superuser'
+2025-08-05 02:26:43.207742 |     [✓] Possible admin access granted by modifying 'role' to '1'
+2025-08-05 02:26:43.254542 |     [✓] Possible admin access granted by modifying 'role' to 'true'
+2025-08-05 02:26:43.307786 |     [✓] Possible admin access granted by modifying 'role' to 'high'
+2025-08-05 02:26:43.352548 |     [✓] Possible admin access granted by modifying 'role' to 'maximum'
+2025-08-05 02:26:43.404045 |     [✓] Possible admin access granted by modifying 'role' to 'privileged'
+2025-08-05 02:26:43.452600 |     [✓] Possible admin access granted by modifying 'role' to '0'
+2025-08-05 02:26:43.504104 |     [✓] Possible admin access granted by modifying 'role' to 'false'
+2025-08-05 02:26:43.554527 |     [✓] Possible admin access granted by modifying 'price' to 'admin'
+2025-08-05 02:26:43.605597 |     [✓] Possible admin access granted by modifying 'price' to 'root'
+2025-08-05 02:26:43.652770 |     [✓] Possible admin access granted by modifying 'price' to 'superuser'
+2025-08-05 02:26:43.702635 |     [✓] Possible admin access granted by modifying 'price' to '1'
+2025-08-05 02:26:43.754864 |     [✓] Possible admin access granted by modifying 'price' to 'true'
+2025-08-05 02:26:43.804744 |     [✓] Possible admin access granted by modifying 'price' to 'high'
+2025-08-05 02:26:43.854541 |     [✓] Possible admin access granted by modifying 'price' to 'maximum'
+2025-08-05 02:26:43.905592 |     [✓] Possible admin access granted by modifying 'price' to 'privileged'
+2025-08-05 02:26:43.952804 |     [✓] Possible admin access granted by modifying 'price' to '0'
+2025-08-05 02:26:44.005149 |     [✓] Possible admin access granted by modifying 'price' to 'false'
+2025-08-05 02:26:44.054301 |     [✓] Possible admin access granted by modifying 'quantity' to 'admin'
+2025-08-05 02:26:44.102674 |     [✓] Possible admin access granted by modifying 'quantity' to 'root'
+2025-08-05 02:26:44.152618 |     [✓] Possible admin access granted by modifying 'quantity' to 'superuser'
+2025-08-05 02:26:44.206055 |     [✓] Possible admin access granted by modifying 'quantity' to '1'
+2025-08-05 02:26:44.252880 |     [✓] Possible admin access granted by modifying 'quantity' to 'true'
+2025-08-05 02:26:44.302687 |     [✓] Possible admin access granted by modifying 'quantity' to 'high'
+2025-08-05 02:26:44.352799 |     [✓] Possible admin access granted by modifying 'quantity' to 'maximum'
+2025-08-05 02:26:44.406529 |     [✓] Possible admin access granted by modifying 'quantity' to 'privileged'
+2025-08-05 02:26:44.452650 |     [✓] Possible admin access granted by modifying 'quantity' to '0'
+2025-08-05 02:26:44.502717 |     [✓] Possible admin access granted by modifying 'quantity' to 'false'
+2025-08-05 02:26:44.552920 |     [✓] Possible admin access granted by modifying 'discount' to 'admin'
+2025-08-05 02:26:44.606387 |     [✓] Possible admin access granted by modifying 'discount' to 'root'
+2025-08-05 02:26:44.652894 |     [✓] Possible admin access granted by modifying 'discount' to 'superuser'
+2025-08-05 02:26:44.702572 |     [✓] Possible admin access granted by modifying 'discount' to '1'
+2025-08-05 02:26:44.707612 |     [✓] Possible admin access granted by modifying 'discount' to 'true'
+2025-08-05 02:26:44.760528 |     [✓] Possible admin access granted by modifying 'discount' to 'high'
+2025-08-05 02:26:44.808945 |     [✓] Possible admin access granted by modifying 'discount' to 'maximum'
+2025-08-05 02:26:44.856246 |     [✓] Possible admin access granted by modifying 'discount' to 'privileged'
+2025-08-05 02:26:44.905714 |     [✓] Possible admin access granted by modifying 'discount' to '0'
+2025-08-05 02:26:44.957205 |     [✓] Possible admin access granted by modifying 'discount' to 'false'
+2025-08-05 02:26:45.006893 |     [✓] Possible admin access granted by modifying 'access_level' to 'admin'
+2025-08-05 02:26:45.055946 |     [✓] Possible admin access granted by modifying 'access_level' to 'root'
+2025-08-05 02:26:45.106070 |     [✓] Possible admin access granted by modifying 'access_level' to 'superuser'
+2025-08-05 02:26:45.156347 |     [✓] Possible admin access granted by modifying 'access_level' to '1'
+2025-08-05 02:26:45.206305 |     [✓] Possible admin access granted by modifying 'access_level' to 'true'
+2025-08-05 02:26:45.256341 |     [✓] Possible admin access granted by modifying 'access_level' to 'high'
+2025-08-05 02:26:45.307067 |     [✓] Possible admin access granted by modifying 'access_level' to 'maximum'
+2025-08-05 02:26:45.352640 |     [✓] Possible admin access granted by modifying 'access_level' to 'privileged'
+2025-08-05 02:26:45.398585 |     [✓] Possible admin access granted by modifying 'access_level' to '0'
+2025-08-05 02:26:45.442767 |     [✓] Possible admin access granted by modifying 'access_level' to 'false'
+2025-08-05 02:26:45.492803 |     [✓] Possible admin access granted by modifying 'security_level' to 'admin'
+2025-08-05 02:26:45.542723 |     [✓] Possible admin access granted by modifying 'security_level' to 'root'
+2025-08-05 02:26:45.592605 |     [✓] Possible admin access granted by modifying 'security_level' to 'superuser'
+2025-08-05 02:26:45.642649 |     [✓] Possible admin access granted by modifying 'security_level' to '1'
+2025-08-05 02:26:45.695225 |     [✓] Possible admin access granted by modifying 'security_level' to 'true'
+2025-08-05 02:26:45.741965 |     [✓] Possible admin access granted by modifying 'security_level' to 'high'
+2025-08-05 02:26:45.782588 |     [✓] Possible admin access granted by modifying 'security_level' to 'maximum'
+2025-08-05 02:26:45.832798 |     [✓] Possible admin access granted by modifying 'security_level' to 'privileged'
+2025-08-05 02:26:45.891168 |     [✓] Possible admin access granted by modifying 'security_level' to '0'
+2025-08-05 02:26:45.938118 |     [✓] Possible admin access granted by modifying 'security_level' to 'false'
+2025-08-05 02:26:45.990989 |     [✓] Possible admin access granted by modifying 'token' to 'admin'
+2025-08-05 02:26:46.037853 |     [✓] Possible admin access granted by modifying 'token' to 'root'
+2025-08-05 02:26:46.084055 |     [✓] Possible admin access granted by modifying 'token' to 'superuser'
+2025-08-05 02:26:46.132972 |     [✓] Possible admin access granted by modifying 'token' to '1'
+2025-08-05 02:26:46.186410 |     [✓] Possible admin access granted by modifying 'token' to 'true'
+2025-08-05 02:26:46.237992 |     [✓] Possible admin access granted by modifying 'token' to 'high'
+2025-08-05 02:26:46.282570 |     [✓] Possible admin access granted by modifying 'token' to 'maximum'
+2025-08-05 02:26:46.337136 |     [✓] Possible admin access granted by modifying 'token' to 'privileged'
+2025-08-05 02:26:46.387853 |     [✓] Possible admin access granted by modifying 'token' to '0'
+2025-08-05 02:26:46.433697 |     [✓] Possible admin access granted by modifying 'token' to 'false'
+2025-08-05 02:26:46.484105 |     [✓] Possible admin access granted by modifying 'auth' to 'admin'
+2025-08-05 02:26:46.532963 |     [✓] Possible admin access granted by modifying 'auth' to 'root'
+2025-08-05 02:26:46.578607 |     [✓] Possible admin access granted by modifying 'auth' to 'superuser'
+2025-08-05 02:26:46.630003 |     [✓] Possible admin access granted by modifying 'auth' to '1'
+2025-08-05 02:26:46.678665 |     [✓] Possible admin access granted by modifying 'auth' to 'true'
+2025-08-05 02:26:46.726946 |     [✓] Possible admin access granted by modifying 'auth' to 'high'
+2025-08-05 02:26:46.780097 |     [✓] Possible admin access granted by modifying 'auth' to 'maximum'
+2025-08-05 02:26:46.827285 |     [✓] Possible admin access granted by modifying 'auth' to 'privileged'
+2025-08-05 02:26:46.880189 |     [✓] Possible admin access granted by modifying 'auth' to '0'
+2025-08-05 02:26:46.928542 |     [✓] Possible admin access granted by modifying 'auth' to 'false'
+2025-08-05 02:26:46.977025 |     [✓] Possible admin access granted by modifying 'privilege' to 'admin'
+2025-08-05 02:26:47.029175 |     [✓] Possible admin access granted by modifying 'privilege' to 'root'
+2025-08-05 02:26:47.081995 |     [✓] Possible admin access granted by modifying 'privilege' to 'superuser'
+2025-08-05 02:26:47.130387 |     [✓] Possible admin access granted by modifying 'privilege' to '1'
+2025-08-05 02:26:47.179561 |     [✓] Possible admin access granted by modifying 'privilege' to 'true'
+2025-08-05 02:26:47.225812 |     [✓] Possible admin access granted by modifying 'privilege' to 'high'
+2025-08-05 02:26:47.276142 |     [✓] Possible admin access granted by modifying 'privilege' to 'maximum'
+2025-08-05 02:26:47.326150 |     [✓] Possible admin access granted by modifying 'privilege' to 'privileged'
+2025-08-05 02:26:47.376334 |     [✓] Possible admin access granted by modifying 'privilege' to '0'
+2025-08-05 02:26:47.422839 |     [✓] Possible admin access granted by modifying 'privilege' to 'false'
+2025-08-05 02:26:47.422839 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 02:26:47.437312 |     [✓] Possible admin access granted by modifying 'user_id' to 'admin'
+2025-08-05 02:26:47.441703 |     [✓] Possible admin access granted by modifying 'user_id' to 'root'
+2025-08-05 02:26:47.444561 |     [✓] Possible admin access granted by modifying 'user_id' to 'superuser'
+2025-08-05 02:26:47.447466 |     [✓] Possible admin access granted by modifying 'user_id' to '1'
+2025-08-05 02:26:47.450799 |     [✓] Possible admin access granted by modifying 'user_id' to 'true'
+2025-08-05 02:26:47.452944 |     [✓] Possible admin access granted by modifying 'user_id' to 'high'
+2025-08-05 02:26:47.452944 |     [✓] Possible admin access granted by modifying 'user_id' to 'maximum'
+2025-08-05 02:26:47.460467 |     [✓] Possible admin access granted by modifying 'user_id' to 'privileged'
+2025-08-05 02:26:47.464152 |     [✓] Possible admin access granted by modifying 'user_id' to '0'
+2025-08-05 02:26:47.465659 |     [✓] Possible admin access granted by modifying 'user_id' to 'false'
+2025-08-05 02:26:47.471083 |     [✓] Possible admin access granted by modifying 'user_level' to 'admin'
+2025-08-05 02:26:47.474714 |     [✓] Possible admin access granted by modifying 'user_level' to 'root'
+2025-08-05 02:26:47.477847 |     [✓] Possible admin access granted by modifying 'user_level' to 'superuser'
+2025-08-05 02:26:47.480968 |     [✓] Possible admin access granted by modifying 'user_level' to '1'
+2025-08-05 02:26:47.484657 |     [✓] Possible admin access granted by modifying 'user_level' to 'true'
+2025-08-05 02:26:47.488309 |     [✓] Possible admin access granted by modifying 'user_level' to 'high'
+2025-08-05 02:26:47.491957 |     [✓] Possible admin access granted by modifying 'user_level' to 'maximum'
+2025-08-05 02:26:47.495080 |     [✓] Possible admin access granted by modifying 'user_level' to 'privileged'
+2025-08-05 02:26:47.498736 |     [✓] Possible admin access granted by modifying 'user_level' to '0'
+2025-08-05 02:26:47.501899 |     [✓] Possible admin access granted by modifying 'user_level' to 'false'
+2025-08-05 02:26:47.505717 |     [✓] Possible admin access granted by modifying 'admin' to 'admin'
+2025-08-05 02:26:47.509902 |     [✓] Possible admin access granted by modifying 'admin' to 'root'
+2025-08-05 02:26:47.513539 |     [✓] Possible admin access granted by modifying 'admin' to 'superuser'
+2025-08-05 02:26:47.516188 |     [✓] Possible admin access granted by modifying 'admin' to '1'
+2025-08-05 02:26:47.517570 |     [✓] Possible admin access granted by modifying 'admin' to 'true'
+2025-08-05 02:26:47.522579 |     [✓] Possible admin access granted by modifying 'admin' to 'high'
+2025-08-05 02:26:47.524618 |     [✓] Possible admin access granted by modifying 'admin' to 'maximum'
+2025-08-05 02:26:47.527503 |     [✓] Possible admin access granted by modifying 'admin' to 'privileged'
+2025-08-05 02:26:47.531659 |     [✓] Possible admin access granted by modifying 'admin' to '0'
+2025-08-05 02:26:47.532665 |     [✓] Possible admin access granted by modifying 'admin' to 'false'
+2025-08-05 02:26:47.537321 |     [✓] Possible admin access granted by modifying 'role' to 'admin'
+2025-08-05 02:26:47.537321 |     [✓] Possible admin access granted by modifying 'role' to 'root'
+2025-08-05 02:26:47.542583 |     [✓] Possible admin access granted by modifying 'role' to 'superuser'
+2025-08-05 02:26:47.546109 |     [✓] Possible admin access granted by modifying 'role' to '1'
+2025-08-05 02:26:47.547308 |     [✓] Possible admin access granted by modifying 'role' to 'true'
+2025-08-05 02:26:47.553145 |     [✓] Possible admin access granted by modifying 'role' to 'high'
+2025-08-05 02:26:47.555854 |     [✓] Possible admin access granted by modifying 'role' to 'maximum'
+2025-08-05 02:26:47.555854 |     [✓] Possible admin access granted by modifying 'role' to 'privileged'
+2025-08-05 02:26:47.561891 |     [✓] Possible admin access granted by modifying 'role' to '0'
+2025-08-05 02:26:47.564887 |     [✓] Possible admin access granted by modifying 'role' to 'false'
+2025-08-05 02:26:47.564887 |     [✓] Possible admin access granted by modifying 'price' to 'admin'
+2025-08-05 02:26:47.570505 |     [✓] Possible admin access granted by modifying 'price' to 'root'
+2025-08-05 02:26:47.572800 |     [✓] Possible admin access granted by modifying 'price' to 'superuser'
+2025-08-05 02:26:47.574668 |     [✓] Possible admin access granted by modifying 'price' to '1'
+2025-08-05 02:26:47.583201 |     [✓] Possible admin access granted by modifying 'price' to 'true'
+2025-08-05 02:26:47.586618 |     [✓] Possible admin access granted by modifying 'price' to 'high'
+2025-08-05 02:26:47.586618 |     [✓] Possible admin access granted by modifying 'price' to 'maximum'
+2025-08-05 02:26:47.593052 |     [✓] Possible admin access granted by modifying 'price' to 'privileged'
+2025-08-05 02:26:47.595535 |     [✓] Possible admin access granted by modifying 'price' to '0'
+2025-08-05 02:26:47.595535 |     [✓] Possible admin access granted by modifying 'price' to 'false'
+2025-08-05 02:26:47.599880 |     [✓] Possible admin access granted by modifying 'quantity' to 'admin'
+2025-08-05 02:26:47.603910 |     [✓] Possible admin access granted by modifying 'quantity' to 'root'
+2025-08-05 02:26:47.606680 |     [✓] Possible admin access granted by modifying 'quantity' to 'superuser'
+2025-08-05 02:26:47.609867 |     [✓] Possible admin access granted by modifying 'quantity' to '1'
+2025-08-05 02:26:47.612884 |     [✓] Possible admin access granted by modifying 'quantity' to 'true'
+2025-08-05 02:26:47.614869 |     [✓] Possible admin access granted by modifying 'quantity' to 'high'
+2025-08-05 02:26:47.619017 |     [✓] Possible admin access granted by modifying 'quantity' to 'maximum'
+2025-08-05 02:26:47.623048 |     [✓] Possible admin access granted by modifying 'quantity' to 'privileged'
+2025-08-05 02:26:47.625362 |     [✓] Possible admin access granted by modifying 'quantity' to '0'
+2025-08-05 02:26:47.628127 |     [✓] Possible admin access granted by modifying 'quantity' to 'false'
+2025-08-05 02:26:47.632921 |     [✓] Possible admin access granted by modifying 'discount' to 'admin'
+2025-08-05 02:26:47.635969 |     [✓] Possible admin access granted by modifying 'discount' to 'root'
+2025-08-05 02:26:47.635969 |     [✓] Possible admin access granted by modifying 'discount' to 'superuser'
+2025-08-05 02:26:47.640831 |     [✓] Possible admin access granted by modifying 'discount' to '1'
+2025-08-05 02:26:47.642835 |     [✓] Possible admin access granted by modifying 'discount' to 'true'
+2025-08-05 02:26:47.646532 |     [✓] Possible admin access granted by modifying 'discount' to 'high'
+2025-08-05 02:26:47.649602 |     [✓] Possible admin access granted by modifying 'discount' to 'maximum'
+2025-08-05 02:26:47.652609 |     [✓] Possible admin access granted by modifying 'discount' to 'privileged'
+2025-08-05 02:26:47.656718 |     [✓] Possible admin access granted by modifying 'discount' to '0'
+2025-08-05 02:26:47.658098 |     [✓] Possible admin access granted by modifying 'discount' to 'false'
+2025-08-05 02:26:47.663129 |     [✓] Possible admin access granted by modifying 'access_level' to 'admin'
+2025-08-05 02:26:47.663129 |     [✓] Possible admin access granted by modifying 'access_level' to 'root'
+2025-08-05 02:26:47.667741 |     [✓] Possible admin access granted by modifying 'access_level' to 'superuser'
+2025-08-05 02:26:47.667741 |     [✓] Possible admin access granted by modifying 'access_level' to '1'
+2025-08-05 02:26:47.673822 |     [✓] Possible admin access granted by modifying 'access_level' to 'true'
+2025-08-05 02:26:47.679431 |     [✓] Possible admin access granted by modifying 'access_level' to 'high'
+2025-08-05 02:26:47.683912 |     [✓] Possible admin access granted by modifying 'access_level' to 'maximum'
+2025-08-05 02:26:47.686901 |     [✓] Possible admin access granted by modifying 'access_level' to 'privileged'
+2025-08-05 02:26:47.690592 |     [✓] Possible admin access granted by modifying 'access_level' to '0'
+2025-08-05 02:26:47.693792 |     [✓] Possible admin access granted by modifying 'access_level' to 'false'
+2025-08-05 02:26:47.694915 |     [✓] Possible admin access granted by modifying 'security_level' to 'admin'
+2025-08-05 02:26:47.701575 |     [✓] Possible admin access granted by modifying 'security_level' to 'root'
+2025-08-05 02:26:47.706234 |     [✓] Possible admin access granted by modifying 'security_level' to 'superuser'
+2025-08-05 02:26:47.709796 |     [✓] Possible admin access granted by modifying 'security_level' to '1'
+2025-08-05 02:26:47.714124 |     [✓] Possible admin access granted by modifying 'security_level' to 'true'
+2025-08-05 02:26:47.718124 |     [✓] Possible admin access granted by modifying 'security_level' to 'high'
+2025-08-05 02:26:47.722631 |     [✓] Possible admin access granted by modifying 'security_level' to 'maximum'
+2025-08-05 02:26:47.726756 |     [✓] Possible admin access granted by modifying 'security_level' to 'privileged'
+2025-08-05 02:26:47.726756 |     [✓] Possible admin access granted by modifying 'security_level' to '0'
+2025-08-05 02:26:47.732722 |     [✓] Possible admin access granted by modifying 'security_level' to 'false'
+2025-08-05 02:26:47.734944 |     [✓] Possible admin access granted by modifying 'token' to 'admin'
+2025-08-05 02:26:47.736700 |     [✓] Possible admin access granted by modifying 'token' to 'root'
+2025-08-05 02:26:47.741705 |     [✓] Possible admin access granted by modifying 'token' to 'superuser'
+2025-08-05 02:26:47.743785 |     [✓] Possible admin access granted by modifying 'token' to '1'
+2025-08-05 02:26:47.746698 |     [✓] Possible admin access granted by modifying 'token' to 'true'
+2025-08-05 02:26:47.749970 |     [✓] Possible admin access granted by modifying 'token' to 'high'
+2025-08-05 02:26:47.753025 |     [✓] Possible admin access granted by modifying 'token' to 'maximum'
+2025-08-05 02:26:47.753025 |     [✓] Possible admin access granted by modifying 'token' to 'privileged'
+2025-08-05 02:26:47.753025 |     [✓] Possible admin access granted by modifying 'token' to '0'
+2025-08-05 02:26:47.763235 |     [✓] Possible admin access granted by modifying 'token' to 'false'
+2025-08-05 02:26:47.766560 |     [✓] Possible admin access granted by modifying 'auth' to 'admin'
+2025-08-05 02:26:47.769279 |     [✓] Possible admin access granted by modifying 'auth' to 'root'
+2025-08-05 02:26:47.772709 |     [✓] Possible admin access granted by modifying 'auth' to 'superuser'
+2025-08-05 02:26:47.776547 |     [✓] Possible admin access granted by modifying 'auth' to '1'
+2025-08-05 02:26:47.779593 |     [✓] Possible admin access granted by modifying 'auth' to 'true'
+2025-08-05 02:26:47.782793 |     [✓] Possible admin access granted by modifying 'auth' to 'high'
+2025-08-05 02:26:47.782793 |     [✓] Possible admin access granted by modifying 'auth' to 'maximum'
+2025-08-05 02:26:47.782793 |     [✓] Possible admin access granted by modifying 'auth' to 'privileged'
+2025-08-05 02:26:47.791021 |     [✓] Possible admin access granted by modifying 'auth' to '0'
+2025-08-05 02:26:47.795141 |     [✓] Possible admin access granted by modifying 'auth' to 'false'
+2025-08-05 02:26:47.797077 |     [✓] Possible admin access granted by modifying 'privilege' to 'admin'
+2025-08-05 02:26:47.799382 |     [✓] Possible admin access granted by modifying 'privilege' to 'root'
+2025-08-05 02:26:47.802756 |     [✓] Possible admin access granted by modifying 'privilege' to 'superuser'
+2025-08-05 02:26:47.802756 |     [✓] Possible admin access granted by modifying 'privilege' to '1'
+2025-08-05 02:26:47.810179 |     [✓] Possible admin access granted by modifying 'privilege' to 'true'
+2025-08-05 02:26:47.812739 |     [✓] Possible admin access granted by modifying 'privilege' to 'high'
+2025-08-05 02:26:47.815488 |     [✓] Possible admin access granted by modifying 'privilege' to 'maximum'
+2025-08-05 02:26:47.817916 |     [✓] Possible admin access granted by modifying 'privilege' to 'privileged'
+2025-08-05 02:26:47.822926 |     [✓] Possible admin access granted by modifying 'privilege' to '0'
+2025-08-05 02:26:47.824329 |     [✓] Possible admin access granted by modifying 'privilege' to 'false'
+2025-08-05 02:26:47.826078 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/captcha/
+2025-08-05 02:26:47.830313 |   - Found hidden fields: step
+2025-08-05 02:26:47.881942 |     [✓] Possible admin access granted by modifying 'step' to 'admin'
+2025-08-05 02:26:47.922663 |     [✓] Possible admin access granted by modifying 'step' to 'root'
+2025-08-05 02:26:47.980519 |     [✓] Possible admin access granted by modifying 'step' to 'superuser'
+2025-08-05 02:26:48.030259 |     [✓] Possible admin access granted by modifying 'step' to 'true'
+2025-08-05 02:26:48.079075 |     [✓] Possible admin access granted by modifying 'step' to 'high'
+2025-08-05 02:26:48.129556 |     [✓] Possible admin access granted by modifying 'step' to 'maximum'
+2025-08-05 02:26:48.179642 |     [✓] Possible admin access granted by modifying 'step' to 'privileged'
+2025-08-05 02:26:48.231644 |     [✓] Possible admin access granted by modifying 'step' to '0'
+2025-08-05 02:26:48.276012 |     [✓] Possible admin access granted by modifying 'step' to 'false'
+2025-08-05 02:26:48.396628 |     [✓] Possible admin access granted by modifying 'user_id' to 'admin'
+2025-08-05 02:26:48.447547 |     [✓] Possible admin access granted by modifying 'user_id' to 'root'
+2025-08-05 02:26:48.497380 |     [✓] Possible admin access granted by modifying 'user_id' to 'superuser'
+2025-08-05 02:26:48.547509 |     [✓] Possible admin access granted by modifying 'user_id' to '1'
+2025-08-05 02:26:48.598484 |     [✓] Possible admin access granted by modifying 'user_id' to 'true'
+2025-08-05 02:26:48.649313 |     [✓] Possible admin access granted by modifying 'user_id' to 'high'
+2025-08-05 02:26:48.698588 |     [✓] Possible admin access granted by modifying 'user_id' to 'maximum'
+2025-08-05 02:26:48.749749 |     [✓] Possible admin access granted by modifying 'user_id' to 'privileged'
+2025-08-05 02:26:48.798879 |     [✓] Possible admin access granted by modifying 'user_id' to '0'
+2025-08-05 02:26:48.849103 |     [✓] Possible admin access granted by modifying 'user_id' to 'false'
+2025-08-05 02:26:48.899281 |     [✓] Possible admin access granted by modifying 'user_level' to 'admin'
+2025-08-05 02:26:48.950135 |     [✓] Possible admin access granted by modifying 'user_level' to 'root'
+2025-08-05 02:26:49.000473 |     [✓] Possible admin access granted by modifying 'user_level' to 'superuser'
+2025-08-05 02:26:49.052049 |     [✓] Possible admin access granted by modifying 'user_level' to '1'
+2025-08-05 02:26:49.102809 |     [✓] Possible admin access granted by modifying 'user_level' to 'true'
+2025-08-05 02:26:49.158938 |     [✓] Possible admin access granted by modifying 'user_level' to 'high'
+2025-08-05 02:26:49.209288 |     [✓] Possible admin access granted by modifying 'user_level' to 'maximum'
+2025-08-05 02:26:49.259883 |     [✓] Possible admin access granted by modifying 'user_level' to 'privileged'
+2025-08-05 02:26:49.311679 |     [✓] Possible admin access granted by modifying 'user_level' to '0'
+2025-08-05 02:26:49.363024 |     [✓] Possible admin access granted by modifying 'user_level' to 'false'
+2025-08-05 02:26:49.413398 |     [✓] Possible admin access granted by modifying 'admin' to 'admin'
+2025-08-05 02:26:49.465273 |     [✓] Possible admin access granted by modifying 'admin' to 'root'
+2025-08-05 02:26:49.514974 |     [✓] Possible admin access granted by modifying 'admin' to 'superuser'
+2025-08-05 02:26:49.564921 |     [✓] Possible admin access granted by modifying 'admin' to '1'
+2025-08-05 02:26:49.615167 |     [✓] Possible admin access granted by modifying 'admin' to 'true'
+2025-08-05 02:26:49.664381 |     [✓] Possible admin access granted by modifying 'admin' to 'high'
+2025-08-05 02:26:49.715255 |     [✓] Possible admin access granted by modifying 'admin' to 'maximum'
+2025-08-05 02:26:49.766508 |     [✓] Possible admin access granted by modifying 'admin' to 'privileged'
+2025-08-05 02:26:49.816878 |     [✓] Possible admin access granted by modifying 'admin' to '0'
+2025-08-05 02:26:49.867084 |     [✓] Possible admin access granted by modifying 'admin' to 'false'
+2025-08-05 02:26:49.918755 |     [✓] Possible admin access granted by modifying 'role' to 'admin'
+2025-08-05 02:26:49.969737 |     [✓] Possible admin access granted by modifying 'role' to 'root'
+2025-08-05 02:26:50.020827 |     [✓] Possible admin access granted by modifying 'role' to 'superuser'
+2025-08-05 02:26:50.071325 |     [✓] Possible admin access granted by modifying 'role' to '1'
+2025-08-05 02:26:50.120613 |     [✓] Possible admin access granted by modifying 'role' to 'true'
+2025-08-05 02:26:50.171370 |     [✓] Possible admin access granted by modifying 'role' to 'high'
+2025-08-05 02:26:50.224248 |     [✓] Possible admin access granted by modifying 'role' to 'maximum'
+2025-08-05 02:26:50.273955 |     [✓] Possible admin access granted by modifying 'role' to 'privileged'
+2025-08-05 02:26:50.322999 |     [✓] Possible admin access granted by modifying 'role' to '0'
+2025-08-05 02:26:50.373467 |     [✓] Possible admin access granted by modifying 'role' to 'false'
+2025-08-05 02:26:50.425930 |     [✓] Possible admin access granted by modifying 'price' to 'admin'
+2025-08-05 02:26:50.474990 |     [✓] Possible admin access granted by modifying 'price' to 'root'
+2025-08-05 02:26:50.525490 |     [✓] Possible admin access granted by modifying 'price' to 'superuser'
+2025-08-05 02:26:50.575721 |     [✓] Possible admin access granted by modifying 'price' to '1'
+2025-08-05 02:26:50.624620 |     [✓] Possible admin access granted by modifying 'price' to 'true'
+2025-08-05 02:26:50.676455 |     [✓] Possible admin access granted by modifying 'price' to 'high'
+2025-08-05 02:26:50.726393 |     [✓] Possible admin access granted by modifying 'price' to 'maximum'
+2025-08-05 02:26:50.777967 |     [✓] Possible admin access granted by modifying 'price' to 'privileged'
+2025-08-05 02:26:50.827850 |     [✓] Possible admin access granted by modifying 'price' to '0'
+2025-08-05 02:26:50.879347 |     [✓] Possible admin access granted by modifying 'price' to 'false'
+2025-08-05 02:26:50.930021 |     [✓] Possible admin access granted by modifying 'quantity' to 'admin'
+2025-08-05 02:26:50.981420 |     [✓] Possible admin access granted by modifying 'quantity' to 'root'
+2025-08-05 02:26:51.031311 |     [✓] Possible admin access granted by modifying 'quantity' to 'superuser'
+2025-08-05 02:26:51.080794 |     [✓] Possible admin access granted by modifying 'quantity' to '1'
+2025-08-05 02:26:51.131816 |     [✓] Possible admin access granted by modifying 'quantity' to 'true'
+2025-08-05 02:26:51.181290 |     [✓] Possible admin access granted by modifying 'quantity' to 'high'
+2025-08-05 02:26:51.232339 |     [✓] Possible admin access granted by modifying 'quantity' to 'maximum'
+2025-08-05 02:26:51.287873 |     [✓] Possible admin access granted by modifying 'quantity' to 'privileged'
+2025-08-05 02:26:51.337221 |     [✓] Possible admin access granted by modifying 'quantity' to '0'
+2025-08-05 02:26:51.389436 |     [✓] Possible admin access granted by modifying 'quantity' to 'false'
+2025-08-05 02:26:51.439855 |     [✓] Possible admin access granted by modifying 'discount' to 'admin'
+2025-08-05 02:26:51.489638 |     [✓] Possible admin access granted by modifying 'discount' to 'root'
+2025-08-05 02:26:51.539325 |     [✓] Possible admin access granted by modifying 'discount' to 'superuser'
+2025-08-05 02:26:51.589146 |     [✓] Possible admin access granted by modifying 'discount' to '1'
+2025-08-05 02:26:51.639380 |     [✓] Possible admin access granted by modifying 'discount' to 'true'
+2025-08-05 02:26:51.688040 |     [✓] Possible admin access granted by modifying 'discount' to 'high'
+2025-08-05 02:26:51.738187 |     [✓] Possible admin access granted by modifying 'discount' to 'maximum'
+2025-08-05 02:26:51.788825 |     [✓] Possible admin access granted by modifying 'discount' to 'privileged'
+2025-08-05 02:26:51.837747 |     [✓] Possible admin access granted by modifying 'discount' to '0'
+2025-08-05 02:26:51.889955 |     [✓] Possible admin access granted by modifying 'discount' to 'false'
+2025-08-05 02:26:51.939681 |     [✓] Possible admin access granted by modifying 'access_level' to 'admin'
+2025-08-05 02:26:51.990171 |     [✓] Possible admin access granted by modifying 'access_level' to 'root'
+2025-08-05 02:26:52.039327 |     [✓] Possible admin access granted by modifying 'access_level' to 'superuser'
+2025-08-05 02:26:52.088469 |     [✓] Possible admin access granted by modifying 'access_level' to '1'
+2025-08-05 02:26:52.139550 |     [✓] Possible admin access granted by modifying 'access_level' to 'true'
+2025-08-05 02:26:52.189445 |     [✓] Possible admin access granted by modifying 'access_level' to 'high'
+2025-08-05 02:26:52.240869 |     [✓] Possible admin access granted by modifying 'access_level' to 'maximum'
+2025-08-05 02:26:52.292197 |     [✓] Possible admin access granted by modifying 'access_level' to 'privileged'
+2025-08-05 02:26:52.343814 |     [✓] Possible admin access granted by modifying 'access_level' to '0'
+2025-08-05 02:26:52.396592 |     [✓] Possible admin access granted by modifying 'access_level' to 'false'
+2025-08-05 02:26:52.448167 |     [✓] Possible admin access granted by modifying 'security_level' to 'admin'
+2025-08-05 02:26:52.498976 |     [✓] Possible admin access granted by modifying 'security_level' to 'root'
+2025-08-05 02:26:52.549084 |     [✓] Possible admin access granted by modifying 'security_level' to 'superuser'
+2025-08-05 02:26:52.596929 |     [✓] Possible admin access granted by modifying 'security_level' to '1'
+2025-08-05 02:26:52.648444 |     [✓] Possible admin access granted by modifying 'security_level' to 'true'
+2025-08-05 02:26:52.700587 |     [✓] Possible admin access granted by modifying 'security_level' to 'high'
+2025-08-05 02:26:52.752906 |     [✓] Possible admin access granted by modifying 'security_level' to 'maximum'
+2025-08-05 02:26:52.804269 |     [✓] Possible admin access granted by modifying 'security_level' to 'privileged'
+2025-08-05 02:26:52.854844 |     [✓] Possible admin access granted by modifying 'security_level' to '0'
+2025-08-05 02:26:52.905979 |     [✓] Possible admin access granted by modifying 'security_level' to 'false'
+2025-08-05 02:26:52.955681 |     [✓] Possible admin access granted by modifying 'token' to 'admin'
+2025-08-05 02:26:53.005883 |     [✓] Possible admin access granted by modifying 'token' to 'root'
+2025-08-05 02:26:53.056659 |     [✓] Possible admin access granted by modifying 'token' to 'superuser'
+2025-08-05 02:26:53.108818 |     [✓] Possible admin access granted by modifying 'token' to '1'
+2025-08-05 02:26:53.158762 |     [✓] Possible admin access granted by modifying 'token' to 'true'
+2025-08-05 02:26:53.208395 |     [✓] Possible admin access granted by modifying 'token' to 'high'
+2025-08-05 02:26:53.257314 |     [✓] Possible admin access granted by modifying 'token' to 'maximum'
+2025-08-05 02:26:53.307476 |     [✓] Possible admin access granted by modifying 'token' to 'privileged'
+2025-08-05 02:26:53.357014 |     [✓] Possible admin access granted by modifying 'token' to '0'
+2025-08-05 02:26:53.411813 |     [✓] Possible admin access granted by modifying 'token' to 'false'
+2025-08-05 02:26:53.462814 |     [✓] Possible admin access granted by modifying 'auth' to 'admin'
+2025-08-05 02:26:53.513625 |     [✓] Possible admin access granted by modifying 'auth' to 'root'
+2025-08-05 02:26:53.564074 |     [✓] Possible admin access granted by modifying 'auth' to 'superuser'
+2025-08-05 02:26:53.614489 |     [✓] Possible admin access granted by modifying 'auth' to '1'
+2025-08-05 02:26:53.664013 |     [✓] Possible admin access granted by modifying 'auth' to 'true'
+2025-08-05 02:26:53.715182 |     [✓] Possible admin access granted by modifying 'auth' to 'high'
+2025-08-05 02:26:53.765753 |     [✓] Possible admin access granted by modifying 'auth' to 'maximum'
+2025-08-05 02:26:53.814483 |     [✓] Possible admin access granted by modifying 'auth' to 'privileged'
+2025-08-05 02:26:53.865338 |     [✓] Possible admin access granted by modifying 'auth' to '0'
+2025-08-05 02:26:53.916130 |     [✓] Possible admin access granted by modifying 'auth' to 'false'
+2025-08-05 02:26:53.966234 |     [✓] Possible admin access granted by modifying 'privilege' to 'admin'
+2025-08-05 02:26:54.017437 |     [✓] Possible admin access granted by modifying 'privilege' to 'root'
+2025-08-05 02:26:54.066663 |     [✓] Possible admin access granted by modifying 'privilege' to 'superuser'
+2025-08-05 02:26:54.117396 |     [✓] Possible admin access granted by modifying 'privilege' to '1'
+2025-08-05 02:26:54.167246 |     [✓] Possible admin access granted by modifying 'privilege' to 'true'
+2025-08-05 02:26:54.219220 |     [✓] Possible admin access granted by modifying 'privilege' to 'high'
+2025-08-05 02:26:54.276482 |     [✓] Possible admin access granted by modifying 'privilege' to 'maximum'
+2025-08-05 02:26:54.325664 |     [✓] Possible admin access granted by modifying 'privilege' to 'privileged'
+2025-08-05 02:26:54.375684 |     [✓] Possible admin access granted by modifying 'privilege' to '0'
+2025-08-05 02:26:54.425477 |     [✓] Possible admin access granted by modifying 'privilege' to 'false'
+2025-08-05 02:26:54.425477 | 
+[i] Testing URL: http://localhost:8080/security.php
+2025-08-05 02:26:54.431739 |   - Found hidden fields: user_token
+2025-08-05 02:26:54.481924 |     [✓] Possible admin access granted by modifying 'user_token' to 'admin'
+2025-08-05 02:26:54.529305 |     [✓] Possible admin access granted by modifying 'user_token' to 'root'
+2025-08-05 02:26:54.578285 |     [✓] Possible admin access granted by modifying 'user_token' to 'superuser'
+2025-08-05 02:26:54.624640 |     [✓] Possible admin access granted by modifying 'user_token' to '1'
+2025-08-05 02:26:54.681732 |     [✓] Possible admin access granted by modifying 'user_token' to 'true'
+2025-08-05 02:26:54.731840 |     [✓] Possible admin access granted by modifying 'user_token' to 'high'
+2025-08-05 02:26:54.781774 |     [✓] Possible admin access granted by modifying 'user_token' to 'maximum'
+2025-08-05 02:26:54.831857 |     [✓] Possible admin access granted by modifying 'user_token' to 'privileged'
+2025-08-05 02:26:54.880679 |     [✓] Possible admin access granted by modifying 'user_token' to '0'
+2025-08-05 02:26:54.931766 |     [✓] Possible admin access granted by modifying 'user_token' to 'false'
+2025-08-05 02:26:54.981924 |     [✓] Possible admin access granted by modifying 'user_id' to 'admin'
+2025-08-05 02:26:55.031863 |     [✓] Possible admin access granted by modifying 'user_id' to 'root'
+2025-08-05 02:26:55.083045 |     [✓] Possible admin access granted by modifying 'user_id' to 'superuser'
+2025-08-05 02:26:55.131784 |     [✓] Possible admin access granted by modifying 'user_id' to '1'
+2025-08-05 02:26:55.183080 |     [✓] Possible admin access granted by modifying 'user_id' to 'true'
+2025-08-05 02:26:55.231992 |     [✓] Possible admin access granted by modifying 'user_id' to 'high'
+2025-08-05 02:26:55.283169 |     [✓] Possible admin access granted by modifying 'user_id' to 'maximum'
+2025-08-05 02:26:55.332665 |     [✓] Possible admin access granted by modifying 'user_id' to 'privileged'
+2025-08-05 02:26:55.381929 |     [✓] Possible admin access granted by modifying 'user_id' to '0'
+2025-08-05 02:26:55.432043 |     [✓] Possible admin access granted by modifying 'user_id' to 'false'
+2025-08-05 02:26:55.481994 |     [✓] Possible admin access granted by modifying 'user_level' to 'admin'
+2025-08-05 02:26:55.532245 |     [✓] Possible admin access granted by modifying 'user_level' to 'root'
+2025-08-05 02:26:55.581820 |     [✓] Possible admin access granted by modifying 'user_level' to 'superuser'
+2025-08-05 02:26:55.633611 |     [✓] Possible admin access granted by modifying 'user_level' to '1'
+2025-08-05 02:26:55.684357 |     [✓] Possible admin access granted by modifying 'user_level' to 'true'
+2025-08-05 02:26:55.731766 |     [✓] Possible admin access granted by modifying 'user_level' to 'high'
+2025-08-05 02:26:55.783751 |     [✓] Possible admin access granted by modifying 'user_level' to 'maximum'
+2025-08-05 02:26:55.834403 |     [✓] Possible admin access granted by modifying 'user_level' to 'privileged'
+2025-08-05 02:26:55.885091 |     [✓] Possible admin access granted by modifying 'user_level' to '0'
+2025-08-05 02:26:55.931971 |     [✓] Possible admin access granted by modifying 'user_level' to 'false'
+2025-08-05 02:26:55.984994 |     [✓] Possible admin access granted by modifying 'admin' to 'admin'
+2025-08-05 02:26:56.032264 |     [✓] Possible admin access granted by modifying 'admin' to 'root'
+2025-08-05 02:26:56.082080 |     [✓] Possible admin access granted by modifying 'admin' to 'superuser'
+2025-08-05 02:26:56.132129 |     [✓] Possible admin access granted by modifying 'admin' to '1'
+2025-08-05 02:26:56.184908 |     [✓] Possible admin access granted by modifying 'admin' to 'true'
+2025-08-05 02:26:56.236632 |     [✓] Possible admin access granted by modifying 'admin' to 'high'
+2025-08-05 02:26:56.283866 |     [✓] Possible admin access granted by modifying 'admin' to 'maximum'
+2025-08-05 02:26:56.336115 |     [✓] Possible admin access granted by modifying 'admin' to 'privileged'
+2025-08-05 02:26:56.387329 |     [✓] Possible admin access granted by modifying 'admin' to '0'
+2025-08-05 02:26:56.437252 |     [✓] Possible admin access granted by modifying 'admin' to 'false'
+2025-08-05 02:26:56.484777 |     [✓] Possible admin access granted by modifying 'role' to 'admin'
+2025-08-05 02:26:56.531876 |     [✓] Possible admin access granted by modifying 'role' to 'root'
+2025-08-05 02:26:56.587110 |     [✓] Possible admin access granted by modifying 'role' to 'superuser'
+2025-08-05 02:26:56.637542 |     [✓] Possible admin access granted by modifying 'role' to '1'
+2025-08-05 02:26:56.687682 |     [✓] Possible admin access granted by modifying 'role' to 'true'
+2025-08-05 02:26:56.731886 |     [✓] Possible admin access granted by modifying 'role' to 'high'
+2025-08-05 02:26:56.785579 |     [✓] Possible admin access granted by modifying 'role' to 'maximum'
+2025-08-05 02:26:56.837914 |     [✓] Possible admin access granted by modifying 'role' to 'privileged'
+2025-08-05 02:26:56.842231 |     [✓] Possible admin access granted by modifying 'role' to '0'
+2025-08-05 02:26:56.896892 |     [✓] Possible admin access granted by modifying 'role' to 'false'
+2025-08-05 02:26:56.946387 |     [✓] Possible admin access granted by modifying 'price' to 'admin'
+2025-08-05 02:26:56.993537 |     [✓] Possible admin access granted by modifying 'price' to 'root'
+2025-08-05 02:26:57.042188 |     [✓] Possible admin access granted by modifying 'price' to 'superuser'
+2025-08-05 02:26:57.096006 |     [✓] Possible admin access granted by modifying 'price' to '1'
+2025-08-05 02:26:57.145019 |     [✓] Possible admin access granted by modifying 'price' to 'true'
+2025-08-05 02:26:57.192067 |     [✓] Possible admin access granted by modifying 'price' to 'high'
+2025-08-05 02:26:57.241804 |     [✓] Possible admin access granted by modifying 'price' to 'maximum'
+2025-08-05 02:26:57.291922 |     [✓] Possible admin access granted by modifying 'price' to 'privileged'
+2025-08-05 02:26:57.348427 |     [✓] Possible admin access granted by modifying 'price' to '0'
+2025-08-05 02:26:57.395471 |     [✓] Possible admin access granted by modifying 'price' to 'false'
+2025-08-05 02:26:57.447803 |     [✓] Possible admin access granted by modifying 'quantity' to 'admin'
+2025-08-05 02:26:57.495500 |     [✓] Possible admin access granted by modifying 'quantity' to 'root'
+2025-08-05 02:26:57.542252 |     [✓] Possible admin access granted by modifying 'quantity' to 'superuser'
+2025-08-05 02:26:57.597440 |     [✓] Possible admin access granted by modifying 'quantity' to '1'
+2025-08-05 02:26:57.645351 |     [✓] Possible admin access granted by modifying 'quantity' to 'true'
+2025-08-05 02:26:57.697486 |     [✓] Possible admin access granted by modifying 'quantity' to 'high'
+2025-08-05 02:26:57.744120 |     [✓] Possible admin access granted by modifying 'quantity' to 'maximum'
+2025-08-05 02:26:57.798553 |     [✓] Possible admin access granted by modifying 'quantity' to 'privileged'
+2025-08-05 02:26:57.848879 |     [✓] Possible admin access granted by modifying 'quantity' to '0'
+2025-08-05 02:26:57.899024 |     [✓] Possible admin access granted by modifying 'quantity' to 'false'
+2025-08-05 02:26:57.943637 |     [✓] Possible admin access granted by modifying 'discount' to 'admin'
+2025-08-05 02:26:57.992013 |     [✓] Possible admin access granted by modifying 'discount' to 'root'
+2025-08-05 02:26:58.050509 |     [✓] Possible admin access granted by modifying 'discount' to 'superuser'
+2025-08-05 02:26:58.095611 |     [✓] Possible admin access granted by modifying 'discount' to '1'
+2025-08-05 02:26:58.143401 |     [✓] Possible admin access granted by modifying 'discount' to 'true'
+2025-08-05 02:26:58.192009 |     [✓] Possible admin access granted by modifying 'discount' to 'high'
+2025-08-05 02:26:58.242254 |     [✓] Possible admin access granted by modifying 'discount' to 'maximum'
+2025-08-05 02:26:58.300128 |     [✓] Possible admin access granted by modifying 'discount' to 'privileged'
+2025-08-05 02:26:58.347795 |     [✓] Possible admin access granted by modifying 'discount' to '0'
+2025-08-05 02:26:58.397187 |     [✓] Possible admin access granted by modifying 'discount' to 'false'
+2025-08-05 02:26:58.445047 |     [✓] Possible admin access granted by modifying 'access_level' to 'admin'
+2025-08-05 02:26:58.492308 |     [✓] Possible admin access granted by modifying 'access_level' to 'root'
+2025-08-05 02:26:58.549866 |     [✓] Possible admin access granted by modifying 'access_level' to 'superuser'
+2025-08-05 02:26:58.601811 |     [✓] Possible admin access granted by modifying 'access_level' to '1'
+2025-08-05 02:26:58.645228 |     [✓] Possible admin access granted by modifying 'access_level' to 'true'
+2025-08-05 02:26:58.701835 |     [✓] Possible admin access granted by modifying 'access_level' to 'high'
+2025-08-05 02:26:58.751953 |     [✓] Possible admin access granted by modifying 'access_level' to 'maximum'
+2025-08-05 02:26:58.801937 |     [✓] Possible admin access granted by modifying 'access_level' to 'privileged'
+2025-08-05 02:26:58.851969 |     [✓] Possible admin access granted by modifying 'access_level' to '0'
+2025-08-05 02:26:58.902253 |     [✓] Possible admin access granted by modifying 'access_level' to 'false'
+2025-08-05 02:26:58.952230 |     [✓] Possible admin access granted by modifying 'security_level' to 'admin'
+2025-08-05 02:26:59.002034 |     [✓] Possible admin access granted by modifying 'security_level' to 'root'
+2025-08-05 02:26:59.052101 |     [✓] Possible admin access granted by modifying 'security_level' to 'superuser'
+2025-08-05 02:26:59.102726 |     [✓] Possible admin access granted by modifying 'security_level' to '1'
+2025-08-05 02:26:59.152178 |     [✓] Possible admin access granted by modifying 'security_level' to 'true'
+2025-08-05 02:26:59.202191 |     [✓] Possible admin access granted by modifying 'security_level' to 'high'
+2025-08-05 02:26:59.252143 |     [✓] Possible admin access granted by modifying 'security_level' to 'maximum'
+2025-08-05 02:26:59.301999 |     [✓] Possible admin access granted by modifying 'security_level' to 'privileged'
+2025-08-05 02:26:59.356351 |     [✓] Possible admin access granted by modifying 'security_level' to '0'
+2025-08-05 02:26:59.402183 |     [✓] Possible admin access granted by modifying 'security_level' to 'false'
+2025-08-05 02:26:59.453941 |     [✓] Possible admin access granted by modifying 'token' to 'admin'
+2025-08-05 02:26:59.503397 |     [✓] Possible admin access granted by modifying 'token' to 'root'
+2025-08-05 02:26:59.551940 |     [✓] Possible admin access granted by modifying 'token' to 'superuser'
+2025-08-05 02:26:59.603840 |     [✓] Possible admin access granted by modifying 'token' to '1'
+2025-08-05 02:26:59.653884 |     [✓] Possible admin access granted by modifying 'token' to 'true'
+2025-08-05 02:26:59.705585 |     [✓] Possible admin access granted by modifying 'token' to 'high'
+2025-08-05 02:26:59.752181 |     [✓] Possible admin access granted by modifying 'token' to 'maximum'
+2025-08-05 02:26:59.802008 |     [✓] Possible admin access granted by modifying 'token' to 'privileged'
+2025-08-05 02:26:59.852284 |     [✓] Possible admin access granted by modifying 'token' to '0'
+2025-08-05 02:26:59.902198 |     [✓] Possible admin access granted by modifying 'token' to 'false'
+2025-08-05 02:26:59.955437 |     [✓] Possible admin access granted by modifying 'auth' to 'admin'
+2025-08-05 02:27:00.006376 |     [✓] Possible admin access granted by modifying 'auth' to 'root'
+2025-08-05 02:27:00.052027 |     [✓] Possible admin access granted by modifying 'auth' to 'superuser'
+2025-08-05 02:27:00.102026 |     [✓] Possible admin access granted by modifying 'auth' to '1'
+2025-08-05 02:27:00.154370 |     [✓] Possible admin access granted by modifying 'auth' to 'true'
+2025-08-05 02:27:00.206135 |     [✓] Possible admin access granted by modifying 'auth' to 'high'
+2025-08-05 02:27:00.252140 |     [✓] Possible admin access granted by modifying 'auth' to 'maximum'
+2025-08-05 02:27:00.301891 |     [✓] Possible admin access granted by modifying 'auth' to 'privileged'
+2025-08-05 02:27:00.351983 |     [✓] Possible admin access granted by modifying 'auth' to '0'
+2025-08-05 02:27:00.402587 |     [✓] Possible admin access granted by modifying 'auth' to 'false'
+2025-08-05 02:27:00.451904 |     [✓] Possible admin access granted by modifying 'privilege' to 'admin'
+2025-08-05 02:27:00.501903 |     [✓] Possible admin access granted by modifying 'privilege' to 'root'
+2025-08-05 02:27:00.556705 |     [✓] Possible admin access granted by modifying 'privilege' to 'superuser'
+2025-08-05 02:27:00.603944 |     [✓] Possible admin access granted by modifying 'privilege' to '1'
+2025-08-05 02:27:00.651917 |     [✓] Possible admin access granted by modifying 'privilege' to 'true'
+2025-08-05 02:27:00.705693 |     [✓] Possible admin access granted by modifying 'privilege' to 'high'
+2025-08-05 02:27:00.756954 |     [✓] Possible admin access granted by modifying 'privilege' to 'maximum'
+2025-08-05 02:27:00.807388 |     [✓] Possible admin access granted by modifying 'privilege' to 'privileged'
+2025-08-05 02:27:00.854164 |     [✓] Possible admin access granted by modifying 'privilege' to '0'
+2025-08-05 02:27:00.902158 |     [✓] Possible admin access granted by modifying 'privilege' to 'false'
+2025-08-05 02:27:00.902158 | ----- OTG-BUSLOGIC-003 Test Completed -----
+
+2025-08-05 02:33:33.655198 | [+] Login successful (Status: 200)
+2025-08-05 02:33:33.712373 | [+] Security level set to low
+2025-08-05 02:33:33.712373 | ----- Starting OTG-BUSLOGIC-004 (Process Timing) -----
+2025-08-05 02:33:33.712373 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 02:33:33.712373 |   - Test case: Valid username with wrong password
+2025-08-05 02:33:33.760657 |     - Request 1: 0.048 seconds
+2025-08-05 02:33:33.810080 |     - Request 2: 0.049 seconds
+2025-08-05 02:33:33.860236 |     - Request 3: 0.050 seconds
+2025-08-05 02:33:33.909824 |     - Request 4: 0.050 seconds
+2025-08-05 02:33:33.959972 |     - Request 5: 0.050 seconds
+2025-08-05 02:33:33.959972 |   - Average time: 0.049 seconds
+2025-08-05 02:33:33.959972 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/brute/
+2025-08-05 02:33:33.961922 |   - Test case: Invalid username with wrong password
+2025-08-05 02:33:34.011009 |     - Request 1: 0.049 seconds
+2025-08-05 02:33:34.060024 |     - Request 2: 0.049 seconds
+2025-08-05 02:33:34.110138 |     - Request 3: 0.050 seconds
+2025-08-05 02:33:34.159668 |     - Request 4: 0.050 seconds
+2025-08-05 02:33:34.205412 |     - Request 5: 0.046 seconds
+2025-08-05 02:33:34.205412 |   - Average time: 0.049 seconds
+2025-08-05 02:33:34.205412 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 02:33:34.205412 |   - Test case: Valid SQL query
+2025-08-05 02:33:34.258001 |     - Request 1: 0.052 seconds
+2025-08-05 02:33:34.302703 |     - Request 2: 0.045 seconds
+2025-08-05 02:33:34.354633 |     - Request 3: 0.048 seconds
+2025-08-05 02:33:34.406957 |     - Request 4: 0.052 seconds
+2025-08-05 02:33:34.456648 |     - Request 5: 0.049 seconds
+2025-08-05 02:33:34.457169 |   - Average time: 0.049 seconds
+2025-08-05 02:33:34.457169 | 
+[i] Testing URL: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 02:33:34.457730 |   - Test case: Time-based SQL injection attempt
+2025-08-05 02:33:36.589917 |     - Request 1: 2.132 seconds
+2025-08-05 02:33:38.680914 |     - Request 2: 2.091 seconds
+2025-08-05 02:33:40.769999 |     - Request 3: 2.086 seconds
+2025-08-05 02:33:42.867012 |     - Request 4: 2.095 seconds
+2025-08-05 02:33:44.958061 |     - Request 5: 2.091 seconds
+2025-08-05 02:33:44.958061 |   - Average time: 2.099 seconds
+2025-08-05 02:33:44.958061 | 
+[i] Testing URL: http://localhost:8080/login.php
+2025-08-05 02:33:44.960279 |   - Test case: Login page timing
+2025-08-05 02:33:44.961744 |     - Request 1: 0.001 seconds
+2025-08-05 02:33:45.018311 |     - Request 2: 0.057 seconds
+2025-08-05 02:33:45.070033 |     - Request 3: 0.052 seconds
+2025-08-05 02:33:45.119908 |     - Request 4: 0.050 seconds
+2025-08-05 02:33:45.170429 |     - Request 5: 0.051 seconds
+2025-08-05 02:33:45.170429 |   - Average time: 0.042 seconds
+2025-08-05 02:33:45.170429 | 
+[i] Timing comparison results:
+2025-08-05 02:33:45.170429 |   [!] Significant timing difference (2.057s) between:
+2025-08-05 02:33:45.172191 |       - Time-based SQL injection attempt
+2025-08-05 02:33:45.172191 |       - Login page timing
+2025-08-05 02:33:45.172740 |   [!] Significant timing difference (2.050s) between:
+2025-08-05 02:33:45.172740 |       - Invalid username with wrong password
+2025-08-05 02:33:45.173326 |       - Time-based SQL injection attempt
+2025-08-05 02:33:45.173326 |   [!] Significant timing difference (2.050s) between:
+2025-08-05 02:33:45.173326 |       - Valid SQL query
+2025-08-05 02:33:45.173326 |       - Time-based SQL injection attempt
+2025-08-05 02:33:45.173326 |   [!] Significant timing difference (2.050s) between:
+2025-08-05 02:33:45.173326 |       - Valid username with wrong password
+2025-08-05 02:33:45.173326 |       - Time-based SQL injection attempt
+2025-08-05 02:33:45.173326 |   [-] No significant timing difference (0.007s) between:
+2025-08-05 02:33:45.173326 |       - Valid username with wrong password
+2025-08-05 02:33:45.173326 |       - Login page timing
+2025-08-05 02:33:45.173326 |   [-] No significant timing difference (0.007s) between:
+2025-08-05 02:33:45.173326 |       - Valid SQL query
+2025-08-05 02:33:45.173326 |       - Login page timing
+2025-08-05 02:33:45.173326 |   [-] No significant timing difference (0.007s) between:
+2025-08-05 02:33:45.177602 |       - Invalid username with wrong password
+2025-08-05 02:33:45.177602 |       - Login page timing
+2025-08-05 02:33:45.177602 |   [-] No significant timing difference (0.001s) between:
+2025-08-05 02:33:45.177602 |       - Valid username with wrong password
+2025-08-05 02:33:45.177602 |       - Invalid username with wrong password
+2025-08-05 02:33:45.179057 |   [-] No significant timing difference (0.000s) between:
+2025-08-05 02:33:45.179057 |       - Invalid username with wrong password
+2025-08-05 02:33:45.179057 |       - Valid SQL query
+2025-08-05 02:33:45.179057 |   [-] No significant timing difference (0.000s) between:
+2025-08-05 02:33:45.180158 |       - Valid username with wrong password
+2025-08-05 02:33:45.180158 |       - Valid SQL query
+2025-08-05 02:33:45.180158 | ----- OTG-BUSLOGIC-004 Test Completed -----
+
+2025-08-05 02:41:23.318156 | [+] Login successful (Status: 200)
+2025-08-05 02:41:23.368286 | [+] Security level set to low
+2025-08-05 02:41:23.368286 | ----- Starting OTG-BUSLOGIC-005 (Function Usage Limits) -----
+2025-08-05 02:41:23.368286 | 
+[i] Testing: Password change function (should be limited)
+2025-08-05 02:41:23.368286 |   - URL: http://localhost:8080/vulnerabilities/csrf/
+2025-08-05 02:41:23.368286 |   - Max allowed attempts: 1
+2025-08-05 02:41:23.378553 |   - Testing initial allowed attempt
+2025-08-05 02:41:24.434313 |   - Testing EXCESS attempt #2 (beyond limit)
+2025-08-05 02:41:24.482126 |     [✓] Rejected on attempt #2 (status 200)
+2025-08-05 02:41:25.486555 |   - Testing EXCESS attempt #3 (beyond limit)
+2025-08-05 02:41:25.531366 |     [✓] Rejected on attempt #3 (status 200)
+2025-08-05 02:41:26.537920 | 
+[i] Testing: Security level change function
+2025-08-05 02:41:26.538429 |   - URL: http://localhost:8080/security.php
+2025-08-05 02:41:26.539159 |   - Max allowed attempts: 3
+2025-08-05 02:41:26.545835 |   - Testing initial allowed attempt
+2025-08-05 02:41:27.598043 |   - Testing allowed attempt #2
+2025-08-05 02:41:28.649337 |   - Testing allowed attempt #3
+2025-08-05 02:41:29.701909 |   - Testing EXCESS attempt #4 (beyond limit)
+2025-08-05 02:41:29.753325 |     [✓] Rejected on attempt #4 (status 200)
+2025-08-05 02:41:30.757177 |   - Testing EXCESS attempt #5 (beyond limit)
+2025-08-05 02:41:30.808396 |     [✓] Rejected on attempt #5 (status 200)
+2025-08-05 02:41:31.813460 | 
+[i] Testing: CAPTCHA bypass attempts
+2025-08-05 02:41:31.814473 |   - URL: http://localhost:8080/vulnerabilities/captcha/
+2025-08-05 02:41:31.815041 |   - Max allowed attempts: 5
+2025-08-05 02:41:31.820018 |   - Testing initial allowed attempt
+2025-08-05 02:41:32.935708 |   - Testing allowed attempt #2
+2025-08-05 02:41:33.992205 |   - Testing allowed attempt #3
+2025-08-05 02:41:35.047444 |   - Testing allowed attempt #4
+2025-08-05 02:41:36.105827 |   - Testing allowed attempt #5
+2025-08-05 02:41:37.164467 |   - Testing EXCESS attempt #6 (beyond limit)
+2025-08-05 02:41:37.215846 |     [✓] Rejected on attempt #6 (status 200)
+2025-08-05 02:41:38.219658 |   - Testing EXCESS attempt #7 (beyond limit)
+2025-08-05 02:41:38.271377 |     [✓] Rejected on attempt #7 (status 200)
+2025-08-05 02:41:39.274906 | 
+[i] Testing brute force page attempt limits
+2025-08-05 02:41:39.278936 |   - Testing brute force attempt #1
+2025-08-05 02:41:40.337064 |   - Testing brute force attempt #2
+2025-08-05 02:41:41.389080 |   - Testing brute force attempt #3
+2025-08-05 02:41:42.441827 |   - Testing brute force attempt #4
+2025-08-05 02:41:43.494029 |   - Testing brute force attempt #5
+2025-08-05 02:41:44.546126 |   - Testing EXCESS brute attempt #6
+2025-08-05 02:41:44.588769 |     [✗] Still allowed after 6 attempts!
+2025-08-05 02:41:45.598924 |   - Testing EXCESS brute attempt #7
+2025-08-05 02:41:45.644708 |     [✗] Still allowed after 7 attempts!
+2025-08-05 02:41:46.650304 | ----- OTG-BUSLOGIC-005 Test Completed -----
+
+2025-08-05 02:47:33.621755 | [+] Login successful (Status: 200)
+2025-08-05 02:47:33.679055 | [+] Security level set to low
+2025-08-05 02:47:33.679523 | ----- Starting OTG-BUSLOGIC-006 (Circumvention of Work Flows) -----
+2025-08-05 02:47:33.679523 | 
+[i] Testing password change workflow circumvention
+2025-08-05 02:47:33.687503 |   [x] Error testing password workflow: 'NoneType' object is not subscriptable
+2025-08-05 02:47:33.687503 | 
+[i] Testing security level change workflow circumvention
+2025-08-05 02:47:33.739603 |   [✗] Successfully set security to impossible without proper workflow!
+2025-08-05 02:47:33.741555 | 
+[i] Testing file upload workflow circumvention
+2025-08-05 02:47:33.848329 |   [✓] File upload workflow enforced
+2025-08-05 02:47:33.848329 | ----- OTG-BUSLOGIC-006 Test Completed -----
+
+2025-08-05 02:50:28.520110 | [+] Login successful (Status: 200)
+2025-08-05 02:50:28.573947 | [+] Security level set to low
+2025-08-05 02:50:28.577233 | ----- Starting OTG-BUSLOGIC-006 (Circumvention of Work Flows) -----
+2025-08-05 02:50:28.577233 | 
+[i] Testing password change workflow circumvention
+2025-08-05 02:50:28.632340 |   [✓] Password change blocked without token
+2025-08-05 02:50:28.632340 | 
+[i] Testing security level change workflow circumvention
+2025-08-05 02:50:28.687536 |   [✗] Successfully set security to impossible without proper workflow!
+2025-08-05 02:50:28.687536 | 
+[i] Testing file upload workflow circumvention
+2025-08-05 02:50:28.796433 |   [✓] File upload workflow enforced
+2025-08-05 02:50:28.797448 | ----- OTG-BUSLOGIC-006 Test Completed -----
+
+2025-08-05 02:55:39.194401 | [+] Login successful (Status: 200)
+2025-08-05 02:55:39.249020 | [+] Security level set to low
+2025-08-05 02:55:39.249020 | ----- Starting OTG-BUSLOGIC-007 (Defenses Against Application Mis-use) -----
+2025-08-05 02:55:39.252502 | 
+[i] Testing rate limiting defenses
+2025-08-05 02:55:39.308181 |   - Request 1: 200 in 0.05s
+2025-08-05 02:55:39.457833 |   - Request 2: 200 in 0.05s
+2025-08-05 02:55:39.608781 |   - Request 3: 200 in 0.05s
+2025-08-05 02:55:39.758783 |   - Request 4: 200 in 0.05s
+2025-08-05 02:55:39.909216 |   - Request 5: 200 in 0.05s
+2025-08-05 02:55:40.058641 |   - Request 6: 200 in 0.05s
+2025-08-05 02:55:40.208763 |   - Request 7: 200 in 0.05s
+2025-08-05 02:55:40.359393 |   - Request 8: 200 in 0.05s
+2025-08-05 02:55:40.507755 |   - Request 9: 200 in 0.05s
+2025-08-05 02:55:40.658200 |   - Request 10: 200 in 0.05s
+2025-08-05 02:55:40.759547 |   [✗] No rate limiting detected on http://localhost:8080/vulnerabilities/brute/ after 10 rapid requests
+2025-08-05 02:55:40.813199 |   - Request 1: 200 in 0.05s
+2025-08-05 02:55:40.963393 |   - Request 2: 200 in 0.05s
+2025-08-05 02:55:41.113171 |   - Request 3: 200 in 0.05s
+2025-08-05 02:55:41.263340 |   - Request 4: 200 in 0.05s
+2025-08-05 02:55:41.413477 |   - Request 5: 200 in 0.05s
+2025-08-05 02:55:41.563549 |   - Request 6: 200 in 0.05s
+2025-08-05 02:55:41.711596 |   - Request 7: 200 in 0.05s
+2025-08-05 02:55:41.863312 |   - Request 8: 200 in 0.05s
+2025-08-05 02:55:42.013538 |   - Request 9: 200 in 0.05s
+2025-08-05 02:55:42.163681 |   - Request 10: 200 in 0.05s
+2025-08-05 02:55:42.264430 |   [✗] No rate limiting detected on http://localhost:8080/vulnerabilities/sqli/ after 10 rapid requests
+2025-08-05 02:55:42.315781 |   - Request 1: 200 in 0.05s
+2025-08-05 02:55:42.470878 |   - Request 2: 200 in 0.05s
+2025-08-05 02:55:42.621602 |   - Request 3: 200 in 0.05s
+2025-08-05 02:55:42.771608 |   - Request 4: 200 in 0.05s
+2025-08-05 02:55:42.922424 |   - Request 5: 200 in 0.05s
+2025-08-05 02:55:43.072209 |   - Request 6: 200 in 0.05s
+2025-08-05 02:55:43.221993 |   - Request 7: 200 in 0.05s
+2025-08-05 02:55:43.372138 |   - Request 8: 200 in 0.05s
+2025-08-05 02:55:43.522201 |   - Request 9: 200 in 0.05s
+2025-08-05 02:55:43.670273 |   - Request 10: 200 in 0.05s
+2025-08-05 02:55:43.773184 |   [✗] No rate limiting detected on http://localhost:8080/vulnerabilities/exec/ after 10 rapid requests
+2025-08-05 02:55:43.773696 | 
+[i] Testing input monitoring defenses
+2025-08-05 02:55:43.783724 |   - Payload 1: 200
+2025-08-05 02:55:44.289671 |   - Payload 2: 200
+2025-08-05 02:55:44.796629 |   - Payload 3: 200
+2025-08-05 02:55:45.302341 |   - Payload 4: 200
+2025-08-05 02:55:45.805803 |   - Payload 5: 200
+2025-08-05 02:55:46.308605 |   [✗] No input monitoring detected after multiple malicious payloads
+2025-08-05 02:55:46.309480 | 
+[i] Testing session termination defenses
+2025-08-05 02:55:46.330432 |   [✗] Session remained active after suspicious activity
+2025-08-05 02:55:46.330432 | 
+[i] Testing forced browsing detection
+2025-08-05 02:55:46.333411 |   - Access to http://localhost:8080/config.inc.php blocked: 404
+2025-08-05 02:55:46.343990 |   [✗] Accessed protected resource: http://localhost:8080/phpinfo.php
+2025-08-05 02:55:46.346787 |   - Access to http://localhost:8080/.git/HEAD blocked: 404
+2025-08-05 02:55:46.347794 |   - Access to http://localhost:8080/admin/ blocked: 404
+2025-08-05 02:55:46.347794 |   [✗] No forced browsing detection observed
+2025-08-05 02:55:46.347794 | 
+[i] Testing geo/UA change detection
+2025-08-05 02:55:46.353325 |   [✗] No detection of UA/geo changes
+2025-08-05 02:55:46.353325 | ----- OTG-BUSLOGIC-007 Test Completed -----
+
+2025-08-05 03:00:55.610370 | [+] Login successful (Status: 200)
+2025-08-05 03:00:55.666932 | [+] Security level set to low
+2025-08-05 03:00:55.669499 | ----- Starting OTG-BUSLOGIC-008 (Upload of Unexpected File Types) -----
+2025-08-05 03:00:55.669499 | 
+[i] Testing upload of test.html (text/html)
+2025-08-05 03:00:55.724459 |   [✓] File was rejected
+2025-08-05 03:00:56.730042 | 
+[i] Testing upload of test.php (application/x-php)
+2025-08-05 03:00:56.779343 |   [✓] File was rejected
+2025-08-05 03:00:57.784203 | 
+[i] Testing upload of test.jsp (text/plain)
+2025-08-05 03:00:57.829501 |   [✓] File was rejected
+2025-08-05 03:00:58.838059 | 
+[i] Testing upload of test.exe (application/x-msdownload)
+2025-08-05 03:00:58.888104 |   [✓] File was rejected
+2025-08-05 03:00:59.891977 | 
+[i] Testing upload of test.htaccess (text/plain)
+2025-08-05 03:00:59.941651 |   [✓] File was rejected
+2025-08-05 03:01:00.947179 | 
+[i] Testing upload of test.jpg.php (image/jpeg)
+2025-08-05 03:01:00.996084 |   [✓] File was rejected
+2025-08-05 03:01:02.000210 | 
+[i] Testing upload of test.png (image/png)
+2025-08-05 03:01:02.051303 |   [✓] File was rejected
+2025-08-05 03:01:03.054533 | 
+[i] Testing ZIP file with path traversal
+2025-08-05 03:01:03.104765 |   [✓] ZIP file was rejected
+2025-08-05 03:01:03.104765 | ----- OTG-BUSLOGIC-008 Test Completed -----
+
+2025-08-05 03:04:57.847947 | [+] Login successful (Status: 200)
+2025-08-05 03:04:57.900368 | [+] Security level set to low
+2025-08-05 03:04:57.901368 | ----- Starting OTG-BUSLOGIC-009 (Upload of Malicious Files) -----
+2025-08-05 03:04:57.907802 | 
+[i] Testing upload of shell.php (application/x-php)
+2025-08-05 03:04:57.958454 |   [✓] File was rejected
+2025-08-05 03:04:58.961647 | 
+[i] Testing upload of shell.php5 (image/jpeg)
+2025-08-05 03:04:59.011933 |   [✓] File was rejected
+2025-08-05 03:05:00.015104 | 
+[i] Testing upload of shell.phtml (text/plain)
+2025-08-05 03:05:00.066067 |   [✓] File was rejected
+2025-08-05 03:05:01.069097 | 
+[i] Testing upload of test.php.jpg (image/jpeg)
+2025-08-05 03:05:01.118440 |   [✓] File was rejected
+2025-08-05 03:05:02.122790 | 
+[i] Testing upload of test.asp;.jpg (image/jpeg)
+2025-08-05 03:05:02.173218 |   [✓] File was rejected
+2025-08-05 03:05:03.176885 | 
+[i] Testing upload of test.aspx .jpg (image/jpeg)
+2025-08-05 03:05:03.228161 |   [✓] File was rejected
+2025-08-05 03:05:04.232557 | 
+[i] Testing upload of eicar.txt (text/plain)
+2025-08-05 03:05:04.280311 |   [✓] File was rejected
+2025-08-05 03:05:05.284341 | 
+[i] Testing upload of malicious.html (text/html)
+2025-08-05 03:05:05.334035 |   [✓] File was rejected
+2025-08-05 03:05:06.337620 | 
+[i] Testing upload of billion_laughs.xml (application/xml)
+2025-08-05 03:05:06.386058 |   [✓] File was rejected
+2025-08-05 03:05:07.391445 | 
+[i] Testing ZIP file with directory traversal
+2025-08-05 03:05:07.440378 |   [✓] File was rejected
+2025-08-05 03:05:07.440378 | 
+[i] Testing small ZIP bomb (safe test)
+2025-08-05 03:05:07.498971 |   [✓] ZIP bomb was rejected
+2025-08-05 03:05:07.498971 | ----- OTG-BUSLOGIC-009 Test Completed -----
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Session Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Session Management Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Session management testing focuses on the security of the mechanisms used to manage user sessions, including the generation, maintenance, and destruction of session tokens. A secure session management implementation is critical to preventing attackers from hijacking user sessions and gaining unauthorized access to the application. This testing category examines cookie attributes, session fixation, session timeout, and other session-related vulnerabilities.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-SESS-001</td>
+                <td>Testing for Bypassing Session Management Schema</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-002</td>
+                <td>Insecure Cookie Attributes</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-003</td>
+                <td>Testing for Session Fixation</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-004</td>
+                <td>Testing for Exposed Session Variables</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-005</td>
+                <td>Testing for Cross Site Request Forgery (CSRF)</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-006</td>
+                <td>Testing for logout functionality</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-007</td>
+                <td>Test Session Timeout</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-SESS-008</td>
+                <td>Testing for Session puzzling</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>The most significant finding in this category is the use of insecure cookie attributes. The session cookies (`PHPSESSID` and `security`) are missing the `Secure` and `HttpOnly` flags, and have a weak `SameSite` policy. This makes the application more vulnerable to session hijacking attacks, such as Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF).</p>
+        <p>A key challenge during this assessment was the inability to test for session fixation and other session-related vulnerabilities due to the lack of a valid session cookie before login. While the tests for bypassing the session management schema, exposed session variables, CSRF, logout functionality, and session puzzling did not reveal any vulnerabilities, the inability to fully test for session fixation leaves a potential gap in the assessment of the application's session management security.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. General Recommendation/Remediation</h2>
+        <ul>
+            <li><strong>Secure Cookie Attributes:</strong> The `Secure` and `HttpOnly` flags should be set for all session cookies. The `SameSite` attribute should be set to `Strict` or `Lax` to prevent CSRF attacks.</li>
+            <li><strong>Regenerate Session IDs:</strong> Session IDs should be regenerated after any privilege level change, such as a user logging in.</li>
+            <li><strong>Implement Session Timeouts:</strong> The application should enforce a reasonable session timeout to prevent session hijacking.</li>
+            <li><strong>Do Not Expose Session Variables:</strong> Session variables should not be exposed in the client-side code.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

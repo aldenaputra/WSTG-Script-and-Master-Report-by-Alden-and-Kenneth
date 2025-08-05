@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Authentication Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+        .test-case {
+            background-color: #f9f9f9;
+            padding: 1em;
+            border-left: 4px solid #007bff;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Authentication Testing - Detailed Report</h1>
+
+    <!-- OTG-AUTHN-001 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-001: Testing for Credentials Transported over an Encrypted Channel</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test verifies whether authentication credentials and sensitive data are transmitted over secure, encrypted channels (HTTPS). It checks for mixed content issues and identifies endpoints that transmit sensitive data over unencrypted HTTP.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code>def is_https(url):
+    """Check if URL uses HTTPS."""
+    return urlparse(url).scheme == "https"</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Login page: /login.php</li>
+            <li>Logout: /logout.php</li>
+            <li>Password reset: /reset_password.php</li>
+            <li>Change password: /change_password.php</li>
+            <li>Security questions: /security_questions.php</li>
+            <li>Profile: /profile.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Check if login page uses HTTPS</li>
+            <li>Verify encryption status of all authentication-related endpoints</li>
+            <li>Scan login page for mixed content (HTTP resources loaded on HTTPS page)</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Access the login page and check the URL protocol</li>
+            <li>Intercept network traffic using Burp Suite or browser developer tools</li>
+            <li>Verify if credentials are sent in plaintext or encrypted</li>
+            <li>Check all authentication-related endpoints for HTTPS usage</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "login_encrypted": false,
+  "other_auth_endpoints": {
+    "logout": "HTTP",
+    "password_reset": "HTTP",
+    "change_password": "HTTP",
+    "security_questions": "HTTP",
+    "profile": "HTTP"
+  },
+  "vulnerabilities": [
+    "Login credentials transmitted over unencrypted HTTP",
+    "logout endpoint uses HTTP",
+    "password_reset endpoint uses HTTP",
+    "change_password endpoint uses HTTP",
+    "security_questions endpoint uses HTTP",
+    "profile endpoint uses HTTP",
+    "Mixed content detected in login page"
+  ]
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-002 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-002: Testing for Default Credentials</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test attempts to authenticate using common default username/password combinations to identify systems with unchanged default credentials.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code>DEFAULT_CREDENTIALS = [
+    ("admin", "admin"),
+    ("admin", "password"),
+    ("admin", "admin123"),
+    ("root", "root"),
+    ("test", "test"),
+    ("user", "user"),
+    ("administrator", "administrator"),
+    ("guest", "guest"),
+    ("demo", "demo"),
+]</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Login page: /login.php</li>
+            <li>Common admin paths: /admin, /administrator, /manager, /wp-admin</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Attempt login with each default credential pair</li>
+            <li>Check for common admin paths</li>
+            <li>Verify response for successful authentication indicators</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Navigate to the login page</li>
+            <li>For each default credential pair, enter username and password</li>
+            <li>Check if login is successful (redirect to authenticated page, session cookie set)</li>
+            <li>Manually check common admin paths</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "tested_credentials": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "success": false
+    },
+    {
+      "username": "admin",
+      "password": "password",
+      "success": false
+    },
+    ...
+  ],
+  "vulnerable_accounts": [],
+  "vulnerabilities": []
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-003 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-003: Testing for Weak Lockout Mechanism</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test evaluates the account lockout mechanism by attempting multiple failed logins to determine if the system prevents brute force attacks.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code># Test with invalid credentials
+for i in range(1, 11):  # Test up to 10 attempts
+    data = {"username": TEST_USER[0], "password": f"wrongpassword{i}"}
+    response = http_request("POST", LOGIN_URL, data=data)
+    
+    if response and "invalid" in response.text.lower():
+        results["failed_attempts"] = i
+    else:
+        break</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Login page: /login.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Attempt multiple failed logins (10 attempts in script)</li>
+            <li>Verify if account gets locked after threshold</li>
+            <li>Check if error messages reveal lockout status</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Select a valid username</li>
+            <li>Attempt login with incorrect password multiple times</li>
+            <li>Observe system response after each attempt</li>
+            <li>Attempt valid login after multiple failures to check if account is locked</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "failed_attempts": 0,
+  "lockout_threshold": null,
+  "vulnerabilities": [
+    "Lockout mechanism not functioning properly"
+  ]
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-004 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-004: Testing for Bypassing Authentication Schema</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test attempts to bypass authentication mechanisms through various techniques including direct page access, parameter tampering, and HTTP verb manipulation.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code># Parameter tampering
+cookies = {"session": "authenticated=true; user=admin"}
+response = http_request("GET", PROFILE_URL, cookies=cookies)
+
+# HTTP verb tampering
+methods = ["PUT", "DELETE", "PATCH"]
+for method in methods:
+    response = http_request(method, PROFILE_URL)</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Protected pages: /profile.php, /change_password.php, /admin/dashboard.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Attempt direct access to protected pages without authentication</li>
+            <li>Tamper with session parameters</li>
+            <li>Use alternative HTTP methods (PUT, DELETE, PATCH)</li>
+            <li>Test path traversal techniques</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>While logged out, attempt to access protected pages directly</li>
+            <li>Modify session cookies to include authentication flags</li>
+            <li>Use tools like Burp Suite to send requests with different HTTP methods</li>
+            <li>Test path traversal patterns in URLs</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "methods_tested": [],
+  "vulnerabilities": []
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-005 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-005: Test Remember Password Functionality</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test evaluates the "remember me" functionality by analyzing cookie attributes and persistence to identify insecure implementations that could lead to session hijacking.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code># Analyze cookies
+for cookie in response.cookies:
+    name = cookie.name
+    value = cookie.value
+    results["cookie_analysis"][name] = {
+        "value": value,
+        "secure": cookie.secure,
+        "httponly": 'httponly' in (cookie._rest or {}),
+        "samesite": (cookie._rest or {}).get("samesite")
+    }</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Login page: /login.php</li>
+            <li>Profile page: /profile.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Login with "remember me" enabled</li>
+            <li>Analyze cookie attributes (Secure, HttpOnly, SameSite)</li>
+            <li>Check for sensitive data in cookies</li>
+            <li>Test session restoration after browser restart</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Login with "remember me" option checked</li>
+            <li>Inspect cookies using browser developer tools</li>
+            <li>Verify cookie security flags</li>
+            <li>Close and reopen browser to check if session persists</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "cookie_analysis": {
+    "PHPSESSID": {
+      "value": "7ieivpa51p4snvn707bjqch194",
+      "secure": false,
+      "httponly": false,
+      "samesite": null
+    },
+    "security": {
+      "value": "low",
+      "secure": false,
+      "httponly": false,
+      "samesite": null
+    }
+  },
+  "vulnerabilities": []
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-006 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-006: Testing for Browser Cache Weakness</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test checks if sensitive authentication data is cached by the browser, which could allow unauthorized access through browser history or cache.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code># Check cache headers
+headers = response.headers
+cache_related = ["Cache-Control", "Pragma", "Expires"]
+
+for header in cache_related:
+    if header in headers:
+        results["cache_headers"][header] = headers[header]</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Login page: /login.php</li>
+            <li>Profile page: /profile.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Access authenticated pages</li>
+            <li>Check Cache-Control, Pragma, and Expires headers</li>
+            <li>Test back button behavior after logout</li>
+            <li>Verify if sensitive data remains in browser cache</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Login and access sensitive pages</li>
+            <li>Inspect network traffic for cache headers</li>
+            <li>Logout and use browser back button</li>
+            <li>Check if sensitive pages are accessible from cache</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "error": "Failed to access profile"
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-007 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-007: Testing for Weak Password Policy</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test evaluates the strength of password policies by attempting to register and change passwords using weak, common passwords.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code>WEAK_PASSWORDS = [
+    "password", "123456", "qwerty", "letmein", "welcome",
+    "admin123", "passw0rd", "12345678", "abc123", "Password1"
+]</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Registration page: /register.php</li>
+            <li>Change password: /change_password.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Attempt registration with weak passwords</li>
+            <li>Try changing password to weak alternatives</li>
+            <li>Verify if system enforces complexity requirements</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Navigate to registration page</li>
+            <li>Attempt to register with weak passwords</li>
+            <li>After successful registration, attempt to change to weak password</li>
+            <li>Verify if system accepts weak passwords</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "error": "Registration page not found"
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-008 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-008: Testing for Weak Security Question/Answer</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test evaluates the strength of security questions by attempting to guess answers using common responses and brute force techniques.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code>COMMON_SECURITY_QUESTIONS = {
+    "What was your first pet's name?": ["Fluffy", "Max", "Bella"],
+    "What is your mother's maiden name?": ["Smith", "Johnson", "Williams"]
+}</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Password reset: /reset_password.php</li>
+            <li>Security questions: /security_questions.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Initiate password reset process</li>
+            <li>Identify security question</li>
+            <li>Attempt common answers</li>
+            <li>Brute force with random answers</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Start password reset for a known account</li>
+            <li>Note the security question presented</li>
+            <li>Try common answers associated with the question</li>
+            <li>Verify if system accepts weak answers</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "status": "Security questions not implemented"
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-009 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-009: Testing for Weak Password Change or Reset Functionalities</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test evaluates the security of password reset mechanisms by checking for token exposure, predictability, and account takeover vulnerabilities.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code># Test token predictability
+predictable_token = "000000"
+reset_url = f"{RESET_PASSWORD_URL}?token={predictable_token}"
+response = http_request("GET", reset_url)</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Password reset: /reset_password.php</li>
+            <li>Profile: /profile.php</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Check for token exposure in response</li>
+            <li>Test predictable token patterns</li>
+            <li>Attempt account takeover via email change</li>
+            <li>Verify token expiration and reuse</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Initiate password reset</li>
+            <li>Inspect response for token exposure</li>
+            <li>Attempt to guess reset token</li>
+            <li>Change email address and attempt password reset</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "error": "Password reset request failed"
+}</pre>
+    </div>
+
+    <!-- OTG-AUTHN-010 -->
+    <div class="test-case">
+        <h2>OTG-AUTHN-010: Testing for Weaker Authentication in Alternative Channel</h2>
+        
+        <h3>Test Objective</h3>
+        <p>This test checks if alternative authentication channels (mobile API, web services) have weaker security controls than the main web interface.</p>
+        
+        <h3>Key Python Snippet</h3>
+        <pre><code>alternative_channels = [
+    {"name": "Mobile API", "url": f"{TARGET_URL}/api/v1/login", "method": "POST"},
+    {"name": "Web Services", "url": f"{TARGET_URL}/webservice/login", "method": "POST"}
+]</code></pre>
+        
+        <h3>Target Endpoints</h3>
+        <ul>
+            <li>Mobile API: /api/v1/login</li>
+            <li>Web services: /webservice/login</li>
+            <li>Mobile site: /m/login</li>
+        </ul>
+        
+        <h3>Methodology</h3>
+        <ol>
+            <li>Identify alternative authentication channels</li>
+            <li>Test with default credentials</li>
+            <li>Check for missing MFA</li>
+            <li>Verify session management across channels</li>
+        </ol>
+        
+        <h3>Steps to Reproduce</h3>
+        <ol>
+            <li>Discover alternative authentication endpoints</li>
+            <li>Attempt authentication with weak credentials</li>
+            <li>Check if MFA is enforced</li>
+            <li>Test if web session works on alternative channels</li>
+        </ol>
+        
+        <h3>Log Evidence</h3>
+        <pre>{
+  "channels_tested": [],
+  "vulnerabilities": []
+}</pre>
+    </div>
+
+</body>
+</html>

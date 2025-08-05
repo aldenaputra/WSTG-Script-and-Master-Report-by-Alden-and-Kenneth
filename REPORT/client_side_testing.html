@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Client Side Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Client Side Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Client-side testing focuses on vulnerabilities that can be exploited in the user's browser. These vulnerabilities often arise from the improper handling of user-supplied input in the client-side code, and can lead to attacks such as Cross-Site Scripting (XSS), clickjacking, and the manipulation of client-side resources. This testing category covers a wide range of client-side vulnerabilities, including DOM-based XSS, JavaScript execution, HTML injection, and more.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-001</td>
+                <td>DOM-based Cross-Site Scripting</td>
+                <td>6.1</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-002</td>
+                <td>JavaScript Execution</td>
+                <td>6.1</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-003</td>
+                <td>HTML Injection</td>
+                <td>6.1</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-004</td>
+                <td>Client-Side URL Redirect</td>
+                <td>5.4</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-005</td>
+                <td>CSS Injection</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-006</td>
+                <td>Client Side Resource Manipulation</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-007</td>
+                <td>Cross Origin Resource Sharing (CORS)</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-008</td>
+                <td>Cross Site Flashing</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-009</td>
+                <td>Clickjacking</td>
+                <td>6.1</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-010</td>
+                <td>WebSocket Testing</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-011</td>
+                <td>Web Messaging Testing</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-CLIENT-012</td>
+                <td>Client-Side Storage Testing</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>The most significant finding in this category is the presence of multiple client-side injection vulnerabilities. The application is vulnerable to DOM-based XSS, JavaScript execution, and HTML injection, all of which could be used to execute malicious code in the user's browser. Additionally, the application is vulnerable to clickjacking, which could be used to trick users into performing unintended actions.</p>
+        <p>A key challenge in this testing category was the lack of a dedicated client-side testing page. This made it difficult to test for certain vulnerabilities, such as those related to Web Messaging and Local Storage. While the tests that were performed revealed several significant vulnerabilities, the inability to fully assess the application's client-side security leaves a potential gap in the assessment. It is recommended that a dedicated client-side testing page be created to allow for a more thorough evaluation of the application's client-side security.</p>
+    </div>
+
+</body>
+</html>

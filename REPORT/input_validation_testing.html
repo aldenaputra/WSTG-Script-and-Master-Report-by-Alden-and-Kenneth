@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Input Validation Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Input Validation Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Input validation testing is the process of verifying that the application correctly validates all input from users and other external sources. This is a critical aspect of web application security, as many of the most common and severe vulnerabilities, such as Cross-Site Scripting (XSS) and SQL Injection, are the result of improper input validation. This testing category covers a wide range of injection attacks, including XSS, SQLi, command injection, and more.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-001</td>
+                <td>Reflected Cross-Site Scripting</td>
+                <td>6.1</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-002</td>
+                <td>Stored Cross-Site Scripting</td>
+                <td>8.8</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-003</td>
+                <td>HTTP Verb Tampering</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-004</td>
+                <td>HTTP Parameter Pollution</td>
+                <td>4.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N</td>
+                <td class="severity-low">Low</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-005</td>
+                <td>SQL Injection</td>
+                <td>9.8</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</td>
+                <td class="severity-critical">Critical</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-005-Blind</td>
+                <td>Blind SQL Injection</td>
+                <td>9.8</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</td>
+                <td class="severity-critical">Critical</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-006</td>
+                <td>LDAP Injection</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-007</td>
+                <td>ORM Injection</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-008</td>
+                <td>XML Injection</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-009</td>
+                <td>SSI Injection</td>
+                <td>7.2</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-010</td>
+                <td>XPath Injection</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-011</td>
+                <td>IMAP/SMTP Injection</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-012</td>
+                <td>Code Injection (LFI/RFI)</td>
+                <td>7.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-013</td>
+                <td>Command Injection</td>
+                <td>9.8</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</td>
+                <td class="severity-critical">Critical</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-014</td>
+                <td>Buffer Overflow</td>
+                <td>7.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-015</td>
+                <td>Incubated Vulnerability Testing</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-INPVAL-016</td>
+                <td>HTTP Splitting/Smuggling</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>The most critical vulnerabilities discovered in this assessment were in the input validation category. The application is highly vulnerable to SQL Injection, Blind SQL Injection, and Command Injection, all of which could allow an attacker to take complete control of the application and the underlying server. Additionally, multiple Cross-Site Scripting (XSS) vulnerabilities were identified, which could be used to hijack user sessions and perform other malicious actions. A Local File Inclusion (LFI) vulnerability was also discovered, which could be used to read sensitive files from the server.</p>
+        <p>The primary challenge in this testing category was the sheer number of vulnerabilities discovered. The application appears to have very little in the way of input validation, making it an easy target for a wide range of attacks. The tests for LDAP, ORM, XML, XPath, and IMAP/SMTP injection also indicated potential vulnerabilities, but these would require further manual investigation to confirm. The buffer overflow test also indicated a potential Denial of Service (DoS) vulnerability, which should be investigated further.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. General Recommendation/Remediation</h2>
+        <ul>
+            <li><strong>Implement Input Validation and Sanitization:</strong> All user-supplied input should be validated and sanitized on both the client-side and server-side. This includes using parameterized queries to prevent SQL injection, and encoding output to prevent XSS.</li>
+            <li><strong>Use a Web Application Firewall (WAF):</strong> A WAF can be used to detect and block common web application attacks, suchs as SQL injection and XSS.</li>
+            <li><strong>Disable Unnecessary Features:</strong> Features that are not required for the application to function, such as the `phpinfo()` page, should be disabled.</li>
+            <li><strong>Implement the Principle of Least Privilege:</strong> The application should be configured to run with the minimum level of privilege required to function. This will help to limit the damage that can be caused by a successful attack.</li>
+            <li><strong>Regularly Patch and Update:</strong> The application and all of its components should be regularly patched and updated to ensure that all known vulnerabilities are addressed.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Configuration and Deployment Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Configuration and Deployment Management Testing</h1>
+
+    <div class="section">
+        <h2>Test Network/Infrastructure Configuration (OTG-CONFIG-001)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective of this test is to perform a network scan on the target host to identify open TCP ports, the services running on those ports, and their respective versions. Discovering unnecessary open ports or outdated services can provide an attacker with valuable information and potential entry points into the system. This test uses the <strong>nmap</strong> utility, a standard tool for network exploration and security auditing.</p>
+
+        <h3>Target Endpoint</h3>
+        <p>The test is performed against the host machine running the application.</p>
+        <ul>
+            <li><strong>Host</strong>: <code>localhost</code> (127.0.0.1)</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The testing script utilizes the <code>otg_001()</code> function to execute a network scan. It invokes <code>nmap</code> with specific flags to ensure a thorough and efficient scan. The key python snippet responsible for this is:</p>
+        <pre><code>
+def otg_001():
+    """OTG-CONFIG-001 – Network/Infrastructure Configuration"""
+    banner("OTG-CONFIG-001 – Network/Infrastructure Configuration")
+    result = run(["nmap", "-sS", "-sV", "--top-ports", "1000", "localhost"])
+    log_run(result)
+    return result
+        </code></pre>
+        <p>The command <code>nmap -sS -sV --top-ports 1000 localhost</code> performs the following actions:</p>
+        <ul>
+            <li><code>-sS</code>: A TCP SYN scan (or "half-open" scan) which is stealthier and faster than a full TCP connect scan.</li>
+            <li><code>-sV</code>: Enables service and version detection to determine what software is running on the open ports.</li>
+            <li><code>--top-ports 1000</code>: Scans the 1,000 most common TCP ports.</li>
+            <li><code>localhost</code>: The target of the scan.</li>
+        </ul>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>Ensure that the <code>nmap</code> tool is installed on the testing machine.</li>
+            <li>Execute the command <code>nmap -sS -sV --top-ports 1000 localhost</code> from the command line.</li>
+            <li>The test output will list all open ports found within the top 1000. In this case, ports 135 (msrpc), 445 (microsoft-ds), 902 (vmware-auth), 912 (vmware-auth), and 8080 (http) were identified as open.</li>
+            <li>The presence of services like Windows RPC and VMware Auth on a web server could indicate an unnecessary exposure of services, increasing the attack surface.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+{
+  "command": "nmap -sS -sV --top-ports 1000 localhost",
+  "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-28 23:32 SE Asia Standard Time\nNmap scan report for localhost (127.0.0.1)\nHost is up (0.00066s latency).\nOther addresses for localhost (not scanned): ::1\nrDNS record for 127.0.0.1: frontend.test\nNot shown: 995 closed tcp ports (reset)\nPORT     STATE SERVICE         VERSION\n135/tcp  open  msrpc           Microsoft Windows RPC\n445/tcp  open  microsoft-ds?\n902/tcp  open  ssl/vmware-auth VMware Authentication Daemon 1.10 (Uses VNC, SOAP)\n912/tcp  open  vmware-auth     VMware Authentication Daemon 1.0 (Uses VNC, SOAP)\n8080/tcp open  http            Apache httpd 2.4.25 ((Debian))\nService Info: OS: Windows; CPE: cpe:/o:microsoft:windows\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 15.24 seconds",
+  "stderr": "",
+  "returncode": 0,
+  "timeout": false
+}
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Test Application Platform Configuration (OTG-CONFIG-002)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective of this test is to gather detailed configuration information from the application's underlying platform, specifically the PHP interpreter and the Apache web server. Leaked configuration details, such as software versions, enabled modules, and internal paths, can provide an attacker with a roadmap for exploiting known vulnerabilities.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>This test targets the application's runtime environment directly, using Docker to execute commands inside the running container.</p>
+        <ul>
+            <li><strong>Container Name</strong>: <code>dvwa</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_002()</code> function in the script runs commands inside the `dvwa` Docker container. This requires the <strong>Docker</strong> client to be installed and running. The function executes two commands to retrieve configuration data:</p>
+        <pre><code>
+def otg_002():
+    """OTG-CONFIG-002 – Application Platform Configuration"""
+    banner("OTG-CONFIG-002 – Application Platform Configuration")
+    results = {}
+    for cmd in [["docker", "exec", "dvwa", "php", "-i"], ["docker", "exec", "dvwa", "apache2ctl", "-S"]]:
+        result = run(cmd)
+        key = cmd[-2] + "_" + cmd[-1]
+        results[key] = result
+        log_run(result)
+    return results
+        </code></pre>
+        <ul>
+            <li><code>docker exec dvwa php -i</code>: This command executes the PHP command-line interpreter with the <code>-i</code> flag, which outputs the complete PHP configuration information (the equivalent of a `phpinfo()` page).</li>
+            <li><code>docker exec dvwa apache2ctl -S</code>: This command queries the Apache control interface to dump the parsed virtual host configuration, including the server root, document root, and log file locations.</li>
+        </ul>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>Ensure the DVWA application is running in a Docker container named <code>dvwa</code>.</li>
+            <li>From the host machine's terminal, run the command <code>docker exec dvwa php -i</code>.</li>
+            <li>Analyze the output for sensitive information. The log evidence reveals the exact PHP version (<code>7.0.30-0+deb9u1</code>), system information (<code>Linux ... WSL2</code>), and risky PHP directives like <code>expose_php = On</code> and <code>allow_url_fopen = On</code>.</li>
+            <li>Next, run <code>docker exec dvwa apache2ctl -S</code>.</li>
+            <li>Review the output for Apache configuration details, which confirms the user and group the server runs as (<code>www-data</code>) and the location of configuration files.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <p><em>(Note: Due to its length, the full phpinfo output is truncated for brevity)</em></p>
+        <pre><code>
+{
+  "php_-i": {
+    "command": "docker exec dvwa php -i",
+    "stdout": "phpinfo()\nPHP Version => 7.0.30-0+deb9u1\n\nSystem => Linux d8d87a9dda55 5.15.153.1-microsoft-standard-WSL2 #1 SMP Fri Mar 29 23:14:13 UTC 2024 x86_64\n...",
+    "returncode": 0
+  },
+  "apache2ctl_-S": {
+    "command": "docker exec dvwa apache2ctl -S",
+    "stdout": "VirtualHost configuration:\n*:80                   172.17.0.2 (/etc/apache2/sites-enabled/000-default.conf:1)\nServerRoot: \"/etc/apache2\"\nMain DocumentRoot: \"/var/www/html\"\nMain ErrorLog: \"/var/log/apache2/error.log\"\nMutex watchdog-callback: using_defaults\nMutex default: dir=\"/var/run/apache2/\" mechanism=default \nMutex mpm-accept: using_defaults\nPidFile: \"/var/run/apache2/apache2.pid\"\nDefine: DUMP_VHOSTS\nDefine: DUMP_RUN_CFG\nUser: name=\"www-data\" id=33\nGroup: name=\"www-data\" id=33",
+    "stderr": "AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message",
+    "returncode": 0
+  }
+}
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to discover if the web server handles different file extensions in a way that might leak sensitive information. For example, a request for <code>config.php.bak</code> might be served as a plain text file, disclosing its source code. The test relies on the tool <strong>ffuf</strong> for fuzzing file extensions.</p>
+
+        <h3>Target Endpoint</h3>
+        <ul>
+            <li><strong>URL</strong>: <code>http://localhost:8080/</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_003()</code> function is designed to automate the discovery of misconfigured file handlers. It first attempts to download a list of common web extensions from the SecLists repository. It then uses the <code>ffuf</code> tool to request files with these extensions on the target server, looking for responses that indicate success (e.g., status code 200). However, the test was unable to run.</p>
+        <p>The script checks for the presence of <code>ffuf</code> using <code>shutil.which("ffuf")</code>. If the tool is not found in the system's PATH, the test is skipped.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>The script attempts to locate the <code>ffuf</code> executable on the testing machine.</li>
+            <li>In this case, the tool was not found.</li>
+            <li>The test immediately aborted and reported that `ffuf` was missing. No network requests were made to the target.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+{
+  "status": "ffuf not found"
+}
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Review Old, Backup and Unreferenced Files for Sensitive Information (OTG-CONFIG-004)</h2>
+        <h3>Test Objective</h3>
+        <p>The purpose of this test is to search for old, backup, and unreferenced files that may have been left on the server. Developers sometimes leave copies of files (e.g., <code>db_connect.php.old</code>, <code>archive.zip</code>) in the webroot, which can contain credentials, configuration details, or source code. This test uses the <strong>gobuster</strong> tool for directory and file brute-forcing.</p>
+
+        <h3>Target Endpoint</h3>
+        <ul>
+            <li><strong>URL</strong>: <code>http://localhost:8080</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_004()</code> function attempts to find sensitive files by brute-forcing common filenames and backup extensions. It uses a wordlist from SecLists and specifies a list of extensions (<code>-x bak,old,orig,txt,swp,tmp</code>) for <code>gobuster</code> to try. Like the previous test, this one depended on a tool that was not available.</p>
+        <p>The script checks if <code>gobuster</code> is installed using <code>shutil.which("gobuster")</code>. Since the tool was not found, the test could not be executed.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>The script attempts to find the <code>gobuster</code> executable.</li>
+            <li>The tool was not present on the system.</li>
+            <li>The test was skipped, and the result indicates that the required tool was not found.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+{
+  "status": "gobuster not found"
+}
+        </code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Enumerate Infrastructure and Application Admin Interfaces (OTG-CONFIG-005)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify administrative interfaces by inspecting the web application's pages for links that may lead to them. Discovering admin panels is a critical first step for an attacker trying to gain elevated privileges.</p>
+
+        <h3>Target Endpoint</h3>
+        <ul>
+            <li><strong>URL</strong>: <code>http://localhost:8080/</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_005()</code> function performs a simple but effective check. It sends an HTTP GET request to the application's root page using the Python <strong>requests</strong> library. It then uses a regular expression to parse the HTML response and extract all URLs found in <code>href</code> attributes. Finally, it filters this list to find any links containing the substring "admin".</p>
+        <pre><code>
+def otg_005():
+    """OTG-CONFIG-005 – Enumerate Admin Interfaces"""
+    banner("OTG-CONFIG-005 – Enumerate Admin Interfaces")
+    r = http_get("/")
+    # ...
+    links = re.findall(r'href=["\'](.*?)["\']', r.text, re.I)
+    admin_like = [l for l in links if "admin" in l.lower()]
+    print("Possible admin links:", admin_like)
+    return admin_like
+        </code></pre>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>Send an HTTP GET request to <code>http://localhost:8080/</code>.</li>
+            <li>Examine the HTML source code of the response.</li>
+            <li>Search for any anchor tags (<code>&lt;a&gt;</code>) whose <code>href</code> attribute contains the word "admin" (case-insensitive).</li>
+            <li>In this test, no such links were found on the homepage, resulting in an empty list.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+[]
+        </code></pre>
+        <pre><code>
+======================================================================
+  OTG-CONFIG-005 – Enumerate Admin Interfaces
+======================================================================
+Possible admin links: []
+        </code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Test HTTP Methods (OTG-CONFIG-006)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective is to determine which HTTP methods (or verbs) are enabled on the web server. While <code>GET</code> and <code>POST</code> are standard, other methods like <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code>, and <code>DEBUG</code> can pose security risks if enabled unnecessarily and could be used by an attacker to modify files on the server or gain information.</p>
+
+        <h3>Target Endpoint</h3>
+        <ul>
+            <li><strong>URL</strong>: <code>http://localhost:8080</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_006()</code> function iterates through a predefined list of HTTP methods. For each method, it uses the Python <strong>requests</strong> library to send a request to the target URL and records the server's response status code and content length. A status code of 200 (OK) indicates the method is likely enabled, whereas a 405 (Method Not Allowed) or 501 (Not Implemented) would indicate it is disabled.</p>
+        <pre><code>
+def otg_006():
+    """OTG-CONFIG-006 – Test HTTP Methods"""
+    banner("OTG-CONFIG-006 – Test HTTP Methods")
+    methods = ["GET", "POST", "PUT", "DELETE", "PATCH", "TRACE", "TRACK", "CONNECT", "DEBUG"]
+    results = {}
+    for m in methods:
+        resp = requests.request(m, DVWA_URL, timeout=5)
+        results[m] = {"status": resp.status_code, "len": len(resp.content)}
+    return results
+        </code></pre>
+        
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>Using a tool like <code>curl</code>, send a request for each HTTP method to the target URL. For example, to test the <code>PUT</code> method, run: <code>curl -X PUT -I http://localhost:8080</code>.</li>
+            <li>Observe the HTTP status code in the server's response.</li>
+            <li>The test results show that <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code>, <code>TRACK</code>, and <code>DEBUG</code> all returned a status of <code>200 OK</code>. This indicates a misconfiguration, as these methods are enabled and should be disabled on a production server. The <code>TRACE</code> method correctly returned <code>405 Method Not Allowed</code>.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+{
+  "GET": { "status": 200, "len": 1523 },
+  "POST": { "status": 200, "len": 1523 },
+  "PUT": { "status": 200, "len": 1523 },
+  "DELETE": { "status": 200, "len": 1523 },
+  "PATCH": { "status": 200, "len": 1523 },
+  "TRACE": { "status": 405, "len": 300 },
+  "TRACK": { "status": 200, "len": 1523 },
+  "CONNECT": { "status": 400, "len": 302 },
+  "DEBUG": { "status": 200, "len": 1523 }
+}
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Test HTTP Strict Transport Security (OTG-CONFIG-007)</h2>
+        <h3>Test Objective</h3>
+        <p>This test checks for the presence of the <code>Strict-Transport-Security</code> (HSTS) HTTP response header. HSTS is a security mechanism that tells browsers to only communicate with the server using HTTPS, which helps prevent man-in-the-middle attacks such as protocol downgrades and cookie hijacking.</p>
+
+        <h3>Target Endpoint</h3>
+        <ul>
+            <li><strong>URL</strong>: <code>http://localhost:8080/</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_007()</code> function sends a standard HTTP GET request to the target URL. It then inspects the headers of the server's response to check for the existence of the "Strict-Transport-Security" header. The result indicates whether the header was found and, if so, its value.</p>
+        <pre><code>
+def otg_007():
+    """OTG-CONFIG-007 – HTTP Strict Transport Security"""
+    banner("OTG-CONFIG-007 – HTTP Strict Transport Security")
+    r = http_get("/")
+    if r:
+        hsts = r.headers.get("Strict-Transport-Security", None)
+        print("HSTS header:", hsts)
+        return {"present": hsts is not None, "value": hsts}
+    # ...
+        </code></pre>
+        
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>Use a tool like <code>curl</code> with the <code>-I</code> flag to view the response headers from the server: <code>curl -I http://localhost:8080</code>.</li>
+            <li>Scan the list of response headers for "Strict-Transport-Security".</li>
+            <li>The test results confirm that the header is not present ("HSTS header: None"), indicating that the application is not protected by HSTS.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+{
+  "present": false,
+  "value": null
+}
+        </code></pre>
+        <pre><code>
+======================================================================
+  OTG-CONFIG-007 – HTTP Strict Transport Security
+======================================================================
+HSTS header: None
+        </code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Test RIA cross domain policy (OTG-CONFIG-008)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective of this test is to check for the existence of cross-domain policy files used by Rich Internet Applications (RIAs) like Adobe Flash (<code>crossdomain.xml</code>) and Microsoft Silverlight (<code>clientaccesspolicy.xml</code>). A loosely configured policy file could allow malicious RIA applications from other domains to interact with the target application and exfiltrate data.</p>
+
+        <h3>Target Endpoint</h3>
+        <ul>
+            <li><strong>URL 1</strong>: <code>http://localhost:8080/crossdomain.xml</code></li>
+            <li><strong>URL 2</strong>: <code>http://localhost:8080/clientaccesspolicy.xml</code></li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>otg_008()</code> function attempts to fetch the two policy files by making separate HTTP GET requests to their default locations. It reports the status of each request. If the files are not found (e.g., resulting in a 404 error), it is generally considered a secure state, as no policy is defined.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>Attempt to access <code>http://localhost:8080/crossdomain.xml</code> using <code>curl</code> or a web browser.</li>
+            <li>Attempt to access <code>http://localhost:8080/clientaccesspolicy.xml</code>.</li>
+            <li>The test shows that the requests for both files failed. This means the files are not present, which is the desired outcome if Flash or Silverlight applications are not intended to interact with the site.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+{
+  "/crossdomain.xml": {
+    "status": "error"
+  },
+  "/clientaccesspolicy.xml": {
+    "status": "error"
+  }
+}
+        </code></pre>
+        <pre><code>
+======================================================================
+  OTG-CONFIG-008 – RIA Cross-Domain Policy
+======================================================================
+/crossdomain.xml: Request failed
+/clientaccesspolicy.xml: Request failed
+        </code></pre>
+    </div>
+</body>
+</html>

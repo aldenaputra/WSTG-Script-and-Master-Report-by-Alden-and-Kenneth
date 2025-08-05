@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Client Side Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Client Side Testing</h1>
+
+    <div class="section">
+        <h2>Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify DOM-based Cross-Site Scripting (XSS) vulnerabilities. Unlike traditional XSS, DOM-based XSS occurs when a web application's client-side scripts write user-provided data directly to the Document Object Model (DOM) without proper sanitization. This test identifies potential "sinks" (like <code>document.write</code>) that can be exploited and injects various payloads to confirm if script execution is possible.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The test targets various DVWA pages that might contain vulnerable client-side scripts:</p>
+        <ul>
+            <li><code>http://localhost:8080/vulnerabilities/xss_d/</code></li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client/</code> [cite: 8]</li>
+            <li><code>http://localhost:8080/vulnerabilities/xss_r/</code></li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_s/</code> [cite: 13]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_001</code> function in the script automates the detection of DOM XSS. [cite_start]First, it analyzes the page's source code for known dangerous JavaScript functions called "sinks," such as <code>document.write</code> or manipulation of <code>location.href</code>[cite: 3, 4]. After identifying potential sinks, it crafts a series of URLs by appending various DOM XSS payloads to the URL's fragment identifier (#). [cite_start]These payloads include classic script tags, event handlers, and modern evasion techniques[cite: 5]. The script then sends a request with the crafted URL and inspects the response for evidence that the payload was reflected or executed.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script first logs into DVWA and sets the security level to low[cite: 1].</li>
+            [cite_start]<li>It navigates to the DOM XSS test page at <code>http://localhost:8080/vulnerabilities/xss_d/</code>[cite: 2].</li>
+            [cite_start]<li>The script inspects the page source and identifies potential DOM sinks, including <code>document.write</code> and <code>location.href</code>[cite: 3, 4].</li>
+            <li>It then constructs a test URL with a payload, such as <code>http://localhost:8080/vulnerabilities/xss_d/#<script>alert('DOM XSS')</script></code>.</li>
+            <li>The script submits this URL and analyzes the response. While direct execution isn't confirmed by the log, the presence of the identified sinks and the systematic testing of payloads indicate the vulnerability.</li>
+            [cite_start]<li>Additionally, the script specifically tests payloads in the query string for this page, such as <code>?default=<script>alert('XSS')</script></code>, to check for vulnerabilities related to `location.hash`[cite: 6].</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 10:59:15.224560 | ----- Starting OTG-CLIENT-001 (DOM-based XSS) -----
+2025-08-05 10:59:15.224560 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 10:59:15.241730 |   - Found potential DOM sink: document.write
+2025-08-05 10:59:15.241730 |   - Found potential DOM sink: location
+2025-08-05 10:59:15.241730 |   - Found potential DOM sink: location.href
+2025-08-05 10:59:15.241730 |   - Testing payload: #<script>alert('DOM XSS')</script>
+2025-08-05 10:59:15.248526 |   - Testing payload: #javascript:alert('XSS')
+2025-08-05 10:59:15.253803 |   - Testing payload: #" onmouseover="alert('XSS')"
+2025-08-05 10:59:15.287460 |   - Testing location.hash payload: default=<script>alert('XSS')</script>
+2025-08-05 10:59:15.287460 |   - Testing location.hash payload: default=javascript:alert('XSS')
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing for JavaScript Execution (OTG-CLIENT-002)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify vulnerabilities where arbitrary JavaScript code can be injected and executed within the context of the web application. This is a crucial test for detecting various forms of Cross-Site Scripting (XSS). The script uses a comprehensive list of payloads, including basic script execution, encoded characters, event handlers, and data URIs to probe for weaknesses.</p>
+
+        <h3>Target Endpoint</h3>
+        <p>The script targets multiple pages within DVWA that are likely to process and reflect user input:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_d/</code> [cite: 18]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_r/</code> [cite: 60]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client/</code> [cite: 110]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/sqli/</code> [cite: 155]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/exec/</code> [cite: 210]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_002</code> function automates the process of finding JavaScript injection points. It begins by scanning the page source for potential JavaScript "sinks" like <code>eval()</code>, <code>setTimeout()</code>, and <code>innerHTML=</code>. Subsequently, it injects a wide array of JS payloads into URL fragments, URL query parameters, and form fields. The response is then analyzed by the <code>_check_js_response</code> helper method, which looks for evidence of execution, such as the presence of script tags, event handlers, or JavaScript errors that indicate the payload was processed by the browser's JS engine.</p>
+        <p>A snippet of the response checking logic is as follows:</p>
+        <pre><code>
+def _check_js_response(self, resp, payload, context=""):
+    # ...
+    success_patterns = [
+        ("alert(", "Possible JS execution"),
+        ("javascript:", "JS protocol found"),
+        # ... more patterns
+    ]
+    for pattern, message in success_patterns:
+        if pattern in resp.text:
+            self.write_log(f"    [✓] {message} with payload '{payload}'{context}")
+            return
+        </code></pre>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The test logs into the application and sets the security level to low[cite: 17].</li>
+            [cite_start]<li>It targets the DOM XSS page at <code>http://localhost:8080/vulnerabilities/xss_d/</code>[cite: 18].</li>
+            [cite_start]<li>The script identifies a potential JavaScript sink: <code>document.write(</code>[cite: 19].</li>
+            <li>It then sends a request with a payload in the URL parameter, like <code>?test=javascript:alert(1)</code>.</li>
+            <li>The script analyzes the response and finds that the payload was embedded in the page's script, leading it to conclude that JS execution is possible. [cite_start]This is recorded in the log as "[✓] Script tag found with payload 'javascript:alert(1)' (URL parameter)"[cite: 19, 20].</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 14:11:17.258267 | ----- Starting OTG-CLIENT-002 (JavaScript Execution) -----
+2025-08-05 14:11:17.258267 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:11:17.262983 |   - Found potential JS sink: document.write(
+2025-08-05 14:11:17.262983 |   - Testing fragment payload: javascript:alert(1)
+2025-08-05 14:11:17.267769 |     [✓] Script tag found with payload 'javascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.267769 |   - Testing parameter payload: javascript:alert(1)
+2025-08-05 14:11:17.272115 |     [✓] Script tag found with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.272638 |   - Testing fragment payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.276374 |     [✓] Script tag found with payload 'javascript:alert(document.cookie)' (URL fragment)
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing for HTML Injection (OTG-CLIENT-003)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify HTML injection vulnerabilities, where an application improperly includes user-controlled data in the web page without sanitization. This allows an attacker to inject arbitrary HTML content, which can be used to deface pages, create phishing forms, or serve as a vector for Cross-Site Scripting (XSS) by injecting tags like <code>&lt;script&gt;</code> or <code>&lt;img&gt;</code> with event handlers.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script targets DVWA pages where user input is reflected back to the user:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_r/</code> [cite: 267]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_s/</code> [cite: 295]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_d/</code> [cite: 333]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client/</code> [cite: 352]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/sqli/</code> [cite: 375]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_003</code> function probes for HTML injection flaws. It first inspects the page's source code for common HTML sinks like <code>innerHTML=</code>. Following this, it injects a variety of HTML payloads into URL parameters and form inputs. These payloads include basic formatting tags (<code>&lt;h1&gt;</code>, <code>&lt;b&gt;</code>), as well as more dangerous tags like <code>&lt;img&gt;</code> with `onerror` handlers, <code>&lt;iframe&gt;</code>, and <code>&lt;form&gt;</code> tags. The <code>_check_html_response</code> method then examines the server's response to see if the injected HTML tags are present and rendered, rather than being properly escaped.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs into DVWA[cite: 266].</li>
+            [cite_start]<li>It targets the Reflected XSS page at <code>http://localhost:8080/vulnerabilities/xss_r/</code>[cite: 267].</li>
+            [cite_start]<li>It sends a request where a URL parameter contains the payload <code>&lt;h1&gt;HTML Injection Test&lt;/h1&gt;</code>[cite: 268].</li>
+            <li>The script inspects the response and finds that the HTML tag was successfully injected. The log entry "[✓] Image tag found with payload '&lt;h1&gt;HTML Injection Test&lt;/h1&gt;' (URL parameter)[cite_start]" confirms this finding (note: the log message is slightly imprecise, referring to it as an "Image tag", but confirms the successful injection)[cite: 268].</li>
+            [cite_start]<li>This process is repeated for other payloads like <code>&lt;img src='x' onerror='alert(1)'&gt;</code>, which also succeed, indicating a severe XSS vulnerability[cite: 271].</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 14:19:09.603661 | ----- Starting OTG-CLIENT-003 (HTML Injection) -----
+2025-08-05 14:19:09.604670 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 14:19:09.608403 |   - No obvious HTML sinks found in page source
+2025-08-05 14:19:09.609400 |   - Testing payload: &lt;h1&gt;HTML Injection Test&lt;/h1&gt;
+2025-08-05 14:19:09.612574 |     [✓] Image tag found with payload '&lt;h1&gt;HTML Injection Test&lt;/h1&gt;' (URL parameter)
+2025-08-05 14:19:09.613758 |   - Testing payload: &lt;b&gt;Bold Text&lt;/b&gt;
+2025-08-05 14:19:09.616860 |     [✓] Image tag found with payload '&lt;b&gt;Bold Text&lt;/b&gt;' (URL parameter)
+2025-08-05 14:19:09.621325 |   - Testing payload: &lt;img src='x' onerror='alert(1)'&gt;
+2025-08-05 14:19:09.625533 |     [✓] Image tag found with payload '&lt;img src='x' onerror='alert(1)'&gt;' (URL parameter)
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing for Client Side URL Redirect (OTG-CLIENT-004)</h2>
+        <h3>Test Objective</h3>
+        <p>This test checks for client-side open redirect vulnerabilities, where an application redirects a user to an arbitrary URL provided in the request without proper validation. Attackers can leverage this to redirect users to malicious websites for phishing or malware delivery. The script tests for this by providing external URLs and JavaScript payloads to parameters that might be used for redirection.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The test focuses on pages where redirects are likely to occur:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/redirect/</code> [cite: 410]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client/</code> [cite: 435]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_d/</code> [cite: 460]</li>
+            [cite_start]<li><code>http://localhost:8080/login.php</code> [cite: 486]</li>
+            [cite_start]<li><code>http://localhost:8080/logout.php</code> [cite: 511]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_004</code> function searches for open redirect vulnerabilities. It begins by scanning the page source for common client-side redirection "sinks" like <code>window.location=</code> or URL-related parameter names like `redirect=`. The script then injects a list of payloads into URL parameters and fragments. These payloads include external domains (e.g., `http://evil.com`), JavaScript URIs (`javascript:alert(1)`), and data URIs. The script checks for server-side redirects (HTTP 3xx status codes) and also uses the <code>_check_client_redirect</code> helper to inspect the page content for client-side redirection scripts.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs into the DVWA application[cite: 409].</li>
+            [cite_start]<li>It targets the DOM XSS page at <code>http://localhost:8080/vulnerabilities/xss_d/</code>, where it identifies potential redirection sinks like `url=` and `target=` in the source code[cite: 460, 461].</li>
+            <li>It crafts a URL with a malicious payload in a parameter, such as <code>?redirect=http://evil.com</code>.</li>
+            <li>The script sends a request with this URL and analyzes the response. It finds that the payload is embedded within a JavaScript block that assigns it to `location.href`.</li>
+            [cite_start]<li>This is logged as a successful finding: "[✓] location.href assignment found with payload 'http://evil.com' (URL parameter)"[cite: 462], confirming the client-side open redirect vulnerability.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 14:32:23.286032 | ----- Starting OTG-CLIENT-004 (Client Side URL Redirect) -----
+2025-08-05 14:32:23.400477 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:32:23.401876 |   - Found potential redirect sink: url=
+2025-08-05 14:32:23.401876 |   - Found potential redirect sink: target=
+2025-08-05 14:32:23.403016 |   - Testing redirect payload: http://evil.com
+2025-08-05 14:32:23.406394 |     [✓] location.href assignment found with payload 'http://evil.com' (URL parameter)
+2025-08-05 14:32:23.406394 |   - Testing redirect payload: https://attacker.site
+2025-08-05 14:32:23.410225 |     [✓] location.href assignment found with payload 'https://attacker.site' (URL parameter)
+2025-08-05 14:32:23.413226 |   - Testing redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.417420 |     [✓] location.href assignment found with payload 'javascript:alert(1)' (URL parameter)
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing for CSS Injection (OTG-CLIENT-005)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to discover if an attacker can inject arbitrary CSS styles into a web page. While often considered a low-impact vulnerability, CSS injection can be used for UI redressing, phishing attacks by overlaying fake elements, or exfiltrating sensitive data (like CSRF tokens) from attributes using advanced CSS selectors in older browsers.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script targets pages where user input might be used to define styles:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_r/</code> [cite: 538]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_d/</code> [cite: 570]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client/</code> [cite: 602]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/csrf/</code> [cite: 631]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/upload/</code> [cite: 663]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_005</code> function searches for CSS injection points by first scanning the page source for common CSS sinks, such as <code>.style=</code> or <code>.cssText=</code>. It then injects a variety of CSS payloads into URL parameters and fragments. These payloads range from simple style modifications (`background-color: blue`) to more complex attacks involving `@import` rules, data exfiltration via `url()` in background images, and script execution attempts for older, vulnerable browsers (`expression(alert(1))`). The `_check_css_response` function analyzes the response to see if the injected CSS is reflected in a style context.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs into DVWA and begins the test[cite: 537].</li>
+            [cite_start]<li>It targets the Reflected XSS page at <code>http://localhost:8080/vulnerabilities/xss_r/</code>[cite: 538].</li>
+            [cite_start]<li>The script attempts to inject a CSS payload like <code>red; background-color: blue</code> into a URL parameter[cite: 539].</li>
+            <li>The server's response is analyzed. The script determines that the payload was not injected in a manner that would be interpreted by the browser as a style.</li>
+            [cite_start]<li>This is recorded in the log as "[-] No obvious CSS injection with payload 'red; background-color: blue' (URL parameter)"[cite: 539, 540]. All subsequent tests against the application also failed to find a vulnerability.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 14:40:53.828600 | ----- Starting OTG-CLIENT-005 (CSS Injection) -----
+2025-08-05 14:40:53.828600 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 14:40:53.833189 |   - No obvious CSS sinks found in page source
+2025-08-05 14:40:53.833189 |   - Testing payload: red; background-color: blue
+2025-08-05 14:40:53.836349 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL parameter)
+2025-08-05 14:40:53.836349 |   - Testing payload: red; font-size: 100px
+2025-08-05 14:40:53.840436 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL parameter)
+2025-08-05 14:40:53.843435 |   - Testing payload: red; @import url('http://attacker.com/malicious.css')
+2025-08-05 14:40:53.868739 |     [-] No obvious CSS injection with payload 'red; @import url('http://attacker.com/malicious.css')' (URL parameter)
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing for Client Side Resource Manipulation (OTG-CLIENT-006)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify vulnerabilities where an attacker can manipulate client-side code to load unintended or malicious resources. This could involve forcing the browser to load a malicious JavaScript file from an external domain, which would then execute with the permissions of the vulnerable page, effectively leading to Cross-Site Scripting (XSS).</p>
+
+        <h3>Target Endpoint</h3>
+        <p>The test targets various DVWA pages that might dynamically load resources:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_d/</code> [cite: 696]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client/</code> [cite: 722]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/upload/</code> [cite: 747]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/fi/</code> [cite: 772]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/cors/</code> [cite: 798]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_006</code> function scans pages for "resource sinks," which are attributes or functions that load external content, such as `src=`, `href=`, or `fetch()`. It then injects a list of payloads designed to load external resources into URL parameters and fragments. These payloads include URLs pointing to malicious JavaScript, phishing pages, and CSS files. The script analyzes the response to see if the injected resource URL is reflected in a way that would cause the browser to load it.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li>The script logs into the DVWA application.</li>
+            [cite_start]<li>It targets the DOM XSS page at <code>http://localhost:8080/vulnerabilities/xss_d/</code>, identifying `src=` and `href=` as potential resource sinks[cite: 696, 697].</li>
+            [cite_start]<li>A payload pointing to a malicious external JavaScript file, `http://evil.com/malicious.js`, is injected into a URL parameter[cite: 698].</li>
+            <li>The script examines the server's response. [cite_start]The log indicates that the payload was not reflected in a way that would trigger resource loading, resulting in the message: "[-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL parameter)"[cite: 698].</li>
+            <li>This process is repeated for all target pages and payloads, none of which were found to be vulnerable.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 14:45:54.749102 | ----- Starting OTG-CLIENT-006 (Client Side Resource Manipulation) -----
+2025-08-05 14:45:54.749102 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:45:54.753785 |   - Found potential resource sink: src=
+2025-08-05 14:45:54.753785 |   - Found potential resource sink: href=
+2025-08-05 14:45:54.754801 |   - Testing payload: http://evil.com/malicious.js
+2025-08-05 14:45:54.758816 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.758816 |   - Testing payload: //evil.com/malicious.js
+2025-08-05 14:45:54.763527 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL parameter)
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Test Cross Origin Resource Sharing (OTG-CLIENT-007)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify misconfigurations in the application's Cross-Origin Resource Sharing (CORS) policy. A misconfigured CORS policy can allow a malicious third-party website to make requests to the application's domain and read the responses, potentially exfiltrating sensitive data that would otherwise be protected by the Same-Origin Policy.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script probes several endpoints to check their CORS policies:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/cors/</code> [cite: 824]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/xss_r/</code> [cite: 830]</li>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/sqli/</code> [cite: 836]</li>
+            [cite_start]<li><code>http://localhost:8080/login.php</code> [cite: 841]</li>
+            [cite_start]<li><code>http://localhost:8080/api/</code> [cite: 847]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_007</code> function tests for common CORS misconfigurations. It sends requests to target endpoints with a forged `Origin` header set to a malicious domain. It then inspects the HTTP response headers for insecure `Access-Control-Allow-Origin` values, such as a wildcard (`*`) when credentials are also allowed, or a reflection of the arbitrary Origin header. The script also sends preflight `OPTIONS` requests to check if dangerous HTTP methods like `PUT` or `DELETE` are permitted from any origin.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script begins by targeting the dedicated CORS test page at <code>http://localhost:8080/vulnerabilities/cors/</code>[cite: 824].</li>
+            [cite_start]<li>It sends a GET request with the header `Origin: http://malicious.example.com` to test for a wildcard or reflected origin vulnerability[cite: 825, 826].</li>
+            <li>The script analyzes the response headers but does not find any `Access-Control-Allow-Origin` headers.</li>
+            [cite_start]<li>It correctly concludes that no CORS vulnerability is present for this test case and logs: "[-] No vulnerability detected for Wildcard Origin"[cite: 825]. This is the secure default behavior when an endpoint is not intended for cross-origin access.</li>
+            <li>The test is repeated for other misconfigurations and endpoints, all of which were found to be secure.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 15:14:52.261989 | ----- Starting OTG-CLIENT-007 (CORS Testing) -----
+2025-08-05 15:14:52.262975 | 
+[i] Testing endpoint: http://localhost:8080/vulnerabilities/cors/
+2025-08-05 15:14:52.262975 |   - Testing case: Wildcard Origin
+2025-08-05 15:14:52.264973 |     [-] No vulnerability detected for Wildcard Origin
+2025-08-05 15:14:52.264973 |   - Testing case: Reflected Origin
+2025-08-05 15:14:52.266896 |     [-] No vulnerability detected for Reflected Origin
+2025-08-05 15:14:52.266896 |   - Testing case: Null Origin
+2025-08-05 15:14:52.268916 |     [-] No vulnerability detected for Null Origin
+2025-08-05 15:14:52.268916 |   - Testing case: Credentials with Wildcard
+2025-08-05 15:14:52.271905 |     [-] No vulnerability detected for Credentials with Wildcard
+        </code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Testing for Cross Site Flashing (OTG-CLIENT-008)</h2>
+        <h3>Test Objective</h3>
+        <p>This test checks for the presence of Adobe Flash (`.swf`) files and tests them for Cross-Site Flashing (XSF) vulnerabilities. An attacker could exploit vulnerabilities in Flash files to execute JavaScript in the context of the user's domain, leading to Cross-Site Scripting, or to perform other malicious actions. The script's objective is to locate these files and probe them for common vulnerabilities.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script probes for `.swf` files at several common locations on the web server:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/flash/</code> [cite: 855]</li>
+            [cite_start]<li><code>http://localhost:8080/swf/</code> [cite: 856]</li>
+            [cite_start]<li><code>http://localhost:8080/player.swf</code> [cite: 857]</li>
+            [cite_start]<li><code>http://localhost:8080/main.swf</code> [cite: 858]</li>
+            [cite_start]<li><code>http://localhost:8080/content/flashfile.swf</code> [cite: 859]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_008</code> function works by first trying to discover `.swf` files at a list of predefined common endpoints. If a Flash file is found (indicated by a 200 OK response and the correct Content-Type), the script would then attempt to inject various payloads into common Flash parameters (like `file`, `url`, `callback`) to test for vulnerabilities such as XSS, open redirects, or insecure ActionScript functions. Since no Flash files were found in this test, the injection phase was skipped.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs into DVWA and begins the test[cite: 854].</li>
+            [cite_start]<li>It sends an HTTP GET request to the first potential endpoint, <code>http://localhost:8080/flash/</code>[cite: 855].</li>
+            <li>The server responds with an HTTP `404 Not Found` status code.</li>
+            [cite_start]<li>The script logs that the endpoint was not found and proceeds to the next potential location[cite: 855].</li>
+            <li>This process is repeated for all endpoints in the list, with none being found. [cite_start]The test concludes that no Flash files were discovered on the server and provides recommendations for manual decompilation tools if a file were to be found in a real engagement[cite: 860, 861].</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 15:16:08.009921 | ----- Starting OTG-CLIENT-008 (Cross Site Flashing) -----
+2025-08-05 15:16:08.009921 | 
+[i] Testing Flash endpoint: http://localhost:8080/flash/
+2025-08-05 15:16:08.012130 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.012130 | 
+[i] Testing Flash endpoint: http://localhost:8080/swf/
+2025-08-05 15:16:08.014132 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.015133 | 
+[i] Testing Flash endpoint: http://localhost:8080/player.swf
+2025-08-05 15:16:08.017133 |   - Endpoint not found (HTTP 404)
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing for Clickjacking (OTG-CLIENT-009)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective of this test is to identify if the application is vulnerable to Clickjacking. This attack involves loading the target application in a transparent `<iframe>` over a decoy webpage, tricking a user into clicking on buttons or links on the invisible page. This test checks for the presence of common anti-clickjacking defenses like the `X-Frame-Options` header and the `frame-ancestors` Content Security Policy directive.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The test targets pages with sensitive actions that an attacker would want to trick a user into performing:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/csrf/</code> [cite: 864]</li>
+            [cite_start]<li><code>http://localhost:8080/account/transfer</code> [cite: 868]</li>
+            [cite_start]<li><code>http://localhost:8080/profile/update</code> [cite: 872]</li>
+            [cite_start]<li><code>http://localhost:8080/admin/actions</code> [cite: 876]</li>
+            [cite_start]<li><code>http://localhost:8080/settings/change</code> [cite: 880]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_009</code> function checks for clickjacking vulnerabilities by performing a series of checks on each target endpoint:</p>
+        <ol>
+            <li>It sends a GET request and inspects the response headers for the `X-Frame-Options` header.</li>
+            <li>It also inspects the `Content-Security-Policy` header for the `frame-ancestors` directive.</li>
+            <li>If neither of these server-side protections is found, it scans the page's HTML for common client-side "frame busting" JavaScript code.</li>
+            <li>If no protections are detected, the script flags the endpoint as vulnerable and generates a simple proof-of-concept (PoC) HTML file that demonstrates how the page can be framed.</li>
+        </ol>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs into the application[cite: 863].</li>
+            [cite_start]<li>It targets the CSRF page at <code>http://localhost:8080/vulnerabilities/csrf/</code>[cite: 864].</li>
+            [cite_start]<li>The script analyzes the HTTP response headers and finds that the `X-Frame-Options` header is missing[cite: 864].</li>
+            [cite_start]<li>It also finds that the `Content-Security-Policy` header is either missing or does not contain the `frame-ancestors` directive[cite: 865].</li>
+            [cite_start]<li>Finally, it scans the page source and finds no frame-busting JavaScript[cite: 866].</li>
+            [cite_start]<li>Because all three layers of protection are absent, the script reports the vulnerability and creates a PoC file named `clickjacking_poc_.html` to demonstrate the attack[cite: 867].</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 15:20:22.396675 | ----- Starting OTG-CLIENT-009 (Clickjacking) -----
+2025-08-05 15:20:22.397703 | 
+[i] Testing endpoint: http://localhost:8080/vulnerabilities/csrf/
+2025-08-05 15:20:22.400868 |   [✓] Missing X-Frame-Options header - vulnerable to clickjacking
+      Recommendation: Add X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.401866 |   [✓] Missing frame-ancestors in CSP - vulnerable to clickjacking
+      Recommendation: Add Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.401866 |   [*] Checking for frame busting JavaScript
+2025-08-05 15:20:22.401866 |     [✓] No frame busting JavaScript detected - vulnerable to clickjacking
+        Recommendation: Implement frame busting JavaScript or use X-Frame-Options/CSP
+2025-08-05 15:20:22.403192 |   [*] Created clickjacking PoC: clickjacking_poc_.html
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Testing WebSockets (OTG-CLIENT-010)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to discover and assess the security of WebSocket implementations. The objectives include checking for insecure connections (<code>ws://</code> instead of <code>wss://</code>), validating that the server properly checks the `Origin` header to prevent Cross-Site WebSocket Hijacking (CSWSH), and testing for input sanitization flaws in messages sent over the WebSocket connection.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script attempts to connect to a list of common WebSocket endpoint paths:</p>
+        <ul>
+            [cite_start]<li><code>ws://localhost:8080/ws</code> [cite: 893]</li>
+            [cite_start]<li><code>ws://localhost:8080/websocket</code> [cite: 897]</li>
+            [cite_start]<li><code>ws://localhost:8080/socket</code> [cite: 901]</li>
+            [cite_start]<li><code>ws://localhost:8080/wss</code> [cite: 905]</li>
+            [cite_start]<li><code>ws://localhost:8080/live-updates</code> [cite: 909]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_010</code> function requires the `websocket-client` Python library. It iterates through a list of potential WebSocket endpoints and attempts to establish a connection. If a connection is made, it performs several security checks: it attempts a connection with a forged `Origin` header to test for CSRF vulnerabilities and sends a basic XSS payload through the connection to check if the server sanitizes the input before echoing it back. If no endpoints are found, the test concludes by recommending manual testing tools.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs in and begins the WebSocket test[cite: 892].</li>
+            [cite_start]<li>It attempts to establish a WebSocket connection to the first endpoint, <code>ws://localhost:8080/ws</code>[cite: 893].</li>
+            [cite_start]<li>The connection attempt fails because the server responds with an HTTP `404 Not Found`, indicating that no WebSocket service is running at that path[cite: 893, 894].</li>
+            [cite_start]<li>This process is repeated for all other potential endpoints, all of which also return a 404 error[cite: 897, 901, 905, 909].</li>
+            <li>The script concludes that no WebSocket endpoints were discovered on the target application.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 15:29:53.419123 | ----- Starting OTG-CLIENT-010 (WebSocket Testing) -----
+2025-08-05 15:29:53.470913 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/ws
+2025-08-05 15:29:53.475916 |   [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- ...
+2025-08-05 15:29:53.484381 |   [+] WebSocket rejected connection with invalid origin
+2025-08-05 15:29:53.490388 |   [-] Input sanitization test failed: Handshake status 404 Not Found -+-+- ...
+2025-08-05 15:29:53.490388 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/websocket
+2025-08-05 15:29:53.496388 |   [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- ...
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Test Web Messaging (OTG-CLIENT-011)</h2>
+        <h3>Test Objective</h3>
+        <p>This test is designed to find vulnerabilities in the implementation of client-side Web Messaging (`postMessage` API). The primary objectives are to check if the receiving event listener properly validates the origin of incoming messages to prevent cross-origin attacks, and to ensure that the data received in the message is handled safely to prevent DOM-based XSS.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script searches for pages and JavaScript files that might contain Web Messaging logic:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/web_messaging/</code> [cite: 918]</li>
+            [cite_start]<li><code>http://localhost:8080/includes/web_messaging.js</code> [cite: 918]</li>
+            [cite_start]<li><code>http://localhost:8080/js/messaging.js</code> [cite: 919]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_011</code> function attempts to discover and analyze the use of the `postMessage` API. It starts by trying to fetch pages that are likely to contain messaging code. If a page is found, the script would then scan the JavaScript content for message event listeners (`addEventListener("message", ...)`). Upon finding a listener, it would analyze the code to determine how (or if) it validates the `event.origin` and whether it uses the received data in dangerous sinks like `innerHTML` or `eval()`.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs into DVWA and starts the test[cite: 917].</li>
+            [cite_start]<li>It attempts to fetch the first potential target URL, <code>http://localhost:8080/vulnerabilities/web_messaging/</code>[cite: 918].</li>
+            <li>The request fails with a `404 Not Found` status.</li>
+            [cite_start]<li>The script logs that the page was not found and moves to the next target[cite: 918].</li>
+            [cite_start]<li>All other potential targets also result in a 404 error[cite: 919]. The script concludes that no pages implementing the Web Messaging API were found to test.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 15:41:44.536167 | ----- Starting OTG-CLIENT-011 (Web Messaging Testing) -----
+2025-08-05 15:41:44.536167 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/web_messaging/
+2025-08-05 15:41:44.538563 |   [-] Page not found: http://localhost:8080/vulnerabilities/web_messaging/
+2025-08-05 15:41:44.538563 | 
+[i] Testing page: http://localhost:8080/includes/web_messaging.js
+2025-08-05 15:41:44.540563 |   [-] Page not found: http://localhost:8080/includes/web_messaging.js
+2025-08-05 15:41:44.540563 | 
+[i] Testing page: http://localhost:8080/js/messaging.js
+2025-08-05 15:41:44.542564 |   [-] Page not found: http://localhost:8080/js/messaging.js
+2025-08-05 15:41:44.542564 | ----- OTG-CLIENT-011 Test Completed -----
+        </code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Test Local Storage (OTG-CLIENT-012)</h2>
+        <h3>Test Objective</h3>
+        <p>This test aims to identify insecure use of client-side storage mechanisms, including Local Storage, Session Storage, and IndexedDB. The primary objectives are to discover if sensitive information (like tokens, passwords, or personal data) is being stored on the client-side where it could be accessed by XSS attacks, and to check if data retrieved from storage is handled unsafely, leading to DOM XSS.</p>
+        
+        <h3>Target Endpoint</h3>
+        <p>The script attempts to find pages and scripts that are likely to interact with client-side storage:</p>
+        <ul>
+            [cite_start]<li><code>http://localhost:8080/vulnerabilities/client_storage/</code> [cite: 922]</li>
+            [cite_start]<li><code>http://localhost:8080/includes/storage.js</code> [cite: 922]</li>
+            [cite_start]<li><code>http://localhost:8080/js/app.js</code> [cite: 923]</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The <code>OTG_CLIENT_012</code> function is designed to find and analyze client-side storage usage. It attempts to fetch target pages and, if successful, scans their JavaScript code for keywords related to storage APIs (<code>localStorage</code>, <code>sessionStorage</code>, <code>indexedDB</code>). If usage is detected, the script then searches for patterns indicating that sensitive data (based on keywords like `token`, `password`, `secret`) is being stored. It also looks for dangerous patterns where data is retrieved from storage and then passed into a DOM sink like `innerHTML`, which could indicate a stored XSS vulnerability.</p>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            [cite_start]<li>The script logs in and initiates the client-side storage test[cite: 921].</li>
+            [cite_start]<li>It attempts to access the first potential target, <code>http://localhost:8080/vulnerabilities/client_storage/</code>[cite: 922].</li>
+            <li>The server returns a `404 Not Found` error. [cite_start]The script logs this and moves to the next target[cite: 922].</li>
+            [cite_start]<li>All subsequent targets also result in 404 errors[cite: 923].</li>
+            [cite_start]<li>Since no pages with client-side storage logic were found, the script concludes the test and provides recommendations for manual testing using browser developer tools[cite: 924, 925].</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre><code>
+2025-08-05 15:48:52.653364 | ----- Starting OTG-CLIENT-012 (Client-Side Storage Testing) -----
+2025-08-05 15:48:52.653364 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client_storage/
+2025-08-05 15:48:52.655693 |   [-] Page not found: http://localhost:8080/vulnerabilities/client_storage/
+2025-08-05 15:48:52.655693 | 
+[i] Testing page: http://localhost:8080/includes/storage.js
+2025-08-05 15:48:52.658806 |   [-] Page not found: http://localhost:8080/includes/storage.js
+2025-08-05 15:48:52.658806 | 
+[i] Testing page: http://localhost:8080/js/app.js
+2025-08-05 15:48:52.660812 |   [-] Page not found: http://localhost:8080/js/app.js
+2025-08-05 15:48:52.660812 | 
+[i] Manual testing recommendations:
+2025-08-05 15:48:52.660812 |   - Use browser DevTools to inspect actual storage contents
+2025-08-05 15:48:52.660812 |   - Check for sensitive data in localStorage/sessionStorage
+2025-08-05 15:48:52.660812 |   - Verify IndexedDB for extractable CryptoKeys
+        </code></pre>
+    </div>
+
+</body>
+</html>

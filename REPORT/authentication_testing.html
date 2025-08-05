@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Authentication Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Authentication Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Authentication testing is the process of verifying that the application correctly identifies and validates the identity of a user. This includes testing for vulnerabilities related to credential transport, default credentials, weak lockout mechanisms, and other authentication bypass techniques. A secure authentication process is fundamental to protecting user accounts and sensitive data.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-001</td>
+                <td>Credentials Transported over an Encrypted Channel</td>
+                <td>7.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-002</td>
+                <td>Testing for default credentials</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-003</td>
+                <td>Weak Lockout Mechanism</td>
+                <td>5.9</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-004</td>
+                <td>Testing for bypassing authentication schema</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-005</td>
+                <td>Test remember password functionality</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-006</td>
+                <td>Testing for Browser cache weakness</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-007</td>
+                <td>Testing for Weak password policy</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-008</td>
+                <td>Testing for Weak security question/answer</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-009</td>
+                <td>Testing for weak password change or reset functionalities</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-AUTHN-010</td>
+                <td>Testing for Weaker authentication in alternative channel</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>The most critical vulnerability identified in this category is the transmission of credentials over an unencrypted HTTP channel. This allows an attacker with a privileged network position to intercept and steal user credentials. Additionally, the application lacks a proper account lockout mechanism, making it vulnerable to brute-force attacks against user accounts.</p>
+        <p>A key challenge during this assessment was the inability to test for weak password policies and security questions due to the absence of a user registration feature. While the tests for default credentials and authentication bypass did not reveal any vulnerabilities, the lack of a registration process limits the scope of the assessment and may hide other potential weaknesses in the application's authentication scheme.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. General Recommendation/Remediation</h2>
+        <ul>
+            <li><strong>Enforce HTTPS:</strong> The application should be configured to use HTTPS exclusively to protect data in transit. This includes the login page, as well as all other pages that handle sensitive information.</li>
+            <li><strong>Implement a Strong Lockout Mechanism:</strong> The application should implement a strong lockout mechanism that temporarily locks an account after a certain number of failed login attempts. This will help to prevent brute-force attacks.</li>
+            <li><strong>Implement a User Registration Process:</strong> A user registration process should be implemented to allow for the testing of password policies and username policies.</li>
+            <li><strong>Enforce Strong Password Policies:</strong> The application should enforce strong password policies, including minimum length, complexity, and expiration.</li>
+            <li><strong>Secure Cookie Attributes:</strong> The `Secure` and `HttpOnly` flags should be set for all session cookies. The `SameSite` attribute should be set to `Strict` or `Lax` to prevent CSRF attacks.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

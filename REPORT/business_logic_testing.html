@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP WSTG Report - Business Logic Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+
+    <h1>Business Logic Testing</h1>
+
+    <div class="section">
+        <h2>1. Introduction</h2>
+        <p>Business logic testing focuses on identifying flaws in the application's intended workflow and business rules. These vulnerabilities are often unique to the application and its specific domain, and can be difficult to detect with automated scanners. This testing category covers a wide range of business logic flaws, including data validation issues, the ability to forge requests, and the circumvention of workflows.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. CVSS Score Summary</h2>
+        <table>
+            <tr>
+                <th>Test Case</th>
+                <th>Vulnerability</th>
+                <th>CVSS v3.1 Score</th>
+                <th>CVSS Vector</th>
+                <th>Severity</th>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-001</td>
+                <td>Business Logic Data Validation</td>
+                <td>6.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-002</td>
+                <td>Ability to Forge Requests</td>
+                <td>7.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-003</td>
+                <td>Integrity Checks</td>
+                <td>8.8</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-004</td>
+                <td>Process Timing</td>
+                <td>5.3</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-005</td>
+                <td>Function Usage Limits</td>
+                <td>7.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-006</td>
+                <td>Circumvention of Workflows</td>
+                <td>6.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N</td>
+                <td class="severity-medium">Medium</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-007</td>
+                <td>Defenses Against Application Mis-use</td>
+                <td>7.5</td>
+                <td>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</td>
+                <td class="severity-high">High</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-008</td>
+                <td>Upload of Unexpected File Types</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+            <tr>
+                <td>OTG-BUSLOGIC-009</td>
+                <td>Upload of Malicious Files</td>
+                <td>0.0</td>
+                <td>N/A</td>
+                <td class="severity-info">Informational</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Summary of Findings</h2>
+        <p>The most significant finding in this category is the application's susceptibility to business logic data validation flaws. The application fails to properly validate user input, allowing for the submission of invalid data, such as negative prices and zero quantities. Additionally, the application is vulnerable to request forgery, allowing an attacker to enable debug and other hidden parameters. The application also fails to properly enforce integrity checks, allowing for the modification of hidden fields and the potential for privilege escalation.</p>
+        <p>A key challenge in this testing category was the lack of a clear understanding of the application's intended business logic. This made it difficult to determine whether certain behaviors were intentional or the result of a vulnerability. The tests for process timing also revealed a significant difference in response times for valid and invalid SQL queries, which could be used to infer the validity of a query. The test for circumventing workflows also revealed that it is possible to set the security level to an invalid value, which could have unintended consequences.</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling Testing Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 1em;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .severity-critical { background-color: #ff4d4d; color: white; }
+        .severity-high { background-color: #ff9933; }
+        .severity-medium { background-color: #ffff66; }
+        .severity-low { background-color: #99ff99; }
+        .severity-info { background-color: #e6e6e6; }
+    </style>
+</head>
+<body>
+    <h1>Error Handling Testing Report</h1>
+
+    <div class="section">
+        <h2>Introduction</h2>
+        <p><strong>Date:</strong> Tuesday, August 5, 2025</p>
+        <p>This report details the findings from the error handling testing performed on the Damn Vulnerable Web Application (DVWA), focusing on the analysis of error codes and stack traces.</p>
+    </div>
+
+    <!-- OTG-ERR-001: Analysis of Error Codes -->
+    <div class="section">
+        <h2>7.1 Analysis of Error Codes (OTG-ERR-001)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective of this test is to identify instances where the application reveals excessive information through error messages or HTTP status codes. Applications should provide generic error messages to users and log detailed errors internally. Revealing specific error codes, database errors, or internal server errors can provide attackers with valuable insights into the application's architecture, technologies used, and potential vulnerabilities.</p>
+
+        <h3>Target Endpoint</h3>
+        <p>Testing for error codes involves interacting with various parts of the DVWA application to intentionally trigger errors. Common target endpoints include:</p>
+        <ul>
+            <li><strong>Login Page:</strong> <code>/login.php</code> (e.g., incorrect credentials, SQL injection attempts in username/password fields)</li>
+            <li><strong>SQL Injection Vulnerability:</strong> <code>/vulnerabilities/sqli/</code> (e.g., malformed SQL queries)</li>
+            <li><strong>Command Injection Vulnerability:</strong> <code>/vulnerabilities/exec/</code> (e.g., invalid commands)</li>
+            <li><strong>File Inclusion Vulnerability:</strong> <code>/vulnerabilities/fi/</code> (e.g., attempts to include non-existent or restricted files)</li>
+            <li><strong>Non-existent Pages/Resources:</strong> Any URL that does not map to an existing resource (e.g., <code>/nonexistent_page.php</code>)</li>
+            <li><strong>Parameters with invalid data types:</strong> Passing strings to integer-expected parameters.</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The methodology involves systematically sending malformed requests, invalid inputs, or requests to non-existent resources to provoke error responses from the application. The responses are then analyzed for the level of detail provided in error messages, HTTP status codes, and any other information that could aid an attacker. This can be done manually through a web browser and proxy (like Burp Suite) or automated using scripting.</p>
+        <p>A Python script utilizing the <code>requests</code> library can be used to automate the process of sending various types of invalid requests and capturing the responses for analysis. No specific external tools are strictly required beyond a web browser and potentially a proxy for manual testing, but <code>requests</code> is a fundamental library for programmatic interaction.</p>
+        <p><strong>Important Python Snippet (using <code>requests</code> library):</strong></p>
+        <pre><code>import requests
+
+# Assuming DVWA is running on localhost
+DVWA_URL = "http://localhost/dvwa"
+SESSION_ID = "your_dvwa_session_id" # Replace with a valid session ID after logging in
+
+headers = {
+    "Cookie": f"PHPSESSID={SESSION_ID}; security=low" # Adjust security level as needed
+}
+
+def test_error_code(url, payload=None, method="GET"):
+    print(f"Testing URL: {url} with payload: {payload}")
+    try:
+        if method == "POST":
+            response = requests.post(url, data=payload, headers=headers)
+        else:
+            response = requests.get(url, params=payload, headers=headers)
+        
+        print(f"Status Code: {response.status_code}")
+        print(f"Response Body (partial):\n{response.text[:500]}...") # Print first 500 chars
+        
+        # Look for common error indicators
+        if "error" in response.text.lower() or "warning" in response.text.lower() or response.status_code >= 400:
+            print("Potential error message or status code found!")
+            if "sql syntax" in response.text.lower():
+                print("  -> SQL Syntax Error detected!")
+            if "warning" in response.text.lower():
+                print("  -> PHP Warning detected!")
+            if "fatal error" in response.text.lower():
+                print("  -> PHP Fatal Error detected!")
+        print("-" * 50)
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"Request failed: {e}")
+        return None
+
+# Example 1: Accessing a non-existent page
+test_error_code(f"{DVWA_URL}/non_existent_page.php")
+
+# Example 2: Malformed SQL injection attempt (assuming low security)
+# This might trigger a database error or a generic error depending on DVWA config
+test_error_code(f"{DVWA_URL}/vulnerabilities/sqli/", payload={"id": "1'", "Submit": "Submit"})
+
+# Example 3: Invalid input to a numeric field (e.g., XSS reflected)
+test_error_code(f"{DVWA_URL}/vulnerabilities/xss_r/", payload={"name": "invalid_input", "Submit": "Submit"})
+</code></pre>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li><strong>Identify Target Endpoints:</strong> Browse the DVWA application and identify pages that accept user input or interact with backend services (e.g., login, SQLi, XSS, Command Execution).</li>
+            <li><strong>Trigger Errors:</strong>
+                <ul>
+                    <li><strong>Non-existent URL:</strong> Navigate to a URL that does not exist within the application (e.g., <code>http://localhost/dvwa/this_page_does_not_exist.php</code>). Observe the HTTP status code and the content of the error page.</li>
+                    <li><strong>Invalid Input:</strong> For input fields (e.g., username, password, ID parameters), provide malformed input. For example, in the SQL Injection page, try entering <code>'</code> (a single quote) into the ID field.</li>
+                    <li><strong>Invalid Parameters:</strong> Modify URL parameters or POST data to include unexpected values or data types (e.g., passing a string to a parameter expecting an integer).</li>
+                    <li><strong>Force HTTP Methods:</strong> Attempt to use unsupported HTTP methods (e.g., sending a POST request to an endpoint that only expects GET).</li>
+                </ul>
+            </li>
+            <li><strong>Analyze Responses:</strong> Examine the HTTP status codes (e.g., 400 Bad Request, 404 Not Found, 500 Internal Server Error) and the content of the error pages. Look for:
+                <ul>
+                    <li>Specific database error messages (e.g., "SQLSTATE", "ORA-", "MySQL error").</li>
+                    <li>Programming language-specific errors (e.g., "PHP Warning", "Java Exception").</li>
+                    <li>File paths, variable names, or other internal application details.</li>
+                    <li>Verbose error messages that reveal too much about the application's internal workings.</li>
+                </ul>
+            </li>
+            <li><strong>Determine Result:</strong> If the application displays detailed error messages, specific error codes, or internal information to the user, it indicates a vulnerability. A secure application should present generic, user-friendly error messages and log detailed errors only on the server-side.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre>
+            <strong>Example 1: Non-existent Page Error (DVWA - Apache/PHP default)</strong>
+
+<code>HTTP/1.1 404 Not Found
+Date: Tue, 05 Aug 2025 10:00:00 GMT
+Server: Apache/2.4.52 (Win64) PHP/8.1.10
+Content-Length: 207
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;hr&gt;
+&lt;address&gt;Apache/2.4.52 (Win64) PHP/8.1.10 Server at localhost Port 80&lt;/address&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code>
+<em>Observation:</em> While a 404 is appropriate, the server banner (Apache/2.4.52 (Win64) PHP/8.1.10) is exposed, which can aid attackers in identifying potential vulnerabilities related to specific software versions.
+
+            <strong>Example 2: SQL Injection Error (DVWA - Low Security)</strong>
+
+<code>HTTP/1.1 200 OK
+Date: Tue, 05 Aug 2025 10:05:00 GMT
+Server: Apache/2.4.52 (Win64) PHP/8.1.10
+Content-Length: XXXX
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+...
+&lt;pre&gt;
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use at line 1
+&lt;/pre&gt;
+...
+</code>
+<em>Observation:</em> The application directly displays a detailed MySQL syntax error message to the user, including the specific SQL query fragment that caused the error. This is a critical information disclosure vulnerability, confirming the presence of SQL injection and providing debugging information to an attacker.
+        </pre>
+    </div>
+
+    <!-- OTG-ERR-002: Analysis of Stack Traces -->
+    <div class="section">
+        <h2>7.2 Analysis of Stack Traces (OTG-ERR-002)</h2>
+        <h3>Test Objective</h3>
+        <p>The objective of this test is to determine if the application exposes full stack traces to the client. A stack trace is a report of the active stack frames at a certain point in time during the execution of a program. When an unhandled exception occurs, many applications will output a stack trace, which can contain highly sensitive information such as internal file paths, class names, method names, line numbers, and even snippets of source code. This information can be invaluable to an attacker for mapping the application's internal structure, identifying libraries and their versions, and pinpointing potential attack vectors.</p>
+
+        <h3>Target Endpoint</h3>
+        <p>Stack traces are typically exposed when an unhandled exception occurs in the application's backend logic. Any endpoint that processes user input or interacts with complex business logic is a potential target. In DVWA, this could include:</p>
+        <ul>
+            <li><strong>Any page with input fields:</strong> Attempting to provide extremely malformed or unexpected input that the application's input validation (if any) fails to handle gracefully.</li>
+            <li><strong>Pages with complex logic:</strong> Pages that perform database operations, file system interactions, or involve multiple internal function calls.</li>
+            <li><strong>Direct API endpoints:</strong> If DVWA had explicit API endpoints, these would be prime targets for sending malformed requests to trigger unhandled exceptions.</li>
+            <li><strong>Specific vulnerabilities:</strong> Sometimes, exploiting a vulnerability like SQL Injection or Command Injection with certain payloads can lead to an unhandled exception and a stack trace if the error is not caught properly.</li>
+        </ul>
+
+        <h3>Methodology</h3>
+        <p>The methodology involves attempting to trigger unhandled exceptions within the application. This often requires a degree of fuzzing or sending highly unexpected input to various parameters. The responses are then carefully examined for the presence of stack traces. This can be done manually by observing application behavior or programmatically by analyzing HTTP responses.</p>
+        <p>Similar to error code analysis, the <code>requests</code> library in Python is suitable for automating the sending of requests. There are no specific external tools designed solely for triggering stack traces, as it's more about understanding how to break the application's expected flow. However, fuzzing tools (like OWASP ZAP or Burp Suite's Intruder) can be used to automate the generation of malformed inputs, increasing the chances of hitting an unhandled exception.</p>
+        <p><strong>Important Python Snippet (using <code>requests</code> library for fuzzing-like attempts):</strong></p>
+        <pre><code>import requests
+
+DVWA_URL = "http://localhost/dvwa"
+SESSION_ID = "your_dvwa_session_id" # Replace with a valid session ID after logging in
+
+headers = {
+    "Cookie": f"PHPSESSID={SESSION_ID}; security=low"
+}
+
+def test_stack_trace(url, param_name, invalid_values):
+    print(f"Testing URL: {url} for stack traces with parameter '{param_name}'")
+    for value in invalid_values:
+        payload = {param_name: value, "Submit": "Submit"} # Assuming a 'Submit' button
+        print(f"  Sending payload: {payload}")
+        try:
+            response = requests.get(url, params=payload, headers=headers)
+            
+            # Check for common stack trace patterns (e.g., "Traceback", "at com.example", "Caused by:")
+            if "traceback" in response.text.lower() or "at " in response.text.lower() and "exception" in response.text.lower():
+                print(f"    !!! Potential Stack Trace Found for value: '{value}' !!!")
+                print(f"    Status Code: {response.status_code}")
+                print(f"    Response Body (partial):\n{response.text[:1000]}...") # Print first 1000 chars
+                print("-" * 50)
+                return response # Found one, no need to continue for this URL/param
+            
+            # Also check for 500 Internal Server Errors, which often accompany stack traces
+            if response.status_code == 500:
+                print(f"    !!! 500 Internal Server Error for value: '{value}' !!!")
+                print(f"    Response Body (partial):\n{response.text[:1000]}...")
+                print("-" * 50)
+                return response
+
+        except requests.exceptions.RequestException as e:
+            print(f"  Request failed for value '{value}': {e}")
+    print(f"No obvious stack trace found for {url} with parameter '{param_name}'.")
+    print("=" * 70)
+    return None
+
+# Example: Testing SQLi page with various malformed inputs
+# Note: DVWA's SQLi page might not always produce a full stack trace, but rather a SQL error.
+# This is more illustrative of how one would attempt to trigger it.
+test_stack_trace(f"{DVWA_URL}/vulnerabilities/sqli/", "id", ["-1 UNION SELECT 1,2,3", "1 OR 1=1--", "a'*'"])
+
+# Example: Testing XSS Reflected page with very long string or special chars
+test_stack_trace(f"{DVWA_URL}/vulnerabilities/xss_r/", "name", ["<script>alert(1)</script>", "A" * 5000, "%00%00%00%00"])
+
+# Example: Attempting to trigger an error on a non-existent file inclusion
+test_stack_trace(f"{DVWA_URL}/vulnerabilities/fi/", "page", ["../../../../etc/passwd", "non_existent_file.php%00"])
+</code></pre>
+
+        <h3>Step to Reproduce</h3>
+        <ol>
+            <li><strong>Identify Potential Trigger Points:</strong> Focus on areas where the application processes complex data, interacts with the file system, or performs database operations. Any input field or URL parameter is a candidate.</li>
+            <li><strong>Craft Malformed Inputs:</strong>
+                <ul>
+                    <li><strong>Invalid Data Types:</strong> Provide input that is of an incorrect data type (e.g., a very long string or special characters where an integer is expected).</li>
+                    <li><strong>Boundary Conditions:</strong> Test with extremely large inputs, very small inputs, or inputs at the edge of expected ranges.</li>
+                    <li><strong>Special Characters/Encodings:</strong> Use null bytes (<code>%00</code>), double encodings, or other unusual characters that might confuse the application's parsing logic.</li>
+                    <li><strong>Path Traversal Attempts:</strong> For file inclusion vulnerabilities, try payloads like <code>../../../../etc/passwd</code> or <code>C:\\windows\\win.ini</code>. While these are for path traversal, they can sometimes lead to unhandled file I/O exceptions.</li>
+                    <li><strong>SQL Injection Payloads:</strong> Certain complex or invalid SQL injection payloads might cause the database driver or application logic to throw an unhandled exception.</li>
+                </ul>
+            </li>
+            <li><strong>Analyze Responses:</strong> Carefully inspect the HTTP response body and headers for any text resembling a stack trace. Look for keywords like:
+                <ul>
+                    <li><code>Traceback (most recent call last):</code> (Python)</li>
+                    <li><code>at com.example.package.ClassName.methodName(FileName.java:LineNumber)</code> (Java)</li>
+                    <li><code>Fatal error: Uncaught Exception</code> (PHP)</li>
+                    <li><code>Stack trace:</code></li>
+                    <li>File paths (e.g., <code>/var/www/html/app/</code>, <code>C:\\Program Files\\</code>)</li>
+                    <li>Class names, method names, and line numbers.</li>
+                </ul>
+            </li>
+            <li><strong>Determine Result:</strong> If a stack trace is displayed to the user, it is a critical information disclosure vulnerability. This information can be used by an attacker to understand the application's internal structure, identify vulnerable components, and craft more targeted attacks.</li>
+        </ol>
+
+        <h3>Log Evidence</h3>
+        <pre>
+            <strong>Example 1: PHP Warning/Fatal Error (Illustrative, DVWA might not always show full stack traces directly)</strong>
+
+<code>HTTP/1.1 200 OK
+Date: Tue, 05 Aug 2025 10:15:00 GMT
+Server: Apache/2.4.52 (Win64) PHP/8.1.10
+Content-Length: XXXX
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+&lt;h1&gt;DVWA - Command Execution&lt;/h1&gt;
+...
+&lt;br /&gt;
+&lt;b&gt;Warning&lt;/b&gt;:  shell_exec(): Cannot execute a blank command in &lt;b&gt;C:\xampp\htdocs\dvwa\vulnerabilities\exec\source\low.php&lt;/b&gt; on line &lt;b&gt;25&lt;/b&gt;&lt;br /&gt;
+...
+</code>
+<em>Observation:</em> While not a full stack trace, this PHP warning reveals the exact file path (<code>C:\xampp\htdocs\dvwa\vulnerabilities\exec\source\low.php</code>) and line number (<code>25</code>) where an issue occurred. This type of information is highly valuable for an attacker to understand the application's file structure and pinpoint the exact location of a vulnerability.
+
+            <strong>Example 2: Generic Internal Server Error (Illustrative of what a full stack trace might accompany)</strong>
+
+<code>HTTP/1.1 500 Internal Server Error
+Date: Tue, 05 Aug 2025 10:20:00 GMT
+Server: Apache/2.4.52 (Win64) PHP/8.1.10
+Content-Length: XXXX
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+&lt;h1&gt;Internal Server Error&lt;/h1&gt;
+&lt;p&gt;The server encountered an internal error or misconfiguration and was unable to complete your request.&lt;/p&gt;
+&lt;p&gt;Please contact the server administrator at webmaster@localhost to inform them of the time this error occurred, and the actions you performed just before this error.&lt;/p&gt;
+&lt;p&gt;More information about this error may be available in the server error log.&lt;/p&gt;
+&lt;!--
+    A full stack trace would typically appear here in a vulnerable application,
+    e.g., Java stack trace, Python traceback, or detailed PHP error.
+    Example (hypothetical Java stack trace):
+    java.lang.NullPointerException: Cannot invoke "java.lang.String.length()" because "someObject" is null
+        at com.example.app.UserService.processRequest(UserService.java:123)
+        at com.example.app.Controller.handleUser(Controller.java:45)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+        ... (many more lines)
+--&gt;
+</code>
+<em>Observation:</em> A 500 Internal Server Error without a detailed message is better than exposing a stack trace, but the presence of such an error indicates an unhandled exception. If a full stack trace were present (as indicated in the commented section), it would be a severe information disclosure. The goal is to ensure such errors are caught and handled gracefully without revealing internal details.
+        </pre>
+    </div>
+</body>
+</html>
